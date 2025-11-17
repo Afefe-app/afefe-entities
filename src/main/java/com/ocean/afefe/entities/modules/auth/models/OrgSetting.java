@@ -13,10 +13,10 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrgSettings extends BaseUUIDEntity {
+public class OrgSetting extends BaseUUIDEntity {
 
     @OneToMany
-    private Org org;
+    private Organization organization;
 
     @Column(nullable = false)
     private String settingsJson;

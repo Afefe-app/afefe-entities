@@ -1,6 +1,6 @@
 package com.ocean.afefe.entities.modules.auth.repository;
 
-import com.ocean.afefe.entities.modules.auth.models.Org;
+import com.ocean.afefe.entities.modules.auth.models.Organization;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,5 +8,5 @@ import java.util.UUID;
 
 
 @Repository
-public interface OrgsRepository extends JpaRepository<Org, UUID> {
+public interface OrgsRepository extends JpaRepository<Organization, UUID> {
 }

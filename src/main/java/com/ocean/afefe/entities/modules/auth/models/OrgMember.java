@@ -22,10 +22,10 @@ import java.time.Instant;
 )
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrgMembers extends BaseUUIDEntity {
+public class OrgMember extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Org org;
+    private Organization organization;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;

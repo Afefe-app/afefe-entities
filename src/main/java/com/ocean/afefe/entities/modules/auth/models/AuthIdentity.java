@@ -24,7 +24,7 @@ import java.time.Instant;
 )
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthIdentities extends BaseUUIDEntity {
+public class AuthIdentity extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)

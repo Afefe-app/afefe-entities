@@ -1,7 +1,8 @@
 package com.ocean.afefe.entities.modules.auth.models;
 
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import lombok.*;
 
 
@@ -11,17 +12,16 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Roles extends BaseUUIDEntity {
-
-    @ManyToOne(optional = false)
-    private Org org;
+public class Organization extends BaseUUIDEntity {
 
     @Column(nullable = false)
     private String name;
 
-    @Column(columnDefinition = "TEXT")
-    private String description;
+    @Column(nullable = false, unique = true)
+    private String slug;
 
     @Column(nullable = false)
-    private Boolean isSystem;
+    private String status;
+
+    private String planTier;
 }

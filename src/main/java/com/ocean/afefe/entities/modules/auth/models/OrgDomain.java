@@ -15,7 +15,7 @@ import java.time.Instant;
 public class OrgDomain extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Org org;
+    private Organization organization;
 
     @Column(nullable = false, unique = true)
     private String domain;
