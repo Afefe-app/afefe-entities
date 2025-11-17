@@ -1,0 +1,21 @@
+package com.ocean.afefe.entities.modules.contents.models;
+
+import com.ocean.afefe.entities.common.BaseUUIDEntity;
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Table(name = "course_categories",
+       uniqueConstraints = @UniqueConstraint(name = "uk_course_categories_course_category", columnNames = {"course_id","category_id"}),
+       indexes = @Index(name = "idx_course_categories_category_id", columnList = "category_id"))
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+public class CourseCategory extends BaseUUIDEntity {
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+}
