@@ -6,22 +6,30 @@ import lombok.*;
 
 @Entity
 @Table(name = "course_localizations",
-       uniqueConstraints = @UniqueConstraint(name = "uk_course_localizations_cv_locale", columnNames = {"course_version_id","locale"}),
-       indexes = @Index(name = "idx_course_localizations_cv_id", columnList = "course_version_id"))
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+       uniqueConstraints = @UniqueConstraint(
+               name = "uk_course_localizations_cv_locale",
+               columnNames = {"course_version_id","locale"}
+       ),
+       indexes = @Index(
+               name = "idx_course_localizations_cv_id",
+               columnList = "course_version_id")
+)
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CourseLocalization extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "course_version_id", nullable = false)
     private CourseVersion courseVersion;
 
-    @Column(name = "locale", nullable = false, length = 20)
+    @Column(nullable = false)
     private String locale;
 
-    @Column(name = "title", length = 255)
     private String title;
 
-    @Lob
-    @Column(name = "summary", columnDefinition = "text")
+    @Column(columnDefinition = "TEXT")
     private String summary;
 }
