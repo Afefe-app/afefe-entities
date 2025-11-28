@@ -19,6 +19,8 @@ public class User extends BaseUUIDEntity {
     private String emailAddress;
 
     private String passwordHash;
+
     private boolean isActive;
+
     private Instant lastLoginAt;
 }

@@ -10,7 +10,11 @@ import lombok.*;
        indexes = {
          @Index(name = "idx_teams_parent_team_id", columnList = "parent_team_id")
        })
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Team extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -18,13 +22,11 @@ public class Team extends BaseUUIDEntity {
     private Organization org;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_team_id")
     private Team parentTeam;
 
-    @Column(name = "name", nullable = false, length = 150)
+    @Column(nullable = false)
     private String name;
 
-    @Lob
-    @Column(name = "description", columnDefinition = "text")
+    @Column(columnDefinition = "TEXT")
     private String description;
 }

@@ -3,6 +3,8 @@ package com.ocean.afefe.entities.modules.auth.models;
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.Instant;
 import java.time.OffsetDateTime;
 
 @Entity
@@ -11,7 +13,11 @@ import java.time.OffsetDateTime;
          @Index(name = "idx_sessions_user_id", columnList = "user_id"),
          @Index(name = "idx_sessions_user_created_at", columnList = "user_id, created_at")
        })
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Session extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -22,15 +28,12 @@ public class Session extends BaseUUIDEntity {
     @JoinColumn(name = "org_id")
     private Organization org;
 
-    @Column(name = "ip_address", length = 45)
     private String ipAddress;
 
-    @Column(name = "user_agent", length = 500)
     private String userAgent;
 
-    @Column(name = "expires_at")
-    private OffsetDateTime expiresAt;
+    private Instant expiresAt;
 
-    @Column(name = "revoked", nullable = false)
+    @Column(nullable = false)
     private boolean revoked;
 }
