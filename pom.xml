@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.ocean.afefe</groupId>
     <artifactId>entities</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <name>afefe-entities</name>
     <description>afefe-entities</description>
     <url/>
@@ -56,11 +56,21 @@
         </dependency>
         <dependency>
             <groupId>com.tensorpoint.toolkit</groupId>
-            <artifactId>tpointcore</artifactId>
+            <artifactId>tpointroot</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <url>https://nexus.tensorpoint.org/repository/maven-snapshots/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>https://nexus.tensorpoint.org/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
     <repositories>
         <repository>
             <id>nexus-snapshots</id>
@@ -68,30 +78,33 @@
         </repository>
     </repositories>
 
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </path>
-                    </annotationProcessorPaths>
-                </configuration>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.6.0</version>
             </plugin>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>2.46.1</version>
                 <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
+                    <java>
+                        <removeUnusedImports/>
+                        <eclipse>
+                            <file>eclipse-java-formatter.prefs</file>
+                        </eclipse>
+                        <googleJavaFormat>
+                            <style>AOSP</style> <!-- or AOSP -->
+                        </googleJavaFormat>
+                        <includes>
+                            <include>src/main/java/**/*.java</include>
+                            <include>src/test/java/**/*.java</include>
+                        </includes>
+                    </java>
+                    <pom/>
                 </configuration>
             </plugin>
         </plugins>

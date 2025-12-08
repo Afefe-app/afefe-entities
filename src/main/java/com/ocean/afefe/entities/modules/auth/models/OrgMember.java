@@ -1,6 +1,7 @@
 package com.ocean.afefe.entities.modules.auth.models;
 
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
+import com.ocean.afefe.entities.common.Status;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,7 +31,9 @@ public class OrgMember extends BaseUUIDEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    private String invitationStatus;
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private Status invitationStatus;
 
     private Instant invitedAt;
 

@@ -18,6 +18,8 @@ public class User extends BaseUUIDEntity {
     @Column(nullable = false, unique = true)
     private String emailAddress;
 
+    private String fullName;
+
     private String passwordHash;
 
     private boolean isActive;

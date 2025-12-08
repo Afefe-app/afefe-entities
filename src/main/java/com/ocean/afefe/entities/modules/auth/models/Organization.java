@@ -3,6 +3,8 @@ package com.ocean.afefe.entities.modules.auth.models;
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.*;
 
 
@@ -21,7 +23,13 @@ public class Organization extends BaseUUIDEntity {
     private String slug;
 
     @Column(nullable = false)
-    private String status;
+    private OrganizationStatus status;
 
-    private String planTier;
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private OrgPlanTier planTier;
+
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private OrganizationRole role;
 }

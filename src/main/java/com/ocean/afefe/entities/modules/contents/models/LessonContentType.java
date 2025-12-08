@@ -1,5 +1,6 @@
 package com.ocean.afefe.entities.modules.contents.models;
 
+import com.tensorpoint.toolkit.tpointcore.commons.Enumerable;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
