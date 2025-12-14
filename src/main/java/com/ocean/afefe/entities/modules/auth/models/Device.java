@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
-import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "devices",

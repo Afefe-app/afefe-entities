@@ -44,7 +44,7 @@ public class Enrollment extends BaseUUIDEntity {
     @Column(nullable = false)
     private String status; // enrolled, in_progress, completed, withdrawn
 
-    @Column( nullable = false)
+    @Column(nullable = false)
     private Integer progressPercent;
 
     private Instant startedAt;

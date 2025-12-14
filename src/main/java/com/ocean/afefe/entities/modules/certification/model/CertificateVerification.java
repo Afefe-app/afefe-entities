@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Table(
         name = "certificate_verifications",
         indexes = {
-                @Index(name = "idx_certificate_id", columnList = "certificate_id"),
                 @Index(name = "idx_verified_at", columnList = "verified_at")
         }
 )

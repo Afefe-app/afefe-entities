@@ -5,9 +5,11 @@ import com.ocean.afefe.entities.modules.appuser.entities.AppUser;
 import io.jsonwebtoken.Claims;
 
 public interface JwtTokenManager {
-    IdentityAuth generateToken(AppUser appUser, String emailAddress);
+    IdentityAuth generateToken(AppUser appUser, String emailAddress, String organizationId);
 
     String extractPlatformUserEmail(AppUser appUser, String bearerToken);
+
+    String extractOrganizationIdFromToken(AppUser appUser, String bearerToken);
 
     Claims getClaimsFromToken(String token);
 }

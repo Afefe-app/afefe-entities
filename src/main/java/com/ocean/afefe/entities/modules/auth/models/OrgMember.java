@@ -16,19 +16,25 @@ import java.time.Instant;
         name = "org_members",
         uniqueConstraints = {
                 @UniqueConstraint(
-                        name = "uk_org",
-                        columnNames = {"org_id"}
+                        name = "uk_org_member_user_org",
+                        columnNames = {"user_id", "organization_id"}
                 )
+        },
+        indexes = {
+                @Index(name = "idx_org_member_organization_id", columnList = "organization_id"),
+                @Index(name = "idx_org_member_user_id", columnList = "user_id")
         }
 )
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrgMember extends BaseUUIDEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "organization_id", nullable = false)
     private Organization organization;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Column(nullable = false)

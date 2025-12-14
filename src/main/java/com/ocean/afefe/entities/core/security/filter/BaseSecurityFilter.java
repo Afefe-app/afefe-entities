@@ -27,6 +27,10 @@ public interface BaseSecurityFilter {
 
     String FORBIDDEN_RESOURCE_MESSAGE = "Forbidden resource";
     String FORBIDDEN_TENANT_ACCESS_MESSAGE = "Forbidden tenant access";
+    String UNKNOWN_APPLICATION = "Unknown application";
+    String UNKNOWN_CHANNEL = "Unknown channel";
+    String UNAUTHORIZED = "Unauthorized";
+    String UNKNOWN_ORGANIZATION = "Unknown organization";
     ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     AntPathMatcher ANT_PATH_MATCHER = new AntPathMatcher();

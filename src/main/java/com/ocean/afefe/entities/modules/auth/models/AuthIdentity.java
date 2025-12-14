@@ -13,7 +13,7 @@ import java.time.Instant;
 @Table(
         name = "auth_identities",
         indexes = {
-                @Index(name = "idx_user_id", columnList = "user_id")
+                @Index(name = "idx_auth_identities_user_id", columnList = "user_id")
         },
         uniqueConstraints = {
                 @UniqueConstraint(
@@ -26,17 +26,18 @@ import java.time.Instant;
 @AllArgsConstructor
 public class AuthIdentity extends BaseUUIDEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Column(nullable = false, unique = true)
     private String provider;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "sso_provider_id", nullable = false)
     private SSOProvider ssoProvider;
 
-    @Column(nullable = false,  unique = true)
+    @Column(nullable = false, unique = true)
     private String providerUserID;
 
     private String emailAddress;

@@ -36,7 +36,7 @@ public class JwtTokenManagerImpl implements JwtTokenManager {
     private static final String JWT_TOKEN_ISSUER = "Tensorpoint";
 
     @Override
-    public IdentityAuth generateToken(AppUser appUser, String emailAddress) {
+    public IdentityAuth generateToken(AppUser appUser, String emailAddress, String organizationId) {
         String channel = appUser.getChannelName();
         String algorithm = appUser.getEncryptionAlgorithm().name();
         String configuredTokenExpiry =
@@ -53,7 +53,7 @@ public class JwtTokenManagerImpl implements JwtTokenManager {
                         .setId(encryptedSubject)
                         .setIssuedAt(Date.from(Instant.now().plus(1, ChronoUnit.HOURS)))
                         .setIssuer(JWT_TOKEN_ISSUER)
-                        .setSubject(encryptedSubject);
+                        .setSubject(organizationId);
         String accessToken =
                 Jwts.builder()
                         .setClaims(claims)
@@ -95,7 +95,7 @@ public class JwtTokenManagerImpl implements JwtTokenManager {
             String algorithm = appUser.getEncryptionAlgorithm().name();
             bearerToken = CommonUtil.cleanToken(bearerToken);
             Claims claims = getClaimsFromToken(bearerToken);
-            String encryptedSubject = claims.getSubject();
+            String encryptedSubject = claims.getId();
             String decryptedIdentity =
                     omnixEncryptionService.decryptWithKey(
                             algorithm,
@@ -104,6 +104,20 @@ public class JwtTokenManagerImpl implements JwtTokenManager {
             String[] identityTokens = decryptedIdentity.split(StringValues.FORWARD_STROKE);
             return identityTokens[1];
         } catch (ExpiredJwtException exception) {
+            throw OmnixApiException.newInstance()
+                    .withCode(ResponseCode.INVALID_CREDENTIALS)
+                    .withMessage("Expired session");
+        }
+    }
+
+    @Override
+    public String extractOrganizationIdFromToken(AppUser appUser, String bearerToken){
+        try{
+            String algorithm = appUser.getEncryptionAlgorithm().name();
+            bearerToken = CommonUtil.cleanToken(bearerToken);
+            Claims claims = getClaimsFromToken(bearerToken);
+            return claims.getSubject();
+        }catch (ExpiredJwtException exception){
             throw OmnixApiException.newInstance()
                     .withCode(ResponseCode.INVALID_CREDENTIALS)
                     .withMessage("Expired session");

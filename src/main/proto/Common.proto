@@ -2,6 +2,7 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "com.ocean.afefe.entities.proto";
 option java_outer_classname = "CommonProto";
+import "google/protobuf/any.proto";
 
 enum StatusGrpc{
     UNKNOWN = 0;
@@ -33,4 +34,48 @@ message OrganizationPlanTierGrpc{
 message OrganizationRoleGrpc{
   string value = 1;
   string description = 2;
+}
+
+message IdentityAuthGrpc{
+  string accessToken = 1;
+  string  type = 2;
+  string tokenIssuedAt = 3;
+  string tokenExpiredAt = 4;
+}
+
+
+message IamUserProfileResponse{
+  string responseCode = 1;
+  string responseMessage = 2;
+  IamUserProfileData responseData = 3;
+  repeated string errors = 4;
+}
+
+message IamUserProfileData{
+  string profileId = 1;
+  string entityId = 2;
+  string userId = 3;
+  string displayName = 4;
+  string avatarUrl = 5;
+  string phone = 6;
+  string locale = 7;
+  TimeZoneGrpc timezone = 8;
+  string jobTitle = 9;
+  IdentityAuthGrpc identityAuth = 10;
+  IamOrgMemberData orgMember = 11;
+}
+
+message IamOrganizationData{
+  string name = 1;
+  string slug = 2;
+  OrganizationStatusGrpc status = 3;
+  OrganizationPlanTierGrpc planTier = 4;
+  OrganizationRoleGrpc role = 5;
+}
+
+message IamOrgMemberData{
+  IamOrganizationData organization = 1;
+  StatusDataGrpc invitationStatus = 2;
+  string invitedAt = 3;
+  string joinedAt = 4;
 }

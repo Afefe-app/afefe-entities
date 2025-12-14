@@ -9,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 public enum EventType implements Enumerable {
 
     USER_SIGNED_UP("user-signed-up", "User has signed up"),
-    SEND_OTP("send-otp", "Send otp")
+    USER_LOGIN("user-login", "User login event"),
+    SEND_OTP("send-otp", "Send otp"),
+    USER_RESET_PASSWORD("user-reset-password", "User reset password")
     ;
 
     private final String key;

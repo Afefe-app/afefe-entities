@@ -3,6 +3,7 @@ package com.ocean.afefe.entities.modules.auth.models;
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
 
 import java.time.Instant;
@@ -11,6 +12,7 @@ import java.time.Instant;
 @Setter
 @Entity
 @Builder
+@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 public class User extends BaseUUIDEntity {

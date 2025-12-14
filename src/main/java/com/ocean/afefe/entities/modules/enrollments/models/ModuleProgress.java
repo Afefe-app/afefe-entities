@@ -1,13 +1,11 @@
 package com.ocean.afefe.entities.modules.enrollments.models;
 
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
-import com.ocean.afefe.entities.modules.enrollments.models.Enrollment;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(
@@ -35,10 +33,10 @@ public class ModuleProgress extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "module_id", nullable = false)
-    private Module module;
+    private com.ocean.afefe.entities.modules.contents.models.Module module;
 
     @Column(nullable = false)
-    private String status; // not_started, in_progress, completed
+    private String status;
 
     @Column(precision = 5, scale = 2)
     private BigDecimal score;

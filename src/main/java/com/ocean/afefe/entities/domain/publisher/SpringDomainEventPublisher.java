@@ -3,8 +3,8 @@ package com.ocean.afefe.entities.domain.publisher;
 import com.ocean.afefe.entities.domain.aggregate.Aggregate;
 import com.ocean.afefe.entities.domain.event.DomainEvent;
 import com.ocean.afefe.entities.domain.event.EventCategory;
+import com.tensorpoint.toolkit.event.publisher.CentralApplicationEventPublisher;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,13 +13,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SpringDomainEventPublisher implements DomainEventPublisher{
 
-    private final ApplicationEventPublisher applicationEventPublisher;
+    private final CentralApplicationEventPublisher applicationEventPublisher;
 
     @Override
     public synchronized void publishEvents(Aggregate aggregate){
         List<DomainEvent> domainEvents = aggregate.getDomainEvents();
         for(DomainEvent event : domainEvents){
-            applicationEventPublisher.publishEvent(event);
+            applicationEventPublisher.publishEventAsync(event);
         }
         aggregate.clearDomainEvents();
     }

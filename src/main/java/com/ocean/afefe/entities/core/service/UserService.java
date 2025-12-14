@@ -9,4 +9,6 @@ public interface UserService {
     UserProfile getOrCreateBasicUserProfile(User user);
 
     OrgMember registerUserInOrganization(User user, Organization organization);
+
+    User validateUserExistenceByEmailAndOrganization(String emailAddress, Organization organization);
 }

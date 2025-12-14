@@ -10,7 +10,6 @@ import java.time.Instant;
 @Table(
         name = "certification_expiries",
         indexes = {
-                @Index(name = "idx_certificate_id", columnList = "certificate_id"),
                 @Index(name = "idx_notify_at", columnList = "notify_at"),
                 @Index(name = "idx_notification_status", columnList = "notification_status")
         }

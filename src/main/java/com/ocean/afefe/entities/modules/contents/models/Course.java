@@ -34,7 +34,7 @@ public class Course extends BaseUUIDEntity {
     @Column(nullable = false, unique = true)
     private String slug;
 
-    @Column( columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String summary;
 
     private String level;

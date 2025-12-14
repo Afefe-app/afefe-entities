@@ -4,7 +4,6 @@ import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
 import com.ocean.afefe.entities.modules.contents.models.Course;
-import com.ocean.afefe.entities.modules.contents.models.Module;
 import com.ocean.afefe.entities.modules.contents.models.Lesson;
 import jakarta.persistence.*;
 import lombok.*;
@@ -38,7 +37,7 @@ public class Quiz extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "module_id")
-    private Module module;
+    private com.ocean.afefe.entities.modules.contents.models.Module module;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lesson_id")

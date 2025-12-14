@@ -26,6 +26,7 @@ public class SSOConfig extends BaseUUIDEntity {
     @JoinColumn(name = "provider_id", nullable = false)
     private SSOProvider provider;
 
+    @Builder.Default
     private boolean enabled = true;
 
     private String domainFilter;

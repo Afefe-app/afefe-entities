@@ -18,8 +18,8 @@ import java.time.LocalDateTime;
                 )
         },
         indexes = {
-                @Index(name = "idx_org_id", columnList = "org_id"),
-                @Index(name = "idx_job_role_id", columnList = "job_role_id")
+                @Index(name = "idx_job_role_profiles_org_id", columnList = "org_id"),
+                @Index(name = "idx_job_role_profiles_job_role_id", columnList = "job_role_id")
         }
 )
 @Getter

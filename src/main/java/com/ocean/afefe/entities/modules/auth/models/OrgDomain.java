@@ -15,6 +15,7 @@ import java.time.Instant;
 public class OrgDomain extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "organization_id", nullable = false)
     private Organization organization;
 
     @Column(nullable = false, unique = true)
