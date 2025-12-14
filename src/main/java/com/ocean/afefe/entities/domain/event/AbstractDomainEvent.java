@@ -1,4 +1,4 @@
-package com.ocean.afefe.entities.domain;
+package com.ocean.afefe.entities.domain.event;
 
 import lombok.Getter;
 

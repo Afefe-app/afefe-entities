@@ -1,0 +1,26 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "AuthProto";
+
+
+service AuthResourceServiceGrpc{
+   rpc SendOtp(IamSendOtpRequest) returns (IamSendOtpResponse);
+}
+
+enum UserOtpAuthGrpc{
+    UNSPECIFIED = 0;
+    EMAIL_VERIFICATION = 1;
+    FORGOT_PASSWORD = 2;
+}
+
+message IamSendOtpRequest{
+  string emailAddress = 1;
+  UserOtpAuthGrpc action = 2;
+}
+
+message IamSendOtpResponse{
+  string responseCode = 1;
+  string responseMessage = 2;
+  string responseData = 3;
+}

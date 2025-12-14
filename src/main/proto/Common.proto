@@ -1,0 +1,36 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "CommonProto";
+
+enum StatusGrpc{
+    UNKNOWN = 0;
+    PENDING = 1;
+    APPROVED = 2;
+    REJECTED = 3;
+}
+
+message StatusDataGrpc{
+  string value = 1;
+  string description = 2;
+}
+
+message TimeZoneGrpc{
+  string value = 1;
+  string description = 2;
+}
+
+message OrganizationStatusGrpc{
+  string value = 1;
+  string description = 2;
+}
+
+message OrganizationPlanTierGrpc{
+  string value = 1;
+  string description = 2;
+}
+
+message OrganizationRoleGrpc{
+  string value = 1;
+  string description = 2;
+}

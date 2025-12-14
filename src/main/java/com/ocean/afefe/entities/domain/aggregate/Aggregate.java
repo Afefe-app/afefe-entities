@@ -1,4 +1,6 @@
-package com.ocean.afefe.entities.domain;
+package com.ocean.afefe.entities.domain.aggregate;
+
+import com.ocean.afefe.entities.domain.event.DomainEvent;
 
 import java.util.Collection;
 import java.util.List;

@@ -1,0 +1,51 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "OnboardingProto";
+import "Common.proto";
+
+service OnboardingAuthServiceGrpc{
+   rpc RegisterIndividualUser(IamIndividualRegistrationRequest) returns (IamIndividualRegistrationResponse);
+}
+
+message IamIndividualRegistrationRequest{
+  string emailAddress = 1;
+  string password = 2;
+  string fullName = 3;
+  string securityCode = 4;
+}
+
+message IamIndividualRegistrationResponse{
+  string responseCode = 1;
+  string responseMessage = 2;
+  IamUserProfileData responseData = 3;
+  repeated string errors = 4;
+}
+
+message IamUserProfileData{
+  string profileId = 1;
+  string entityId = 2;
+  string userId = 3;
+  string displayName = 4;
+  string avatarUrl = 5;
+  string phone = 6;
+  string locale = 7;
+  TimeZoneGrpc timezone = 8;
+  string jobTitle = 9;
+  IamOrgMemberData orgMember = 10;
+}
+
+message IamOrganizationData{
+  string name = 1;
+  string slug = 2;
+  OrganizationStatusGrpc status = 3;
+  OrganizationPlanTierGrpc planTier = 4;
+  OrganizationRoleGrpc role = 5;
+}
+
+message IamOrgMemberData{
+  IamOrganizationData organization = 1;
+  StatusDataGrpc invitationStatus = 2;
+  string invitedAt = 3;
+  string joinedAt = 4;
+}

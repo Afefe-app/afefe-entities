@@ -1,4 +1,4 @@
-package com.ocean.afefe.entities.domain;
+package com.ocean.afefe.entities.domain.aggregate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

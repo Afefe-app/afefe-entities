@@ -1,4 +1,4 @@
-package com.ocean.afefe.entities.domain;
+package com.ocean.afefe.entities.domain.event;
 
 import com.tensorpoint.toolkit.tpointcore.commons.Enumerable;
 import lombok.Getter;
@@ -6,11 +6,10 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum EventType implements Enumerable {
+public enum EventCategory implements Enumerable {
 
-    USER_SIGNED_UP("user-signed-up", "User has signed up")
-    ;
+    SPRING("Spring"),
+    KAFKA("Kafka");
 
-    private final String key;
     private final String description;
 }
