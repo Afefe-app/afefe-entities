@@ -1,5 +1,6 @@
 package com.ocean.afefe.entities.core.service.impl;
 
+import com.ocean.afefe.entities.common.TenantUser;
 import com.ocean.afefe.entities.core.service.OrganizationService;
 import com.ocean.afefe.entities.modules.auth.models.OrgPlanTier;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
@@ -27,6 +28,15 @@ public class OrganizationServiceImpl implements OrganizationService {
         if(Objects.isNull(organization)){
             organization = providerSuperOwnerOrganization();
             organization = orgRepository.saveAndFlush(organization);
+        }
+        return organization;
+    }
+
+    @Override
+    public Organization getOrganizationOrDefault(TenantUser tenantUser){
+        Organization organization = tenantUser.getOrganization();
+        if (Objects.isNull(organization)) {
+            organization = getSuperOrganization();
         }
         return organization;
     }

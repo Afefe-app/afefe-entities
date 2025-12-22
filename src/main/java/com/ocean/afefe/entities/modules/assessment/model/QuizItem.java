@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(
@@ -46,5 +45,4 @@ public class QuizItem extends BaseUUIDEntity {
 
     @Column(nullable = false, precision = 6, scale = 2)
     private BigDecimal weight;
-
 }

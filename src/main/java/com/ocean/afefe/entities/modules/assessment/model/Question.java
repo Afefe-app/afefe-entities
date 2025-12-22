@@ -27,7 +27,8 @@ public class Question extends BaseUUIDEntity {
     private QuestionBank bank;
 
     @Column(nullable = false)
-    private String type;
+    @Enumerated(value = EnumType.STRING)
+    private QuestionType questionType;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String text;

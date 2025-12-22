@@ -7,6 +7,7 @@ import com.ocean.afefe.entities.modules.contents.models.Course;
 import com.ocean.afefe.entities.modules.contents.models.Lesson;
 import jakarta.persistence.*;
 import lombok.*;
+import com.ocean.afefe.entities.modules.contents.models.Module;
 
 import java.math.BigDecimal;
 
@@ -37,7 +38,7 @@ public class Quiz extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "module_id")
-    private com.ocean.afefe.entities.modules.contents.models.Module module;
+    private Module module;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lesson_id")

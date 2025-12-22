@@ -10,18 +10,6 @@ import java.time.Instant;
 @Setter
 @Entity
 @Builder
-@Table(
-        name = "auth_identities",
-        indexes = {
-                @Index(name = "idx_auth_identities_user_id", columnList = "user_id")
-        },
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "uk_provider_providerUserId",
-                        columnNames = {"provider", "providerUserId"}
-                )
-        }
-)
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthIdentity extends BaseUUIDEntity {
