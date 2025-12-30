@@ -8,13 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "search_index_documents",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "uq_object_type_object_id",
-                        columnNames = {"object_type", "object_id"}
-                )
-        }
+        name = "search_index_documents"
 )
 @Getter
 @Setter

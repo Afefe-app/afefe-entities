@@ -7,13 +7,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "transcripts",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "uk_transcripts_lesson_locale",
-                        columnNames = {"lesson_id", "locale"}
-                )
-        }
+        name = "transcripts"
 )
 @Getter
 @Setter

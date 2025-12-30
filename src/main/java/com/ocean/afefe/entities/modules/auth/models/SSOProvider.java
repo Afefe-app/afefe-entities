@@ -12,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 public class SSOProvider extends BaseUUIDEntity {
 
-    @Column(nullable = false,  unique = true)
+    @Column(nullable = false)
     private String key;
 
     private String displayName;

@@ -13,13 +13,7 @@ import java.time.Instant;
 @Entity
 @Builder
 @Table(
-        name = "org_members",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "uk_org",
-                        columnNames = {"org_id"}
-                )
-        }
+        name = "org_members"
 )
 @AllArgsConstructor
 @NoArgsConstructor

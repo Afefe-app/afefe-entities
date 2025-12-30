@@ -19,7 +19,7 @@ public class BaseUUIDEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String guid;
 
     @Column(nullable = false, updatable = false)

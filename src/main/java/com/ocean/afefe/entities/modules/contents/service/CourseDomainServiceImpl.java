@@ -38,8 +38,7 @@ public class CourseDomainServiceImpl implements CourseDomainService {
 
     @Override
     public void validateCourseTitleUniquenessForInstructor(String title, Organization organization, Instructor instructor){
-        String titleHash = title.replace(StringValues.SINGLE_SPACE, StringValues.EMPTY_STRING);
-        if(courseRepository.existsByTitleHashAndOwnerInstructorAndOrg(titleHash, instructor, organization)){
+        if(courseRepository.existsByTitleHashAndOwnerInstructorAndOrg(Course.buildTitleHash(title), instructor, organization)){
             throw HttpUtil.getResolvedException(ResponseCode.RECORD_ALREADY_EXIST, messageUtil.getMessage("title.course.for.instructor.in.organization.exists"));
         }
     }

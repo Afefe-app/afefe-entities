@@ -7,13 +7,7 @@ import lombok.*;
 
 @Entity
 @Table(
-        name = "content_tags",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "uq_tag_content",
-                        columnNames = {"tag_id", "content_type", "content_id"}
-                )
-        }
+        name = "content_tags"
 )
 @Getter
 @Setter

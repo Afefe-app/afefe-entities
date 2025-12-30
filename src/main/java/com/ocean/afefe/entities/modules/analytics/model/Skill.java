@@ -21,7 +21,7 @@ public class Skill extends BaseUUIDEntity {
     @JoinColumn(name = "org_id")
     private Organization org;
 
-    @Column( unique = true)
+    @Column()
     private String code;
 
     @Column(nullable = false)

@@ -17,7 +17,7 @@ public class OrgDomain extends BaseUUIDEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Organization organization;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String domain;
 
     @Column(nullable = false)

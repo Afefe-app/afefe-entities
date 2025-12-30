@@ -5,12 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "sso_configs",
-       uniqueConstraints = @UniqueConstraint(
-               name = "uk_sso_configs_org_provider",
-               columnNames = {"org_id","provider_id"}
-       )
-)
+@Table(name = "sso_configs")
 @Getter
 @Setter
 @Builder

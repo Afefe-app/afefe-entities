@@ -5,9 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "oauth_clients",
-       uniqueConstraints = @UniqueConstraint(name = "uk_oauth_clients_client_id", columnNames = "client_id")
-        )
+@Table(name = "oauth_clients")
 @Getter
 @Setter
 @Builder

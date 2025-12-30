@@ -10,13 +10,7 @@ import java.time.Instant;
 
 @Entity
 @Table(
-        name = "module_progress",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "uk_module_progress_enrollment_module",
-                        columnNames = {"enrollment_id", "module_id"}
-                )
-        }
+        name = "module_progress"
 )
 @Getter
 @Setter

@@ -9,11 +9,8 @@ import java.time.OffsetDateTime;
 
 @Entity
 @Table(
-        name = "api_keys",
-       uniqueConstraints = @UniqueConstraint(
-               name = "uk_api_keys_hashed_key",
-               columnNames = "hashed_key"
-       ))
+        name = "api_keys"
+)
 @Getter
 @Setter
 @Builder

@@ -11,13 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "course_wishlists",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "uk_course_wishlist_user_course",
-                        columnNames = {"user_id", "course_id"}
-                )
-        }
+        name = "course_wishlists"
 )
 @Getter
 @Setter

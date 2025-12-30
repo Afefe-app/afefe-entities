@@ -10,13 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "course_collaborators",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "uq_course_user",
-                        columnNames = {"course_id", "user_id"}
-                )
-        }
+        name = "course_collaborators"
 )
 @Getter
 @Setter

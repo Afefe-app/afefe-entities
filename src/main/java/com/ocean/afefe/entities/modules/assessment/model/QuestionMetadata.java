@@ -8,13 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "question_metadata",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "uk_question_metadata_question_key",
-                        columnNames = {"question_id", "`key`"}
-                )
-        }
+        name = "question_metadata"
 )
 @Getter
 @Setter

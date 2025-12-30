@@ -5,12 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "course_localizations",
-       uniqueConstraints = @UniqueConstraint(
-               name = "uk_course_localizations_cv_locale",
-               columnNames = {"course_version_id","locale"}
-       )
-)
+@Table(name = "course_localizations")
 @Getter
 @Setter
 @Builder

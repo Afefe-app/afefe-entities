@@ -9,12 +9,7 @@ import java.time.Instant;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "course_versions",
-       uniqueConstraints = @UniqueConstraint(
-               name = "uk_course_versions_course_version",
-               columnNames = {"course_id","version_num"}
-       )
-)
+@Table(name = "course_versions")
 @Getter
 @Setter
 @Builder

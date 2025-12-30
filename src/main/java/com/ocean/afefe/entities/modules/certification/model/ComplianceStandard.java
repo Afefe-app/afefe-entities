@@ -8,10 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "compliance_standards",
-        uniqueConstraints = {
-                @UniqueConstraint(name = "uk_org_code_version", columnNames = {"org_id", "code", "version"})
-        }
+        name = "compliance_standards"
 )
 @Getter
 @Setter

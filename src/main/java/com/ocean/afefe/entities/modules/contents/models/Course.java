@@ -5,14 +5,14 @@ import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
 import com.tensorpoint.toolkit.tpointcore.commons.CommonUtil;
 import com.tensorpoint.toolkit.tpointcore.commons.Currency;
+import com.tensorpoint.toolkit.tpointcore.commons.StringValues;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "courses",
-       uniqueConstraints = @UniqueConstraint(name = "uk_courses_slug", columnNames = "slug"))
+@Table(name = "courses")
 @Getter
 @Setter
 @Builder
@@ -51,7 +51,10 @@ public class Course extends BaseUUIDEntity {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
+    private String titleHash;
+
+    @Column(nullable = false)
     private String slug;
 
     @Column( columnDefinition = "TEXT")
@@ -85,5 +88,12 @@ public class Course extends BaseUUIDEntity {
         if(CommonUtil.isNullOrEmpty(this.getSlug())){
             this.setSlug(CommonUtil.generateSlug("C"));
         }
+        if(CommonUtil.isNullOrEmpty(this.getTitleHash())){
+            this.setTitleHash(buildTitleHash(this.getTitle()));
+        }
+    }
+
+    public static String buildTitleHash(String title){
+        return title.replace(StringValues.SINGLE_SPACE, StringValues.EMPTY_STRING);
     }
 }

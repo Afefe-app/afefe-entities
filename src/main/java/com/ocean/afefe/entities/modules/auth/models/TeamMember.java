@@ -8,11 +8,7 @@ import java.time.Instant;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "team_members",
-       uniqueConstraints = @UniqueConstraint(
-               name = "uk_team_members_team_user",
-               columnNames = {"team_id","user_id"}
-       ))
+@Table(name = "team_members")
 @Getter
 @Setter
 @Builder

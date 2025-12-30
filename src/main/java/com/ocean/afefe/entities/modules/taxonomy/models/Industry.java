@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Industry extends BaseUUIDEntity {
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String name;
 
-    @Column(unique = true)
+    @Column()
     private String code;
 
     @Column(columnDefinition = "TEXT")

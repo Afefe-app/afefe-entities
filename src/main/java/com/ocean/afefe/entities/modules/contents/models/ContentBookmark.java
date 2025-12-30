@@ -8,13 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "content_bookmarks",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "uq_user_object_type_object_id",
-                        columnNames = {"user_id", "object_type", "object_id"}
-                )
-        }
+        name = "content_bookmarks"
 )
 @Getter
 @Setter

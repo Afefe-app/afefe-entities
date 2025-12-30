@@ -8,13 +8,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(
-        name = "quiz_items",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "uk_quiz_items_quiz_id_position",
-                        columnNames = {"quiz_id", "position"}
-                )
-        }
+        name = "quiz_items"
 )
 @Getter
 @Setter

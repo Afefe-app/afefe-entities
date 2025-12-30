@@ -11,10 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "compliance_status",
-        uniqueConstraints = {
-                @UniqueConstraint(name = "uk_org_user_standard", columnNames = {"org_id", "user_id", "standard_id"})
-        }
+        name = "compliance_status"
 )
 @Getter
 @Setter

@@ -9,13 +9,7 @@ import lombok.*;
 @Setter
 @Builder
 @Table(
-        name = "categories",
-       uniqueConstraints = {
-               @UniqueConstraint(
-                       name = "uk_parent_category_name",
-                       columnNames = {"parent_category_id", "name"}
-               )
-       }
+        name = "categories"
 )
 @NoArgsConstructor
 @AllArgsConstructor

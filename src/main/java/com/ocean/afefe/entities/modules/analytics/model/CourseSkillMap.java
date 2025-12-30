@@ -11,13 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "course_skill_map",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "uk_skill_course_module_lesson",
-                        columnNames = {"skill_id", "course_id", "module_id", "lesson_id"}
-                )
-        }
+        name = "course_skill_map"
 )
 @Getter
 @Setter

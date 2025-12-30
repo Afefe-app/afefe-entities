@@ -17,7 +17,7 @@ import java.time.Instant;
 @AllArgsConstructor
 public class User extends BaseUUIDEntity {
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String emailAddress;
 
     private String fullName;
