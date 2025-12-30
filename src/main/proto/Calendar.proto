@@ -1,0 +1,131 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "CalendarProto";
+import "Course.proto";
+
+service CalendarServiceGrpc {
+    rpc CreateCalendarEvent(CreateCalendarEventRequest) returns (CreateCalendarEventResponse);
+    rpc FetchCalendarEvents(FetchCalendarEventsRequest) returns (FetchCalendarEventsResponse);
+    rpc FetchCalendarEventById(FetchCalendarEventByIdRequest) returns (FetchCalendarEventByIdResponse);
+    rpc CancelCalendarEvent(CancelCalendarEventRequest) returns (CancelCalendarEventResponse);
+    rpc RescheduleCalendarEvent(RescheduleCalendarEventRequest) returns (RescheduleCalendarEventResponse);
+}
+
+// Enums
+enum CalendarEventTypeGrpc {
+    CALENDAR_EVENT_TYPE_UNSPECIFIED = 0;
+    DEFAULT = 1;
+    VIDEO_CONFERENCING = 2;
+}
+
+// Calendar Event Messages
+message CreateCalendarEventRequest {
+    string date = 1; // ISO date format: YYYY-MM-DD
+    string fromTime = 2; // ISO time format: HH:mm:ss
+    string toTime = 3; // ISO time format: HH:mm:ss
+    string timeZone = 4; // TimeZone enum as string (e.g., "UTC", "America/New_York")
+    string courseId = 5; // Optional course ID
+    string title = 6;
+    string description = 7;
+    string location = 8; // Optional location
+    string eventType = 9; // CalendarEventType enum as string
+}
+
+message CreateCalendarEventResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CalendarEventData responseData = 3;
+}
+
+message CalendarEventData {
+    string id = 1;
+    string date = 2; // ISO date format: YYYY-MM-DD
+    string fromTime = 3; // ISO time format: HH:mm:ss
+    string toTime = 4; // ISO time format: HH:mm:ss
+    string timeZone = 5; // TimeZone enum as string
+    CourseData assignedCourse = 6; // Optional course data
+    string title = 7;
+    string description = 8;
+    string location = 9; // Optional location
+    string eventType = 10; // CalendarEventType enum as string
+    string status = 11; // CalendarEventStatus enum as string
+}
+
+// Enums
+enum CalendarEventStatusGrpc {
+    CALENDAR_EVENT_STATUS_UNSPECIFIED = 0;
+    CALENDAR_EVENT_STATUS_PENDING = 1;
+    CALENDAR_EVENT_STATUS_MISSED = 2;
+    CALENDAR_EVENT_STATUS_ONGOING = 3;
+    CALENDAR_EVENT_STATUS_COMPLETED = 4;
+    CALENDAR_EVENT_STATUS_CANCELED = 5;
+    CALENDAR_EVENT_STATUS_RESCHEDULED = 6;
+}
+
+// Query Messages
+message FetchCalendarEventsRequest {
+    string courseId = 1; // Optional course ID
+    string startDate = 2; // ISO date format: YYYY-MM-DD
+    string endDate = 3; // ISO date format: YYYY-MM-DD
+    string timeZone = 4; // TimeZone enum as string
+    string type = 5; // CalendarEventType enum as string
+    string status = 6; // CalendarEventStatus enum as string
+    int32 pageNumber = 7; // Page number (0-indexed)
+    int32 pageSize = 8; // Page size
+    string sort = 9; // Sort direction: "ASC" or "DESC"
+}
+
+message FetchCalendarEventsResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CalendarEventPageData responseData = 3;
+}
+
+message CalendarEventPageData {
+    repeated CalendarEventData content = 1;
+    int32 pageNumber = 2;
+    int32 pageSize = 3;
+    int64 totalElements = 4;
+    int32 totalPages = 5;
+    bool first = 6;
+    bool last = 7;
+}
+
+// Fetch by ID Messages
+message FetchCalendarEventByIdRequest {
+    string calendarEventId = 1; // Calendar event UUID
+}
+
+message FetchCalendarEventByIdResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CalendarEventData responseData = 3;
+}
+
+// Cancel Messages
+message CancelCalendarEventRequest {
+    string calendarEventId = 1; // Calendar event UUID
+}
+
+message CancelCalendarEventResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CalendarEventData responseData = 3;
+}
+
+// Reschedule Messages
+message RescheduleCalendarEventRequest {
+    string calendarEventId = 1; // Calendar event UUID
+    string newDate = 2; // ISO date format: YYYY-MM-DD
+    string newFromTime = 3; // ISO time format: HH:mm:ss
+    string newToTime = 4; // ISO time format: HH:mm:ss
+    string newTimeZone = 5; // TimeZone enum as string
+}
+
+message RescheduleCalendarEventResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CalendarEventData responseData = 3;
+}
+

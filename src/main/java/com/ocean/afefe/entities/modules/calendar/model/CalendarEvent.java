@@ -50,6 +50,10 @@ public class CalendarEvent extends BaseUUIDEntity {
     @Enumerated(value = EnumType.STRING)
     private CalendarEventType eventType;
 
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private CalendarEventStatus status;
+
     @ManyToOne
     private User createdBy;
 
