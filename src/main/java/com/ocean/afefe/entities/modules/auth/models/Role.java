@@ -5,25 +5,19 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
 @Getter
 @Setter
 @Entity
-@Table(
-        name = "roles",
-        indexes = {
-                @Index(name = "idx_role_organization_id", columnList = "organization_id")
-        }
-)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Role extends BaseUUIDEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "organization_id", nullable = false)
+    @ManyToOne(optional = false)
     private Organization organization;
 
     @Column(nullable = false)
@@ -35,7 +29,6 @@ public class Role extends BaseUUIDEntity {
     @Column(nullable = false)
     private Boolean isSystem;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Builder.Default
+    @OneToMany
     private Set<Permission> permissions = new HashSet<>();
 }

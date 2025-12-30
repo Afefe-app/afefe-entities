@@ -26,7 +26,7 @@ public class Lesson extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "module_id", nullable = false)
-    private com.ocean.afefe.entities.modules.contents.models.Module module;
+    private Module module;
 
     @Column(nullable = false, length = 255)
     private String title;

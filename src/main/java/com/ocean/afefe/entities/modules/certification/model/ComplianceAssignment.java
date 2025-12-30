@@ -16,11 +16,11 @@ import java.time.LocalDateTime;
                 @UniqueConstraint(name = "uk_requirement_user", columnNames = {"requirement_id", "user_id"})
         },
         indexes = {
-                @Index(name = "idx_compliance_assignments_org_id", columnList = "org_id"),
-                @Index(name = "idx_compliance_assignments_requirement_id", columnList = "requirement_id"),
-                @Index(name = "idx_compliance_assignments_user_id", columnList = "user_id"),
-                @Index(name = "idx_compliance_assignments_status", columnList = "status"),
-                @Index(name = "idx_compliance_assignments_due_at", columnList = "due_at")
+                @Index(name = "idx_org_id", columnList = "org_id"),
+                @Index(name = "idx_requirement_id", columnList = "requirement_id"),
+                @Index(name = "idx_user_id", columnList = "user_id"),
+                @Index(name = "idx_status", columnList = "status"),
+                @Index(name = "idx_due_at", columnList = "due_at")
         }
 )
 @Getter

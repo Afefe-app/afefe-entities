@@ -1,6 +1,7 @@
 package com.ocean.afefe.entities.modules.enrollments.models;
 
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
+import com.ocean.afefe.entities.modules.contents.models.Module;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,7 +34,7 @@ public class ModuleProgress extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "module_id", nullable = false)
-    private com.ocean.afefe.entities.modules.contents.models.Module module;
+    private Module module;
 
     @Column(nullable = false)
     private String status;

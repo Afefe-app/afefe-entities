@@ -16,10 +16,10 @@ import java.time.LocalDateTime;
                 )
         },
         indexes = {
-                @Index(name = "idx_career_path_requirements_career_path_id", columnList = "career_path_id"),
-                @Index(name = "idx_career_path_requirements_skill_id", columnList = "skill_id"),
-                @Index(name = "idx_career_path_requirements_course_id", columnList = "course_id"),
-                @Index(name = "idx_career_path_requirements_position", columnList = "position")
+                @Index(name = "idx_career_path_id", columnList = "career_path_id"),
+                @Index(name = "idx_skill_id", columnList = "skill_id"),
+                @Index(name = "idx_course_id", columnList = "course_id"),
+                @Index(name = "idx_position", columnList = "position")
         }
 )
 @Getter

@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
                 )
         },
         indexes = {
-                @Index(name = "idx_certificate_templates_org_id", columnList = "org_id")
+                @Index(name = "idx_org_id", columnList = "org_id")
         }
 )
 @Getter

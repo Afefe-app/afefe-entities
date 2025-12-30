@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 @Table(
         name = "skills",
         indexes = {
-                @Index(name = "idx_skills_org_id", columnList = "org_id"),
-                @Index(name = "idx_skills_org_name", columnList = "org_id, name"),
-                @Index(name = "idx_skills_code", columnList = "code")
+                @Index(name = "idx_org_id", columnList = "org_id"),
+                @Index(name = "idx_org_name", columnList = "org_id, name"),
+                @Index(name = "idx_code", columnList = "code")
         }
 )
 @Getter

@@ -4,10 +4,10 @@ import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
 import com.ocean.afefe.entities.modules.contents.models.Course;
+import com.ocean.afefe.entities.modules.contents.models.Module;
 import com.ocean.afefe.entities.modules.contents.models.Lesson;
 import jakarta.persistence.*;
 import lombok.*;
-import com.ocean.afefe.entities.modules.contents.models.Module;
 
 import java.math.BigDecimal;
 

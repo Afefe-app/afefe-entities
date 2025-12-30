@@ -3,14 +3,9 @@ package com.ocean.afefe.entities.modules.contents.models;
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
-import com.tensorpoint.toolkit.tpointcore.commons.CommonUtil;
-import com.tensorpoint.toolkit.tpointcore.commons.Currency;
-import com.tensorpoint.toolkit.tpointcore.commons.StringValues;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.math.BigDecimal;
-import java.util.Locale;
+import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "courses",
@@ -33,65 +28,32 @@ public class Course extends BaseUUIDEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private Instructor ownerInstructor;
 
-    private String coverImageUrl;
-
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String description;
-
-    @Column(columnDefinition = "TEXT")
-    private String requirement;
-
-    private BigDecimal price = BigDecimal.ZERO;
-
-    @Column
-    @Enumerated(value = EnumType.STRING)
-    private Currency currency = Currency.NGN;
-
-    @Column(columnDefinition = "TEXT")
-    private String tags;
-
-    @Column(columnDefinition = "TEXT")
-    private String learningOutcomeJsonList;  // Array<CourseProposedAchievement>
-
     @Column(nullable = false)
     private String title;
-
-    private String titleHash;
 
     @Column(nullable = false, unique = true)
     private String slug;
 
-    @Column(columnDefinition = "TEXT")
+    @Column( columnDefinition = "TEXT")
     private String summary;
 
-    private String level = StringValues.EMPTY_STRING;
+    private String level;
 
-    private String language = Locale.ENGLISH.getDisplayName();
-
-    @Column(nullable = false)
-    @Enumerated(value = EnumType.STRING)
-    private CourseStatus status;
-
-    private Integer estimatedMinutes = 60;
-
-    private Integer priceCents = 0;
+    private String language;
 
     @Column(nullable = false)
-    private boolean free = false;
+    private String status;
+
+    private Integer estimatedMinutes;
+
+    private Integer priceCents;
+
+    @Column(nullable = false)
+    private boolean free;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User createdBy;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User updatedBy;
-
-    public void prePersist(){
-        super.prePersist();
-        if(CommonUtil.isNullOrEmpty(this.getTitleHash())){
-            this.setTitleHash(this.getTitle().replace(StringValues.SINGLE_SPACE, StringValues.EMPTY_STRING));
-        }
-        if(CommonUtil.isNullOrEmpty(this.getSlug())){
-            this.setSlug(CommonUtil.generateGuid());
-        }
-    }
 }

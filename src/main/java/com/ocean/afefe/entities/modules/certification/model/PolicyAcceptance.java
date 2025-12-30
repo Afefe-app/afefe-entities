@@ -13,9 +13,9 @@ import java.time.LocalDateTime;
 @Table(
         name = "policy_acceptances",
         indexes = {
-                @Index(name = "idx_policy_acceptances_org_user_policy_version", columnList = "org_id, user_id, policy_key, policy_version", unique = true),
-                @Index(name = "idx_policy_acceptances_org_id", columnList = "org_id"),
-                @Index(name = "idx_policy_acceptances_user_id", columnList = "user_id")
+                @Index(name = "idx_org_user_policy_version", columnList = "org_id, user_id, policy_key, policy_version", unique = true),
+                @Index(name = "idx_org_id", columnList = "org_id"),
+                @Index(name = "idx_user_id", columnList = "user_id")
         }
 )
 @Getter

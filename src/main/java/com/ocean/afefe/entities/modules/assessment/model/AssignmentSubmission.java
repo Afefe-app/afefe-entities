@@ -12,10 +12,10 @@ import java.time.Instant;
 @Table(
         name = "assignment_submissions",
         indexes = {
-                @Index(name = "idx_assignment_submissions_assignment_id", columnList = "assignment_id"),
-                @Index(name = "idx_assignment_submissions_enrollment_id", columnList = "enrollment_id"),
-                @Index(name = "idx_assignment_submissions_user_id", columnList = "user_id"),
-                @Index(name = "idx_assignment_submissions_status", columnList = "status")
+                @Index(name = "idx_assignment_id", columnList = "assignment_id"),
+                @Index(name = "idx_enrollment_id", columnList = "enrollment_id"),
+                @Index(name = "idx_user_id", columnList = "user_id"),
+                @Index(name = "idx_status", columnList = "status")
         }
 )
 @Getter

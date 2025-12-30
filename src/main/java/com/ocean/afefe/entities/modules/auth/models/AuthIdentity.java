@@ -10,22 +10,33 @@ import java.time.Instant;
 @Setter
 @Entity
 @Builder
+@Table(
+        name = "auth_identities",
+        indexes = {
+                @Index(name = "idx_user_id", columnList = "user_id")
+        },
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "uk_provider_providerUserId",
+                        columnNames = {"provider", "providerUserId"}
+                )
+        }
+)
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthIdentity extends BaseUUIDEntity {
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Column(nullable = false, unique = true)
     private String provider;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "sso_provider_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private SSOProvider ssoProvider;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false,  unique = true)
     private String providerUserID;
 
     private String emailAddress;

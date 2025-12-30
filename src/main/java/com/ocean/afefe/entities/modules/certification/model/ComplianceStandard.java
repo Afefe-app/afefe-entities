@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
                 @UniqueConstraint(name = "uk_org_code_version", columnNames = {"org_id", "code", "version"})
         },
         indexes = {
-                @Index(name = "idx_compliance_standards_org_id", columnList = "org_id")
+                @Index(name = "idx_org_id", columnList = "org_id")
         }
 )
 @Getter
