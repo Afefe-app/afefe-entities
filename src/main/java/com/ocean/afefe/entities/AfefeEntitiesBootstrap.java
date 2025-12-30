@@ -1,6 +1,7 @@
 package com.ocean.afefe.entities;
 
 
+import com.ocean.afefe.entities.common.GrpcCommons;
 import com.ocean.afefe.entities.common.SecurityPathsProps;
 import com.ocean.afefe.entities.core.CoreModule;
 import com.ocean.afefe.entities.core.security.SecurityModule;
@@ -21,7 +22,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         CoreModule.class,
         SecurityModule.class,
         ContentModule.class,
-        CalendarModule.class
+        CalendarModule.class,
+        GrpcCommons.class
 })
 @EnableJpaRepositories(value = {"com.ocean.afefe.entities"})
 @EntityScan(basePackages = { "com.ocean.afefe.entities" })
