@@ -15,12 +15,7 @@ import lombok.*;
                        name = "uk_parent_category_name",
                        columnNames = {"parent_category_id", "name"}
                )
-       },
-        indexes = {
-                @Index(
-                        name = "idx_category_parent_id", columnList = "parent_category_id"
-                )
-        }
+       }
 )
 @NoArgsConstructor
 @AllArgsConstructor

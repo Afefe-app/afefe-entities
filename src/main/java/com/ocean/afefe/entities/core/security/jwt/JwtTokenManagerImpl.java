@@ -113,7 +113,6 @@ public class JwtTokenManagerImpl implements JwtTokenManager {
     @Override
     public String extractOrganizationIdFromToken(AppUser appUser, String bearerToken){
         try{
-            String algorithm = appUser.getEncryptionAlgorithm().name();
             bearerToken = CommonUtil.cleanToken(bearerToken);
             Claims claims = getClaimsFromToken(bearerToken);
             return claims.getSubject();

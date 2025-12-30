@@ -16,9 +16,6 @@ import java.time.Instant;
                         name = "uk_module_progress_enrollment_module",
                         columnNames = {"enrollment_id", "module_id"}
                 )
-        },
-        indexes = {
-                @Index(name = "idx_module_progress_module_id", columnList = "module_id")
         }
 )
 @Getter

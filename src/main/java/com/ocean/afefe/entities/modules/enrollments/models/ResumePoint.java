@@ -10,9 +10,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(
         name = "resume_points",
-        indexes = {
-                @Index(name = "idx_resume_points_lesson_id", columnList = "lesson_id"),
-        },
         uniqueConstraints = {
                 @UniqueConstraint(
                         name = "uk_resume_points_enrollment_lesson",

@@ -17,10 +17,6 @@ import java.time.LocalDateTime;
                         name = "uk_user_skill_observed",
                         columnNames = {"user_id", "skill_id", "observed_at"}
                 )
-        },
-        indexes = {
-                @Index(name = "idx_user_skill", columnList = "user_id, skill_id"),
-                @Index(name = "idx_is_latest", columnList = "is_latest")
         }
 )
 @Getter

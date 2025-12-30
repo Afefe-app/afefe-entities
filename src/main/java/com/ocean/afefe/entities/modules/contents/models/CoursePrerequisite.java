@@ -12,9 +12,6 @@ import lombok.*;
                         name = "uk_course_requires",
                         columnNames = {"course_id", "requires_course_id"}
                 )
-        },
-        indexes = {
-                @Index(name = "idx_requires_course_id", columnList = "requires_course_id")
         }
 )
 @Getter

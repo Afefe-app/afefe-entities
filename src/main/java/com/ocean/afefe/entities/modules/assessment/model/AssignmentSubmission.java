@@ -10,13 +10,7 @@ import java.time.Instant;
 
 @Entity
 @Table(
-        name = "assignment_submissions",
-        indexes = {
-                @Index(name = "idx_assignment_id", columnList = "assignment_id"),
-                @Index(name = "idx_enrollment_id", columnList = "enrollment_id"),
-                @Index(name = "idx_user_id", columnList = "user_id"),
-                @Index(name = "idx_status", columnList = "status")
-        }
+        name = "assignment_submissions"
 )
 @Getter
 @Setter

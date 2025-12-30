@@ -6,10 +6,7 @@ import lombok.*;
 
 @Entity
 @Table(
-        name = "lesson_assets",
-        indexes = {
-                @Index(name = "idx_lesson_assets_lesson_id", columnList = "lesson_id")
-        }
+        name = "lesson_assets"
 )
 @Getter
 @Setter

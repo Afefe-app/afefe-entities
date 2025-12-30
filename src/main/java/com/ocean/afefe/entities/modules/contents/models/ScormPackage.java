@@ -7,10 +7,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "scorm_packages",
-        indexes = {
-                @Index(name = "idx_scorm_packages_lesson_id", columnList = "lesson_id")
-        }
+        name = "scorm_packages"
 )
 @Getter
 @Setter

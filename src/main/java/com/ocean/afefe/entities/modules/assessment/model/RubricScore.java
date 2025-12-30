@@ -6,11 +6,7 @@ import lombok.*;
 
 @Entity
 @Table(
-        name = "rubric_scores",
-        indexes = {
-                @Index(name = "idx_rubric_id", columnList = "rubric_id"),
-                @Index(name = "idx_submission_id", columnList = "submission_id")
-        }
+        name = "rubric_scores"
 )
 @Getter
 @Setter

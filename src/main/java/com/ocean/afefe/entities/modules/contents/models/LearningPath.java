@@ -8,10 +8,7 @@ import lombok.*;
 
 @Entity
 @Table(
-        name = "learning_paths",
-        indexes = {
-                @Index(name = "idx_learning_paths_org_id", columnList = "org_id")
-        }
+        name = "learning_paths"
 )
 @Getter
 @Setter

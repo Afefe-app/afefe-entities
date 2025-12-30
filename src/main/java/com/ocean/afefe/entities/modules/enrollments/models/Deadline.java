@@ -10,11 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "deadlines",
-        indexes = {
-                @Index(name = "idx_deadlines_enrollment_id", columnList = "enrollment_id"),
-                @Index(name = "idx_deadlines_due_at", columnList = "due_at")
-        }
+        name = "deadlines"
 )
 @Getter
 @Setter

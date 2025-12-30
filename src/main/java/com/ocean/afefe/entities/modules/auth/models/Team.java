@@ -6,10 +6,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "teams",
-       uniqueConstraints = @UniqueConstraint(name = "uk_teams_org_name", columnNames = {"org_id","name"}),
-       indexes = {
-         @Index(name = "idx_teams_parent_team_id", columnList = "parent_team_id")
-       })
+       uniqueConstraints = @UniqueConstraint(name = "uk_teams_org_name", columnNames = {"org_id","name"}))
 @Getter
 @Setter
 @Builder

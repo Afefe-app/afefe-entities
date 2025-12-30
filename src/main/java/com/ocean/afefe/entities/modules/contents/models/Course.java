@@ -3,16 +3,15 @@ package com.ocean.afefe.entities.modules.contents.models;
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
+import com.tensorpoint.toolkit.tpointcore.commons.CommonUtil;
+import com.tensorpoint.toolkit.tpointcore.commons.Currency;
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.OffsetDateTime;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "courses",
-       indexes = {
-           @Index(name = "idx_courses_org_id", columnList = "org_id"),
-           @Index(name = "idx_courses_owner_instructor_id", columnList = "owner_instructor_id")
-       },
        uniqueConstraints = @UniqueConstraint(name = "uk_courses_slug", columnNames = "slug"))
 @Getter
 @Setter
@@ -29,6 +28,27 @@ public class Course extends BaseUUIDEntity {
     private Instructor ownerInstructor;
 
     @Column(nullable = false)
+    private String coverImageUrl;
+
+    @Column(nullable = false)
+    private String description;
+
+    @Column(columnDefinition = "TEXT")
+    private String requirement;
+
+    private BigDecimal price = BigDecimal.ZERO;
+
+    @Enumerated(value = EnumType.STRING)
+    private Currency currency;
+
+    @Column(columnDefinition = "TEXT")
+    private String tags;
+
+    @Column(columnDefinition = "TEXT")
+    private String learningOutcomeJsonList;
+
+
+    @Column(nullable = false)
     private String title;
 
     @Column(nullable = false, unique = true)
@@ -42,7 +62,8 @@ public class Course extends BaseUUIDEntity {
     private String language;
 
     @Column(nullable = false)
-    private String status;
+    @Enumerated(value = EnumType.STRING)
+    private CourseStatus status;
 
     private Integer estimatedMinutes;
 
@@ -56,4 +77,13 @@ public class Course extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User updatedBy;
+
+
+    @Override
+    public void prePersist(){
+        super.prePersist();
+        if(CommonUtil.isNullOrEmpty(this.getSlug())){
+            this.setSlug(CommonUtil.generateSlug("C"));
+        }
+    }
 }

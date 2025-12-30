@@ -8,11 +8,7 @@ import java.time.Instant;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "sessions",
-       indexes = {
-         @Index(name = "idx_sessions_user_id", columnList = "user_id"),
-         @Index(name = "idx_sessions_user_created_at", columnList = "user_id, created_at")
-       })
+@Table(name = "sessions")
 @Getter
 @Setter
 @Builder

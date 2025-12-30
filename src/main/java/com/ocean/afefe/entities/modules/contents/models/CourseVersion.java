@@ -13,10 +13,6 @@ import java.time.OffsetDateTime;
        uniqueConstraints = @UniqueConstraint(
                name = "uk_course_versions_course_version",
                columnNames = {"course_id","version_num"}
-       ),
-       indexes = @Index(
-               name = "idx_course_versions_course_id",
-               columnList = "course_id"
        )
 )
 @Getter

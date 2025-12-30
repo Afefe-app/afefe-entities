@@ -18,9 +18,6 @@ import java.time.LocalDateTime;
                         name = "uk_lesson_progress_enrollment_lesson",
                         columnNames = {"enrollment_id", "lesson_id"}
                 )
-        },
-        indexes = {
-                @Index(name = "idx_lesson_progress_lesson_id", columnList = "lesson_id")
         }
 )
 @Getter

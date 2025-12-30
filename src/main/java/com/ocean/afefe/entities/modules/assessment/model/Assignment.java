@@ -12,13 +12,7 @@ import lombok.*;
 import java.time.Instant;
 
 @Entity
-@Table(name = "assignments",
-        indexes = {
-                @Index(name = "idx_org_id", columnList = "org_id"),
-                @Index(name = "idx_course_id", columnList = "course_id"),
-                @Index(name = "idx_module_id", columnList = "module_id"),
-                @Index(name = "idx_lesson_id", columnList = "lesson_id")
-        })
+@Table(name = "assignments")
 @Getter
 @Setter
 @Builder

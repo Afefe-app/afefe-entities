@@ -9,14 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "audit_trails",
-        indexes = {
-                @Index(name = "idx_org_id", columnList = "org_id"),
-                @Index(name = "idx_user_id", columnList = "user_id"),
-                @Index(name = "idx_action", columnList = "action"),
-                @Index(name = "idx_object_type", columnList = "object_type"),
-                @Index(name = "idx_created_at", columnList = "created_at")
-        }
+        name = "audit_trails"
 )
 @Getter
 @Setter

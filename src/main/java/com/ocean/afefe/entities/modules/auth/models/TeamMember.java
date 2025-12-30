@@ -12,10 +12,7 @@ import java.time.OffsetDateTime;
        uniqueConstraints = @UniqueConstraint(
                name = "uk_team_members_team_user",
                columnNames = {"team_id","user_id"}
-       ),
-       indexes = {
-         @Index(name = "idx_team_members_user_id", columnList = "user_id")
-       })
+       ))
 @Getter
 @Setter
 @Builder

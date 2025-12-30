@@ -8,8 +8,7 @@ import java.time.Instant;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "devices",
-       indexes = @Index(name = "idx_devices_user_id", columnList = "user_id"))
+@Table(name = "devices")
 @Builder
 @Getter
 @Setter

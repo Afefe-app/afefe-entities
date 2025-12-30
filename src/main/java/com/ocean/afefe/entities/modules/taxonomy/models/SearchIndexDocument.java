@@ -14,10 +14,6 @@ import java.time.LocalDateTime;
                         name = "uq_object_type_object_id",
                         columnNames = {"object_type", "object_id"}
                 )
-        },
-        indexes = {
-                @Index(name = "idx_search_index_org_id", columnList = "org_id"),
-                @Index(name = "idx_search_index_updated_at", columnList = "updated_at")
         }
 )
 @Getter

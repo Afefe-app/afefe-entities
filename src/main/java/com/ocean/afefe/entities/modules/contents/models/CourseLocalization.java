@@ -9,10 +9,7 @@ import lombok.*;
        uniqueConstraints = @UniqueConstraint(
                name = "uk_course_localizations_cv_locale",
                columnNames = {"course_version_id","locale"}
-       ),
-       indexes = @Index(
-               name = "idx_course_localizations_cv_id",
-               columnList = "course_version_id")
+       )
 )
 @Getter
 @Setter

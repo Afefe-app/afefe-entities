@@ -12,4 +12,5 @@ import java.util.UUID;
 public interface OrgRepository extends JpaRepository<Organization, UUID> {
 
     Organization findFirstByRole(OrganizationRole role);
+
 }

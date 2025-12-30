@@ -9,11 +9,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(
-        name = "questions",
-        indexes = {
-                @Index(name = "idx_questions_bank_id", columnList = "bank_id"),
-                @Index(name = "idx_questions_type", columnList = "type")
-        }
+        name = "questions"
 )
 @Getter
 @Setter

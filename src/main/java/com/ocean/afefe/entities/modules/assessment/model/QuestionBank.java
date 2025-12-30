@@ -10,11 +10,7 @@ import lombok.*;
 
 @Entity
 @Table(
-        name = "question_banks",
-        indexes = {
-                @Index(name = "idx_question_banks_org_id", columnList = "org_id"),
-                @Index(name = "idx_question_banks_course_id", columnList = "course_id")
-        }
+        name = "question_banks"
 )
 @Getter
 @Setter

@@ -13,10 +13,6 @@ import lombok.*;
                         name = "uq_tag_content",
                         columnNames = {"tag_id", "content_type", "content_id"}
                 )
-        },
-        indexes = {
-                @Index(name = "idx_content_tags_tag_id", columnList = "tag_id"),
-                @Index(name = "idx_content_tags_org_id", columnList = "org_id")
         }
 )
 @Getter

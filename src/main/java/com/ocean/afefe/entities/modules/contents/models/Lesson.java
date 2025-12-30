@@ -12,9 +12,6 @@ import lombok.*;
                         name = "uk_module_position",
                         columnNames = {"module_id", "position"}
                 )
-        },
-        indexes = {
-                @Index(name = "idx_lessons_module_id", columnList = "module_id")
         }
 )
 @Getter

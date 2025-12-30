@@ -9,10 +9,7 @@ import java.time.Instant;
 
 @Entity
 @Table(
-        name = "content_licenses",
-        indexes = {
-                @Index(name = "idx_content_licenses_course_id", columnList = "course_id")
-        }
+        name = "content_licenses"
 )
 @Getter
 @Setter

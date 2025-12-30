@@ -8,9 +8,6 @@ import lombok.*;
 @Entity
 @Table(
         name = "quiz_sections",
-        indexes = {
-                @Index(name = "idx_quiz_sections_quiz_id", columnList = "quiz_id")
-        },
         uniqueConstraints = {
                 @UniqueConstraint(name = "uk_quiz_sections_quiz_id_position", columnNames = {"quiz_id", "position"})
         }

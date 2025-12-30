@@ -12,9 +12,6 @@ import java.time.Instant;
 @Builder
 @Table(
         name = "auth_identities",
-        indexes = {
-                @Index(name = "idx_user_id", columnList = "user_id")
-        },
         uniqueConstraints = {
                 @UniqueConstraint(
                         name = "uk_provider_providerUserId",

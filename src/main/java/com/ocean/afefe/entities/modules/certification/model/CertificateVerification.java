@@ -9,10 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "certificate_verifications",
-        indexes = {
-                @Index(name = "idx_verified_at", columnList = "verified_at")
-        }
+        name = "certificate_verifications"
 )
 @Getter
 @Setter

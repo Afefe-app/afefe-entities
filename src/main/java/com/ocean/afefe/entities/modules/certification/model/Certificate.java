@@ -17,12 +17,6 @@ import java.time.LocalDateTime;
                         name = "uk_org_certificate_number",
                         columnNames = {"org_id", "certificate_number"}
                 )
-        },
-        indexes = {
-                @Index(name = "idx_org_id", columnList = "org_id"),
-                @Index(name = "idx_user_id", columnList = "user_id"),
-                @Index(name = "idx_track_id", columnList = "track_id"),
-                @Index(name = "idx_status", columnList = "status")
         }
 )
 @Getter

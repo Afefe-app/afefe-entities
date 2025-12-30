@@ -8,13 +8,7 @@ import lombok.*;
 
 @Entity
 @Table(
-        name = "skill_gap_analyses",
-        indexes = {
-                @Index(name = "idx_org_id", columnList = "org_id"),
-                @Index(name = "idx_user_id", columnList = "user_id"),
-                @Index(name = "idx_job_role_profile_id", columnList = "job_role_profile_id"),
-                @Index(name = "idx_created_at", columnList = "created_at")
-        }
+        name = "skill_gap_analyses"
 )
 @Getter
 @Setter

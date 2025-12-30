@@ -5,7 +5,7 @@ option java_outer_classname = "OnboardingProto";
 import "Common.proto";
 
 service OnboardingAuthServiceGrpc{
-   rpc RegisterIndividualUser(IamIndividualRegistrationRequest) returns (IamUserProfileResponse);
+   rpc RegisterIndividualUser(IamIndividualRegistrationRequest) returns (IamIndividualRegistrationResponse);
 }
 
 message IamIndividualRegistrationRequest{
@@ -13,4 +13,10 @@ message IamIndividualRegistrationRequest{
   string password = 2;
   string fullName = 3;
   string securityCode = 4;
+}
+
+message IamIndividualRegistrationResponse{
+  string responseCode = 1;
+  string responseMessage = 2;
+  IamUserProfileData responseData = 3;
 }

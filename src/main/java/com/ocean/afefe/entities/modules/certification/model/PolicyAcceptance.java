@@ -11,12 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "policy_acceptances",
-        indexes = {
-                @Index(name = "idx_org_user_policy_version", columnList = "org_id, user_id, policy_key, policy_version", unique = true),
-                @Index(name = "idx_org_id", columnList = "org_id"),
-                @Index(name = "idx_user_id", columnList = "user_id")
-        }
+        name = "policy_acceptances"
 )
 @Getter
 @Setter

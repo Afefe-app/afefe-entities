@@ -14,12 +14,6 @@ import java.time.LocalDateTime;
                         name = "uk_career_path_skill_course",
                         columnNames = {"career_path_id", "skill_id", "course_id"}
                 )
-        },
-        indexes = {
-                @Index(name = "idx_career_path_id", columnList = "career_path_id"),
-                @Index(name = "idx_skill_id", columnList = "skill_id"),
-                @Index(name = "idx_course_id", columnList = "course_id"),
-                @Index(name = "idx_position", columnList = "position")
         }
 )
 @Getter

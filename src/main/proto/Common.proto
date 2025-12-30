@@ -79,3 +79,9 @@ message IamOrgMemberData{
   string invitedAt = 3;
   string joinedAt = 4;
 }
+
+message GrpcStringResponse{
+  string responseCode = 1;
+  string responseMessage = 2;
+  string responseData = 3;
+}

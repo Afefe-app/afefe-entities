@@ -13,10 +13,6 @@ import java.time.LocalDateTime;
                         name = "uk_parent_child_skill",
                         columnNames = {"parent_skill_id", "child_skill_id"}
                 )
-        },
-        indexes = {
-                @Index(name = "idx_parent_skill_id", columnList = "parent_skill_id"),
-                @Index(name = "idx_child_skill_id", columnList = "child_skill_id")
         }
 )
 @Getter

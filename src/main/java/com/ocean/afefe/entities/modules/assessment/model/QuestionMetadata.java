@@ -14,9 +14,6 @@ import java.time.LocalDateTime;
                         name = "uk_question_metadata_question_key",
                         columnNames = {"question_id", "`key`"}
                 )
-        },
-        indexes = {
-                @Index(name = "idx_question_metadata_question_id", columnList = "question_id")
         }
 )
 @Getter

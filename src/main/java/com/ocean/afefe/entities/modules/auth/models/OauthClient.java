@@ -6,7 +6,6 @@ import lombok.*;
 
 @Entity
 @Table(name = "oauth_clients",
-       indexes = @Index(name = "idx_oauth_clients_org_id", columnList = "org_id"),
        uniqueConstraints = @UniqueConstraint(name = "uk_oauth_clients_client_id", columnNames = "client_id")
         )
 @Getter

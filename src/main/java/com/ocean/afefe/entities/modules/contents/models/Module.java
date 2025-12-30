@@ -13,9 +13,6 @@ import java.time.LocalDateTime;
                         name = "uk_courseversion_position",
                         columnNames = {"course_version_id", "position"}
                 )
-        },
-        indexes = {
-                @Index(name = "idx_modules_course_version_id", columnList = "course_version_id")
         }
 )
 @Getter

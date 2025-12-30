@@ -7,10 +7,7 @@ import lombok.*;
 
 @Entity
 @Table(
-        name = "content_review_comments",
-        indexes = {
-                @Index(name = "idx_review_id", columnList = "review_id")
-        }
+        name = "content_review_comments"
 )
 @Getter
 @Setter

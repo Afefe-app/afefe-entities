@@ -9,11 +9,6 @@ import java.math.BigDecimal;
 @Entity
 @Table(
         name = "quiz_items",
-        indexes = {
-                @Index(name = "idx_quiz_items_quiz_id", columnList = "quiz_id"),
-                @Index(name = "idx_quiz_items_question_id", columnList = "question_id"),
-                @Index(name = "idx_quiz_items_section_id", columnList = "section_id")
-        },
         uniqueConstraints = {
                 @UniqueConstraint(
                         name = "uk_quiz_items_quiz_id_position",
