@@ -1,5 +1,6 @@
 package com.ocean.afefe.entities.modules.contents.service;
 
+import com.ocean.afefe.entities.modules.assessment.model.Quiz;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
 import com.ocean.afefe.entities.modules.contents.models.Module;
@@ -21,4 +22,6 @@ public interface CourseDomainService {
     Lesson validateLessonExistence(UUID lessonId, Module module);
     
     Lesson validateLessonBelongsToInstructor(UUID lessonId, Organization organization, Instructor instructor);
+
+    Quiz validateQuizExistence(UUID quizId);
 }

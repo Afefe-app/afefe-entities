@@ -2,12 +2,15 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "com.ocean.afefe.entities.proto";
 option java_outer_classname = "CourseProto";
+import "google/protobuf/struct.proto";
 
 service CourseMgtServiceGrpc {
     rpc CreateCourse(CreateCourseRequest) returns (CreateCourseResponse);
     rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
     rpc CreateLesson(CreateLessonRequest) returns (CreateLessonResponse);
     rpc CreateLessonAsset(CreateLessonAssetRequest) returns (CreateLessonAssetResponse);
+    rpc createQuiz(CreateQuizRequest) returns (CreateQuizResponse);
+    rpc createQuestionAndOption(CreateQuestionAndOptionRequest) returns (CreateQuestionAndOptionResponse);
 }
 
 // Enums
@@ -32,6 +35,11 @@ enum LessonAssetTypeGrpc {
     PDF_URL = 2;
     HTML = 3;
     SCORM_PKG = 4;
+}
+
+enum QuestionTypeGrpc {
+  MULTI_CHOICE = 0;
+  TRUE_FALSE = 1;
 }
 
 // Course Messages
@@ -155,3 +163,79 @@ message LessonAssetData {
     string mimeType = 7;
 }
 
+message CreateQuizRequest {
+    string courseId = 1;
+    string moduleId = 2;
+    string lessonId = 3;
+    string title = 4;
+    string description = 5;
+    string quizName = 6;
+    int32 attemptLimit = 7;
+    int32 timeLimitMinutes = 8;
+    string gradingMethod = 9;
+    string visibility = 10;
+    int64 passScore = 11;
+    bool randomizeItems = 12;
+}
+
+message CreateQuestionAndOptionRequest{
+   string quizId = 1;
+   string type = 2;
+   string text = 3;
+   string explanation = 4;
+   int32 difficultyLevel = 5;
+   int64 points = 6;
+   google.protobuf.Struct metaData = 7;
+   repeated QuestionOptionRequestPayloadGrpc options = 8;
+}
+
+
+message QuestionOptionRequestPayloadGrpc {
+    string label = 1;
+    string text = 2;
+    bool isCorrect = 3;
+    string feedback = 4;
+    int32 position = 5;
+}
+
+message CreateQuizResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  CreateQuizResponseData responseData = 3;
+}
+
+message CreateQuizResponseData {
+   string id = 1;
+   string quizId = 2;
+   string orgId = 3;
+   string courseId = 4;
+   string moduleId = 5;
+   string lessonId = 6;
+   string title = 7;
+   string description = 8;
+   int32 attemptLimit = 9;
+   int32 timeLimitMinutes = 10;
+   string gradingMethod = 11;
+   string visibility = 12;
+   int64 passScore =  13;
+   bool randomizeItems = 14;
+   string createdBy = 15;
+   string updatedBy = 16;
+}
+
+message CreateQuestionAndOptionResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  CreateQuestionAndOptionResponseData responseData = 3;
+}
+
+
+message CreateQuestionAndOptionResponseData {
+   string quizId = 1;
+   string type = 2;
+   string text = 3;
+   string explanation = 4;
+   int32 difficultyLevel = 5;
+   int32 points = 6;
+   google.protobuf.Struct metaData = 7;
+}
