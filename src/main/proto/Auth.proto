@@ -19,6 +19,7 @@ enum UserOtpAuthGrpc{
 message IamSendOtpRequest{
   string emailAddress = 1;
   UserOtpAuthGrpc action = 2;
+  map<string, string> additionalContext = 3;
 }
 
 message IamSendOtpResponse{

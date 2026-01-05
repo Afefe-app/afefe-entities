@@ -84,4 +84,13 @@ message GrpcStringResponse{
   string responseCode = 1;
   string responseMessage = 2;
   string responseData = 3;
+  repeated string errors = 4;
+}
+
+message PaginationMetaGrpc{
+  int32 pageNumber = 1;
+  int32 pageSize = 2;
+  int32 pageCount = 3;
+  int32 totalCount = 4;
+  int32 numberOfPages = 5;
 }

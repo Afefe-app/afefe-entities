@@ -202,7 +202,7 @@
             <ul>
               
                 <li>
-                  <a href="#.CourseData"><span class="badge">M</span>CourseData</a>
+                  <a href="#.CourseDataGrpc"><span class="badge">M</span>CourseDataGrpc</a>
                 </li>
               
                 <li>
@@ -277,15 +277,58 @@
         
           
           <li>
+            <a href="#LearnerProfile.proto">LearnerProfile.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.CreateUserIndustryInterestsDataGrpc"><span class="badge">M</span>CreateUserIndustryInterestsDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.CreateUserIndustryInterestsRequest"><span class="badge">M</span>CreateUserIndustryInterestsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.CreateUserIndustryInterestsResponse"><span class="badge">M</span>CreateUserIndustryInterestsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchUserIndustryInterestsDataGrpc"><span class="badge">M</span>FetchUserIndustryInterestsDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchUserIndustryInterestsRequest"><span class="badge">M</span>FetchUserIndustryInterestsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchUserIndustryInterestsResponse"><span class="badge">M</span>FetchUserIndustryInterestsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.UserIndustryDataGrpc"><span class="badge">M</span>UserIndustryDataGrpc</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#.LearnerProfileServiceGrpc"><span class="badge">S</span>LearnerProfileServiceGrpc</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#Calendar.proto">Calendar.proto</a>
             <ul>
               
                 <li>
-                  <a href="#.CalendarEventData"><span class="badge">M</span>CalendarEventData</a>
+                  <a href="#.CalendarEventDataGrpc"><span class="badge">M</span>CalendarEventDataGrpc</a>
                 </li>
               
                 <li>
-                  <a href="#.CalendarEventPageData"><span class="badge">M</span>CalendarEventPageData</a>
+                  <a href="#.CalendarEventPageDataGrpc"><span class="badge">M</span>CalendarEventPageDataGrpc</a>
                 </li>
               
                 <li>
@@ -348,6 +391,37 @@
         
           
           <li>
+            <a href="#Generic.proto">Generic.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.FetchIndustriesRequest"><span class="badge">M</span>FetchIndustriesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchIndustriesResponse"><span class="badge">M</span>FetchIndustriesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.IndustryDataGrpc"><span class="badge">M</span>IndustryDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.IndustryPageDataGrpc"><span class="badge">M</span>IndustryPageDataGrpc</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#.GenericServiceGrpc"><span class="badge">S</span>GenericServiceGrpc</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#Auth.proto">Auth.proto</a>
             <ul>
               
@@ -357,6 +431,10 @@
               
                 <li>
                   <a href="#.IamSendOtpRequest"><span class="badge">M</span>IamSendOtpRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.IamSendOtpRequest.AdditionalContextEntry"><span class="badge">M</span>IamSendOtpRequest.AdditionalContextEntry</a>
                 </li>
               
                 <li>
@@ -416,6 +494,10 @@
               
                 <li>
                   <a href="#.OrganizationStatusGrpc"><span class="badge">M</span>OrganizationStatusGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.PaginationMetaGrpc"><span class="badge">M</span>PaginationMetaGrpc</a>
                 </li>
               
                 <li>
@@ -564,7 +646,7 @@
       <p></p>
 
       
-        <h3 id=".CourseData">CourseData</h3>
+        <h3 id=".CourseDataGrpc">CourseDataGrpc</h3>
         <p></p>
 
         
@@ -844,7 +926,7 @@
               
                 <tr>
                   <td>responseData</td>
-                  <td><a href="#CourseData">CourseData</a></td>
+                  <td><a href="#CourseDataGrpc">CourseDataGrpc</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1497,12 +1579,252 @@
     
       
       <div class="file-heading">
+        <h2 id="LearnerProfile.proto">LearnerProfile.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".CreateUserIndustryInterestsDataGrpc">CreateUserIndustryInterestsDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>userIndustries</td>
+                  <td><a href="#UserIndustryDataGrpc">UserIndustryDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CreateUserIndustryInterestsRequest">CreateUserIndustryInterestsRequest</h3>
+        <p>Request Messages</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>industryIds</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>List of industry UUIDs </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CreateUserIndustryInterestsResponse">CreateUserIndustryInterestsResponse</h3>
+        <p>Response Messages</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CreateUserIndustryInterestsDataGrpc">CreateUserIndustryInterestsDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchUserIndustryInterestsDataGrpc">FetchUserIndustryInterestsDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>userIndustries</td>
+                  <td><a href="#UserIndustryDataGrpc">UserIndustryDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchUserIndustryInterestsRequest">FetchUserIndustryInterestsRequest</h3>
+        <p>Fetch User Industry Interests Messages</p><p>Empty request - user is extracted from context</p>
+
+        
+
+        
+      
+        <h3 id=".FetchUserIndustryInterestsResponse">FetchUserIndustryInterestsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#FetchUserIndustryInterestsDataGrpc">FetchUserIndustryInterestsDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".UserIndustryDataGrpc">UserIndustryDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>industryId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>industryName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>industryCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id=".LearnerProfileServiceGrpc">LearnerProfileServiceGrpc</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CreateUserIndustryInterests</td>
+                <td><a href="#CreateUserIndustryInterestsRequest">.CreateUserIndustryInterestsRequest</a></td>
+                <td><a href="#CreateUserIndustryInterestsResponse">.CreateUserIndustryInterestsResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchUserIndustryInterests</td>
+                <td><a href="#FetchUserIndustryInterestsRequest">.FetchUserIndustryInterestsRequest</a></td>
+                <td><a href="#FetchUserIndustryInterestsResponse">.FetchUserIndustryInterestsResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
         <h2 id="Calendar.proto">Calendar.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
       
-        <h3 id=".CalendarEventData">CalendarEventData</h3>
+        <h3 id=".CalendarEventDataGrpc">CalendarEventDataGrpc</h3>
         <p></p>
 
         
@@ -1549,7 +1871,7 @@
               
                 <tr>
                   <td>assignedCourse</td>
-                  <td><a href="#CourseData">CourseData</a></td>
+                  <td><a href="#CourseDataGrpc">CourseDataGrpc</a></td>
                   <td></td>
                   <td><p>Optional course data </p></td>
                 </tr>
@@ -1596,7 +1918,7 @@
 
         
       
-        <h3 id=".CalendarEventPageData">CalendarEventPageData</h3>
+        <h3 id=".CalendarEventPageDataGrpc">CalendarEventPageDataGrpc</h3>
         <p></p>
 
         
@@ -1607,51 +1929,16 @@
             <tbody>
               
                 <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>content</td>
-                  <td><a href="#CalendarEventData">CalendarEventData</a></td>
+                  <td><a href="#CalendarEventDataGrpc">CalendarEventDataGrpc</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pageNumber</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pageSize</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>totalElements</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>totalPages</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>first</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>last</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1712,7 +1999,7 @@
               
                 <tr>
                   <td>responseData</td>
-                  <td><a href="#CalendarEventData">CalendarEventData</a></td>
+                  <td><a href="#CalendarEventDataGrpc">CalendarEventDataGrpc</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1830,7 +2117,7 @@
               
                 <tr>
                   <td>responseData</td>
-                  <td><a href="#CalendarEventData">CalendarEventData</a></td>
+                  <td><a href="#CalendarEventDataGrpc">CalendarEventDataGrpc</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1892,7 +2179,7 @@
               
                 <tr>
                   <td>responseData</td>
-                  <td><a href="#CalendarEventData">CalendarEventData</a></td>
+                  <td><a href="#CalendarEventDataGrpc">CalendarEventDataGrpc</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -2010,7 +2297,7 @@
               
                 <tr>
                   <td>responseData</td>
-                  <td><a href="#CalendarEventPageData">CalendarEventPageData</a></td>
+                  <td><a href="#CalendarEventPageDataGrpc">CalendarEventPageDataGrpc</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -2100,7 +2387,7 @@
               
                 <tr>
                   <td>responseData</td>
-                  <td><a href="#CalendarEventData">CalendarEventData</a></td>
+                  <td><a href="#CalendarEventDataGrpc">CalendarEventDataGrpc</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -2250,6 +2537,191 @@
     
       
       <div class="file-heading">
+        <h2 id="Generic.proto">Generic.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".FetchIndustriesRequest">FetchIndustriesRequest</h3>
+        <p>Request Messages</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>pageNumber</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Page number (0-indexed) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageSize</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Page size </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Sort direction: &#34;ASC&#34; or &#34;DESC&#34; </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchIndustriesResponse">FetchIndustriesResponse</h3>
+        <p>Response Messages</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#IndustryPageDataGrpc">IndustryPageDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".IndustryDataGrpc">IndustryDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".IndustryPageDataGrpc">IndustryPageDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#IndustryDataGrpc">IndustryDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id=".GenericServiceGrpc">GenericServiceGrpc</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>FetchIndustries</td>
+                <td><a href="#FetchIndustriesRequest">.FetchIndustriesRequest</a></td>
+                <td><a href="#FetchIndustriesResponse">.FetchIndustriesResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
         <h2 id="Auth.proto">Auth.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -2306,6 +2778,44 @@
                 <tr>
                   <td>action</td>
                   <td><a href="#UserOtpAuthGrpc">UserOtpAuthGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>additionalContext</td>
+                  <td><a href="#IamSendOtpRequest.AdditionalContextEntry">IamSendOtpRequest.AdditionalContextEntry</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".IamSendOtpRequest.AdditionalContextEntry">IamSendOtpRequest.AdditionalContextEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -2452,6 +2962,13 @@
                   <td>responseData</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>errors</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2825,6 +3342,58 @@
                 <tr>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".PaginationMetaGrpc">PaginationMetaGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>pageNumber</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageSize</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageCount</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>totalCount</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>numberOfPages</td>
+                  <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
