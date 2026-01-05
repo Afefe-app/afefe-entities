@@ -1,0 +1,48 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "LearnerProfileProto";
+
+service LearnerProfileServiceGrpc {
+    rpc CreateUserIndustryInterests(CreateUserIndustryInterestsRequest) returns (CreateUserIndustryInterestsResponse);
+    rpc FetchUserIndustryInterests(FetchUserIndustryInterestsRequest) returns (FetchUserIndustryInterestsResponse);
+}
+
+// Request Messages
+message CreateUserIndustryInterestsRequest {
+    repeated string industryIds = 1; // List of industry UUIDs
+}
+
+// Response Messages
+message CreateUserIndustryInterestsResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CreateUserIndustryInterestsDataGrpc responseData = 3;
+}
+
+message CreateUserIndustryInterestsDataGrpc {
+    repeated UserIndustryDataGrpc userIndustries = 1;
+}
+
+message UserIndustryDataGrpc {
+    string industryId = 1;
+    string industryName = 2;
+    string industryCode = 3;
+    string description = 4;
+}
+
+// Fetch User Industry Interests Messages
+message FetchUserIndustryInterestsRequest {
+    // Empty request - user is extracted from context
+}
+
+message FetchUserIndustryInterestsResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    FetchUserIndustryInterestsDataGrpc responseData = 3;
+}
+
+message FetchUserIndustryInterestsDataGrpc {
+    repeated UserIndustryDataGrpc userIndustries = 1;
+}
+

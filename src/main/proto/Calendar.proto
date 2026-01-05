@@ -3,6 +3,7 @@ option java_multiple_files = true;
 option java_package = "com.ocean.afefe.entities.proto";
 option java_outer_classname = "CalendarProto";
 import "Course.proto";
+import "Common.proto";
 
 service CalendarServiceGrpc {
     rpc CreateCalendarEvent(CreateCalendarEventRequest) returns (CreateCalendarEventResponse);
@@ -35,16 +36,16 @@ message CreateCalendarEventRequest {
 message CreateCalendarEventResponse {
     string responseCode = 1;
     string responseMessage = 2;
-    CalendarEventData responseData = 3;
+    CalendarEventDataGrpc responseData = 3;
 }
 
-message CalendarEventData {
+message CalendarEventDataGrpc {
     string id = 1;
     string date = 2; // ISO date format: YYYY-MM-DD
     string fromTime = 3; // ISO time format: HH:mm:ss
     string toTime = 4; // ISO time format: HH:mm:ss
     string timeZone = 5; // TimeZone enum as string
-    CourseData assignedCourse = 6; // Optional course data
+    CourseDataGrpc assignedCourse = 6; // Optional course data
     string title = 7;
     string description = 8;
     string location = 9; // Optional location
@@ -79,17 +80,12 @@ message FetchCalendarEventsRequest {
 message FetchCalendarEventsResponse {
     string responseCode = 1;
     string responseMessage = 2;
-    CalendarEventPageData responseData = 3;
+    CalendarEventPageDataGrpc responseData = 3;
 }
 
-message CalendarEventPageData {
-    repeated CalendarEventData content = 1;
-    int32 pageNumber = 2;
-    int32 pageSize = 3;
-    int64 totalElements = 4;
-    int32 totalPages = 5;
-    bool first = 6;
-    bool last = 7;
+message CalendarEventPageDataGrpc {
+    PaginationMetaGrpc meta = 1;
+    repeated CalendarEventDataGrpc content = 2;
 }
 
 // Fetch by ID Messages
@@ -100,7 +96,7 @@ message FetchCalendarEventByIdRequest {
 message FetchCalendarEventByIdResponse {
     string responseCode = 1;
     string responseMessage = 2;
-    CalendarEventData responseData = 3;
+    CalendarEventDataGrpc responseData = 3;
 }
 
 // Cancel Messages
@@ -111,7 +107,7 @@ message CancelCalendarEventRequest {
 message CancelCalendarEventResponse {
     string responseCode = 1;
     string responseMessage = 2;
-    CalendarEventData responseData = 3;
+    CalendarEventDataGrpc responseData = 3;
 }
 
 // Reschedule Messages
@@ -126,6 +122,6 @@ message RescheduleCalendarEventRequest {
 message RescheduleCalendarEventResponse {
     string responseCode = 1;
     string responseMessage = 2;
-    CalendarEventData responseData = 3;
+    CalendarEventDataGrpc responseData = 3;
 }
 

@@ -39,7 +39,7 @@ public class FileResourceCacheConfig {
                                 relativeFilePath,
                                 resource.getContentAsString(StandardCharsets.UTF_8));
                     } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        log.error("Exception loading resource {}", e.getMessage());
                     }
                 });
         log.info(

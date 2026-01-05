@@ -59,7 +59,7 @@ message CreateCourseRequest {
 message CreateCourseResponse {
     string responseCode = 1;
     string responseMessage = 2;
-    CourseData responseData = 3;
+    CourseDataGrpc responseData = 3;
 }
 
 message CourseProposedAchievementGrpc {
@@ -67,7 +67,7 @@ message CourseProposedAchievementGrpc {
     string description = 2;
 }
 
-message CourseData {
+message CourseDataGrpc {
     string id = 1;
     string coverImageUrl = 2;
     string description = 3;

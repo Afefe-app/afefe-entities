@@ -1,0 +1,36 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "GenericProto";
+import "Common.proto";
+
+service GenericServiceGrpc {
+    rpc FetchIndustries(FetchIndustriesRequest) returns (FetchIndustriesResponse);
+}
+
+// Request Messages
+message FetchIndustriesRequest {
+    int32 pageNumber = 1; // Page number (0-indexed)
+    int32 pageSize = 2; // Page size
+    string sort = 3; // Sort direction: "ASC" or "DESC"
+}
+
+// Response Messages
+message FetchIndustriesResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    IndustryPageDataGrpc responseData = 3;
+}
+
+message IndustryPageDataGrpc {
+    PaginationMetaGrpc meta = 1;
+    repeated IndustryDataGrpc content = 2;
+}
+
+message IndustryDataGrpc {
+    string id = 1;
+    string name = 2;
+    string code = 3;
+    string description = 4;
+}
+
