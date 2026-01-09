@@ -8,6 +8,7 @@ import "Common.proto";
 service AuthResourceServiceGrpc{
    rpc SendOtp(IamSendOtpRequest) returns (IamSendOtpResponse);
    rpc IndividualUserLogin(IamIndividualUserLoginRequest) returns (IamUserProfileResponse);
+   rpc ForgotPassword(IamForgotPasswordRequest) returns (IamForgotPasswordResponse);
 }
 
 enum UserOtpAuthGrpc{
@@ -31,4 +32,16 @@ message IamSendOtpResponse{
 message IamIndividualUserLoginRequest{
   string emailAddress = 1;
   string password = 2;
+}
+
+message IamForgotPasswordRequest{
+  string emailAddress = 1;
+  string password = 2;
+  string securityCode = 3;
+}
+
+message IamForgotPasswordResponse{
+  string responseCode = 1;
+  string responseMessage = 2;
+  string responseData = 3;
 }

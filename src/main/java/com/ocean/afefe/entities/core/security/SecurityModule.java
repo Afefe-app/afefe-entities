@@ -5,10 +5,7 @@ import com.ocean.afefe.entities.core.security.filter.ChannelAuthorizationFilterG
 import com.ocean.afefe.entities.core.security.jwt.JwtConfigurationProperties;
 import com.ocean.afefe.entities.core.security.jwt.JwtTokenManagerImpl;
 import com.ocean.afefe.entities.core.security.otp.OtpValidationServiceImpl;
-import com.ocean.afefe.entities.core.security.resolver.RequestContextMetaArgumentResolver;
-import com.ocean.afefe.entities.core.security.resolver.RequestMetaContextResolverGrpc;
-import com.ocean.afefe.entities.core.security.resolver.TenantUserArgumentResolver;
-import com.ocean.afefe.entities.core.security.resolver.TenantUserContextResolverGrpc;
+import com.ocean.afefe.entities.core.security.resolver.*;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -21,7 +18,8 @@ import org.springframework.context.annotation.Import;
         RequestContextMetaArgumentResolver.class,
         RequestMetaContextResolverGrpc.class,
         TenantUserArgumentResolver.class,
-        TenantUserContextResolverGrpc.class
+        TenantUserContextResolverGrpc.class,
+        GenericWebMvcRegistry.class
 
 })
 @Configuration

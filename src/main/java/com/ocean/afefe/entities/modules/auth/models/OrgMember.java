@@ -19,10 +19,10 @@ import java.time.Instant;
 @NoArgsConstructor
 public class OrgMember extends BaseUUIDEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Organization organization;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private User user;
 
     @Column(nullable = false)

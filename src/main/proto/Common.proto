@@ -53,16 +53,17 @@ message IamUserProfileResponse{
 
 message IamUserProfileData{
   string profileId = 1;
-  string entityId = 2;
-  string userId = 3;
-  string displayName = 4;
-  string avatarUrl = 5;
-  string phone = 6;
-  string locale = 7;
-  TimeZoneGrpc timezone = 8;
-  string jobTitle = 9;
-  IdentityAuthGrpc identityAuth = 10;
-  IamOrgMemberData orgMember = 11;
+  string emailAddress = 2;
+  string entityId = 3;
+  string userId = 4;
+  string displayName = 5;
+  string avatarUrl = 6;
+  string phone = 7;
+  string locale = 8;
+  TimeZoneGrpc timezone = 9;
+  string jobTitle = 10;
+  IdentityAuthGrpc identityAuth = 11;
+  IamOrgMemberData orgMember = 12;
 }
 
 message IamOrganizationData{

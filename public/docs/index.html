@@ -426,6 +426,14 @@
             <ul>
               
                 <li>
+                  <a href="#.IamForgotPasswordRequest"><span class="badge">M</span>IamForgotPasswordRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.IamForgotPasswordResponse"><span class="badge">M</span>IamForgotPasswordResponse</a>
+                </li>
+              
+                <li>
                   <a href="#.IamIndividualUserLoginRequest"><span class="badge">M</span>IamIndividualUserLoginRequest</a>
                 </li>
               
@@ -2727,6 +2735,82 @@
       <p></p>
 
       
+        <h3 id=".IamForgotPasswordRequest">IamForgotPasswordRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>emailAddress</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>securityCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".IamForgotPasswordResponse">IamForgotPasswordResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".IamIndividualUserLoginRequest">IamIndividualUserLoginRequest</h3>
         <p></p>
 
@@ -2922,6 +3006,13 @@
                 <td><p></p></td>
               </tr>
             
+              <tr>
+                <td>ForgotPassword</td>
+                <td><a href="#IamForgotPasswordRequest">.IamForgotPasswordRequest</a></td>
+                <td><a href="#IamForgotPasswordResponse">.IamForgotPasswordResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
           </tbody>
         </table>
 
@@ -3088,6 +3179,13 @@
               
                 <tr>
                   <td>profileId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>emailAddress</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>

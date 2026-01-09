@@ -41,34 +41,12 @@ public class GrpcCommons {
                 .build();
     }
 
-    public <T> void completeError(StreamObserver<T> streamObserver, Class<T> tClass, Exception e) {
-        streamObserver.onNext(applyError(e, tClass));
-        streamObserver.onCompleted();
-    }
-
-    @SneakyThrows
-    public <T> T applyError(Exception e, Class<T> tClass) {
-        ApiBaseResponse apiBaseResponse;
-        if (e instanceof OmnixApiException omnixApiException) {
-            apiBaseResponse = applyError(omnixApiException);
-        } else {
-            apiBaseResponse =
-                    ApiBaseResponse.getInstance()
-                            .withResponseCode(ResponseCode.INTERNAL_SERVER_ERROR)
-                            .withResponseMessage(e.getMessage())
-                            .withError(e.getMessage())
-                            .withErrors(new HashSet<>());
-        }
-        String json = objectMapper.writeValueAsString(apiBaseResponse);
-        return objectMapper.readValue(json, tClass);
-    }
-
-    public ApiBaseResponse applyError(OmnixApiException omnixApiException) {
-        return ApiBaseResponse.getInstance()
-                .withResponseCode(omnixApiException.getCode())
-                .withResponseMessage(omnixApiException.getMessage())
-                .withError(omnixApiException.getException().getMessage())
-                .withErrors(omnixApiException.getErrors());
+    public GrpcStringResponse mapError(OmnixApiException omnixApiException) {
+        return GrpcStringResponse.newBuilder()
+                .setResponseCode(CommonUtil.returnOrDefault(omnixApiException.getCode(), ResponseCode.INTERNAL_SERVER_ERROR))
+                .setResponseMessage(CommonUtil.returnOrDefault(omnixApiException.getMessage(), "Something went wrong"))
+                .addAllErrors(CommonUtil.returnOrDefault(omnixApiException.getErrors(), new ArrayList<>()))
+                .build();
     }
 
     public GrpcStringResponse mapError(Exception e) {
@@ -77,7 +55,7 @@ public class GrpcCommons {
         }else {
             return GrpcStringResponse.newBuilder()
                     .setResponseCode(ResponseCode.INTERNAL_SERVER_ERROR)
-                    .setResponseMessage(e.getMessage())
+                    .setResponseMessage(CommonUtil.returnOrDefault(e.getMessage(), "Something went wrong"))
                     .addAllErrors(Collections.singleton("Something went wrong"))
                     .build();
         }
@@ -89,12 +67,15 @@ public class GrpcCommons {
             StreamObserver<T> streamObserver,
             Supplier<? extends Message.Builder> builderSupplier) {
         GrpcStringResponse grpcStringResponse = mapError(e);
+        System.out.println("Code: ======>" + grpcStringResponse.getResponseCode());
+        System.out.println("Message: =======>" + grpcStringResponse.getResponseMessage());
 
         List<String> errors = new ArrayList<>();
         for (int i = 0; i < grpcStringResponse.getErrorsCount(); i++) {
             errors.add(grpcStringResponse.getErrors(i));
         }
 
+        System.out.println("Errors: =========>" + errors);
         ApiBaseResponse apiBaseResponse =
                 ApiBaseResponse.getInstance()
                         .withResponseCode(grpcStringResponse.getResponseCode())
