@@ -34,3 +34,4 @@ message IndustryDataGrpc {
     string description = 4;
 }
 
+
