@@ -52,18 +52,19 @@ message IamUserProfileResponse{
 }
 
 message IamUserProfileData{
-  string profileId = 1;
-  string emailAddress = 2;
-  string entityId = 3;
-  string userId = 4;
-  string displayName = 5;
-  string avatarUrl = 6;
-  string phone = 7;
-  string locale = 8;
-  TimeZoneGrpc timezone = 9;
-  string jobTitle = 10;
-  IdentityAuthGrpc identityAuth = 11;
-  IamOrgMemberData orgMember = 12;
+  string userType = 1;
+  string profileId = 2;
+  string emailAddress = 3;
+  string entityId = 4;
+  string userId = 5;
+  string displayName = 6;
+  string avatarUrl = 7;
+  string phone = 8;
+  string locale = 9;
+  TimeZoneGrpc timezone = 10;
+  string jobTitle = 11;
+  IdentityAuthGrpc identityAuth = 12;
+  IamOrgMemberData orgMember = 13;
 }
 
 message IamOrganizationData{
