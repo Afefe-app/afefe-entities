@@ -19,7 +19,7 @@ public class Lesson extends BaseUUIDEntity {
     @JoinColumn(name = "module_id", nullable = false)
     private Module module;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String title;
 
     @Column(columnDefinition = "TEXT")
