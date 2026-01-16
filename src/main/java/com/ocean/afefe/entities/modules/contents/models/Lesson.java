@@ -22,6 +22,9 @@ public class Lesson extends BaseUUIDEntity {
     @Column(nullable = false, length = 255)
     private String title;
 
+    @Column(columnDefinition = "TEXT")
+    private String content;
+
     @Enumerated(value = EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(30)")
     private LessonContentType contentType;

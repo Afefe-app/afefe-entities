@@ -202,6 +202,10 @@
             <ul>
               
                 <li>
+                  <a href="#.CourseContentDataGrpc"><span class="badge">M</span>CourseContentDataGrpc</a>
+                </li>
+              
+                <li>
                   <a href="#.CourseDataGrpc"><span class="badge">M</span>CourseDataGrpc</a>
                 </li>
               
@@ -266,7 +270,35 @@
                 </li>
               
                 <li>
+                  <a href="#.FetchCourseDetailsRequest"><span class="badge">M</span>FetchCourseDetailsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchCourseDetailsResponse"><span class="badge">M</span>FetchCourseDetailsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchLessonContentRequest"><span class="badge">M</span>FetchLessonContentRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchLessonContentResponse"><span class="badge">M</span>FetchLessonContentResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchQuizQuestionsRequest"><span class="badge">M</span>FetchQuizQuestionsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchQuizQuestionsResponse"><span class="badge">M</span>FetchQuizQuestionsResponse</a>
+                </li>
+              
+                <li>
                   <a href="#.LessonAssetData"><span class="badge">M</span>LessonAssetData</a>
+                </li>
+              
+                <li>
+                  <a href="#.LessonContentDataGrpc"><span class="badge">M</span>LessonContentDataGrpc</a>
                 </li>
               
                 <li>
@@ -274,11 +306,35 @@
                 </li>
               
                 <li>
+                  <a href="#.LessonDetailsDataGrpc"><span class="badge">M</span>LessonDetailsDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.ModuleContentDataGrpc"><span class="badge">M</span>ModuleContentDataGrpc</a>
+                </li>
+              
+                <li>
                   <a href="#.ModuleData"><span class="badge">M</span>ModuleData</a>
                 </li>
               
                 <li>
+                  <a href="#.QuestionOptionDataGrpc"><span class="badge">M</span>QuestionOptionDataGrpc</a>
+                </li>
+              
+                <li>
                   <a href="#.QuestionOptionRequestPayloadGrpc"><span class="badge">M</span>QuestionOptionRequestPayloadGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.QuestionWithOptionsDataGrpc"><span class="badge">M</span>QuestionWithOptionsDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.QuizContentDataGrpc"><span class="badge">M</span>QuizContentDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.QuizQuestionsDataGrpc"><span class="badge">M</span>QuizQuestionsDataGrpc</a>
                 </li>
               
               
@@ -677,6 +733,30 @@
       </div>
       <p></p>
 
+      
+        <h3 id=".CourseContentDataGrpc">CourseContentDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>moduleContentData</td>
+                  <td><a href="#ModuleContentDataGrpc">ModuleContentDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id=".CourseDataGrpc">CourseDataGrpc</h3>
         <p></p>
@@ -1093,6 +1173,13 @@
               
                 <tr>
                   <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -1692,6 +1779,192 @@
 
         
       
+        <h3 id=".FetchCourseDetailsRequest">FetchCourseDetailsRequest</h3>
+        <p>Fetch Course Details Messages</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCourseDetailsResponse">FetchCourseDetailsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CourseContentDataGrpc">CourseContentDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchLessonContentRequest">FetchLessonContentRequest</h3>
+        <p>Fetch Lesson Content Messages</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>lessonId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchLessonContentResponse">FetchLessonContentResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#LessonContentDataGrpc">LessonContentDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchQuizQuestionsRequest">FetchQuizQuestionsRequest</h3>
+        <p>Fetch Quiz Questions Messages</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>quizId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchQuizQuestionsResponse">FetchQuizQuestionsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#QuizQuestionsDataGrpc">QuizQuestionsDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".LessonAssetData">LessonAssetData</h3>
         <p></p>
 
@@ -1758,6 +2031,37 @@
 
         
       
+        <h3 id=".LessonContentDataGrpc">LessonContentDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>lessonData</td>
+                  <td><a href="#LessonData">LessonData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lessonAssetData</td>
+                  <td><a href="#LessonAssetData">LessonAssetData</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".LessonData">LessonData</h3>
         <p></p>
 
@@ -1797,6 +2101,13 @@
                 </tr>
               
                 <tr>
+                  <td>content</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>contentType</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -1820,6 +2131,96 @@
                 <tr>
                   <td>isPublished</td>
                   <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".LessonDetailsDataGrpc">LessonDetailsDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>lessonId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lessonTitle</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".ModuleContentDataGrpc">ModuleContentDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>moduleId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>moduleTitle</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>moduleSummary</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modulePosition</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lessonDetailsData</td>
+                  <td><a href="#LessonDetailsDataGrpc">LessonDetailsDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quizContentData</td>
+                  <td><a href="#QuizContentDataGrpc">QuizContentDataGrpc</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1890,6 +2291,65 @@
 
         
       
+        <h3 id=".QuestionOptionDataGrpc">QuestionOptionDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>optionId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>label</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>text</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>isCorrect</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>feedback</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>position</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".QuestionOptionRequestPayloadGrpc">QuestionOptionRequestPayloadGrpc</h3>
         <p></p>
 
@@ -1932,6 +2392,141 @@
                   <td>position</td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".QuestionWithOptionsDataGrpc">QuestionWithOptionsDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>questionId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>text</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>explanation</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>difficultyLevel</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>points</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metaData</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>options</td>
+                  <td><a href="#QuestionOptionDataGrpc">QuestionOptionDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".QuizContentDataGrpc">QuizContentDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>quizId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quizTitle</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".QuizQuestionsDataGrpc">QuizQuestionsDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>quizId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>questions</td>
+                  <td><a href="#QuestionWithOptionsDataGrpc">QuestionWithOptionsDataGrpc</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2125,16 +2720,37 @@
               </tr>
             
               <tr>
-                <td>createQuiz</td>
+                <td>CreateQuiz</td>
                 <td><a href="#CreateQuizRequest">.CreateQuizRequest</a></td>
                 <td><a href="#CreateQuizResponse">.CreateQuizResponse</a></td>
                 <td><p></p></td>
               </tr>
             
               <tr>
-                <td>createQuestionAndOption</td>
+                <td>CreateQuestionAndOption</td>
                 <td><a href="#CreateQuestionAndOptionRequest">.CreateQuestionAndOptionRequest</a></td>
                 <td><a href="#CreateQuestionAndOptionResponse">.CreateQuestionAndOptionResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchLessonContent</td>
+                <td><a href="#FetchLessonContentRequest">.FetchLessonContentRequest</a></td>
+                <td><a href="#FetchLessonContentResponse">.FetchLessonContentResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchCourseDetails</td>
+                <td><a href="#FetchCourseDetailsRequest">.FetchCourseDetailsRequest</a></td>
+                <td><a href="#FetchCourseDetailsResponse">.FetchCourseDetailsResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchQuizQuestions</td>
+                <td><a href="#FetchQuizQuestionsRequest">.FetchQuizQuestionsRequest</a></td>
+                <td><a href="#FetchQuizQuestionsResponse">.FetchQuizQuestionsResponse</a></td>
                 <td><p></p></td>
               </tr>
             

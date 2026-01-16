@@ -19,7 +19,6 @@ public class LessonAsset extends BaseUUIDEntity {
     @JoinColumn(name = "lesson_id", nullable = false)
     private Lesson lesson;
 
-
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private LessonAssetType assetType;
