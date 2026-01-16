@@ -11,7 +11,9 @@ public enum EventType implements Enumerable {
     USER_SIGNED_UP("user-signed-up", "User has signed up"),
     USER_LOGIN("user-login", "User login event"),
     SEND_OTP("send-otp", "Send otp"),
-    USER_RESET_PASSWORD("user-reset-password", "User reset password")
+    USER_RESET_PASSWORD("user-reset-password", "User reset password"),
+
+    INSTRUCTOR_CREATED("instructor-created", "A new instructor has been created")
     ;
 
     private final String key;

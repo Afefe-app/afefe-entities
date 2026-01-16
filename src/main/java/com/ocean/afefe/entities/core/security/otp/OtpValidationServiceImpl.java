@@ -14,8 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 @Slf4j
@@ -37,8 +36,8 @@ public class OtpValidationServiceImpl implements OtpValidationService{
             SystemParamKeys otpExpKey = SystemParamKeys.USER_OTP_EXPIRATION_IN_MIN;
             String expTimeString = localParamStorage.getParamValueOrDefault(otpExpKey, otpExpKey.getDefaultValue());
             long expLong = Long.parseLong(expTimeString);
-            Instant now = DateUtils.getServerUTCNowInstant();
-            Instant currentOtpTime = otpAuth.getCreatedAt().plus(expLong, ChronoUnit.MINUTES);
+            ZonedDateTime now = DateUtils.toZonedDateTimeUTC(DateUtils.getServerUTCNowInstant());
+            ZonedDateTime currentOtpTime = DateUtils.addMinutesToInstantUTC(otpAuth.getCreatedAt(), expLong);
             if (currentOtpTime.isBefore(now)) {
                 throw HttpUtil.getResolvedException(ResponseCode.OTP_INVALID, "This otp is no longer valid");
             }
