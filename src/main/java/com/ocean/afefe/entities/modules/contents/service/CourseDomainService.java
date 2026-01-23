@@ -14,6 +14,8 @@ public interface CourseDomainService {
     
     Course validateCourseExistence(UUID courseId, Organization organization, Instructor instructor);
     
+    Course validateCourseExistenceById(UUID courseId, Organization organization);
+    
     CourseVersion getOrCreateCourseVersion(Course course, User createdBy);
     
     Module validateModuleExistence(UUID moduleId, CourseVersion courseVersion);

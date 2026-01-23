@@ -15,7 +15,6 @@ import com.ocean.afefe.entities.modules.contents.repository.ModuleRepository;
 import com.tensorpoint.toolkit.tpointcore.commons.HttpUtil;
 import com.tensorpoint.toolkit.tpointcore.commons.MessageUtil;
 import com.tensorpoint.toolkit.tpointcore.commons.ResponseCode;
-import com.tensorpoint.toolkit.tpointcore.commons.StringValues;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +56,15 @@ public class CourseDomainServiceImpl implements CourseDomainService {
         return courseRepository.findById(courseId)
                 .filter(course -> Objects.equals(course.getOrg(), organization) 
                         && Objects.equals(course.getOwnerInstructor(), instructor))
+                .orElseThrow(() -> HttpUtil.getResolvedException(
+                        ResponseCode.RECORD_NOT_FOUND, 
+                        messageUtil.getMessage("course.not.found")));
+    }
+
+    @Override
+    public Course validateCourseExistenceById(UUID courseId, Organization organization){
+        return courseRepository.findById(courseId)
+                .filter(course -> Objects.equals(course.getOrg(), organization))
                 .orElseThrow(() -> HttpUtil.getResolvedException(
                         ResponseCode.RECORD_NOT_FOUND, 
                         messageUtil.getMessage("course.not.found")));

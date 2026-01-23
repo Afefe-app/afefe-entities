@@ -22,15 +22,18 @@ enum CalendarEventTypeGrpc {
 
 // Calendar Event Messages
 message CreateCalendarEventRequest {
-    string date = 1; // ISO date format: YYYY-MM-DD
-    string fromTime = 2; // ISO time format: HH:mm:ss
-    string toTime = 3; // ISO time format: HH:mm:ss
-    string timeZone = 4; // TimeZone enum as string (e.g., "UTC", "America/New_York")
-    string courseId = 5; // Optional course ID
-    string title = 6;
-    string description = 7;
-    string location = 8; // Optional location
-    string eventType = 9; // CalendarEventType enum as string
+    string coverPhotoUrl = 1; // Optional cover photo URL
+    string date = 2; // ISO date format: YYYY-MM-DD
+    string fromTime = 3; // ISO time format: HH:mm:ss
+    string toTime = 4; // ISO time format: HH:mm:ss
+    string timeZone = 5; // TimeZone enum as string (e.g., "UTC", "America/New_York")
+    string courseId = 6; // Optional course ID
+    string title = 7;
+    string description = 8;
+    string location = 9; // Optional location
+    string eventType = 10; // CalendarEventType enum as string
+    string price = 11; // BigDecimal as string
+    string currency = 12; // Currency enum as string (e.g., "NGN", "USD")
 }
 
 message CreateCalendarEventResponse {

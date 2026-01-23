@@ -20,6 +20,8 @@ public class User extends BaseUUIDEntity {
 
     private String fullName;
 
+    private String avatarUrl;
+
     private String passwordHash;
 
     @Column(nullable = false, columnDefinition = "VARCHAR")

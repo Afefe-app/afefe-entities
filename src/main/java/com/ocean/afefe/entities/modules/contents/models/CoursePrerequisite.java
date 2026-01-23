@@ -22,5 +22,4 @@ public class CoursePrerequisite extends BaseUUIDEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "requires_course_id", nullable = false)
     private Course requiresCourse;
-
 }

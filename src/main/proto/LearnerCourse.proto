@@ -1,0 +1,154 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "LearnerCourseProto";
+import "Common.proto";
+import "Course.proto";
+
+service LearnerCourseServiceGrpc {
+    rpc FetchUpcomingCalendarEvents(FetchUpcomingCalendarEventsRequest) returns (FetchUpcomingCalendarEventsResponse);
+    rpc FetchRecommendedCourses(FetchRecommendedCoursesRequest) returns (FetchRecommendedCoursesResponse);
+    rpc FetchRecentlyViewedCourses(FetchRecentlyViewedCoursesRequest) returns (FetchRecentlyViewedCoursesResponse);
+    rpc FetchCourseOverview(FetchCourseOverviewRequest) returns (FetchCourseOverviewResponse);
+    rpc FetchCourseRatings(FetchCourseRatingsRequest) returns (FetchCourseRatingsResponse);
+}
+
+// Fetch Upcoming Calendar Events
+message FetchUpcomingCalendarEventsRequest {
+    int32 pageNumber = 1;
+    int32 pageSize = 2;
+    string sort = 3; // "ASC" or "DESC"
+}
+
+message FetchUpcomingCalendarEventsResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    PhysicalCalendarEventPageDataGrpc responseData = 3;
+}
+
+message PhysicalCalendarEventPageDataGrpc {
+    PaginationMetaGrpc meta = 1;
+    repeated PhysicalCalendarEventDataGrpc content = 2;
+}
+
+message PhysicalCalendarEventDataGrpc {
+    string eventId = 1;
+    string coverPhoto = 2;
+    string date = 3;
+    string startTime = 4;
+    string daysLeft = 5;
+    string title = 6;
+    string description = 7;
+    InstructorBasicDataGrpc instructor = 8;
+    MoneyGrpc price = 9;
+}
+
+message InstructorBasicDataGrpc {
+    string instructorName = 1;
+    string instructorProfileImage = 2;
+}
+
+message MoneyGrpc {
+    string amount = 1;
+    string currency = 2;
+}
+
+// Fetch Recommended Courses
+message FetchRecommendedCoursesRequest {
+    int32 pageNumber = 1;
+    int32 pageSize = 2;
+    string sort = 3; // "ASC" or "DESC"
+}
+
+message FetchRecommendedCoursesResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CourseDataPageDataGrpc responseData = 3;
+}
+
+message CourseDataPageDataGrpc {
+    PaginationMetaGrpc meta = 1;
+    repeated LearnerCourseDataGrpc content = 2;
+}
+
+message LearnerCourseDataGrpc {
+    string courseId = 1;
+    string coverImageUrl = 2;
+    repeated string tags = 3;
+    double rating = 4;
+    int32 reviews = 5;
+    string title = 6;
+    string description = 7;
+    InstructorBasicDataGrpc instructor = 8;
+    MoneyGrpc price = 9;
+}
+
+// Fetch Recently Viewed Courses
+message FetchRecentlyViewedCoursesRequest {
+    // Empty - user is extracted from context
+}
+
+message FetchRecentlyViewedCoursesResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    RecentlyViewedCoursesDataGrpc responseData = 3;
+}
+
+message RecentlyViewedCoursesDataGrpc {
+    repeated LearnerCourseDataGrpc courses = 1;
+}
+
+// Fetch Course Overview
+message FetchCourseOverviewRequest {
+    string courseId = 1; // Course UUID
+}
+
+message FetchCourseOverviewResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CourseOverviewDataGrpc responseData = 3;
+}
+
+message CourseOverviewDataGrpc {
+    string courseId = 1;
+    string coverImageUrl = 2;
+    string title = 3;
+    InstructorBasicDataGrpc instructor = 4;
+    repeated CourseProposedAchievementGrpc learningOutcomes = 5;
+    repeated string requirements = 6;
+    string description = 7;
+}
+
+// Fetch Course Ratings
+message FetchCourseRatingsRequest {
+    string courseId = 1; // Course UUID
+    int32 pageNumber = 2;
+    int32 pageSize = 3;
+    string sort = 4; // "ASC" or "DESC"
+}
+
+message FetchCourseRatingsResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CourseRatingReviewDataGrpc responseData = 3;
+}
+
+message CourseRatingReviewDataGrpc {
+    int64 totalReviewCount = 1;
+    double overallRating = 2;
+    CourseReviewPageDataGrpc reviews = 3;
+}
+
+message CourseReviewPageDataGrpc {
+    PaginationMetaGrpc meta = 1;
+    repeated CourseReviewDataGrpc content = 2;
+}
+
+message CourseReviewDataGrpc {
+    string ratingId = 1;
+    string reviewerName = 2;
+    string reviewerProfileImage = 3;
+    string reviewDate = 4;
+    double rating = 5;
+    string review = 6;
+}

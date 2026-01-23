@@ -1,8 +1,10 @@
 package com.ocean.afefe.entities.modules.contents.models;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
+import com.ocean.afefe.entities.modules.contents.data.CourseProposedAchievement;
 import com.tensorpoint.toolkit.tpointcore.commons.CommonUtil;
 import com.tensorpoint.toolkit.tpointcore.commons.Currency;
 import com.tensorpoint.toolkit.tpointcore.commons.StringValues;
@@ -10,6 +12,11 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "courses")
@@ -75,6 +82,14 @@ public class Course extends BaseUUIDEntity {
     @Column(nullable = false)
     private boolean free;
 
+    @Builder.Default
+    private double rating = 0;
+
+    @Builder.Default
+    private int reviews = 0;
+
+    private Instant viewedAt;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private User createdBy;
 
@@ -91,6 +106,24 @@ public class Course extends BaseUUIDEntity {
         if(CommonUtil.isNullOrEmpty(this.getTitleHash())){
             this.setTitleHash(buildTitleHash(this.getTitle()));
         }
+    }
+
+    @SneakyThrows
+    public Set<String> getTagSet(){
+        return CommonUtil.isNullOrEmpty(this.getTags()) ? new HashSet<>() : CommonUtil.getServerMapper().readValue(this.getTags(), new TypeReference<Set<String>>() {
+        });
+    }
+
+    @SneakyThrows
+    public List<CourseProposedAchievement> getProposedAchievements(){
+        return CommonUtil.isNullOrEmpty(this.getLearningOutcomeJsonList()) ? new ArrayList<>() : CommonUtil.getServerMapper().readValue(this.getLearningOutcomeJsonList(), new TypeReference<List<CourseProposedAchievement>>() {
+        });
+    }
+
+    @SneakyThrows
+    public Set<String> getRequirementSet(){
+        return CommonUtil.isNullOrEmpty(this.getRequirement()) ? new HashSet<>() : CommonUtil.getServerMapper().readValue(this.getRequirement(), new TypeReference<Set<String>>() {
+        });
     }
 
     public static String buildTitleHash(String title){

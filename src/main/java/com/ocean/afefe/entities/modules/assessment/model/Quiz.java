@@ -39,7 +39,7 @@ public class Quiz extends BaseUUIDEntity {
     private Lesson lesson;
 
     @Column(nullable = false)
-    private String title;
+    private String title; // lesson.getTitle() + " Quiz"
 
     @Column(columnDefinition = "TEXT")
     private String description;

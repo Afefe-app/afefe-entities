@@ -430,6 +430,105 @@
         
           
           <li>
+            <a href="#LearnerCourse.proto">LearnerCourse.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.CourseDataPageDataGrpc"><span class="badge">M</span>CourseDataPageDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.CourseOverviewDataGrpc"><span class="badge">M</span>CourseOverviewDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.CourseRatingReviewDataGrpc"><span class="badge">M</span>CourseRatingReviewDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.CourseReviewDataGrpc"><span class="badge">M</span>CourseReviewDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.CourseReviewPageDataGrpc"><span class="badge">M</span>CourseReviewPageDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchCourseOverviewRequest"><span class="badge">M</span>FetchCourseOverviewRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchCourseOverviewResponse"><span class="badge">M</span>FetchCourseOverviewResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchCourseRatingsRequest"><span class="badge">M</span>FetchCourseRatingsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchCourseRatingsResponse"><span class="badge">M</span>FetchCourseRatingsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchRecentlyViewedCoursesRequest"><span class="badge">M</span>FetchRecentlyViewedCoursesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchRecentlyViewedCoursesResponse"><span class="badge">M</span>FetchRecentlyViewedCoursesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchRecommendedCoursesRequest"><span class="badge">M</span>FetchRecommendedCoursesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchRecommendedCoursesResponse"><span class="badge">M</span>FetchRecommendedCoursesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchUpcomingCalendarEventsRequest"><span class="badge">M</span>FetchUpcomingCalendarEventsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchUpcomingCalendarEventsResponse"><span class="badge">M</span>FetchUpcomingCalendarEventsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.InstructorBasicDataGrpc"><span class="badge">M</span>InstructorBasicDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.LearnerCourseDataGrpc"><span class="badge">M</span>LearnerCourseDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.MoneyGrpc"><span class="badge">M</span>MoneyGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.PhysicalCalendarEventDataGrpc"><span class="badge">M</span>PhysicalCalendarEventDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.PhysicalCalendarEventPageDataGrpc"><span class="badge">M</span>PhysicalCalendarEventPageDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.RecentlyViewedCoursesDataGrpc"><span class="badge">M</span>RecentlyViewedCoursesDataGrpc</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#.LearnerCourseServiceGrpc"><span class="badge">S</span>LearnerCourseServiceGrpc</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#Auth.proto">Auth.proto</a>
             <ul>
               
@@ -2142,6 +2241,13 @@
             <tbody>
               
                 <tr>
+                  <td>coverPhotoUrl</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional cover photo URL </p></td>
+                </tr>
+              
+                <tr>
                   <td>date</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -2202,6 +2308,20 @@
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>CalendarEventType enum as string </p></td>
+                </tr>
+              
+                <tr>
+                  <td>price</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>BigDecimal as string </p></td>
+                </tr>
+              
+                <tr>
+                  <td>currency</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Currency enum as string (e.g., &#34;NGN&#34;, &#34;USD&#34;) </p></td>
                 </tr>
               
             </tbody>
@@ -2832,6 +2952,911 @@
                 <td>FetchIndustries</td>
                 <td><a href="#FetchIndustriesRequest">.FetchIndustriesRequest</a></td>
                 <td><a href="#FetchIndustriesResponse">.FetchIndustriesResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="LearnerCourse.proto">LearnerCourse.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".CourseDataPageDataGrpc">CourseDataPageDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#LearnerCourseDataGrpc">LearnerCourseDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CourseOverviewDataGrpc">CourseOverviewDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>coverImageUrl</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>instructor</td>
+                  <td><a href="#InstructorBasicDataGrpc">InstructorBasicDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>learningOutcomes</td>
+                  <td><a href="#CourseProposedAchievementGrpc">CourseProposedAchievementGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>requirements</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CourseRatingReviewDataGrpc">CourseRatingReviewDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>totalReviewCount</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>overallRating</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reviews</td>
+                  <td><a href="#CourseReviewPageDataGrpc">CourseReviewPageDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CourseReviewDataGrpc">CourseReviewDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ratingId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reviewerName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reviewerProfileImage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reviewDate</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>rating</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>review</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CourseReviewPageDataGrpc">CourseReviewPageDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#CourseReviewDataGrpc">CourseReviewDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCourseOverviewRequest">FetchCourseOverviewRequest</h3>
+        <p>Fetch Course Overview</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Course UUID </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCourseOverviewResponse">FetchCourseOverviewResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CourseOverviewDataGrpc">CourseOverviewDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCourseRatingsRequest">FetchCourseRatingsRequest</h3>
+        <p>Fetch Course Ratings</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Course UUID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageNumber</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageSize</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>&#34;ASC&#34; or &#34;DESC&#34; </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCourseRatingsResponse">FetchCourseRatingsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CourseRatingReviewDataGrpc">CourseRatingReviewDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchRecentlyViewedCoursesRequest">FetchRecentlyViewedCoursesRequest</h3>
+        <p>Fetch Recently Viewed Courses</p><p>Empty - user is extracted from context</p>
+
+        
+
+        
+      
+        <h3 id=".FetchRecentlyViewedCoursesResponse">FetchRecentlyViewedCoursesResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#RecentlyViewedCoursesDataGrpc">RecentlyViewedCoursesDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchRecommendedCoursesRequest">FetchRecommendedCoursesRequest</h3>
+        <p>Fetch Recommended Courses</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>pageNumber</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageSize</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>&#34;ASC&#34; or &#34;DESC&#34; </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchRecommendedCoursesResponse">FetchRecommendedCoursesResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CourseDataPageDataGrpc">CourseDataPageDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchUpcomingCalendarEventsRequest">FetchUpcomingCalendarEventsRequest</h3>
+        <p>Fetch Upcoming Calendar Events</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>pageNumber</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageSize</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>&#34;ASC&#34; or &#34;DESC&#34; </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchUpcomingCalendarEventsResponse">FetchUpcomingCalendarEventsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#PhysicalCalendarEventPageDataGrpc">PhysicalCalendarEventPageDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".InstructorBasicDataGrpc">InstructorBasicDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>instructorName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>instructorProfileImage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".LearnerCourseDataGrpc">LearnerCourseDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>coverImageUrl</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>rating</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reviews</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>instructor</td>
+                  <td><a href="#InstructorBasicDataGrpc">InstructorBasicDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>price</td>
+                  <td><a href="#MoneyGrpc">MoneyGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".MoneyGrpc">MoneyGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>currency</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".PhysicalCalendarEventDataGrpc">PhysicalCalendarEventDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>eventId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>coverPhoto</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>date</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>startTime</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>daysLeft</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>instructor</td>
+                  <td><a href="#InstructorBasicDataGrpc">InstructorBasicDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>price</td>
+                  <td><a href="#MoneyGrpc">MoneyGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".PhysicalCalendarEventPageDataGrpc">PhysicalCalendarEventPageDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#PhysicalCalendarEventDataGrpc">PhysicalCalendarEventDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".RecentlyViewedCoursesDataGrpc">RecentlyViewedCoursesDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courses</td>
+                  <td><a href="#LearnerCourseDataGrpc">LearnerCourseDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id=".LearnerCourseServiceGrpc">LearnerCourseServiceGrpc</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>FetchUpcomingCalendarEvents</td>
+                <td><a href="#FetchUpcomingCalendarEventsRequest">.FetchUpcomingCalendarEventsRequest</a></td>
+                <td><a href="#FetchUpcomingCalendarEventsResponse">.FetchUpcomingCalendarEventsResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchRecommendedCourses</td>
+                <td><a href="#FetchRecommendedCoursesRequest">.FetchRecommendedCoursesRequest</a></td>
+                <td><a href="#FetchRecommendedCoursesResponse">.FetchRecommendedCoursesResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchRecentlyViewedCourses</td>
+                <td><a href="#FetchRecentlyViewedCoursesRequest">.FetchRecentlyViewedCoursesRequest</a></td>
+                <td><a href="#FetchRecentlyViewedCoursesResponse">.FetchRecentlyViewedCoursesResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchCourseOverview</td>
+                <td><a href="#FetchCourseOverviewRequest">.FetchCourseOverviewRequest</a></td>
+                <td><a href="#FetchCourseOverviewResponse">.FetchCourseOverviewResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchCourseRatings</td>
+                <td><a href="#FetchCourseRatingsRequest">.FetchCourseRatingsRequest</a></td>
+                <td><a href="#FetchCourseRatingsResponse">.FetchCourseRatingsResponse</a></td>
                 <td><p></p></td>
               </tr>
             

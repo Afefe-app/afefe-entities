@@ -1,10 +1,8 @@
-package com.ocean.afefe.entities.modules.enrollments.models;
+package com.ocean.afefe.entities.modules.contents.models;
 
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
-import com.ocean.afefe.entities.modules.contents.models.Course;
-import com.ocean.afefe.entities.modules.contents.models.Module;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,14 +10,17 @@ import java.time.Instant;
 
 @Entity
 @Table(
-        name = "enrollments"
+        name = "course_ratings",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "uk_course_rating_user_course", columnNames = {"user_id", "course_id"})
+        }
 )
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Enrollment extends BaseUUIDEntity {
+public class CourseRating extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "org_id", nullable = false)
@@ -33,18 +34,14 @@ public class Enrollment extends BaseUUIDEntity {
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Module currentModule;
+    @Column(nullable = false)
+    private Integer rating; // 1-5 stars
 
-    @Column(nullable = false, columnDefinition = "VARCHAR")
-    @Enumerated(value = EnumType.STRING)
-    private EnrollmentStatus status; // enrolled, in_progress, completed, withdrawn
+    @Column(columnDefinition = "TEXT")
+    private String review; // Optional review text
 
-    @Column( nullable = false)
-    private Integer progressPercent;
+    @Column(nullable = false)
+    private Instant ratedAt;
 
-    private Instant startedAt;
-
-    private Instant completedAt;
-
+    private Instant updatedAt;
 }
