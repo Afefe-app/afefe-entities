@@ -8,9 +8,9 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum LessonContentType {
-    VIDEO("Dental Hygiene"),
-    TEXT("BDS"),
-    PDF("Dental Nursing"),
+    VIDEO("Video"),
+    TEXT("Text"),
+    PDF("Pdf"),
     INTERACTIVE("Interactive"),
     SCORM("Scorm");
 

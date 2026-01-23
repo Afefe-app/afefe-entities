@@ -1,5 +1,7 @@
 package com.ocean.afefe.entities.modules.contents.service;
 
+import com.ocean.afefe.entities.modules.assessment.model.Quiz;
+import com.ocean.afefe.entities.modules.assessment.repository.QuizRepository;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
 import com.ocean.afefe.entities.modules.contents.models.Course;
@@ -32,6 +34,7 @@ public class CourseDomainServiceImpl implements CourseDomainService {
     private final CourseVersionRepository courseVersionRepository;
     private final ModuleRepository moduleRepository;
     private final LessonRepository lessonRepository;
+    private final QuizRepository quizRepository;
 
     private final static String DEFAULT_COURSE_VERSION = "DRAFT";
 
@@ -114,5 +117,14 @@ public class CourseDomainServiceImpl implements CourseDomainService {
                 .orElseThrow(() -> HttpUtil.getResolvedException(
                         ResponseCode.RECORD_NOT_FOUND, 
                         messageUtil.getMessage("lesson.not.found")));
+    }
+
+    @Override
+    public Quiz validateQuizExistence(UUID quizId){
+        return  quizRepository.findById(quizId)
+                .orElseThrow(() -> HttpUtil.getResolvedException(
+                        ResponseCode.RECORD_NOT_FOUND,
+                        messageUtil.getMessage("quiz.not.found")
+                ));
     }
 }

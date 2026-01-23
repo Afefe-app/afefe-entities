@@ -1,8 +1,11 @@
 package com.ocean.afefe.entities.modules.contents.models;
 
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
+import com.ocean.afefe.entities.modules.assessment.model.Quiz;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(
@@ -19,8 +22,11 @@ public class Lesson extends BaseUUIDEntity {
     @JoinColumn(name = "module_id", nullable = false)
     private Module module;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String title;
+
+    @Column(columnDefinition = "TEXT")
+    private String content;
 
     @Enumerated(value = EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(30)")

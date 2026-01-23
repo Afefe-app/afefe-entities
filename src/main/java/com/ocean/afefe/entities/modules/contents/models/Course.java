@@ -54,7 +54,6 @@ public class Course extends BaseUUIDEntity {
     @Column(columnDefinition = "TEXT")
     private String learningOutcomeJsonList;
 
-
     @Column(nullable = false)
     private String title;
 

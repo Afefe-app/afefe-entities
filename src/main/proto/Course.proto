@@ -2,12 +2,19 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "com.ocean.afefe.entities.proto";
 option java_outer_classname = "CourseProto";
+import "google/protobuf/struct.proto";
 
 service CourseMgtServiceGrpc {
     rpc CreateCourse(CreateCourseRequest) returns (CreateCourseResponse);
     rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
     rpc CreateLesson(CreateLessonRequest) returns (CreateLessonResponse);
     rpc CreateLessonAsset(CreateLessonAssetRequest) returns (CreateLessonAssetResponse);
+    rpc CreateQuiz(CreateQuizRequest) returns (CreateQuizResponse);
+    rpc CreateQuestionAndOption(CreateQuestionAndOptionRequest) returns (CreateQuestionAndOptionResponse);
+    rpc FetchLessonContent(FetchLessonContentRequest) returns (FetchLessonContentResponse);
+    rpc FetchCourseDetails(FetchCourseDetailsRequest) returns (FetchCourseDetailsResponse);
+    rpc FetchQuizQuestions(FetchQuizQuestionsRequest) returns (FetchQuizQuestionsResponse);
+    rpc FetchLessonQuizIds(FetchLessonQuizIdsRequest) returns (FetchLessonQuizIdsResponse);
 }
 
 // Enums
@@ -32,6 +39,11 @@ enum LessonAssetTypeGrpc {
     PDF_URL = 2;
     HTML = 3;
     SCORM_PKG = 4;
+}
+
+enum QuestionTypeGrpc {
+  MULTI_CHOICE = 0;
+  TRUE_FALSE = 1;
 }
 
 // Course Messages
@@ -107,9 +119,10 @@ message CreateLessonRequest {
     string courseId = 1;
     string moduleId = 2;
     string title = 3;
-    string contentType = 4;
-    int32 durationSeconds = 5;
-    int32 position = 6;
+    string content = 4;
+    string contentType = 5;
+    int32 durationSeconds = 6;
+    int32 position = 7;
 }
 
 message CreateLessonResponse {
@@ -123,10 +136,12 @@ message LessonData {
     string moduleId = 2;
     string courseVersionId = 3;
     string title = 4;
-    string contentType = 5;
-    int32 durationSeconds = 6;
-    int32 position = 7;
-    bool isPublished = 8;
+    string content = 5;
+    string contentType = 6;
+    int32 durationSeconds = 7;
+    int32 position = 8;
+    bool isPublished = 9;
+    repeated string quizIds = 10;
 }
 
 // Lesson Asset Messages
@@ -155,3 +170,181 @@ message LessonAssetData {
     string mimeType = 7;
 }
 
+message CreateQuizRequest {
+    string courseId = 1;
+    string moduleId = 2;
+    string lessonId = 3;
+    string title = 4;
+    string description = 5;
+    string quizName = 6;
+    int32 attemptLimit = 7;
+    int32 timeLimitMinutes = 8;
+    string gradingMethod = 9;
+    string visibility = 10;
+    int64 passScore = 11;
+    bool randomizeItems = 12;
+}
+
+message CreateQuestionAndOptionRequest{
+   string quizId = 1;
+   string type = 2;
+   string text = 3;
+   string explanation = 4;
+   int32 difficultyLevel = 5;
+   int64 points = 6;
+   google.protobuf.Struct metaData = 7;
+   repeated QuestionOptionRequestPayloadGrpc options = 8;
+}
+
+
+message QuestionOptionRequestPayloadGrpc {
+    string label = 1;
+    string text = 2;
+    bool isCorrect = 3;
+    string feedback = 4;
+    int32 position = 5;
+}
+
+message CreateQuizResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  CreateQuizResponseData responseData = 3;
+}
+
+message CreateQuizResponseData {
+   string id = 1;
+   string quizId = 2;
+   string orgId = 3;
+   string courseId = 4;
+   string moduleId = 5;
+   string lessonId = 6;
+   string title = 7;
+   string description = 8;
+   int32 attemptLimit = 9;
+   int32 timeLimitMinutes = 10;
+   string gradingMethod = 11;
+   string visibility = 12;
+   int64 passScore =  13;
+   bool randomizeItems = 14;
+   string createdBy = 15;
+   string updatedBy = 16;
+}
+
+message CreateQuestionAndOptionResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  CreateQuestionAndOptionResponseData responseData = 3;
+}
+
+
+message CreateQuestionAndOptionResponseData {
+   string quizId = 1;
+   string type = 2;
+   string text = 3;
+   string explanation = 4;
+   int32 difficultyLevel = 5;
+   int32 points = 6;
+   google.protobuf.Struct metaData = 7;
+}
+
+// Fetch Lesson Content Messages
+message FetchLessonContentRequest {
+    string lessonId = 1;
+}
+
+message FetchLessonContentResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    LessonContentDataGrpc responseData = 3;
+}
+
+message LessonContentDataGrpc {
+    LessonData lessonData = 1;
+    repeated LessonAssetData lessonAssetData = 2;
+}
+
+// Fetch Course Details Messages
+message FetchCourseDetailsRequest {
+    string courseId = 1;
+}
+
+message FetchCourseDetailsResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CourseContentDataGrpc responseData = 3;
+}
+
+message CourseContentDataGrpc {
+    repeated ModuleContentDataGrpc moduleContentData = 1;
+}
+
+message ModuleContentDataGrpc {
+    string moduleId = 1;
+    string moduleTitle = 2;
+    string moduleSummary = 3;
+    int32 modulePosition = 4;
+    repeated LessonDetailsDataGrpc lessonDetailsData = 5;
+    QuizContentDataGrpc quizContentData = 6;
+}
+
+message LessonDetailsDataGrpc {
+    string lessonId = 1;
+    string lessonTitle = 2;
+}
+
+message QuizContentDataGrpc {
+    string quizId = 1;
+    string quizTitle = 2;
+}
+
+// Fetch Quiz Questions Messages
+message FetchQuizQuestionsRequest {
+    string lessonId = 1;
+}
+
+message FetchQuizQuestionsResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    QuizQuestionsDataGrpc responseData = 3;
+}
+
+message QuizQuestionsDataGrpc {
+    string lessonId = 1;
+    repeated QuestionWithOptionsDataGrpc questions = 2;
+}
+
+message QuestionWithOptionsDataGrpc {
+    string questionId = 1;
+    string type = 2;
+    string text = 3;
+    string explanation = 4;
+    int32 difficultyLevel = 5;
+    int64 points = 6;
+    google.protobuf.Struct metaData = 7;
+    repeated QuestionOptionDataGrpc options = 8;
+}
+
+message QuestionOptionDataGrpc {
+    string optionId = 1;
+    string label = 2;
+    string text = 3;
+    bool isCorrect = 4;
+    string feedback = 5;
+    int32 position = 6;
+}
+
+// Fetch Lesson Quiz IDs Messages
+message FetchLessonQuizIdsRequest {
+    string lessonId = 1;
+}
+
+message FetchLessonQuizIdsResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    LessonQuizIdsDataGrpc responseData = 3;
+}
+
+message LessonQuizIdsDataGrpc {
+    string lessonId = 1;
+    repeated string quizIds = 2;
+}
