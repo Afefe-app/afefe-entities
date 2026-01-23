@@ -294,6 +294,14 @@
                 </li>
               
                 <li>
+                  <a href="#.FetchLessonQuizIdsRequest"><span class="badge">M</span>FetchLessonQuizIdsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchLessonQuizIdsResponse"><span class="badge">M</span>FetchLessonQuizIdsResponse</a>
+                </li>
+              
+                <li>
                   <a href="#.FetchQuizQuestionsRequest"><span class="badge">M</span>FetchQuizQuestionsRequest</a>
                 </li>
               
@@ -315,6 +323,10 @@
               
                 <li>
                   <a href="#.LessonDetailsDataGrpc"><span class="badge">M</span>LessonDetailsDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.LessonQuizIdsDataGrpc"><span class="badge">M</span>LessonQuizIdsDataGrpc</a>
                 </li>
               
                 <li>
@@ -2023,6 +2035,68 @@
 
         
       
+        <h3 id=".FetchLessonQuizIdsRequest">FetchLessonQuizIdsRequest</h3>
+        <p>Fetch Lesson Quiz IDs Messages</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>lessonId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchLessonQuizIdsResponse">FetchLessonQuizIdsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#LessonQuizIdsDataGrpc">LessonQuizIdsDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".FetchQuizQuestionsRequest">FetchQuizQuestionsRequest</h3>
         <p>Fetch Quiz Questions Messages</p>
 
@@ -2255,6 +2329,13 @@
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>quizIds</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -2283,6 +2364,37 @@
                   <td>lessonTitle</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".LessonQuizIdsDataGrpc">LessonQuizIdsDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>lessonId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quizIds</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2871,6 +2983,13 @@
                 <td>FetchQuizQuestions</td>
                 <td><a href="#FetchQuizQuestionsRequest">.FetchQuizQuestionsRequest</a></td>
                 <td><a href="#FetchQuizQuestionsResponse">.FetchQuizQuestionsResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchLessonQuizIds</td>
+                <td><a href="#FetchLessonQuizIdsRequest">.FetchLessonQuizIdsRequest</a></td>
+                <td><a href="#FetchLessonQuizIdsResponse">.FetchLessonQuizIdsResponse</a></td>
                 <td><p></p></td>
               </tr>
             

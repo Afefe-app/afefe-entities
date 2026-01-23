@@ -1,8 +1,11 @@
 package com.ocean.afefe.entities.modules.contents.models;
 
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
+import com.ocean.afefe.entities.modules.assessment.model.Quiz;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(

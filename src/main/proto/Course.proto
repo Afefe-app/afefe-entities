@@ -14,6 +14,7 @@ service CourseMgtServiceGrpc {
     rpc FetchLessonContent(FetchLessonContentRequest) returns (FetchLessonContentResponse);
     rpc FetchCourseDetails(FetchCourseDetailsRequest) returns (FetchCourseDetailsResponse);
     rpc FetchQuizQuestions(FetchQuizQuestionsRequest) returns (FetchQuizQuestionsResponse);
+    rpc FetchLessonQuizIds(FetchLessonQuizIdsRequest) returns (FetchLessonQuizIdsResponse);
 }
 
 // Enums
@@ -140,6 +141,7 @@ message LessonData {
     int32 durationSeconds = 7;
     int32 position = 8;
     bool isPublished = 9;
+    repeated string quizIds = 10;
 }
 
 // Lesson Asset Messages
@@ -297,7 +299,7 @@ message QuizContentDataGrpc {
 
 // Fetch Quiz Questions Messages
 message FetchQuizQuestionsRequest {
-    string quizId = 1;
+    string lessonId = 1;
 }
 
 message FetchQuizQuestionsResponse {
@@ -307,7 +309,7 @@ message FetchQuizQuestionsResponse {
 }
 
 message QuizQuestionsDataGrpc {
-    string quizId = 1;
+    string lessonId = 1;
     repeated QuestionWithOptionsDataGrpc questions = 2;
 }
 
@@ -329,4 +331,20 @@ message QuestionOptionDataGrpc {
     bool isCorrect = 4;
     string feedback = 5;
     int32 position = 6;
+}
+
+// Fetch Lesson Quiz IDs Messages
+message FetchLessonQuizIdsRequest {
+    string lessonId = 1;
+}
+
+message FetchLessonQuizIdsResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    LessonQuizIdsDataGrpc responseData = 3;
+}
+
+message LessonQuizIdsDataGrpc {
+    string lessonId = 1;
+    repeated string quizIds = 2;
 }

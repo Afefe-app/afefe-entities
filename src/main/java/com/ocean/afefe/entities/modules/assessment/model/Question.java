@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 public class Question extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bank_id", nullable = false)
+    @JoinColumn(name = "bank_id", nullable = true)
     private QuestionBank bank;
 
     @Column(nullable = false)
