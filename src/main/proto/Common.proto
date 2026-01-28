@@ -65,6 +65,7 @@ message IamUserProfileData{
   string jobTitle = 11;
   IdentityAuthGrpc identityAuth = 12;
   IamOrgMemberData orgMember = 13;
+  bool isOnboardingCompleted = 14;
 }
 
 message IamOrganizationData{

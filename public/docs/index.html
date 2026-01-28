@@ -629,6 +629,33 @@
         
           
           <li>
+            <a href="#WaitList.proto">WaitList.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.CreateWaitListRequest"><span class="badge">M</span>CreateWaitListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.CreateWaitListResponse"><span class="badge">M</span>CreateWaitListResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.WaitListDataGrpc"><span class="badge">M</span>WaitListDataGrpc</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#.WaitListServiceGrpc"><span class="badge">S</span>WaitListServiceGrpc</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#Auth.proto">Auth.proto</a>
             <ul>
               
@@ -5168,6 +5195,132 @@
     
       
       <div class="file-heading">
+        <h2 id="WaitList.proto">WaitList.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".CreateWaitListRequest">CreateWaitListRequest</h3>
+        <p>Request Messages</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CreateWaitListResponse">CreateWaitListResponse</h3>
+        <p>Response Messages</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#WaitListDataGrpc">WaitListDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".WaitListDataGrpc">WaitListDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id=".WaitListServiceGrpc">WaitListServiceGrpc</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CreateWaitList</td>
+                <td><a href="#CreateWaitListRequest">.CreateWaitListRequest</a></td>
+                <td><a href="#CreateWaitListResponse">.CreateWaitListResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
         <h2 id="Auth.proto">Auth.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -5702,6 +5855,13 @@
                 <tr>
                   <td>orgMember</td>
                   <td><a href="#IamOrgMemberData">IamOrgMemberData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>isOnboardingCompleted</td>
+                  <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
