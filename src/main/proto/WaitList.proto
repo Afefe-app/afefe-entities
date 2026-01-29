@@ -1,0 +1,25 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "WaitListProto";
+
+service WaitListServiceGrpc {
+    rpc CreateWaitList(CreateWaitListRequest) returns (CreateWaitListResponse);
+}
+
+// Request Messages
+message CreateWaitListRequest {
+    string email = 1;
+}
+
+// Response Messages
+message CreateWaitListResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    WaitListDataGrpc responseData = 3;
+}
+
+message WaitListDataGrpc {
+    string email = 1;
+    string guid = 2;
+}
