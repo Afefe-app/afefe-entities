@@ -10,13 +10,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.UUID;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, UUID>, QuerydslPredicateExecutor<Course> {
-
-    Page<Course> findAllByInstructorIdAndOrganizationId( UUID instructorId, UUID organizationId, Pageable pageable);
 
     Page<Course> findAllByOwnerInstructorIdAndOrgIdAndStatus(UUID ownerInstructorId, UUID orgId, CourseStatus status, Pageable pageable);
 
