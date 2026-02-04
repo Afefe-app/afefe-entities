@@ -16,8 +16,6 @@ import java.util.UUID;
 @Repository
 public interface CourseRepository extends JpaRepository<Course, UUID>, QuerydslPredicateExecutor<Course> {
 
-//    Page<Course> findAllByInstructorIdAndOrganizationId( UUID instructorId, UUID organizationId, Pageable pageable);
-
     Page<Course> findAllByOwnerInstructorIdAndOrgIdAndStatus(UUID ownerInstructorId, UUID orgId, CourseStatus status, Pageable pageable);
 
     boolean existsByTitleHashAndOwnerInstructorAndOrg(String title, Instructor instructor, Organization organization);
