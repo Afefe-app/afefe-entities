@@ -286,6 +286,14 @@
                 </li>
               
                 <li>
+                  <a href="#.FetchCourseInformationRequest"><span class="badge">M</span>FetchCourseInformationRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchCourseInformationResponse"><span class="badge">M</span>FetchCourseInformationResponse</a>
+                </li>
+              
+                <li>
                   <a href="#.FetchLessonContentRequest"><span class="badge">M</span>FetchLessonContentRequest</a>
                 </li>
               
@@ -2099,6 +2107,68 @@
 
         
       
+        <h3 id=".FetchCourseInformationRequest">FetchCourseInformationRequest</h3>
+        <p>Fetch Course Information Messages</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Course UUID </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCourseInformationResponse">FetchCourseInformationResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CourseDataGrpc">CourseDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".FetchLessonContentRequest">FetchLessonContentRequest</h3>
         <p>Fetch Lesson Content Messages</p>
 
@@ -3116,6 +3186,13 @@
                 <td>FetchLessonQuizIds</td>
                 <td><a href="#FetchLessonQuizIdsRequest">.FetchLessonQuizIdsRequest</a></td>
                 <td><a href="#FetchLessonQuizIdsResponse">.FetchLessonQuizIdsResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchCourseInformation</td>
+                <td><a href="#FetchCourseInformationRequest">.FetchCourseInformationRequest</a></td>
+                <td><a href="#FetchCourseInformationResponse">.FetchCourseInformationResponse</a></td>
                 <td><p></p></td>
               </tr>
             
