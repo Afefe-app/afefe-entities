@@ -311,7 +311,13 @@ message FetchQuizQuestionsResponse {
 
 message QuizQuestionsDataGrpc {
     string lessonId = 1;
-    repeated QuestionWithOptionsDataGrpc questions = 2;
+    repeated QuizQuestionsSectionGrpc quizSections = 2;
+}
+
+message QuizQuestionsSectionGrpc {
+    string quizId = 1;
+    string quizTitle = 2;
+    repeated QuestionWithOptionsDataGrpc questions = 3;
 }
 
 message QuestionWithOptionsDataGrpc {
