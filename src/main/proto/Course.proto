@@ -15,6 +15,7 @@ service CourseMgtServiceGrpc {
     rpc FetchCourseDetails(FetchCourseDetailsRequest) returns (FetchCourseDetailsResponse);
     rpc FetchQuizQuestions(FetchQuizQuestionsRequest) returns (FetchQuizQuestionsResponse);
     rpc FetchLessonQuizIds(FetchLessonQuizIdsRequest) returns (FetchLessonQuizIdsResponse);
+    rpc FetchCourseInformation(FetchCourseInformationRequest) returns (FetchCourseInformationResponse);
 }
 
 // Enums
@@ -310,7 +311,13 @@ message FetchQuizQuestionsResponse {
 
 message QuizQuestionsDataGrpc {
     string lessonId = 1;
-    repeated QuestionWithOptionsDataGrpc questions = 2;
+    repeated QuizQuestionsSectionGrpc quizSections = 2;
+}
+
+message QuizQuestionsSectionGrpc {
+    string quizId = 1;
+    string quizTitle = 2;
+    repeated QuestionWithOptionsDataGrpc questions = 3;
 }
 
 message QuestionWithOptionsDataGrpc {
@@ -347,4 +354,15 @@ message FetchLessonQuizIdsResponse {
 message LessonQuizIdsDataGrpc {
     string lessonId = 1;
     repeated string quizIds = 2;
+}
+
+// Fetch Course Information Messages
+message FetchCourseInformationRequest {
+    string courseId = 1; // Course UUID
+}
+
+message FetchCourseInformationResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CourseDataGrpc responseData = 3;
 }
