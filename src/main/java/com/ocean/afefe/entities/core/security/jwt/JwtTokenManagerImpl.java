@@ -54,10 +54,11 @@ public class JwtTokenManagerImpl implements JwtTokenManager {
                         .setIssuedAt(Date.from(Instant.now().plus(1, ChronoUnit.HOURS)))
                         .setIssuer(JWT_TOKEN_ISSUER)
                         .setSubject(organizationId);
+
         String accessToken =
                 Jwts.builder()
                         .setClaims(claims)
-                        .setSubject(encryptedSubject)
+                        .setSubject(claims.getSubject())
                         .setIssuer(JWT_TOKEN_ISSUER)
                         .setIssuedAt(new Date(System.currentTimeMillis()))
                         .setExpiration(
@@ -114,7 +115,7 @@ public class JwtTokenManagerImpl implements JwtTokenManager {
     public String extractOrganizationIdFromToken(AppUser appUser, String bearerToken){
         try{
             bearerToken = CommonUtil.cleanToken(bearerToken);
-            Claims claims = getClaimsFromToken(bearerToken);
+            Claims claims = getClaimsFromToken(bearerToken);;
             return claims.getSubject();
         }catch (ExpiredJwtException exception){
             throw OmnixApiException.newInstance()

@@ -22,7 +22,7 @@ public class QuestionOption extends BaseUUIDEntity {
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
 
-    @Column(length = 10)
+    @Column(columnDefinition = "TEXT")
     private String label;
 
     @Column(columnDefinition = "TEXT", nullable = false)
