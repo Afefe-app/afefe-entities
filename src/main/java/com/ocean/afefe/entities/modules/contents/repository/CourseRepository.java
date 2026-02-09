@@ -19,4 +19,6 @@ public interface CourseRepository extends JpaRepository<Course, UUID>, QuerydslP
     Page<Course> findAllByOwnerInstructorIdAndOrgId(UUID ownerInstructorId, UUID orgId, Pageable pageable);
 
     boolean existsByTitleHashAndOwnerInstructorAndOrg(String title, Instructor instructor, Organization organization);
+
+    long countByOwnerInstructor(Instructor instructor);
 }

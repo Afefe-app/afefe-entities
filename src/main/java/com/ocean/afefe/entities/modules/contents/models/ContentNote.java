@@ -1,10 +1,12 @@
 package com.ocean.afefe.entities.modules.contents.models;
 
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
+import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDateTime;
+
+import java.util.UUID;
 
 @Entity
 @Table(
@@ -18,6 +20,10 @@ import java.time.LocalDateTime;
 public class ContentNote extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "org_id", nullable = false)
+    private Organization org;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
@@ -25,11 +31,12 @@ public class ContentNote extends BaseUUIDEntity {
     @JoinColumn(name = "lesson_id")
     private Lesson lesson;
 
-    @Column(name = "object_type")
-    private String objectType;
+    @Column(name = "object_type", nullable = false, columnDefinition = "VARCHAR")
+    @Enumerated(value = EnumType.STRING)
+    private ContentNoteObjectType objectType;
 
-    @Column(name = "object_id")
-    private String objectId;
+    @Column(name = "object_id", nullable = false)
+    private UUID objectId;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String body;

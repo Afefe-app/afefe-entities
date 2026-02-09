@@ -3,152 +3,826 @@ option java_multiple_files = true;
 option java_package = "com.ocean.afefe.entities.proto";
 option java_outer_classname = "LearnerCourseProto";
 import "Common.proto";
-import "Course.proto";
 
+// ======================================================================================
+// LearnerCourseServiceGrpc
+// ---------------------------------------------------------------------------------------
+// gRPC service definition for the Learner Course module in the afefe-learner microservice.
+// Provides endpoints for learners to browse, search, filter, and interact with courses,
+// manage wishlists, view course content, take quizzes, submit ratings, and manage notes.
+// User identity and tenant context are resolved from gRPC metadata (not request payloads).
+// ======================================================================================
 service LearnerCourseServiceGrpc {
+
+    // ---- Course Discovery & Browsing ----
+
+    // Fetches paginated upcoming physical class calendar events for the authenticated user.
     rpc FetchUpcomingCalendarEvents(FetchUpcomingCalendarEventsRequest) returns (FetchUpcomingCalendarEventsResponse);
+
+    // Fetches paginated recommended courses based on the user's industry interests.
+    // Courses are matched by comparing course tags against the user's UserIndustryInterest entries.
     rpc FetchRecommendedCourses(FetchRecommendedCoursesRequest) returns (FetchRecommendedCoursesResponse);
+
+    // Fetches the user's recently viewed courses (max 20 items, viewed within the last 7 days).
+    // Not paginated - returns a flat list.
     rpc FetchRecentlyViewedCourses(FetchRecentlyViewedCoursesRequest) returns (FetchRecentlyViewedCoursesResponse);
+
+    // Fetches a basic course overview by course ID (title, cover image, instructor, learning outcomes, requirements).
     rpc FetchCourseOverview(FetchCourseOverviewRequest) returns (FetchCourseOverviewResponse);
+
+    // Fetches comprehensive course details by course ID, including categories, stats, and save status.
+    // Returns richer data than FetchCourseOverview (summary, level, language, duration, categories, totalStudents, etc.).
+    rpc FetchCourseDetails(FetchCourseDetailsRequest) returns (FetchCourseDetailsResponse);
+
+    // Fetches rich instructor profile details for a given course, including aggregated stats
+    // (total courses, total students, average rating, total reviews) computed across all instructor courses.
+    rpc FetchCourseInstructor(FetchCourseInstructorRequest) returns (FetchCourseInstructorResponse);
+
+    // Fetches paginated course ratings and reviews for a given course.
+    // Returns overall rating, total review count, and a paginated list of individual reviews.
     rpc FetchCourseRatings(FetchCourseRatingsRequest) returns (FetchCourseRatingsResponse);
+
+    // ---- Course Search & Filtering ----
+
+    // Searches for courses by a keyword. Matches against course title, description, and tags.
+    // Results are paginated.
+    rpc SearchCourses(SearchCoursesRequest) returns (SearchCoursesResponse);
+
+    // Fetches courses filtered by category, price (free/paid), and difficulty level.
+    // All filter parameters are optional. Results are paginated.
+    rpc FilterCourses(FilterCoursesRequest) returns (FilterCoursesResponse);
+
+    // ---- Course Wishlist (Saved Courses) ----
+
+    // Saves a course to the user's wishlist. Prevents duplicate saves for the same course.
+    rpc SaveCourse(SaveCourseRequest) returns (SaveCourseResponse);
+
+    // Removes a course from the user's wishlist.
+    rpc DeleteSavedCourse(DeleteSavedCourseRequest) returns (DeleteSavedCourseResponse);
+
+    // Fetches all courses saved in the user's wishlist. Not paginated - returns a full list.
+    rpc FetchSavedCourses(FetchSavedCoursesRequest) returns (FetchSavedCoursesResponse);
+
+    // ---- Course Content Structure ----
+
+    // Fetches the full hierarchical content structure for a course:
+    // Course -> Modules -> Lessons -> Lesson Assets.
+    // Used to display the course curriculum/syllabus.
+    rpc FetchCourseModules(FetchCourseModulesRequest) returns (FetchCourseModulesResponse);
+
+    // ---- Course Ratings ----
+
+    // Submits or updates a rating and review for a course.
+    // Business rule: Only users who have completed the course (100% progress) can submit a rating.
+    // If a rating already exists for the user/course, it will be updated (idempotent).
+    rpc SubmitCourseRating(SubmitCourseRatingRequest) returns (SubmitCourseRatingResponse);
+
+    // ---- Content Notes ----
+
+    // Creates a new content note associated with a course object (COURSE, MODULE, LESSON, or ASSET).
+    // The objectId is validated against the database for the given objectType.
+    rpc SaveContentNote(SaveContentNoteRequest) returns (SaveContentNoteResponse);
+
+    // Updates the body text of an existing content note owned by the authenticated user.
+    rpc UpdateContentNote(UpdateContentNoteRequest) returns (UpdateContentNoteResponse);
+
+    // Deletes a content note owned by the authenticated user.
+    rpc DeleteContentNote(DeleteContentNoteRequest) returns (DeleteContentNoteResponse);
+
+    // Fetches a single content note by its ID. Only returns notes owned by the authenticated user.
+    rpc FetchContentNoteById(FetchContentNoteByIdRequest) returns (FetchContentNoteByIdResponse);
+
+    // Fetches all content notes for the authenticated user, paginated.
+    rpc FetchContentNotes(FetchContentNotesRequest) returns (FetchContentNotesResponse);
+
+    // ---- Quizzes & Assessments ----
+
+    // Fetches the quiz overview for a given lesson, including all questions and answer options.
+    // Correct answers (isCorrect) and feedback are intentionally excluded to prevent cheating.
+    rpc FetchLessonQuiz(FetchLessonQuizRequest) returns (FetchLessonQuizResponse);
+
+    // Starts a new quiz attempt for the authenticated user.
+    // Validates user enrollment and enforces attempt limits configured on the quiz.
+    // Returns the created attempt with IN_PROGRESS status.
+    rpc StartQuizAttempt(StartQuizAttemptRequest) returns (StartQuizAttemptResponse);
+
+    // Submits answers for an active quiz attempt.
+    // Auto-grades each answer, calculates scores, and transitions the attempt to GRADED status.
+    // Returns the full quiz result with correctness, explanations, and feedback for each answer.
+    rpc SubmitQuizAnswers(SubmitQuizAnswersRequest) returns (SubmitQuizAnswersResponse);
+
+    // Fetches the result of a previously completed quiz attempt.
+    // Returns scores, duration, and detailed answer-level data including correctness and feedback.
+    rpc FetchQuizResult(FetchQuizResultRequest) returns (FetchQuizResultResponse);
 }
 
-// Fetch Upcoming Calendar Events
-message FetchUpcomingCalendarEventsRequest {
-    int32 pageNumber = 1;
-    int32 pageSize = 2;
-    string sort = 3; // "ASC" or "DESC"
-}
+// ======================================================================================
+// Shared Data Messages
+// ---------------------------------------------------------------------------------------
+// Reusable data structures referenced by multiple request/response messages.
+// ======================================================================================
 
-message FetchUpcomingCalendarEventsResponse {
-    string responseCode = 1;
-    string responseMessage = 2;
-    PhysicalCalendarEventPageDataGrpc responseData = 3;
-}
-
-message PhysicalCalendarEventPageDataGrpc {
-    PaginationMetaGrpc meta = 1;
-    repeated PhysicalCalendarEventDataGrpc content = 2;
-}
-
-message PhysicalCalendarEventDataGrpc {
-    string eventId = 1;
-    string coverPhoto = 2;
-    string date = 3;
-    string startTime = 4;
-    string daysLeft = 5;
-    string title = 6;
-    string description = 7;
-    InstructorBasicDataGrpc instructor = 8;
-    MoneyGrpc price = 9;
-}
-
-message InstructorBasicDataGrpc {
-    string instructorName = 1;
-    string instructorProfileImage = 2;
-}
-
+// Represents a monetary value with amount and currency code.
 message MoneyGrpc {
-    string amount = 1;
-    string currency = 2;
+    string amount = 1;   // Decimal amount as string (e.g. "29.99")
+    string currency = 2; // ISO 4217 currency code (e.g. "USD", "NGN")
 }
 
-// Fetch Recommended Courses
-message FetchRecommendedCoursesRequest {
-    int32 pageNumber = 1;
-    int32 pageSize = 2;
-    string sort = 3; // "ASC" or "DESC"
+// Basic instructor summary used in course cards and listings.
+message InstructorBasicDataGrpc {
+    string instructorName = 1;         // Full name of the instructor
+    string instructorProfileImage = 2; // URL to the instructor's profile/avatar image
 }
 
-message FetchRecommendedCoursesResponse {
-    string responseCode = 1;
-    string responseMessage = 2;
-    CourseDataPageDataGrpc responseData = 3;
+// Represents a physical (in-person) calendar event / class session.
+message PhysicalCalendarEventDataGrpc {
+    string eventId = 1;                    // Unique identifier of the calendar event
+    string coverPhoto = 2;                 // URL to the event's cover photo
+    string date = 3;                       // Event date (ISO date string)
+    string startTime = 4;                  // Event start time
+    string daysLeft = 5;                   // Number of days until the event
+    string title = 6;                      // Event title
+    string description = 7;               // Event description
+    InstructorBasicDataGrpc instructor = 8; // Instructor hosting the event
+    MoneyGrpc price = 9;                   // Event price
 }
 
-message CourseDataPageDataGrpc {
-    PaginationMetaGrpc meta = 1;
-    repeated LearnerCourseDataGrpc content = 2;
-}
-
+// Course card data used in listings (recommended, search results, filtered, recently viewed, etc.).
+// Contains summary-level course info suitable for displaying in a course card UI.
 message LearnerCourseDataGrpc {
-    string courseId = 1;
-    string coverImageUrl = 2;
-    repeated string tags = 3;
-    double rating = 4;
-    int32 reviews = 5;
-    string title = 6;
-    string description = 7;
-    InstructorBasicDataGrpc instructor = 8;
-    MoneyGrpc price = 9;
+    string courseId = 1;                    // Unique course identifier (UUID)
+    string coverImageUrl = 2;              // URL to the course cover image
+    repeated string tags = 3;              // Course tags/keywords
+    double rating = 4;                     // Average course rating (0-5)
+    int32 reviews = 5;                     // Total number of reviews
+    string title = 6;                      // Course title
+    string description = 7;               // Short course description
+    InstructorBasicDataGrpc instructor = 8; // Course instructor summary
+    MoneyGrpc price = 9;                   // Course price
+    bool isSaved = 10;                     // Whether the current user has saved this course to their wishlist
 }
 
-// Fetch Recently Viewed Courses
-message FetchRecentlyViewedCoursesRequest {
-    // Empty - user is extracted from context
-}
-
-message FetchRecentlyViewedCoursesResponse {
-    string responseCode = 1;
-    string responseMessage = 2;
-    RecentlyViewedCoursesDataGrpc responseData = 3;
-}
-
-message RecentlyViewedCoursesDataGrpc {
-    repeated LearnerCourseDataGrpc courses = 1;
-}
-
-// Fetch Course Overview
-message FetchCourseOverviewRequest {
-    string courseId = 1; // Course UUID
-}
-
-message FetchCourseOverviewResponse {
-    string responseCode = 1;
-    string responseMessage = 2;
-    CourseOverviewDataGrpc responseData = 3;
-}
-
+// Course overview data with learning outcomes and requirements.
+// Used for the course overview/landing page.
 message CourseOverviewDataGrpc {
-    string courseId = 1;
-    string coverImageUrl = 2;
-    string title = 3;
-    InstructorBasicDataGrpc instructor = 4;
-    repeated CourseProposedAchievementGrpc learningOutcomes = 5;
-    repeated string requirements = 6;
-    string description = 7;
+    string courseId = 1;                   // Unique course identifier (UUID)
+    string coverImageUrl = 2;             // URL to the course cover image
+    string title = 3;                     // Course title
+    InstructorBasicDataGrpc instructor = 4; // Course instructor summary
+    repeated string learningOutcomes = 5; // List of learning outcome descriptions
+    repeated string requirements = 6;     // List of prerequisite requirements
+    string description = 7;              // Full course description
+    bool isSaved = 8;                    // Whether the current user has saved this course to their wishlist
 }
 
-// Fetch Course Ratings
-message FetchCourseRatingsRequest {
-    string courseId = 1; // Course UUID
-    int32 pageNumber = 2;
-    int32 pageSize = 3;
-    string sort = 4; // "ASC" or "DESC"
-}
-
-message FetchCourseRatingsResponse {
-    string responseCode = 1;
-    string responseMessage = 2;
-    CourseRatingReviewDataGrpc responseData = 3;
-}
-
-message CourseRatingReviewDataGrpc {
-    int64 totalReviewCount = 1;
-    double overallRating = 2;
-    CourseReviewPageDataGrpc reviews = 3;
-}
-
-message CourseReviewPageDataGrpc {
-    PaginationMetaGrpc meta = 1;
-    repeated CourseReviewDataGrpc content = 2;
-}
-
+// Individual course rating/review submitted by a learner.
 message CourseReviewDataGrpc {
-    string ratingId = 1;
-    string reviewerName = 2;
-    string reviewerProfileImage = 3;
-    string reviewDate = 4;
-    double rating = 5;
-    string review = 6;
+    string ratingId = 1;            // Unique rating record identifier (UUID)
+    string reviewerName = 2;        // Full name of the reviewer
+    string reviewerProfileImage = 3; // URL to the reviewer's profile image
+    string reviewDate = 4;          // Date when the review was submitted (ISO date string)
+    double rating = 5;              // Rating score given (1-5)
+    string review = 6;             // Review text/comment
+}
+
+// ======================================================================================
+// Fetch Upcoming Calendar Events
+// ---------------------------------------------------------------------------------------
+// Retrieves paginated upcoming physical class sessions for the authenticated learner.
+// ======================================================================================
+
+// Request payload for fetching upcoming calendar events.
+message FetchUpcomingCalendarEventsRequest {
+    int32 pageNumber = 1; // Page number (0-based)
+    int32 pageSize = 2;   // Number of items per page
+    string sort = 3;      // Sort direction (e.g. "ASC" or "DESC")
+}
+
+// Response wrapper for upcoming calendar events.
+message FetchUpcomingCalendarEventsResponse {
+    string responseCode = 1;                              // Application response code (e.g. "00" for success)
+    string responseMessage = 2;                           // Human-readable response message
+    FetchUpcomingCalendarEventsDataGrpc responseData = 3; // Paginated event data
+}
+
+// Paginated wrapper for calendar event results.
+message FetchUpcomingCalendarEventsDataGrpc {
+    PaginationMetaGrpc meta = 1;                          // Pagination metadata (total elements, total pages, etc.)
+    repeated PhysicalCalendarEventDataGrpc content = 2;   // List of calendar event records for the current page
+}
+
+// ======================================================================================
+// Fetch Recommended Courses
+// ---------------------------------------------------------------------------------------
+// Retrieves paginated courses recommended for the user based on their industry interests.
+// Matching is done by comparing course tags against the user's UserIndustryInterest entries.
+// ======================================================================================
+
+// Request payload for fetching recommended courses.
+message FetchRecommendedCoursesRequest {
+    int32 pageNumber = 1; // Page number (0-based)
+    int32 pageSize = 2;   // Number of items per page
+    string sort = 3;      // Sort direction
+}
+
+// Response wrapper for recommended courses.
+message FetchRecommendedCoursesResponse {
+    string responseCode = 1;                            // Application response code
+    string responseMessage = 2;                         // Human-readable response message
+    FetchRecommendedCoursesDataGrpc responseData = 3;   // Paginated course data
+}
+
+// Paginated wrapper for recommended course results.
+message FetchRecommendedCoursesDataGrpc {
+    PaginationMetaGrpc meta = 1;                 // Pagination metadata
+    repeated LearnerCourseDataGrpc content = 2;  // List of recommended course records
+}
+
+// ======================================================================================
+// Fetch Recently Viewed Courses
+// ---------------------------------------------------------------------------------------
+// Retrieves courses the user has recently viewed (within the last 7 days, max 20 items).
+// User identity is extracted from gRPC context metadata - no request parameters needed.
+// ======================================================================================
+
+// Request payload for fetching recently viewed courses (empty - user resolved from context).
+message FetchRecentlyViewedCoursesRequest {
+    // No fields required - user is extracted from gRPC context metadata
+}
+
+// Response wrapper for recently viewed courses.
+message FetchRecentlyViewedCoursesResponse {
+    string responseCode = 1;                                // Application response code
+    string responseMessage = 2;                             // Human-readable response message
+    FetchRecentlyViewedCoursesDataGrpc responseData = 3;    // Course list data
+}
+
+// Non-paginated list of recently viewed courses (max 20).
+message FetchRecentlyViewedCoursesDataGrpc {
+    repeated LearnerCourseDataGrpc content = 1; // List of recently viewed course records
+}
+
+// ======================================================================================
+// Fetch Course Overview
+// ---------------------------------------------------------------------------------------
+// Retrieves basic course overview information by course ID.
+// Returns title, cover image, instructor, learning outcomes, and requirements.
+// ======================================================================================
+
+// Request payload for fetching a course overview.
+message FetchCourseOverviewRequest {
+    string courseId = 1; // UUID of the course to retrieve
+}
+
+// Response wrapper for course overview.
+message FetchCourseOverviewResponse {
+    string responseCode = 1;                   // Application response code
+    string responseMessage = 2;                // Human-readable response message
+    CourseOverviewDataGrpc responseData = 3;    // Course overview data
+}
+
+// ======================================================================================
+// Fetch Course Details
+// ---------------------------------------------------------------------------------------
+// Retrieves comprehensive course details by course ID.
+// Returns significantly richer data than FetchCourseOverview, including summary, level,
+// language, estimated duration, categories, enrollment stats, and wishlist status.
+// ======================================================================================
+
+// Represents a course category (taxonomy classification).
+message CategoryDataGrpc {
+    string categoryId = 1; // Unique category identifier (UUID)
+    string name = 2;       // Category display name
+    string slug = 3;       // URL-friendly category slug
+}
+
+// Comprehensive course details with all metadata, stats, and classifications.
+message CourseDetailsDataGrpc {
+    string courseId = 1;                        // Unique course identifier (UUID)
+    string coverImageUrl = 2;                   // URL to the course cover image
+    string title = 3;                           // Course title
+    string description = 4;                     // Full course description
+    string summary = 5;                         // Brief course summary
+    string level = 6;                           // Difficulty level (e.g. "Beginner", "Intermediate", "Advanced")
+    string language = 7;                        // Course language (e.g. "English")
+    int32 estimatedMinutes = 8;                 // Estimated total course duration in minutes
+    bool free = 9;                              // Whether the course is free
+    MoneyGrpc price = 10;                       // Course price (zero if free)
+    repeated string tags = 11;                  // Course tags/keywords
+    double rating = 12;                         // Average course rating (0-5)
+    int32 reviews = 13;                         // Total number of reviews
+    repeated string learningOutcomes = 14;      // List of learning outcome descriptions
+    repeated string requirements = 15;          // List of prerequisite requirements
+    repeated CategoryDataGrpc categories = 16;  // Course categories/classifications
+    InstructorBasicDataGrpc instructor = 17;    // Course instructor summary
+    int64 totalStudents = 18;                   // Total number of enrolled students
+    bool isSaved = 19;                          // Whether the current user has saved this course to their wishlist
+}
+
+// Request payload for fetching comprehensive course details.
+message FetchCourseDetailsRequest {
+    string courseId = 1; // UUID of the course to retrieve
+}
+
+// Response wrapper for comprehensive course details.
+message FetchCourseDetailsResponse {
+    string responseCode = 1;                   // Application response code
+    string responseMessage = 2;                // Human-readable response message
+    CourseDetailsDataGrpc responseData = 3;    // Rich course details data
+}
+
+// ======================================================================================
+// Fetch Course Instructor
+// ---------------------------------------------------------------------------------------
+// Retrieves detailed instructor profile for a given course, including aggregated
+// performance statistics computed across all courses owned by the instructor.
+// ======================================================================================
+
+// Rich instructor profile with aggregated teaching statistics.
+message InstructorDetailsDataGrpc {
+    string instructorId = 1;  // Unique instructor identifier (UUID)
+    string displayName = 2;   // Instructor display name
+    string bio = 3;            // Instructor biography
+    string avatarUrl = 4;      // URL to the instructor's avatar/profile image
+    string websiteUrl = 5;     // Instructor's personal/professional website URL
+    int64 totalCourses = 6;    // Total number of courses published by this instructor
+    int64 totalStudents = 7;   // Total number of distinct students enrolled across all instructor courses
+    double averageRating = 8;  // Average rating across all instructor courses (0-5)
+    int64 totalReviews = 9;    // Total number of reviews across all instructor courses
+}
+
+// Request payload for fetching instructor details for a course.
+message FetchCourseInstructorRequest {
+    string courseId = 1; // UUID of the course whose instructor details to retrieve
+}
+
+// Response wrapper for instructor details.
+message FetchCourseInstructorResponse {
+    string responseCode = 1;                       // Application response code
+    string responseMessage = 2;                    // Human-readable response message
+    InstructorDetailsDataGrpc responseData = 3;    // Rich instructor profile data
+}
+
+// ======================================================================================
+// Fetch Course Ratings
+// ---------------------------------------------------------------------------------------
+// Retrieves paginated ratings and reviews for a specific course.
+// Returns aggregate rating info (overall rating, total count) alongside individual reviews.
+// ======================================================================================
+
+// Request payload for fetching course ratings.
+message FetchCourseRatingsRequest {
+    string courseId = 1;  // UUID of the course
+    int32 pageNumber = 2; // Page number (0-based)
+    int32 pageSize = 3;   // Number of reviews per page
+    string sort = 4;      // Sort direction
+}
+
+// Response wrapper for course ratings.
+message FetchCourseRatingsResponse {
+    string responseCode = 1;                       // Application response code
+    string responseMessage = 2;                    // Human-readable response message
+    FetchCourseRatingsDataGrpc responseData = 3;   // Rating aggregate and review list
+}
+
+// Aggregated course rating data with paginated individual reviews.
+message FetchCourseRatingsDataGrpc {
+    int64 totalReviewCount = 1;                // Total number of reviews for this course
+    double overallRating = 2;                  // Calculated overall rating percentage (0-1 scale)
+    PaginationMetaGrpc meta = 3;               // Pagination metadata for the reviews list
+    repeated CourseReviewDataGrpc reviews = 4; // Paginated list of individual reviews
+}
+
+// ======================================================================================
+// Search Courses
+// ---------------------------------------------------------------------------------------
+// Searches for courses by a keyword, matching against course title, description, and tags.
+// Results are paginated.
+// ======================================================================================
+
+// Request payload for searching courses.
+message SearchCoursesRequest {
+    string searchKey = 1; // Search keyword to match against course title, description, and tags
+    int32 pageNumber = 2; // Page number (0-based)
+    int32 pageSize = 3;   // Number of items per page
+    string sort = 4;      // Sort direction
+}
+
+// Response wrapper for course search results.
+message SearchCoursesResponse {
+    string responseCode = 1;                   // Application response code
+    string responseMessage = 2;                // Human-readable response message
+    SearchCoursesDataGrpc responseData = 3;    // Paginated search results
+}
+
+// Paginated wrapper for course search results.
+message SearchCoursesDataGrpc {
+    PaginationMetaGrpc meta = 1;                 // Pagination metadata
+    repeated LearnerCourseDataGrpc content = 2;  // List of matching course records
+}
+
+// ======================================================================================
+// Filter Courses
+// ---------------------------------------------------------------------------------------
+// Fetches courses filtered by optional criteria: category, price (free/paid), and level.
+// All filter parameters are optional - omitting a filter means no restriction on that field.
+// ======================================================================================
+
+// Request payload for filtering courses.
+message FilterCoursesRequest {
+    string categoryId = 1; // Optional - UUID of the category to filter by
+    string free = 2;       // Optional - "true" for free courses, "false" for paid courses
+    string level = 3;      // Optional - Difficulty level to filter by (e.g. "Beginner")
+    int32 pageNumber = 4;  // Page number (0-based)
+    int32 pageSize = 5;    // Number of items per page
+    string sort = 6;       // Sort direction
+}
+
+// Response wrapper for filtered course results.
+message FilterCoursesResponse {
+    string responseCode = 1;                   // Application response code
+    string responseMessage = 2;                // Human-readable response message
+    FilterCoursesDataGrpc responseData = 3;    // Paginated filtered results
+}
+
+// Paginated wrapper for filtered course results.
+message FilterCoursesDataGrpc {
+    PaginationMetaGrpc meta = 1;                 // Pagination metadata
+    repeated LearnerCourseDataGrpc content = 2;  // List of matching course records
+}
+
+// ======================================================================================
+// Save Course (Wishlist)
+// ---------------------------------------------------------------------------------------
+// Saves a course to the authenticated user's wishlist.
+// If the course is already saved, returns the existing saved entry (prevents duplicates).
+// ======================================================================================
+
+// Request payload for saving a course to the wishlist.
+message SaveCourseRequest {
+    string courseId = 1; // UUID of the course to save
+}
+
+// Response wrapper for save course operation.
+message SaveCourseResponse {
+    string responseCode = 1;                   // Application response code
+    string responseMessage = 2;                // Human-readable response message
+    SavedCourseDataGrpc responseData = 3;      // The saved course entry with full course data
+}
+
+// Represents a saved course (wishlist entry) with embedded course details.
+message SavedCourseDataGrpc {
+    string savedCourseId = 1;          // Unique wishlist entry identifier (UUID)
+    LearnerCourseDataGrpc course = 2;  // Full course card data
+}
+
+// ======================================================================================
+// Delete Saved Course (Wishlist)
+// ---------------------------------------------------------------------------------------
+// Removes a course from the authenticated user's wishlist.
+// ======================================================================================
+
+// Request payload for removing a course from the wishlist.
+message DeleteSavedCourseRequest {
+    string courseId = 1; // UUID of the course to remove from wishlist
+}
+
+// Response wrapper for delete saved course operation.
+message DeleteSavedCourseResponse {
+    string responseCode = 1;    // Application response code
+    string responseMessage = 2; // Human-readable response message
+    string responseData = 3;    // Confirmation message
+}
+
+// ======================================================================================
+// Fetch Saved Courses (Wishlist)
+// ---------------------------------------------------------------------------------------
+// Retrieves all courses saved in the user's wishlist.
+// Not paginated - returns the full list. User resolved from gRPC context metadata.
+// ======================================================================================
+
+// Request payload for fetching saved courses (empty - user resolved from context).
+message FetchSavedCoursesRequest {
+    // No fields required - user is extracted from gRPC context metadata
+}
+
+// Response wrapper for saved courses.
+message FetchSavedCoursesResponse {
+    string responseCode = 1;                       // Application response code
+    string responseMessage = 2;                    // Human-readable response message
+    FetchSavedCoursesDataGrpc responseData = 3;    // List of saved courses
+}
+
+// Non-paginated list of saved course entries.
+message FetchSavedCoursesDataGrpc {
+    repeated SavedCourseDataGrpc content = 1; // List of saved course wishlist entries
+}
+
+// ======================================================================================
+// Fetch Course Modules (Curriculum Structure)
+// ---------------------------------------------------------------------------------------
+// Retrieves the full hierarchical course content structure:
+// Course -> Modules -> Lessons -> Lesson Assets.
+// Used for displaying the course curriculum/syllabus to the learner.
+// ======================================================================================
+
+// Request payload for fetching the course module structure.
+message FetchCourseModulesRequest {
+    string courseId = 1; // UUID of the course
+}
+
+// Response wrapper for course modules.
+message FetchCourseModulesResponse {
+    string responseCode = 1;                   // Application response code
+    string responseMessage = 2;                // Human-readable response message
+    CourseModulesDataGrpc responseData = 3;     // Full course content hierarchy
+}
+
+// Top-level course content structure containing all modules.
+message CourseModulesDataGrpc {
+    string courseId = 1;                   // UUID of the course
+    string title = 2;                      // Course title
+    repeated ModuleDataGrpc modules = 3;   // Ordered list of course modules
+}
+
+// A single course module containing its lessons.
+message ModuleDataGrpc {
+    string moduleId = 1;                   // Unique module identifier (UUID)
+    string title = 2;                      // Module title
+    int32 position = 3;                    // Display order position within the course
+    string summary = 4;                    // Module summary/description
+    repeated LessonDataGrpc lessons = 5;   // Ordered list of lessons within this module
+}
+
+// A single lesson within a module, containing its assets.
+message LessonDataGrpc {
+    string lessonId = 1;                       // Unique lesson identifier (UUID)
+    string title = 2;                          // Lesson title
+    string content = 3;                        // Lesson content body (text, HTML, etc.)
+    string contentType = 4;                    // Content type identifier (e.g. "VIDEO", "TEXT", "DOCUMENT")
+    int32 durationSeconds = 5;                 // Estimated lesson duration in seconds
+    int32 position = 6;                        // Display order position within the module
+    bool isPublished = 7;                      // Whether the lesson is published and visible to learners
+    repeated LessonAssetDataGrpc assets = 8;   // List of media/file assets attached to this lesson
+}
+
+// A file or media asset attached to a lesson.
+message LessonAssetDataGrpc {
+    string assetId = 1;      // Unique asset identifier (UUID)
+    string assetType = 2;    // Asset type (e.g. "VIDEO", "DOCUMENT", "IMAGE", "AUDIO")
+    string uri = 3;           // URL or URI to the asset resource
+    string mimeType = 4;     // MIME type of the asset (e.g. "video/mp4", "application/pdf")
+    int64 fileSizeBytes = 5; // File size in bytes
+}
+
+// ======================================================================================
+// Submit Course Rating
+// ---------------------------------------------------------------------------------------
+// Submits or updates a rating and review for a course.
+// Business rules:
+//   - Only users who have COMPLETED the course (100% progress) can submit a rating.
+//   - If the user has already rated this course, the existing rating is updated (idempotent).
+//   - Rating value should be between 1 and 5.
+// ======================================================================================
+
+// Request payload for submitting a course rating.
+message SubmitCourseRatingRequest {
+    string courseId = 1; // UUID of the course to rate
+    int32 rating = 2;    // Rating score (1-5)
+    string review = 3;   // Optional review text/comment
+}
+
+// Response wrapper for submit course rating. Returns the created/updated review data.
+message SubmitCourseRatingResponse {
+    string responseCode = 1;                   // Application response code
+    string responseMessage = 2;                // Human-readable response message
+    CourseReviewDataGrpc responseData = 3;      // The submitted/updated review data
+}
+
+// ======================================================================================
+// Content Notes
+// ---------------------------------------------------------------------------------------
+// CRUD operations for user content notes.
+// Notes can be associated with different course objects via objectType and objectId:
+//   - COURSE: Note attached to the course itself
+//   - MODULE: Note attached to a specific module
+//   - LESSON: Note attached to a specific lesson (lesson relationship is populated)
+//   - ASSET:  Note attached to a specific lesson asset
+// The objectId is validated to ensure the referenced object exists in the database.
+// ======================================================================================
+
+// Represents a content note record.
+message ContentNoteDataGrpc {
+    string noteId = 1;     // Unique note identifier (UUID)
+    string objectType = 2; // Type of the associated object: "COURSE", "MODULE", "LESSON", or "ASSET"
+    string objectId = 3;   // UUID of the associated object
+    string body = 4;       // Note body text content
+    string createdAt = 5;  // Timestamp when the note was created (ISO datetime string)
+}
+
+// Request payload for creating a new content note.
+message SaveContentNoteRequest {
+    string objectType = 1; // Type of the associated object: "COURSE", "MODULE", "LESSON", or "ASSET"
+    string objectId = 2;   // UUID of the associated object (validated for existence)
+    string body = 3;       // Note body text content
+}
+
+// Response wrapper for creating a content note.
+message SaveContentNoteResponse {
+    string responseCode = 1;                   // Application response code
+    string responseMessage = 2;                // Human-readable response message
+    ContentNoteDataGrpc responseData = 3;      // The created note data
+}
+
+// Request payload for updating an existing content note.
+message UpdateContentNoteRequest {
+    string noteId = 1; // UUID of the note to update (must be owned by the authenticated user)
+    string body = 2;   // Updated note body text content
+}
+
+// Response wrapper for updating a content note.
+message UpdateContentNoteResponse {
+    string responseCode = 1;                   // Application response code
+    string responseMessage = 2;                // Human-readable response message
+    ContentNoteDataGrpc responseData = 3;      // The updated note data
+}
+
+// Request payload for deleting a content note.
+message DeleteContentNoteRequest {
+    string noteId = 1; // UUID of the note to delete (must be owned by the authenticated user)
+}
+
+// Response wrapper for deleting a content note.
+message DeleteContentNoteResponse {
+    string responseCode = 1;    // Application response code
+    string responseMessage = 2; // Human-readable response message
+}
+
+// Request payload for fetching a single content note by its ID.
+message FetchContentNoteByIdRequest {
+    string noteId = 1; // UUID of the note to retrieve (must be owned by the authenticated user)
+}
+
+// Response wrapper for fetching a single content note.
+message FetchContentNoteByIdResponse {
+    string responseCode = 1;                   // Application response code
+    string responseMessage = 2;                // Human-readable response message
+    ContentNoteDataGrpc responseData = 3;      // The retrieved note data
+}
+
+// Request payload for fetching all content notes for the authenticated user (paginated).
+message FetchContentNotesRequest {
+    int32 pageNumber = 1; // Page number (0-based)
+    int32 pageSize = 2;   // Number of notes per page
+    string sort = 3;      // Sort direction
+}
+
+// Response wrapper for fetching paginated content notes.
+message FetchContentNotesResponse {
+    string responseCode = 1;                       // Application response code
+    string responseMessage = 2;                    // Human-readable response message
+    repeated ContentNoteDataGrpc records = 3;      // List of note records for the current page
+    PaginationMetaGrpc meta = 4;                   // Pagination metadata
+}
+
+// ======================================================================================
+// Quizzes & Assessments
+// ---------------------------------------------------------------------------------------
+// Endpoints for learners to take quizzes associated with course lessons.
+//
+// Typical flow:
+//   1. FetchLessonQuiz   - Load quiz questions and options (answers hidden)
+//   2. StartQuizAttempt  - Create a new attempt (validates enrollment & attempt limits)
+//   3. SubmitQuizAnswers - Submit answers, auto-grade, and get results
+//   4. FetchQuizResult   - Review a previously completed attempt
+//
+// Quiz statuses: IN_PROGRESS -> GRADED
+// ======================================================================================
+
+// A single answer option for a quiz question.
+// Note: isCorrect and feedback fields are intentionally excluded to prevent learners
+// from seeing correct answers before completing the quiz.
+message QuizQuestionOptionDataGrpc {
+    string optionId = 1;  // Unique option identifier (UUID)
+    string label = 2;     // Option label (e.g. "A", "B", "C", "D")
+    string text = 3;      // Option text content
+    int32 position = 4;   // Display order position
+}
+
+// A single quiz question with its answer options.
+message QuizQuestionDataGrpc {
+    string questionId = 1;                             // Unique question identifier (UUID)
+    string questionType = 2;                           // Question type (e.g. "MULTIPLE_CHOICE", "TRUE_FALSE")
+    string text = 3;                                   // Question text/prompt
+    string points = 4;                                 // Points awarded for a correct answer
+    int32 position = 5;                                // Display order position within the quiz
+    repeated QuizQuestionOptionDataGrpc options = 6;   // List of answer options
+}
+
+// Full quiz overview including all questions, displayed before the learner starts the attempt.
+message QuizOverviewDataGrpc {
+    string quizId = 1;                             // Unique quiz identifier (UUID)
+    string title = 2;                              // Quiz title
+    string description = 3;                        // Quiz description/instructions
+    int32 attemptLimit = 4;                        // Maximum number of attempts allowed (0 = unlimited)
+    int32 timeLimitMinutes = 5;                    // Time limit in minutes (0 = no limit)
+    string passScore = 6;                          // Minimum score required to pass
+    bool randomizeItems = 7;                       // Whether to randomize question order
+    repeated QuizQuestionDataGrpc questions = 8;   // List of quiz questions with options
+}
+
+// Represents an active or completed quiz attempt.
+message QuizAttemptDataGrpc {
+    string attemptId = 1;     // Unique attempt identifier (UUID)
+    string quizId = 2;        // UUID of the associated quiz
+    string status = 3;        // Attempt status: "IN_PROGRESS" or "GRADED"
+    string startedAt = 4;     // Timestamp when the attempt was started (ISO datetime string)
+    string submittedAt = 5;   // Timestamp when the attempt was submitted (null if in progress)
+    int32 durationSeconds = 6; // Total time taken in seconds (populated after submission)
+    double scoreObtained = 7;  // Score obtained by the learner (populated after grading)
+    double scoreMax = 8;       // Maximum possible score for the quiz
+}
+
+// A single graded answer within a quiz result.
+// Includes correctness, explanations, and feedback - only available after submission.
+message QuizAnswerDataGrpc {
+    string answerId = 1;          // Unique answer record identifier (UUID)
+    string questionId = 2;        // UUID of the question answered
+    string questionText = 3;      // Text of the question (for display convenience)
+    string questionType = 4;      // Question type (e.g. "MULTIPLE_CHOICE")
+    string selectedOptionId = 5;  // UUID of the option selected by the learner
+    string selectedOptionText = 6; // Text of the selected option
+    bool isCorrect = 7;           // Whether the selected answer was correct
+    double pointsAwarded = 8;     // Points awarded for this answer (full points if correct, 0 if incorrect)
+    string explanation = 9;       // Explanation of the correct answer (from the question)
+    string feedback = 10;         // Feedback text for the selected option
+}
+
+// Full quiz result with scores and detailed answer breakdown.
+message QuizResultDataGrpc {
+    string attemptId = 1;                      // UUID of the quiz attempt
+    string quizId = 2;                         // UUID of the quiz
+    string status = 3;                         // Attempt status (should be "GRADED")
+    double scoreObtained = 4;                  // Total score obtained by the learner
+    double scoreMax = 5;                       // Maximum possible score
+    string submittedAt = 6;                    // Timestamp when the quiz was submitted
+    int32 durationSeconds = 7;                 // Total time taken in seconds
+    repeated QuizAnswerDataGrpc answers = 8;   // Detailed breakdown of each answer
+}
+
+// Request payload for fetching a quiz for a specific lesson.
+message FetchLessonQuizRequest {
+    string lessonId = 1; // UUID of the lesson whose quiz to retrieve
+}
+
+// Response wrapper for fetching a lesson quiz.
+message FetchLessonQuizResponse {
+    string responseCode = 1;                   // Application response code
+    string responseMessage = 2;                // Human-readable response message
+    QuizOverviewDataGrpc responseData = 3;     // Quiz overview with questions and options (answers hidden)
+}
+
+// Request payload for starting a new quiz attempt.
+message StartQuizAttemptRequest {
+    string quizId = 1; // UUID of the quiz to start
+}
+
+// Response wrapper for starting a quiz attempt.
+message StartQuizAttemptResponse {
+    string responseCode = 1;                   // Application response code
+    string responseMessage = 2;                // Human-readable response message
+    QuizAttemptDataGrpc responseData = 3;      // The created attempt with IN_PROGRESS status
+}
+
+// A single answer item submitted by the learner (question + selected option).
+message QuizAnswerItemGrpc {
+    string questionId = 1;      // UUID of the question being answered
+    string selectedOptionId = 2; // UUID of the selected answer option
+}
+
+// Request payload for submitting quiz answers.
+message SubmitQuizAnswersRequest {
+    string quizId = 1;                         // UUID of the quiz
+    string attemptId = 2;                      // UUID of the active attempt (must be IN_PROGRESS)
+    repeated QuizAnswerItemGrpc answers = 3;   // List of answers (one per question)
+}
+
+// Response wrapper for quiz answer submission. Returns the graded quiz result.
+message SubmitQuizAnswersResponse {
+    string responseCode = 1;                   // Application response code
+    string responseMessage = 2;                // Human-readable response message
+    QuizResultDataGrpc responseData = 3;       // Full graded result with scores and answer details
+}
+
+// Request payload for fetching a previously completed quiz result.
+message FetchQuizResultRequest {
+    string quizId = 1;    // UUID of the quiz
+    string attemptId = 2; // UUID of the completed attempt to retrieve
+}
+
+// Response wrapper for fetching a quiz result.
+message FetchQuizResultResponse {
+    string responseCode = 1;                   // Application response code
+    string responseMessage = 2;                // Human-readable response message
+    QuizResultDataGrpc responseData = 3;       // Full graded result with scores and answer details
 }

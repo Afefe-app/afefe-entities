@@ -39,8 +39,9 @@ public class QuizAttempt extends BaseUUIDEntity {
 
     private Double scoreMax;
 
-    @Column(nullable = false)
-    private String status; // in_progress, submitted, graded, etc.
+    @Column(nullable = false, columnDefinition = "VARCHAR")
+    @Enumerated(value = EnumType.STRING)
+    private QuizAttemptStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private ProctoringSession proctoringSession;

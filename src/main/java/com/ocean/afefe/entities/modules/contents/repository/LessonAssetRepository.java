@@ -11,4 +11,6 @@ import java.util.UUID;
 public interface LessonAssetRepository extends JpaRepository<LessonAsset, UUID> {
 
     List<LessonAsset> findAllByLessonId(UUID lessonId);
+
+    List<LessonAsset> findAllByLessonIdIn(List<UUID> lessonIds);
 }

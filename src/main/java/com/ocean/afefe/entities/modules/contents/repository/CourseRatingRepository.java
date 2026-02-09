@@ -4,6 +4,7 @@ import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
 import com.ocean.afefe.entities.modules.contents.models.Course;
 import com.ocean.afefe.entities.modules.contents.models.CourseRating;
+import com.ocean.afefe.entities.modules.contents.models.Instructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -31,4 +32,10 @@ public interface CourseRatingRepository extends JpaRepository<CourseRating, UUID
 
     @Query("select count(cr) from CourseRating cr where cr.course = :course")
     Long getRatingCountByCourse(@Param("course") Course course);
+
+    @Query("SELECT AVG(cr.rating) FROM CourseRating cr WHERE cr.course.ownerInstructor = :instructor")
+    Double getAverageRatingByInstructor(@Param("instructor") Instructor instructor);
+
+    @Query("SELECT COUNT(cr) FROM CourseRating cr WHERE cr.course.ownerInstructor = :instructor")
+    long getRatingCountByInstructor(@Param("instructor") Instructor instructor);
 }
