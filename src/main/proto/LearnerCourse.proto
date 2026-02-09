@@ -32,7 +32,7 @@ service LearnerCourseServiceGrpc {
 
     // Fetches comprehensive course details by course ID, including categories, stats, and save status.
     // Returns richer data than FetchCourseOverview (summary, level, language, duration, categories, totalStudents, etc.).
-    rpc FetchCourseDetails(FetchCourseDetailsRequest) returns (FetchCourseDetailsResponse);
+    rpc FetchLearnerCourseDetails(FetchLearnerCourseDetailsRequest) returns (FetchLearnerCourseDetailsResponse);
 
     // Fetches rich instructor profile details for a given course, including aggregated stats
     // (total courses, total students, average rating, total reviews) computed across all instructor courses.
@@ -320,12 +320,12 @@ message CourseDetailsDataGrpc {
 }
 
 // Request payload for fetching comprehensive course details.
-message FetchCourseDetailsRequest {
+message FetchLearnerCourseDetailsRequest {
     string courseId = 1; // UUID of the course to retrieve
 }
 
 // Response wrapper for comprehensive course details.
-message FetchCourseDetailsResponse {
+message FetchLearnerCourseDetailsResponse {
     string responseCode = 1;                   // Application response code
     string responseMessage = 2;                // Human-readable response message
     CourseDetailsDataGrpc responseData = 3;    // Rich course details data

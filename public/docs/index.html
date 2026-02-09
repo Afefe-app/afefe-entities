@@ -486,7 +486,15 @@
             <ul>
               
                 <li>
+                  <a href="#.CategoryDataGrpc"><span class="badge">M</span>CategoryDataGrpc</a>
+                </li>
+              
+                <li>
                   <a href="#.ContentNoteDataGrpc"><span class="badge">M</span>ContentNoteDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.CourseDetailsDataGrpc"><span class="badge">M</span>CourseDetailsDataGrpc</a>
                 </li>
               
                 <li>
@@ -534,6 +542,14 @@
                 </li>
               
                 <li>
+                  <a href="#.FetchCourseInstructorRequest"><span class="badge">M</span>FetchCourseInstructorRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchCourseInstructorResponse"><span class="badge">M</span>FetchCourseInstructorResponse</a>
+                </li>
+              
+                <li>
                   <a href="#.FetchCourseModulesRequest"><span class="badge">M</span>FetchCourseModulesRequest</a>
                 </li>
               
@@ -559,6 +575,14 @@
               
                 <li>
                   <a href="#.FetchCourseRatingsResponse"><span class="badge">M</span>FetchCourseRatingsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchLearnerCourseDetailsRequest"><span class="badge">M</span>FetchLearnerCourseDetailsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchLearnerCourseDetailsResponse"><span class="badge">M</span>FetchLearnerCourseDetailsResponse</a>
                 </li>
               
                 <li>
@@ -639,6 +663,10 @@
               
                 <li>
                   <a href="#.InstructorBasicDataGrpc"><span class="badge">M</span>InstructorBasicDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.InstructorDetailsDataGrpc"><span class="badge">M</span>InstructorDetailsDataGrpc</a>
                 </li>
               
                 <li>
@@ -3817,1258 +3845,8 @@
       <p></p>
 
       
-        <h3 id=".ContentNoteDataGrpc">ContentNoteDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>noteId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>objectType</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>objectId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>body</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>createdAt</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".CourseModulesDataGrpc">CourseModulesDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>courseId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modules</td>
-                  <td><a href="#ModuleDataGrpc">ModuleDataGrpc</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".CourseOverviewDataGrpc">CourseOverviewDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>courseId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>coverImageUrl</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>instructor</td>
-                  <td><a href="#InstructorBasicDataGrpc">InstructorBasicDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>learningOutcomes</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>requirements</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>isSaved</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".CourseReviewDataGrpc">CourseReviewDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>ratingId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>reviewerName</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>reviewerProfileImage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>reviewDate</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>rating</td>
-                  <td><a href="#double">double</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>review</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".DeleteContentNoteRequest">DeleteContentNoteRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>noteId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".DeleteContentNoteResponse">DeleteContentNoteResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".DeleteSavedCourseRequest">DeleteSavedCourseRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>courseId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".DeleteSavedCourseResponse">DeleteSavedCourseResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchContentNoteByIdRequest">FetchContentNoteByIdRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>noteId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchContentNoteByIdResponse">FetchContentNoteByIdResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#ContentNoteDataGrpc">ContentNoteDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchContentNotesRequest">FetchContentNotesRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>pageNumber</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pageSize</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sort</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchContentNotesResponse">FetchContentNotesResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>records</td>
-                  <td><a href="#ContentNoteDataGrpc">ContentNoteDataGrpc</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>meta</td>
-                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchCourseModulesRequest">FetchCourseModulesRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>courseId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchCourseModulesResponse">FetchCourseModulesResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#CourseModulesDataGrpc">CourseModulesDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchCourseOverviewRequest">FetchCourseOverviewRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>courseId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchCourseOverviewResponse">FetchCourseOverviewResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#CourseOverviewDataGrpc">CourseOverviewDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchCourseRatingsDataGrpc">FetchCourseRatingsDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>totalReviewCount</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>overallRating</td>
-                  <td><a href="#double">double</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>meta</td>
-                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>reviews</td>
-                  <td><a href="#CourseReviewDataGrpc">CourseReviewDataGrpc</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchCourseRatingsRequest">FetchCourseRatingsRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>courseId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pageNumber</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pageSize</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sort</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchCourseRatingsResponse">FetchCourseRatingsResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#FetchCourseRatingsDataGrpc">FetchCourseRatingsDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchLessonQuizRequest">FetchLessonQuizRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>lessonId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchLessonQuizResponse">FetchLessonQuizResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#QuizOverviewDataGrpc">QuizOverviewDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchQuizResultRequest">FetchQuizResultRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>quizId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>attemptId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchQuizResultResponse">FetchQuizResultResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#QuizResultDataGrpc">QuizResultDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchRecentlyViewedCoursesDataGrpc">FetchRecentlyViewedCoursesDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>content</td>
-                  <td><a href="#LearnerCourseDataGrpc">LearnerCourseDataGrpc</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchRecentlyViewedCoursesRequest">FetchRecentlyViewedCoursesRequest</h3>
-        <p>Empty - user is extracted from context</p>
-
-        
-
-        
-      
-        <h3 id=".FetchRecentlyViewedCoursesResponse">FetchRecentlyViewedCoursesResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#FetchRecentlyViewedCoursesDataGrpc">FetchRecentlyViewedCoursesDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchRecommendedCoursesDataGrpc">FetchRecommendedCoursesDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>meta</td>
-                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>content</td>
-                  <td><a href="#LearnerCourseDataGrpc">LearnerCourseDataGrpc</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchRecommendedCoursesRequest">FetchRecommendedCoursesRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>pageNumber</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pageSize</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sort</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchRecommendedCoursesResponse">FetchRecommendedCoursesResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#FetchRecommendedCoursesDataGrpc">FetchRecommendedCoursesDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchSavedCoursesDataGrpc">FetchSavedCoursesDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>content</td>
-                  <td><a href="#SavedCourseDataGrpc">SavedCourseDataGrpc</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchSavedCoursesRequest">FetchSavedCoursesRequest</h3>
-        <p>Empty - user is extracted from context</p>
-
-        
-
-        
-      
-        <h3 id=".FetchSavedCoursesResponse">FetchSavedCoursesResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#FetchSavedCoursesDataGrpc">FetchSavedCoursesDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchUpcomingCalendarEventsDataGrpc">FetchUpcomingCalendarEventsDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>meta</td>
-                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>content</td>
-                  <td><a href="#PhysicalCalendarEventDataGrpc">PhysicalCalendarEventDataGrpc</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchUpcomingCalendarEventsRequest">FetchUpcomingCalendarEventsRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>pageNumber</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pageSize</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sort</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FetchUpcomingCalendarEventsResponse">FetchUpcomingCalendarEventsResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#FetchUpcomingCalendarEventsDataGrpc">FetchUpcomingCalendarEventsDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FilterCoursesDataGrpc">FilterCoursesDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>meta</td>
-                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>content</td>
-                  <td><a href="#LearnerCourseDataGrpc">LearnerCourseDataGrpc</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FilterCoursesRequest">FilterCoursesRequest</h3>
-        <p></p>
+        <h3 id=".CategoryDataGrpc">CategoryDataGrpc</h3>
+        <p>Represents a course category (taxonomy classification).</p>
 
         
           <table class="field-table">
@@ -5081,42 +3859,21 @@
                   <td>categoryId</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Unique category identifier (UUID) </p></td>
                 </tr>
               
                 <tr>
-                  <td>free</td>
+                  <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Category display name </p></td>
                 </tr>
               
                 <tr>
-                  <td>level</td>
+                  <td>slug</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pageNumber</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pageSize</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sort</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td><p>URL-friendly category slug </p></td>
                 </tr>
               
             </tbody>
@@ -5126,1390 +3883,8 @@
 
         
       
-        <h3 id=".FilterCoursesResponse">FilterCoursesResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#FilterCoursesDataGrpc">FilterCoursesDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".InstructorBasicDataGrpc">InstructorBasicDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>instructorName</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>instructorProfileImage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".LearnerCourseDataGrpc">LearnerCourseDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>courseId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>coverImageUrl</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tags</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>rating</td>
-                  <td><a href="#double">double</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>reviews</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>instructor</td>
-                  <td><a href="#InstructorBasicDataGrpc">InstructorBasicDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>price</td>
-                  <td><a href="#MoneyGrpc">MoneyGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>isSaved</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".LessonAssetDataGrpc">LessonAssetDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>assetId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>assetType</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>uri</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>mimeType</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>fileSizeBytes</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".LessonDataGrpc">LessonDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>lessonId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>content</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>contentType</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>durationSeconds</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>position</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>isPublished</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>assets</td>
-                  <td><a href="#LessonAssetDataGrpc">LessonAssetDataGrpc</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".ModuleDataGrpc">ModuleDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>moduleId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>position</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>summary</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>lessons</td>
-                  <td><a href="#LessonDataGrpc">LessonDataGrpc</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".MoneyGrpc">MoneyGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>amount</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>currency</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".PhysicalCalendarEventDataGrpc">PhysicalCalendarEventDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>eventId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>coverPhoto</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>date</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>startTime</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>daysLeft</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>instructor</td>
-                  <td><a href="#InstructorBasicDataGrpc">InstructorBasicDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>price</td>
-                  <td><a href="#MoneyGrpc">MoneyGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".QuizAnswerDataGrpc">QuizAnswerDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>answerId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>questionId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>questionText</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>questionType</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>selectedOptionId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>selectedOptionText</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>isCorrect</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pointsAwarded</td>
-                  <td><a href="#double">double</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>explanation</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>feedback</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".QuizAnswerItemGrpc">QuizAnswerItemGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>questionId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>selectedOptionId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".QuizAttemptDataGrpc">QuizAttemptDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>attemptId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>quizId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>startedAt</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>submittedAt</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>durationSeconds</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>scoreObtained</td>
-                  <td><a href="#double">double</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>scoreMax</td>
-                  <td><a href="#double">double</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".QuizOverviewDataGrpc">QuizOverviewDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>quizId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>attemptLimit</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>timeLimitMinutes</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>passScore</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>randomizeItems</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>questions</td>
-                  <td><a href="#QuizQuestionDataGrpc">QuizQuestionDataGrpc</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".QuizQuestionDataGrpc">QuizQuestionDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>questionId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>questionType</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>text</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>points</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>position</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>options</td>
-                  <td><a href="#QuizQuestionOptionDataGrpc">QuizQuestionOptionDataGrpc</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".QuizQuestionOptionDataGrpc">QuizQuestionOptionDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>optionId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>label</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>text</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>position</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".QuizResultDataGrpc">QuizResultDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>attemptId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>quizId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>scoreObtained</td>
-                  <td><a href="#double">double</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>scoreMax</td>
-                  <td><a href="#double">double</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>submittedAt</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>durationSeconds</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>answers</td>
-                  <td><a href="#QuizAnswerDataGrpc">QuizAnswerDataGrpc</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".SaveContentNoteRequest">SaveContentNoteRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>objectType</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>objectId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>body</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".SaveContentNoteResponse">SaveContentNoteResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#ContentNoteDataGrpc">ContentNoteDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".SaveCourseRequest">SaveCourseRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>courseId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".SaveCourseResponse">SaveCourseResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#SavedCourseDataGrpc">SavedCourseDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".SavedCourseDataGrpc">SavedCourseDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>savedCourseId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>course</td>
-                  <td><a href="#LearnerCourseDataGrpc">LearnerCourseDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".SearchCoursesDataGrpc">SearchCoursesDataGrpc</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>meta</td>
-                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>content</td>
-                  <td><a href="#LearnerCourseDataGrpc">LearnerCourseDataGrpc</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".SearchCoursesRequest">SearchCoursesRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>searchKey</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pageNumber</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pageSize</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sort</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".SearchCoursesResponse">SearchCoursesResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#SearchCoursesDataGrpc">SearchCoursesDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".StartQuizAttemptRequest">StartQuizAttemptRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>quizId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".StartQuizAttemptResponse">StartQuizAttemptResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#QuizAttemptDataGrpc">QuizAttemptDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".SubmitCourseRatingRequest">SubmitCourseRatingRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>courseId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>rating</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>review</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".SubmitCourseRatingResponse">SubmitCourseRatingResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#CourseReviewDataGrpc">CourseReviewDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".SubmitQuizAnswersRequest">SubmitQuizAnswersRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>quizId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>attemptId</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>answers</td>
-                  <td><a href="#QuizAnswerItemGrpc">QuizAnswerItemGrpc</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".SubmitQuizAnswersResponse">SubmitQuizAnswersResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>responseCode</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseMessage</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>responseData</td>
-                  <td><a href="#QuizResultDataGrpc">QuizResultDataGrpc</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".UpdateContentNoteRequest">UpdateContentNoteRequest</h3>
-        <p></p>
+        <h3 id=".ContentNoteDataGrpc">ContentNoteDataGrpc</h3>
+        <p>Represents a content note record.</p>
 
         
           <table class="field-table">
@@ -6522,14 +3897,35 @@
                   <td>noteId</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Unique note identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>objectType</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Type of the associated object: &#34;COURSE&#34;, &#34;MODULE&#34;, &#34;LESSON&#34;, or &#34;ASSET&#34; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>objectId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the associated object </p></td>
                 </tr>
               
                 <tr>
                   <td>body</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Note body text content </p></td>
+                </tr>
+              
+                <tr>
+                  <td>createdAt</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Timestamp when the note was created (ISO datetime string) </p></td>
                 </tr>
               
             </tbody>
@@ -6539,8 +3935,352 @@
 
         
       
-        <h3 id=".UpdateContentNoteResponse">UpdateContentNoteResponse</h3>
-        <p></p>
+        <h3 id=".CourseDetailsDataGrpc">CourseDetailsDataGrpc</h3>
+        <p>Comprehensive course details with all metadata, stats, and classifications.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique course identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>coverImageUrl</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>URL to the course cover image </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Course title </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Full course description </p></td>
+                </tr>
+              
+                <tr>
+                  <td>summary</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Brief course summary </p></td>
+                </tr>
+              
+                <tr>
+                  <td>level</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Difficulty level (e.g. &#34;Beginner&#34;, &#34;Intermediate&#34;, &#34;Advanced&#34;) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>language</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Course language (e.g. &#34;English&#34;) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>estimatedMinutes</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Estimated total course duration in minutes </p></td>
+                </tr>
+              
+                <tr>
+                  <td>free</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether the course is free </p></td>
+                </tr>
+              
+                <tr>
+                  <td>price</td>
+                  <td><a href="#MoneyGrpc">MoneyGrpc</a></td>
+                  <td></td>
+                  <td><p>Course price (zero if free) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Course tags/keywords </p></td>
+                </tr>
+              
+                <tr>
+                  <td>rating</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>Average course rating (0-5) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reviews</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Total number of reviews </p></td>
+                </tr>
+              
+                <tr>
+                  <td>learningOutcomes</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>List of learning outcome descriptions </p></td>
+                </tr>
+              
+                <tr>
+                  <td>requirements</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>List of prerequisite requirements </p></td>
+                </tr>
+              
+                <tr>
+                  <td>categories</td>
+                  <td><a href="#CategoryDataGrpc">CategoryDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>Course categories/classifications </p></td>
+                </tr>
+              
+                <tr>
+                  <td>instructor</td>
+                  <td><a href="#InstructorBasicDataGrpc">InstructorBasicDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Course instructor summary </p></td>
+                </tr>
+              
+                <tr>
+                  <td>totalStudents</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Total number of enrolled students </p></td>
+                </tr>
+              
+                <tr>
+                  <td>isSaved</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether the current user has saved this course to their wishlist </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CourseModulesDataGrpc">CourseModulesDataGrpc</h3>
+        <p>Top-level course content structure containing all modules.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the course </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Course title </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modules</td>
+                  <td><a href="#ModuleDataGrpc">ModuleDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>Ordered list of course modules </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CourseOverviewDataGrpc">CourseOverviewDataGrpc</h3>
+        <p>Course overview data with learning outcomes and requirements.</p><p>Used for the course overview/landing page.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique course identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>coverImageUrl</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>URL to the course cover image </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Course title </p></td>
+                </tr>
+              
+                <tr>
+                  <td>instructor</td>
+                  <td><a href="#InstructorBasicDataGrpc">InstructorBasicDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Course instructor summary </p></td>
+                </tr>
+              
+                <tr>
+                  <td>learningOutcomes</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>List of learning outcome descriptions </p></td>
+                </tr>
+              
+                <tr>
+                  <td>requirements</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>List of prerequisite requirements </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Full course description </p></td>
+                </tr>
+              
+                <tr>
+                  <td>isSaved</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether the current user has saved this course to their wishlist </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CourseReviewDataGrpc">CourseReviewDataGrpc</h3>
+        <p>Individual course rating/review submitted by a learner.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>ratingId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique rating record identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reviewerName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Full name of the reviewer </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reviewerProfileImage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>URL to the reviewer&#39;s profile image </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reviewDate</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Date when the review was submitted (ISO date string) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>rating</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>Rating score given (1-5) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>review</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Review text/comment </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".DeleteContentNoteRequest">DeleteContentNoteRequest</h3>
+        <p>Request payload for deleting a content note.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>noteId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the note to delete (must be owned by the authenticated user) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".DeleteContentNoteResponse">DeleteContentNoteResponse</h3>
+        <p>Response wrapper for deleting a content note.</p>
 
         
           <table class="field-table">
@@ -6553,21 +4293,2701 @@
                   <td>responseCode</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Application response code </p></td>
                 </tr>
               
                 <tr>
                   <td>responseMessage</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".DeleteSavedCourseRequest">DeleteSavedCourseRequest</h3>
+        <p>Request payload for removing a course from the wishlist.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the course to remove from wishlist </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".DeleteSavedCourseResponse">DeleteSavedCourseResponse</h3>
+        <p>Response wrapper for delete saved course operation.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Confirmation message </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchContentNoteByIdRequest">FetchContentNoteByIdRequest</h3>
+        <p>Request payload for fetching a single content note by its ID.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>noteId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the note to retrieve (must be owned by the authenticated user) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchContentNoteByIdResponse">FetchContentNoteByIdResponse</h3>
+        <p>Response wrapper for fetching a single content note.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
                 </tr>
               
                 <tr>
                   <td>responseData</td>
                   <td><a href="#ContentNoteDataGrpc">ContentNoteDataGrpc</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The retrieved note data </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchContentNotesRequest">FetchContentNotesRequest</h3>
+        <p>Request payload for fetching all content notes for the authenticated user (paginated).</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>pageNumber</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Page number (0-based) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageSize</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Number of notes per page </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Sort direction </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchContentNotesResponse">FetchContentNotesResponse</h3>
+        <p>Response wrapper for fetching paginated content notes.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>records</td>
+                  <td><a href="#ContentNoteDataGrpc">ContentNoteDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>List of note records for the current page </p></td>
+                </tr>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p>Pagination metadata </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCourseInstructorRequest">FetchCourseInstructorRequest</h3>
+        <p>Request payload for fetching instructor details for a course.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the course whose instructor details to retrieve </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCourseInstructorResponse">FetchCourseInstructorResponse</h3>
+        <p>Response wrapper for instructor details.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#InstructorDetailsDataGrpc">InstructorDetailsDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Rich instructor profile data </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCourseModulesRequest">FetchCourseModulesRequest</h3>
+        <p>Request payload for fetching the course module structure.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the course </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCourseModulesResponse">FetchCourseModulesResponse</h3>
+        <p>Response wrapper for course modules.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CourseModulesDataGrpc">CourseModulesDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Full course content hierarchy </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCourseOverviewRequest">FetchCourseOverviewRequest</h3>
+        <p>Request payload for fetching a course overview.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the course to retrieve </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCourseOverviewResponse">FetchCourseOverviewResponse</h3>
+        <p>Response wrapper for course overview.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CourseOverviewDataGrpc">CourseOverviewDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Course overview data </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCourseRatingsDataGrpc">FetchCourseRatingsDataGrpc</h3>
+        <p>Aggregated course rating data with paginated individual reviews.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>totalReviewCount</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Total number of reviews for this course </p></td>
+                </tr>
+              
+                <tr>
+                  <td>overallRating</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>Calculated overall rating percentage (0-1 scale) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p>Pagination metadata for the reviews list </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reviews</td>
+                  <td><a href="#CourseReviewDataGrpc">CourseReviewDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>Paginated list of individual reviews </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCourseRatingsRequest">FetchCourseRatingsRequest</h3>
+        <p>Request payload for fetching course ratings.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the course </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageNumber</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Page number (0-based) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageSize</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Number of reviews per page </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Sort direction </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCourseRatingsResponse">FetchCourseRatingsResponse</h3>
+        <p>Response wrapper for course ratings.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#FetchCourseRatingsDataGrpc">FetchCourseRatingsDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Rating aggregate and review list </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchLearnerCourseDetailsRequest">FetchLearnerCourseDetailsRequest</h3>
+        <p>Request payload for fetching comprehensive course details.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the course to retrieve </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchLearnerCourseDetailsResponse">FetchLearnerCourseDetailsResponse</h3>
+        <p>Response wrapper for comprehensive course details.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CourseDetailsDataGrpc">CourseDetailsDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Rich course details data </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchLessonQuizRequest">FetchLessonQuizRequest</h3>
+        <p>Request payload for fetching a quiz for a specific lesson.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>lessonId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the lesson whose quiz to retrieve </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchLessonQuizResponse">FetchLessonQuizResponse</h3>
+        <p>Response wrapper for fetching a lesson quiz.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#QuizOverviewDataGrpc">QuizOverviewDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Quiz overview with questions and options (answers hidden) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchQuizResultRequest">FetchQuizResultRequest</h3>
+        <p>Request payload for fetching a previously completed quiz result.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>quizId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the quiz </p></td>
+                </tr>
+              
+                <tr>
+                  <td>attemptId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the completed attempt to retrieve </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchQuizResultResponse">FetchQuizResultResponse</h3>
+        <p>Response wrapper for fetching a quiz result.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#QuizResultDataGrpc">QuizResultDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Full graded result with scores and answer details </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchRecentlyViewedCoursesDataGrpc">FetchRecentlyViewedCoursesDataGrpc</h3>
+        <p>Non-paginated list of recently viewed courses (max 20).</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#LearnerCourseDataGrpc">LearnerCourseDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>List of recently viewed course records </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchRecentlyViewedCoursesRequest">FetchRecentlyViewedCoursesRequest</h3>
+        <p>Request payload for fetching recently viewed courses (empty - user resolved from context).</p><p>No fields required - user is extracted from gRPC context metadata</p>
+
+        
+
+        
+      
+        <h3 id=".FetchRecentlyViewedCoursesResponse">FetchRecentlyViewedCoursesResponse</h3>
+        <p>Response wrapper for recently viewed courses.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#FetchRecentlyViewedCoursesDataGrpc">FetchRecentlyViewedCoursesDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Course list data </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchRecommendedCoursesDataGrpc">FetchRecommendedCoursesDataGrpc</h3>
+        <p>Paginated wrapper for recommended course results.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p>Pagination metadata </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#LearnerCourseDataGrpc">LearnerCourseDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>List of recommended course records </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchRecommendedCoursesRequest">FetchRecommendedCoursesRequest</h3>
+        <p>Request payload for fetching recommended courses.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>pageNumber</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Page number (0-based) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageSize</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Number of items per page </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Sort direction </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchRecommendedCoursesResponse">FetchRecommendedCoursesResponse</h3>
+        <p>Response wrapper for recommended courses.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#FetchRecommendedCoursesDataGrpc">FetchRecommendedCoursesDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Paginated course data </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchSavedCoursesDataGrpc">FetchSavedCoursesDataGrpc</h3>
+        <p>Non-paginated list of saved course entries.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#SavedCourseDataGrpc">SavedCourseDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>List of saved course wishlist entries </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchSavedCoursesRequest">FetchSavedCoursesRequest</h3>
+        <p>Request payload for fetching saved courses (empty - user resolved from context).</p><p>No fields required - user is extracted from gRPC context metadata</p>
+
+        
+
+        
+      
+        <h3 id=".FetchSavedCoursesResponse">FetchSavedCoursesResponse</h3>
+        <p>Response wrapper for saved courses.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#FetchSavedCoursesDataGrpc">FetchSavedCoursesDataGrpc</a></td>
+                  <td></td>
+                  <td><p>List of saved courses </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchUpcomingCalendarEventsDataGrpc">FetchUpcomingCalendarEventsDataGrpc</h3>
+        <p>Paginated wrapper for calendar event results.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p>Pagination metadata (total elements, total pages, etc.) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#PhysicalCalendarEventDataGrpc">PhysicalCalendarEventDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>List of calendar event records for the current page </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchUpcomingCalendarEventsRequest">FetchUpcomingCalendarEventsRequest</h3>
+        <p>Request payload for fetching upcoming calendar events.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>pageNumber</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Page number (0-based) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageSize</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Number of items per page </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Sort direction (e.g. &#34;ASC&#34; or &#34;DESC&#34;) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchUpcomingCalendarEventsResponse">FetchUpcomingCalendarEventsResponse</h3>
+        <p>Response wrapper for upcoming calendar events.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code (e.g. &#34;00&#34; for success) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#FetchUpcomingCalendarEventsDataGrpc">FetchUpcomingCalendarEventsDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Paginated event data </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FilterCoursesDataGrpc">FilterCoursesDataGrpc</h3>
+        <p>Paginated wrapper for filtered course results.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p>Pagination metadata </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#LearnerCourseDataGrpc">LearnerCourseDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>List of matching course records </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FilterCoursesRequest">FilterCoursesRequest</h3>
+        <p>Request payload for filtering courses.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>categoryId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional - UUID of the category to filter by </p></td>
+                </tr>
+              
+                <tr>
+                  <td>free</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional - &#34;true&#34; for free courses, &#34;false&#34; for paid courses </p></td>
+                </tr>
+              
+                <tr>
+                  <td>level</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional - Difficulty level to filter by (e.g. &#34;Beginner&#34;) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageNumber</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Page number (0-based) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageSize</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Number of items per page </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Sort direction </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FilterCoursesResponse">FilterCoursesResponse</h3>
+        <p>Response wrapper for filtered course results.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#FilterCoursesDataGrpc">FilterCoursesDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Paginated filtered results </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".InstructorBasicDataGrpc">InstructorBasicDataGrpc</h3>
+        <p>Basic instructor summary used in course cards and listings.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>instructorName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Full name of the instructor </p></td>
+                </tr>
+              
+                <tr>
+                  <td>instructorProfileImage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>URL to the instructor&#39;s profile/avatar image </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".InstructorDetailsDataGrpc">InstructorDetailsDataGrpc</h3>
+        <p>Rich instructor profile with aggregated teaching statistics.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>instructorId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique instructor identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>displayName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Instructor display name </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bio</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Instructor biography </p></td>
+                </tr>
+              
+                <tr>
+                  <td>avatarUrl</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>URL to the instructor&#39;s avatar/profile image </p></td>
+                </tr>
+              
+                <tr>
+                  <td>websiteUrl</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Instructor&#39;s personal/professional website URL </p></td>
+                </tr>
+              
+                <tr>
+                  <td>totalCourses</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Total number of courses published by this instructor </p></td>
+                </tr>
+              
+                <tr>
+                  <td>totalStudents</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Total number of distinct students enrolled across all instructor courses </p></td>
+                </tr>
+              
+                <tr>
+                  <td>averageRating</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>Average rating across all instructor courses (0-5) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>totalReviews</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Total number of reviews across all instructor courses </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".LearnerCourseDataGrpc">LearnerCourseDataGrpc</h3>
+        <p>Course card data used in listings (recommended, search results, filtered, recently viewed, etc.).</p><p>Contains summary-level course info suitable for displaying in a course card UI.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique course identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>coverImageUrl</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>URL to the course cover image </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Course tags/keywords </p></td>
+                </tr>
+              
+                <tr>
+                  <td>rating</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>Average course rating (0-5) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reviews</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Total number of reviews </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Course title </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Short course description </p></td>
+                </tr>
+              
+                <tr>
+                  <td>instructor</td>
+                  <td><a href="#InstructorBasicDataGrpc">InstructorBasicDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Course instructor summary </p></td>
+                </tr>
+              
+                <tr>
+                  <td>price</td>
+                  <td><a href="#MoneyGrpc">MoneyGrpc</a></td>
+                  <td></td>
+                  <td><p>Course price </p></td>
+                </tr>
+              
+                <tr>
+                  <td>isSaved</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether the current user has saved this course to their wishlist </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".LessonAssetDataGrpc">LessonAssetDataGrpc</h3>
+        <p>A file or media asset attached to a lesson.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>assetId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique asset identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assetType</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Asset type (e.g. &#34;VIDEO&#34;, &#34;DOCUMENT&#34;, &#34;IMAGE&#34;, &#34;AUDIO&#34;) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>uri</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>URL or URI to the asset resource </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mimeType</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>MIME type of the asset (e.g. &#34;video/mp4&#34;, &#34;application/pdf&#34;) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fileSizeBytes</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>File size in bytes </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".LessonDataGrpc">LessonDataGrpc</h3>
+        <p>A single lesson within a module, containing its assets.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>lessonId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique lesson identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Lesson title </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Lesson content body (text, HTML, etc.) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>contentType</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Content type identifier (e.g. &#34;VIDEO&#34;, &#34;TEXT&#34;, &#34;DOCUMENT&#34;) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>durationSeconds</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Estimated lesson duration in seconds </p></td>
+                </tr>
+              
+                <tr>
+                  <td>position</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Display order position within the module </p></td>
+                </tr>
+              
+                <tr>
+                  <td>isPublished</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether the lesson is published and visible to learners </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><a href="#LessonAssetDataGrpc">LessonAssetDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>List of media/file assets attached to this lesson </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".ModuleDataGrpc">ModuleDataGrpc</h3>
+        <p>A single course module containing its lessons.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>moduleId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique module identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Module title </p></td>
+                </tr>
+              
+                <tr>
+                  <td>position</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Display order position within the course </p></td>
+                </tr>
+              
+                <tr>
+                  <td>summary</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Module summary/description </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lessons</td>
+                  <td><a href="#LessonDataGrpc">LessonDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>Ordered list of lessons within this module </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".MoneyGrpc">MoneyGrpc</h3>
+        <p>Represents a monetary value with amount and currency code.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Decimal amount as string (e.g. &#34;29.99&#34;) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>currency</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>ISO 4217 currency code (e.g. &#34;USD&#34;, &#34;NGN&#34;) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".PhysicalCalendarEventDataGrpc">PhysicalCalendarEventDataGrpc</h3>
+        <p>Represents a physical (in-person) calendar event / class session.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>eventId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique identifier of the calendar event </p></td>
+                </tr>
+              
+                <tr>
+                  <td>coverPhoto</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>URL to the event&#39;s cover photo </p></td>
+                </tr>
+              
+                <tr>
+                  <td>date</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Event date (ISO date string) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>startTime</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Event start time </p></td>
+                </tr>
+              
+                <tr>
+                  <td>daysLeft</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Number of days until the event </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Event title </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Event description </p></td>
+                </tr>
+              
+                <tr>
+                  <td>instructor</td>
+                  <td><a href="#InstructorBasicDataGrpc">InstructorBasicDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Instructor hosting the event </p></td>
+                </tr>
+              
+                <tr>
+                  <td>price</td>
+                  <td><a href="#MoneyGrpc">MoneyGrpc</a></td>
+                  <td></td>
+                  <td><p>Event price </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".QuizAnswerDataGrpc">QuizAnswerDataGrpc</h3>
+        <p>A single graded answer within a quiz result.</p><p>Includes correctness, explanations, and feedback - only available after submission.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>answerId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique answer record identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>questionId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the question answered </p></td>
+                </tr>
+              
+                <tr>
+                  <td>questionText</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Text of the question (for display convenience) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>questionType</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Question type (e.g. &#34;MULTIPLE_CHOICE&#34;) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>selectedOptionId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the option selected by the learner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>selectedOptionText</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Text of the selected option </p></td>
+                </tr>
+              
+                <tr>
+                  <td>isCorrect</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether the selected answer was correct </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pointsAwarded</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>Points awarded for this answer (full points if correct, 0 if incorrect) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>explanation</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Explanation of the correct answer (from the question) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>feedback</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Feedback text for the selected option </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".QuizAnswerItemGrpc">QuizAnswerItemGrpc</h3>
+        <p>A single answer item submitted by the learner (question + selected option).</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>questionId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the question being answered </p></td>
+                </tr>
+              
+                <tr>
+                  <td>selectedOptionId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the selected answer option </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".QuizAttemptDataGrpc">QuizAttemptDataGrpc</h3>
+        <p>Represents an active or completed quiz attempt.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>attemptId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique attempt identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quizId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the associated quiz </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Attempt status: &#34;IN_PROGRESS&#34; or &#34;GRADED&#34; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>startedAt</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Timestamp when the attempt was started (ISO datetime string) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>submittedAt</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Timestamp when the attempt was submitted (null if in progress) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>durationSeconds</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Total time taken in seconds (populated after submission) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scoreObtained</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>Score obtained by the learner (populated after grading) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scoreMax</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>Maximum possible score for the quiz </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".QuizOverviewDataGrpc">QuizOverviewDataGrpc</h3>
+        <p>Full quiz overview including all questions, displayed before the learner starts the attempt.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>quizId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique quiz identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Quiz title </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Quiz description/instructions </p></td>
+                </tr>
+              
+                <tr>
+                  <td>attemptLimit</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Maximum number of attempts allowed (0 = unlimited) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timeLimitMinutes</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Time limit in minutes (0 = no limit) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>passScore</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Minimum score required to pass </p></td>
+                </tr>
+              
+                <tr>
+                  <td>randomizeItems</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether to randomize question order </p></td>
+                </tr>
+              
+                <tr>
+                  <td>questions</td>
+                  <td><a href="#QuizQuestionDataGrpc">QuizQuestionDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>List of quiz questions with options </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".QuizQuestionDataGrpc">QuizQuestionDataGrpc</h3>
+        <p>A single quiz question with its answer options.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>questionId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique question identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>questionType</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Question type (e.g. &#34;MULTIPLE_CHOICE&#34;, &#34;TRUE_FALSE&#34;) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>text</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Question text/prompt </p></td>
+                </tr>
+              
+                <tr>
+                  <td>points</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Points awarded for a correct answer </p></td>
+                </tr>
+              
+                <tr>
+                  <td>position</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Display order position within the quiz </p></td>
+                </tr>
+              
+                <tr>
+                  <td>options</td>
+                  <td><a href="#QuizQuestionOptionDataGrpc">QuizQuestionOptionDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>List of answer options </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".QuizQuestionOptionDataGrpc">QuizQuestionOptionDataGrpc</h3>
+        <p>A single answer option for a quiz question.</p><p>Note: isCorrect and feedback fields are intentionally excluded to prevent learners</p><p>from seeing correct answers before completing the quiz.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>optionId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique option identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>label</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Option label (e.g. &#34;A&#34;, &#34;B&#34;, &#34;C&#34;, &#34;D&#34;) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>text</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Option text content </p></td>
+                </tr>
+              
+                <tr>
+                  <td>position</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Display order position </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".QuizResultDataGrpc">QuizResultDataGrpc</h3>
+        <p>Full quiz result with scores and detailed answer breakdown.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>attemptId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the quiz attempt </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quizId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the quiz </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Attempt status (should be &#34;GRADED&#34;) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scoreObtained</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>Total score obtained by the learner </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scoreMax</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p>Maximum possible score </p></td>
+                </tr>
+              
+                <tr>
+                  <td>submittedAt</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Timestamp when the quiz was submitted </p></td>
+                </tr>
+              
+                <tr>
+                  <td>durationSeconds</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Total time taken in seconds </p></td>
+                </tr>
+              
+                <tr>
+                  <td>answers</td>
+                  <td><a href="#QuizAnswerDataGrpc">QuizAnswerDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>Detailed breakdown of each answer </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SaveContentNoteRequest">SaveContentNoteRequest</h3>
+        <p>Request payload for creating a new content note.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>objectType</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Type of the associated object: &#34;COURSE&#34;, &#34;MODULE&#34;, &#34;LESSON&#34;, or &#34;ASSET&#34; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>objectId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the associated object (validated for existence) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>body</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Note body text content </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SaveContentNoteResponse">SaveContentNoteResponse</h3>
+        <p>Response wrapper for creating a content note.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#ContentNoteDataGrpc">ContentNoteDataGrpc</a></td>
+                  <td></td>
+                  <td><p>The created note data </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SaveCourseRequest">SaveCourseRequest</h3>
+        <p>Request payload for saving a course to the wishlist.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the course to save </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SaveCourseResponse">SaveCourseResponse</h3>
+        <p>Response wrapper for save course operation.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#SavedCourseDataGrpc">SavedCourseDataGrpc</a></td>
+                  <td></td>
+                  <td><p>The saved course entry with full course data </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SavedCourseDataGrpc">SavedCourseDataGrpc</h3>
+        <p>Represents a saved course (wishlist entry) with embedded course details.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>savedCourseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique wishlist entry identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>course</td>
+                  <td><a href="#LearnerCourseDataGrpc">LearnerCourseDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Full course card data </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SearchCoursesDataGrpc">SearchCoursesDataGrpc</h3>
+        <p>Paginated wrapper for course search results.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p>Pagination metadata </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#LearnerCourseDataGrpc">LearnerCourseDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>List of matching course records </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SearchCoursesRequest">SearchCoursesRequest</h3>
+        <p>Request payload for searching courses.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>searchKey</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Search keyword to match against course title, description, and tags </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageNumber</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Page number (0-based) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageSize</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Number of items per page </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Sort direction </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SearchCoursesResponse">SearchCoursesResponse</h3>
+        <p>Response wrapper for course search results.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#SearchCoursesDataGrpc">SearchCoursesDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Paginated search results </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".StartQuizAttemptRequest">StartQuizAttemptRequest</h3>
+        <p>Request payload for starting a new quiz attempt.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>quizId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the quiz to start </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".StartQuizAttemptResponse">StartQuizAttemptResponse</h3>
+        <p>Response wrapper for starting a quiz attempt.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#QuizAttemptDataGrpc">QuizAttemptDataGrpc</a></td>
+                  <td></td>
+                  <td><p>The created attempt with IN_PROGRESS status </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SubmitCourseRatingRequest">SubmitCourseRatingRequest</h3>
+        <p>Request payload for submitting a course rating.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the course to rate </p></td>
+                </tr>
+              
+                <tr>
+                  <td>rating</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Rating score (1-5) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>review</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional review text/comment </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SubmitCourseRatingResponse">SubmitCourseRatingResponse</h3>
+        <p>Response wrapper for submit course rating. Returns the created/updated review data.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CourseReviewDataGrpc">CourseReviewDataGrpc</a></td>
+                  <td></td>
+                  <td><p>The submitted/updated review data </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SubmitQuizAnswersRequest">SubmitQuizAnswersRequest</h3>
+        <p>Request payload for submitting quiz answers.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>quizId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the quiz </p></td>
+                </tr>
+              
+                <tr>
+                  <td>attemptId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the active attempt (must be IN_PROGRESS) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>answers</td>
+                  <td><a href="#QuizAnswerItemGrpc">QuizAnswerItemGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>List of answers (one per question) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SubmitQuizAnswersResponse">SubmitQuizAnswersResponse</h3>
+        <p>Response wrapper for quiz answer submission. Returns the graded quiz result.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#QuizResultDataGrpc">QuizResultDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Full graded result with scores and answer details </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".UpdateContentNoteRequest">UpdateContentNoteRequest</h3>
+        <p>Request payload for updating an existing content note.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>noteId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the note to update (must be owned by the authenticated user) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>body</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Updated note body text content </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".UpdateContentNoteResponse">UpdateContentNoteResponse</h3>
+        <p>Response wrapper for updating a content note.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#ContentNoteDataGrpc">ContentNoteDataGrpc</a></td>
+                  <td></td>
+                  <td><p>The updated note data </p></td>
                 </tr>
               
             </tbody>
@@ -6584,7 +7004,7 @@
 
       
         <h3 id=".LearnerCourseServiceGrpc">LearnerCourseServiceGrpc</h3>
-        <p></p>
+        <p>======================================================================================</p><p>LearnerCourseServiceGrpc</p><p>---------------------------------------------------------------------------------------</p><p>gRPC service definition for the Learner Course module in the afefe-learner microservice.</p><p>Provides endpoints for learners to browse, search, filter, and interact with courses,</p><p>manage wishlists, view course content, take quizzes, submit ratings, and manage notes.</p><p>User identity and tenant context are resolved from gRPC metadata (not request payloads).</p><p>======================================================================================</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -6595,147 +7015,179 @@
                 <td>FetchUpcomingCalendarEvents</td>
                 <td><a href="#FetchUpcomingCalendarEventsRequest">.FetchUpcomingCalendarEventsRequest</a></td>
                 <td><a href="#FetchUpcomingCalendarEventsResponse">.FetchUpcomingCalendarEventsResponse</a></td>
-                <td><p></p></td>
+                <td><p>Fetches paginated upcoming physical class calendar events for the authenticated user.</p></td>
               </tr>
             
               <tr>
                 <td>FetchRecommendedCourses</td>
                 <td><a href="#FetchRecommendedCoursesRequest">.FetchRecommendedCoursesRequest</a></td>
                 <td><a href="#FetchRecommendedCoursesResponse">.FetchRecommendedCoursesResponse</a></td>
-                <td><p></p></td>
+                <td><p>Fetches paginated recommended courses based on the user&#39;s industry interests.
+Courses are matched by comparing course tags against the user&#39;s UserIndustryInterest entries.</p></td>
               </tr>
             
               <tr>
                 <td>FetchRecentlyViewedCourses</td>
                 <td><a href="#FetchRecentlyViewedCoursesRequest">.FetchRecentlyViewedCoursesRequest</a></td>
                 <td><a href="#FetchRecentlyViewedCoursesResponse">.FetchRecentlyViewedCoursesResponse</a></td>
-                <td><p></p></td>
+                <td><p>Fetches the user&#39;s recently viewed courses (max 20 items, viewed within the last 7 days).
+Not paginated - returns a flat list.</p></td>
               </tr>
             
               <tr>
                 <td>FetchCourseOverview</td>
                 <td><a href="#FetchCourseOverviewRequest">.FetchCourseOverviewRequest</a></td>
                 <td><a href="#FetchCourseOverviewResponse">.FetchCourseOverviewResponse</a></td>
-                <td><p></p></td>
+                <td><p>Fetches a basic course overview by course ID (title, cover image, instructor, learning outcomes, requirements).</p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchLearnerCourseDetails</td>
+                <td><a href="#FetchLearnerCourseDetailsRequest">.FetchLearnerCourseDetailsRequest</a></td>
+                <td><a href="#FetchLearnerCourseDetailsResponse">.FetchLearnerCourseDetailsResponse</a></td>
+                <td><p>Fetches comprehensive course details by course ID, including categories, stats, and save status.
+Returns richer data than FetchCourseOverview (summary, level, language, duration, categories, totalStudents, etc.).</p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchCourseInstructor</td>
+                <td><a href="#FetchCourseInstructorRequest">.FetchCourseInstructorRequest</a></td>
+                <td><a href="#FetchCourseInstructorResponse">.FetchCourseInstructorResponse</a></td>
+                <td><p>Fetches rich instructor profile details for a given course, including aggregated stats
+(total courses, total students, average rating, total reviews) computed across all instructor courses.</p></td>
               </tr>
             
               <tr>
                 <td>FetchCourseRatings</td>
                 <td><a href="#FetchCourseRatingsRequest">.FetchCourseRatingsRequest</a></td>
                 <td><a href="#FetchCourseRatingsResponse">.FetchCourseRatingsResponse</a></td>
-                <td><p></p></td>
+                <td><p>Fetches paginated course ratings and reviews for a given course.
+Returns overall rating, total review count, and a paginated list of individual reviews.</p></td>
               </tr>
             
               <tr>
                 <td>SearchCourses</td>
                 <td><a href="#SearchCoursesRequest">.SearchCoursesRequest</a></td>
                 <td><a href="#SearchCoursesResponse">.SearchCoursesResponse</a></td>
-                <td><p></p></td>
+                <td><p>Searches for courses by a keyword. Matches against course title, description, and tags.
+Results are paginated.</p></td>
               </tr>
             
               <tr>
                 <td>FilterCourses</td>
                 <td><a href="#FilterCoursesRequest">.FilterCoursesRequest</a></td>
                 <td><a href="#FilterCoursesResponse">.FilterCoursesResponse</a></td>
-                <td><p></p></td>
+                <td><p>Fetches courses filtered by category, price (free/paid), and difficulty level.
+All filter parameters are optional. Results are paginated.</p></td>
               </tr>
             
               <tr>
                 <td>SaveCourse</td>
                 <td><a href="#SaveCourseRequest">.SaveCourseRequest</a></td>
                 <td><a href="#SaveCourseResponse">.SaveCourseResponse</a></td>
-                <td><p></p></td>
+                <td><p>Saves a course to the user&#39;s wishlist. Prevents duplicate saves for the same course.</p></td>
               </tr>
             
               <tr>
                 <td>DeleteSavedCourse</td>
                 <td><a href="#DeleteSavedCourseRequest">.DeleteSavedCourseRequest</a></td>
                 <td><a href="#DeleteSavedCourseResponse">.DeleteSavedCourseResponse</a></td>
-                <td><p></p></td>
+                <td><p>Removes a course from the user&#39;s wishlist.</p></td>
               </tr>
             
               <tr>
                 <td>FetchSavedCourses</td>
                 <td><a href="#FetchSavedCoursesRequest">.FetchSavedCoursesRequest</a></td>
                 <td><a href="#FetchSavedCoursesResponse">.FetchSavedCoursesResponse</a></td>
-                <td><p></p></td>
+                <td><p>Fetches all courses saved in the user&#39;s wishlist. Not paginated - returns a full list.</p></td>
               </tr>
             
               <tr>
                 <td>FetchCourseModules</td>
                 <td><a href="#FetchCourseModulesRequest">.FetchCourseModulesRequest</a></td>
                 <td><a href="#FetchCourseModulesResponse">.FetchCourseModulesResponse</a></td>
-                <td><p></p></td>
+                <td><p>Fetches the full hierarchical content structure for a course:
+Course -&gt; Modules -&gt; Lessons -&gt; Lesson Assets.
+Used to display the course curriculum/syllabus.</p></td>
               </tr>
             
               <tr>
                 <td>SubmitCourseRating</td>
                 <td><a href="#SubmitCourseRatingRequest">.SubmitCourseRatingRequest</a></td>
                 <td><a href="#SubmitCourseRatingResponse">.SubmitCourseRatingResponse</a></td>
-                <td><p></p></td>
+                <td><p>Submits or updates a rating and review for a course.
+Business rule: Only users who have completed the course (100% progress) can submit a rating.
+If a rating already exists for the user/course, it will be updated (idempotent).</p></td>
               </tr>
             
               <tr>
                 <td>SaveContentNote</td>
                 <td><a href="#SaveContentNoteRequest">.SaveContentNoteRequest</a></td>
                 <td><a href="#SaveContentNoteResponse">.SaveContentNoteResponse</a></td>
-                <td><p></p></td>
+                <td><p>Creates a new content note associated with a course object (COURSE, MODULE, LESSON, or ASSET).
+The objectId is validated against the database for the given objectType.</p></td>
               </tr>
             
               <tr>
                 <td>UpdateContentNote</td>
                 <td><a href="#UpdateContentNoteRequest">.UpdateContentNoteRequest</a></td>
                 <td><a href="#UpdateContentNoteResponse">.UpdateContentNoteResponse</a></td>
-                <td><p></p></td>
+                <td><p>Updates the body text of an existing content note owned by the authenticated user.</p></td>
               </tr>
             
               <tr>
                 <td>DeleteContentNote</td>
                 <td><a href="#DeleteContentNoteRequest">.DeleteContentNoteRequest</a></td>
                 <td><a href="#DeleteContentNoteResponse">.DeleteContentNoteResponse</a></td>
-                <td><p></p></td>
+                <td><p>Deletes a content note owned by the authenticated user.</p></td>
               </tr>
             
               <tr>
                 <td>FetchContentNoteById</td>
                 <td><a href="#FetchContentNoteByIdRequest">.FetchContentNoteByIdRequest</a></td>
                 <td><a href="#FetchContentNoteByIdResponse">.FetchContentNoteByIdResponse</a></td>
-                <td><p></p></td>
+                <td><p>Fetches a single content note by its ID. Only returns notes owned by the authenticated user.</p></td>
               </tr>
             
               <tr>
                 <td>FetchContentNotes</td>
                 <td><a href="#FetchContentNotesRequest">.FetchContentNotesRequest</a></td>
                 <td><a href="#FetchContentNotesResponse">.FetchContentNotesResponse</a></td>
-                <td><p></p></td>
+                <td><p>Fetches all content notes for the authenticated user, paginated.</p></td>
               </tr>
             
               <tr>
                 <td>FetchLessonQuiz</td>
                 <td><a href="#FetchLessonQuizRequest">.FetchLessonQuizRequest</a></td>
                 <td><a href="#FetchLessonQuizResponse">.FetchLessonQuizResponse</a></td>
-                <td><p></p></td>
+                <td><p>Fetches the quiz overview for a given lesson, including all questions and answer options.
+Correct answers (isCorrect) and feedback are intentionally excluded to prevent cheating.</p></td>
               </tr>
             
               <tr>
                 <td>StartQuizAttempt</td>
                 <td><a href="#StartQuizAttemptRequest">.StartQuizAttemptRequest</a></td>
                 <td><a href="#StartQuizAttemptResponse">.StartQuizAttemptResponse</a></td>
-                <td><p></p></td>
+                <td><p>Starts a new quiz attempt for the authenticated user.
+Validates user enrollment and enforces attempt limits configured on the quiz.
+Returns the created attempt with IN_PROGRESS status.</p></td>
               </tr>
             
               <tr>
                 <td>SubmitQuizAnswers</td>
                 <td><a href="#SubmitQuizAnswersRequest">.SubmitQuizAnswersRequest</a></td>
                 <td><a href="#SubmitQuizAnswersResponse">.SubmitQuizAnswersResponse</a></td>
-                <td><p></p></td>
+                <td><p>Submits answers for an active quiz attempt.
+Auto-grades each answer, calculates scores, and transitions the attempt to GRADED status.
+Returns the full quiz result with correctness, explanations, and feedback for each answer.</p></td>
               </tr>
             
               <tr>
                 <td>FetchQuizResult</td>
                 <td><a href="#FetchQuizResultRequest">.FetchQuizResultRequest</a></td>
                 <td><a href="#FetchQuizResultResponse">.FetchQuizResultResponse</a></td>
-                <td><p></p></td>
+                <td><p>Fetches the result of a previously completed quiz attempt.
+Returns scores, duration, and detailed answer-level data including correctness and feedback.</p></td>
               </tr>
             
           </tbody>
