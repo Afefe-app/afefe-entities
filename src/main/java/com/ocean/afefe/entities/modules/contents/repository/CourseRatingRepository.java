@@ -38,4 +38,7 @@ public interface CourseRatingRepository extends JpaRepository<CourseRating, UUID
 
     @Query("SELECT COUNT(cr) FROM CourseRating cr WHERE cr.course.ownerInstructor = :instructor")
     long getRatingCountByInstructor(@Param("instructor") Instructor instructor);
+
+    @Query("SELECT COUNT(cr) FROM CourseRating cr WHERE cr.course = :course AND cr.rating = :rating AND cr.org = :org")
+    Long getRatingCountByCourseAndRatingAndOrg(@Param("course") Course course, @Param("rating") Integer rating, @Param("org") Organization org);
 }

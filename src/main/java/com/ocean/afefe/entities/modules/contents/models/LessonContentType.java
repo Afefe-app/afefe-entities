@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum LessonContentType {
+public enum LessonContentType implements Enumerable{
     VIDEO("Video"),
     TEXT("Text"),
     PDF("Pdf"),

@@ -6,6 +6,7 @@ import "Common.proto";
 
 service GenericServiceGrpc {
     rpc FetchIndustries(FetchIndustriesRequest) returns (FetchIndustriesResponse);
+    rpc UploadFile(UploadFileRequest) returns (UploadFileResponse);
 }
 
 // Request Messages
@@ -32,6 +33,24 @@ message IndustryDataGrpc {
     string name = 2;
     string code = 3;
     string description = 4;
+}
+
+// Upload File Messages
+message UploadFileRequest {
+    bytes fileContent = 1;
+    string fileName = 2;
+    string mimeType = 3;
+}
+
+message UploadFileResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    RemoteFileUploadDataGrpc responseData = 3;
+}
+
+message RemoteFileUploadDataGrpc {
+    string publicLink = 1;
+    string originalFileName = 2;
 }
 
 

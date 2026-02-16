@@ -37,6 +37,5 @@ public class Lesson extends BaseUUIDEntity {
     @Column(nullable = false)
     private int position;
 
-    @Column(nullable = false)
     private Boolean isPublished;
 }

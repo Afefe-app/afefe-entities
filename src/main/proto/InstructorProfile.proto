@@ -1,0 +1,45 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "InstructorProfileProto";
+
+service InstructorProfileServiceGrpc {
+    rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse);
+    rpc UpdatePassword(UpdatePasswordRequest) returns (UpdatePasswordResponse);
+}
+
+// Update Profile Messages
+message UpdateProfileRequest {
+    string fullName = 1;
+    string email = 2;
+    string avatarUrl = 3;
+}
+
+message UpdateProfileResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    ProfileDataGrpc responseData = 3;
+}
+
+message ProfileDataGrpc {
+    string id = 1;
+    string emailAddress = 2;
+    string fullName = 3;
+    string avatarUrl = 4;
+}
+
+// Update Password Messages
+message UpdatePasswordRequest {
+    string currentPassword = 1;
+    string newPassword = 2;
+}
+
+message UpdatePasswordResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    PasswordUpdateDataGrpc responseData = 3;
+}
+
+message PasswordUpdateDataGrpc {
+    string message = 1;
+}
