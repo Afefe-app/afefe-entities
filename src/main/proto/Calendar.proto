@@ -1,1 +1,129 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "CalendarProto";
+import "Common.proto";
+import "Course.proto";
 
+// ======================================================================================
+// CalendarServiceGrpc
+// ---------------------------------------------------------------------------------------
+// gRPC service for the Instructor Calendar module. Manages physical class / event
+// scheduling: create, list, fetch by id, cancel, and reschedule calendar events.
+// Optional link to a course (assignedCourse). Identity/tenant from gRPC metadata.
+// ======================================================================================
+service CalendarServiceGrpc {
+
+    // Creates a new calendar event (physical class session).
+    rpc CreateCalendarEvent(CreateCalendarEventRequest) returns (CreateCalendarEventResponse);
+
+    // Fetches calendar events with optional filters (course, date range, type, status) and pagination.
+    rpc FetchCalendarEvents(FetchCalendarEventsRequest) returns (FetchCalendarEventsResponse);
+
+    // Fetches a single calendar event by ID.
+    rpc FetchCalendarEventById(FetchCalendarEventByIdRequest) returns (FetchCalendarEventByIdResponse);
+
+    // Cancels a calendar event (e.g. sets status to CANCELLED).
+    rpc CancelCalendarEvent(CancelCalendarEventRequest) returns (CancelCalendarEventResponse);
+
+    // Reschedules a calendar event to a new date/time.
+    rpc RescheduleCalendarEvent(RescheduleCalendarEventRequest) returns (RescheduleCalendarEventResponse);
+}
+
+// ---- Create calendar event ----
+message CreateCalendarEventRequest {
+    string date = 1;              // ISO date (e.g. 2025-01-15)
+    string fromTime = 2;           // Local time (e.g. 09:00)
+    string toTime = 3;             // Local time (e.g. 10:30)
+    string title = 4;
+    string description = 5;
+    string location = 6;
+    string coverPhotoUrl = 7;       // Optional
+    string timeZone = 8;           // e.g. UTC, America/New_York
+    string courseId = 9;           // Optional; UUID of assigned course
+    string eventType = 10;          // e.g. DEFAULT, WORKSHOP
+    string price = 11;              // Optional; decimal string
+    string currency = 12;          // Optional; e.g. USD
+}
+
+message CreateCalendarEventResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CalendarEventDataGrpc responseData = 3;
+}
+
+// ---- Fetch calendar events (list with filters) ----
+message FetchCalendarEventsRequest {
+    string courseId = 1;           // Optional; filter by course UUID
+    string startDate = 2;           // Optional; ISO date
+    string endDate = 3;             // Optional; ISO date
+    string timeZone = 4;
+    string type = 5;                // Optional; event type
+    string status = 6;             // Optional; event status
+    int32 pageNumber = 7;
+    int32 pageSize = 8;
+    string sort_direction = 9;      // e.g. ASC, DESC
+}
+
+message FetchCalendarEventsResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CalendarEventPageDataGrpc responseData = 3;
+}
+
+// ---- Fetch calendar event by id ----
+message FetchCalendarEventByIdRequest {
+    string calendarEventId = 1;    // UUID
+}
+
+message FetchCalendarEventByIdResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CalendarEventDataGrpc responseData = 3;
+}
+
+// ---- Cancel calendar event ----
+message CancelCalendarEventRequest {
+    string calendarEventId = 1;    // UUID
+}
+
+message CancelCalendarEventResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CalendarEventDataGrpc responseData = 3;
+}
+
+// ---- Reschedule calendar event ----
+message RescheduleCalendarEventRequest {
+    string calendarEventId = 1;    // UUID
+    string newDate = 2;            // ISO date
+    string newFromTime = 3;
+    string newToTime = 4;
+    string newTimeZone = 5;
+}
+
+message RescheduleCalendarEventResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CalendarEventDataGrpc responseData = 3;
+}
+
+// ---- Shared data messages ----
+message CalendarEventDataGrpc {
+    string id = 1;
+    string date = 2;
+    string fromTime = 3;
+    string toTime = 4;
+    string timeZone = 5;
+    string title = 6;
+    string description = 7;
+    string location = 8;
+    string eventType = 9;
+    string status = 10;
+    CourseDataGrpc assignedCourse = 11;  // Optional; when event is linked to a course
+}
+
+message CalendarEventPageDataGrpc {
+    PaginationMetaGrpc meta = 1;
+    repeated CalendarEventDataGrpc content = 2;
+}

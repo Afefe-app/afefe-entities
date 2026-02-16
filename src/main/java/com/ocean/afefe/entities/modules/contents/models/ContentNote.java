@@ -35,7 +35,7 @@ public class ContentNote extends BaseUUIDEntity {
     @Enumerated(value = EnumType.STRING)
     private ContentNoteObjectType objectType;
 
-    @Column(name = "object_id", nullable = false)
+    @Column(name = "object_id", nullable = false, columnDefinition = "VARCHAR")
     private UUID objectId;
 
     @Column(columnDefinition = "TEXT", nullable = false)
