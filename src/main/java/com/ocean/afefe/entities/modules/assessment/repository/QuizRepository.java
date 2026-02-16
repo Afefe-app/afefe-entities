@@ -11,6 +11,8 @@ import java.util.UUID;
 public interface QuizRepository extends JpaRepository<Quiz, UUID> {
 
     List<Quiz> findAllByModuleIdIn(List<UUID> moduleIds);
+    
+    List<Quiz> findAllByModuleId(UUID moduleId);
 
     List<Quiz> findAllByLessonId(UUID lessonId);
 }

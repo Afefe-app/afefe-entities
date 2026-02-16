@@ -8,10 +8,14 @@ import com.ocean.afefe.entities.modules.contents.models.Course;
 import com.ocean.afefe.entities.modules.contents.models.CourseVersion;
 import com.ocean.afefe.entities.modules.contents.models.Instructor;
 import com.ocean.afefe.entities.modules.contents.models.Lesson;
+import com.ocean.afefe.entities.modules.contents.models.LessonAsset;
+import com.ocean.afefe.entities.modules.contents.models.LessonContent;
 import com.ocean.afefe.entities.modules.contents.models.Module;
 import com.ocean.afefe.entities.modules.contents.repository.CourseRepository;
 import com.ocean.afefe.entities.modules.contents.repository.CourseVersionRepository;
 import com.ocean.afefe.entities.modules.contents.repository.InstructorRepository;
+import com.ocean.afefe.entities.modules.contents.repository.LessonAssetRepository;
+import com.ocean.afefe.entities.modules.contents.repository.LessonContentRepository;
 import com.ocean.afefe.entities.modules.contents.repository.LessonRepository;
 import com.ocean.afefe.entities.modules.contents.repository.ModuleRepository;
 import com.tensorpoint.toolkit.tpointcore.commons.HttpUtil;
@@ -34,6 +38,8 @@ public class CourseDomainServiceImpl implements CourseDomainService {
     private final CourseVersionRepository courseVersionRepository;
     private final ModuleRepository moduleRepository;
     private final LessonRepository lessonRepository;
+    private final LessonContentRepository lessonContentRepository;
+    private final LessonAssetRepository lessonAssetRepository;
     private final QuizRepository quizRepository;
 
     private final static String DEFAULT_COURSE_VERSION = "DRAFT";
@@ -98,6 +104,19 @@ public class CourseDomainServiceImpl implements CourseDomainService {
     }
 
     @Override
+    public Module validateModuleBelongsToInstructor(UUID moduleId, Organization organization, Instructor instructor){
+        return moduleRepository.findById(moduleId)
+                .filter(module -> {
+                    Course course = module.getCourseVersion().getCourse();
+                    return Objects.equals(course.getOwnerInstructor(), instructor) 
+                            && Objects.equals(course.getOrg(), organization);
+                })
+                .orElseThrow(() -> HttpUtil.getResolvedException(
+                        ResponseCode.RECORD_NOT_FOUND, 
+                        messageUtil.getMessage("module.not.found")));
+    }
+
+    @Override
     public Lesson validateLessonExistence(UUID lessonId, Module module){
         return lessonRepository.findById(lessonId)
                 .filter(lesson -> Objects.equals(lesson.getModule(), module))
@@ -117,6 +136,28 @@ public class CourseDomainServiceImpl implements CourseDomainService {
                 .orElseThrow(() -> HttpUtil.getResolvedException(
                         ResponseCode.RECORD_NOT_FOUND, 
                         messageUtil.getMessage("lesson.not.found")));
+    }
+
+    @Override
+    public LessonContent validateLessonContentBelongsToInstructor(UUID lessonContentId, Organization organization, Instructor instructor){
+        return lessonContentRepository.findById(lessonContentId)
+                .filter(lessonContent -> {
+                    Course course = lessonContent.getLesson().getModule().getCourseVersion().getCourse();
+                    return Objects.equals(course.getOwnerInstructor(), instructor) 
+                            && Objects.equals(course.getOrg(), organization);
+                })
+                .orElseThrow(() -> HttpUtil.getResolvedException(
+                        ResponseCode.RECORD_NOT_FOUND, 
+                        messageUtil.getMessage("lesson.content.not.found")));
+    }
+
+    @Override
+    public LessonAsset validateLessonAssetExistsForLessonContent(UUID lessonAssetId, LessonContent lessonContent){
+        return lessonAssetRepository.findById(lessonAssetId)
+                .filter(lessonAsset -> Objects.equals(lessonAsset.getLessonContent(), lessonContent))
+                .orElseThrow(() -> HttpUtil.getResolvedException(
+                        ResponseCode.RECORD_NOT_FOUND, 
+                        messageUtil.getMessage("lesson.asset.not.found.for.lesson.content")));
     }
 
     @Override

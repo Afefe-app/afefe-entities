@@ -21,9 +21,15 @@ public interface CourseDomainService {
     
     Module validateModuleExistence(UUID moduleId, CourseVersion courseVersion);
     
+    Module validateModuleBelongsToInstructor(UUID moduleId, Organization organization, Instructor instructor);
+    
     Lesson validateLessonExistence(UUID lessonId, Module module);
     
     Lesson validateLessonBelongsToInstructor(UUID lessonId, Organization organization, Instructor instructor);
+
+    LessonContent validateLessonContentBelongsToInstructor(UUID lessonContentId, Organization organization, Instructor instructor);
+
+    LessonAsset validateLessonAssetExistsForLessonContent(UUID lessonAssetId, LessonContent lessonContent);
 
     Quiz validateQuizExistence(UUID quizId);
 }

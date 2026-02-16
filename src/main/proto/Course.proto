@@ -3,19 +3,32 @@ option java_multiple_files = true;
 option java_package = "com.ocean.afefe.entities.proto";
 option java_outer_classname = "CourseProto";
 import "google/protobuf/struct.proto";
+import "Common.proto";
 
 service CourseMgtServiceGrpc {
     rpc CreateCourse(CreateCourseRequest) returns (CreateCourseResponse);
+    rpc UpdateCourse(UpdateInstructorCourseRequest) returns (UpdateInstructorCourseResponse);
+    rpc DeleteCourse(DeleteCourseRequest) returns (DeleteCourseResponse);
     rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
+    rpc UpdateModule(UpdateModuleRequest) returns (UpdateModuleResponse);
+    rpc DeleteModule(DeleteModuleRequest) returns (DeleteModuleResponse);
     rpc CreateLesson(CreateLessonRequest) returns (CreateLessonResponse);
+    rpc DeleteLesson(DeleteLessonRequest) returns (DeleteLessonResponse);
+    rpc CreateLessonContent(CreateLessonContentRequest) returns (CreateLessonContentResponse);
+    rpc UpdateLessonContent(UpdateLessonContentRequest) returns (UpdateLessonContentResponse);
     rpc CreateLessonAsset(CreateLessonAssetRequest) returns (CreateLessonAssetResponse);
+    rpc UpdateLessonAsset(UpdateLessonAssetRequest) returns (UpdateLessonAssetResponse);
+    rpc DeleteLessonAsset(DeleteLessonAssetRequest) returns (DeleteLessonAssetResponse);
     rpc CreateQuiz(CreateQuizRequest) returns (CreateQuizResponse);
     rpc CreateQuestionAndOption(CreateQuestionAndOptionRequest) returns (CreateQuestionAndOptionResponse);
+    rpc FetchCourses(FetchCoursesRequest) returns (FetchCoursesResponse);
+    rpc FetchModuleContent(FetchModuleContentRequest) returns (FetchModuleContentResponse);
     rpc FetchLessonContent(FetchLessonContentRequest) returns (FetchLessonContentResponse);
     rpc FetchCourseDetails(FetchCourseDetailsRequest) returns (FetchCourseDetailsResponse);
     rpc FetchQuizQuestions(FetchQuizQuestionsRequest) returns (FetchQuizQuestionsResponse);
     rpc FetchLessonQuizIds(FetchLessonQuizIdsRequest) returns (FetchLessonQuizIdsResponse);
     rpc FetchCourseInformation(FetchCourseInformationRequest) returns (FetchCourseInformationResponse);
+    rpc FetchCourseRatings(InstructorFetchCourseRatingsRequest) returns (InstructorFetchCourseRatingsResponse);
 }
 
 // Enums
@@ -67,6 +80,32 @@ message CreateCourseResponse {
     CourseDataGrpc responseData = 3;
 }
 
+// Update Course Messages
+message UpdateInstructorCourseRequest {
+    string courseId = 1;
+    string title = 2;
+    string coverImageUrl = 3;
+    string description = 4;
+    string summary = 5;
+    string status = 6;
+    repeated string tags = 7;
+    repeated CourseProposedAchievementGrpc proposedAchievements = 8;
+    repeated string requirements = 9;
+    string price = 10;
+    string currency = 11;
+    string level = 12;
+    string language = 13;
+    int32 estimatedMinutes = 14;
+    int32 priceCents = 15;
+    bool free = 16;
+}
+
+message UpdateInstructorCourseResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CourseDataGrpc responseData = 3;
+}
+
 message CourseProposedAchievementGrpc {
     int32 position = 1;
     string description = 2;
@@ -103,10 +142,24 @@ message CreateModuleRequest {
 message CreateModuleResponse {
     string responseCode = 1;
     string responseMessage = 2;
-    ModuleData responseData = 3;
+    InstructorModuleDataGrpc responseData = 3;
 }
 
-message ModuleData {
+// Update Module Messages
+message UpdateModuleRequest {
+    string moduleId = 1;
+    string title = 2;
+    string summary = 3;
+    int32 position = 4;
+}
+
+message UpdateModuleResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    InstructorModuleDataGrpc responseData = 3;
+}
+
+message InstructorModuleDataGrpc {
     string id = 1;
     string courseVersionId = 2;
     string courseId = 3;
@@ -120,10 +173,7 @@ message CreateLessonRequest {
     string courseId = 1;
     string moduleId = 2;
     string title = 3;
-    string content = 4;
-    string contentType = 5;
-    int32 durationSeconds = 6;
-    int32 position = 7;
+    int32 position = 4;
 }
 
 message CreateLessonResponse {
@@ -145,14 +195,54 @@ message LessonData {
     repeated string quizIds = 10;
 }
 
+// Lesson Content Messages
+message CreateLessonContentRequest {
+    string lessonId = 1;
+    string title = 2;
+    string description = 3;
+    string contentType = 4;
+    int32 courseVersion = 5;
+}
+
+message CreateLessonContentResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CreateLessonContentDataGrpc responseData = 3;
+}
+
+// Update Lesson Content Messages
+message UpdateLessonContentRequest {
+    string lessonContentId = 1;
+    string title = 2;
+    string description = 3;
+    string contentType = 4;
+    int32 courseVersion = 5;
+}
+
+message UpdateLessonContentResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CreateLessonContentDataGrpc responseData = 3;
+}
+
+message CreateLessonContentDataGrpc {
+    string id = 1;
+    string lessonId = 2;
+    string title = 3;
+    string description = 4;
+    string contentType = 5;
+    int32 courseVersion = 6;
+}
+
 // Lesson Asset Messages
 message CreateLessonAssetRequest {
-    string lessonId = 1;
+    string lessonContentId = 1;
     string assetType = 2;
     string uri = 3;
     string checksum = 4;
     int64 fileSizeBytes = 5;
     string mimeType = 6;
+    int32 assetOrder = 7;
 }
 
 message CreateLessonAssetResponse {
@@ -161,14 +251,75 @@ message CreateLessonAssetResponse {
     LessonAssetData responseData = 3;
 }
 
-message LessonAssetData {
-    string id = 1;
-    string lessonId = 2;
+// Update Lesson Asset Messages
+message UpdateLessonAssetRequest {
+    string lessonAssetId = 1;
+    string lessonContentId = 2;
     string assetType = 3;
     string uri = 4;
     string checksum = 5;
     int64 fileSizeBytes = 6;
     string mimeType = 7;
+    int32 assetOrder = 8;
+}
+
+message UpdateLessonAssetResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    LessonAssetData responseData = 3;
+}
+
+message LessonAssetData {
+    string id = 1;
+    string lessonContentId = 2;
+    string assetType = 3;
+    string uri = 4;
+    string checksum = 5;
+    int64 fileSizeBytes = 6;
+    string mimeType = 7;
+    int32 assetOrder = 8;
+}
+
+// Delete Lesson Asset Messages
+message DeleteCourseRequest {
+    string courseId = 1;
+}
+
+message DeleteCourseResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CourseDataGrpc responseData = 3;
+}
+
+message DeleteModuleRequest {
+    string moduleId = 1;
+}
+
+message DeleteModuleResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    InstructorModuleDataGrpc responseData = 3;
+}
+
+message DeleteLessonRequest {
+    string lessonId = 1;
+}
+
+message DeleteLessonResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    LessonDetailsDataGrpc responseData = 3;
+}
+
+message DeleteLessonAssetRequest {
+    string lessonAssetId = 1;
+    string lessonContentId = 2;
+}
+
+message DeleteLessonAssetResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    LessonAssetData responseData = 3;
 }
 
 message CreateQuizRequest {
@@ -261,7 +412,17 @@ message FetchLessonContentResponse {
 
 message LessonContentDataGrpc {
     LessonData lessonData = 1;
-    repeated LessonAssetData lessonAssetData = 2;
+    repeated LessonContentWithAssetsDataGrpc lessonContents = 2;
+}
+
+message LessonContentWithAssetsDataGrpc {
+    string id = 1;
+    string lessonId = 2;
+    string title = 3;
+    string description = 4;
+    string contentType = 5;
+    int32 courseVersion = 6;
+    repeated LessonAssetData assets = 7;
 }
 
 // Fetch Course Details Messages
@@ -291,6 +452,36 @@ message ModuleContentDataGrpc {
 message LessonDetailsDataGrpc {
     string lessonId = 1;
     string lessonTitle = 2;
+    int32 position = 3;
+}
+
+// Fetch Courses Messages
+message FetchCoursesRequest {
+    int32 pageNumber = 1; // Page number (0-based)
+    int32 pageSize = 2;   // Number of items per page
+    string sort = 3;      // Sort direction
+}
+
+message FetchCoursesResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    FetchCoursesDataGrpc responseData = 3;
+}
+
+message FetchCoursesDataGrpc {
+    PaginationMetaGrpc meta = 1;
+    repeated CourseDataGrpc content = 2;
+}
+
+// Fetch Module Content Messages
+message FetchModuleContentRequest {
+    string moduleId = 1;
+}
+
+message FetchModuleContentResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    ModuleContentDataGrpc responseData = 3;
 }
 
 message QuizContentDataGrpc {
@@ -365,4 +556,40 @@ message FetchCourseInformationResponse {
     string responseCode = 1;
     string responseMessage = 2;
     CourseDataGrpc responseData = 3;
+}
+
+// Fetch Course Ratings Messages
+message InstructorFetchCourseRatingsRequest {
+    string courseId = 1; // Course UUID
+}
+
+message InstructorFetchCourseRatingsResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CourseRatingsDataGrpc responseData = 3;
+}
+
+message CourseRatingsDataGrpc {
+    repeated InstructorCourseReviewDataGrpc reviews = 1;
+    int64 totalReviews = 2;
+    double overallRating = 3;
+    RatingDistributionDataGrpc ratingDistribution = 4;
+}
+
+message InstructorCourseReviewDataGrpc {
+    string id = 1;
+    string userId = 2;
+    string userName = 3;
+    int32 rating = 4;
+    string review = 5;
+    string ratedAt = 6;
+    string updatedAt = 7;
+}
+
+message RatingDistributionDataGrpc {
+    int64 oneStar = 1;
+    int64 twoStar = 2;
+    int64 threeStar = 3;
+    int64 fourStar = 4;
+    int64 fiveStar = 5;
 }

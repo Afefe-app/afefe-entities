@@ -16,8 +16,7 @@ import lombok.*;
 public class LessonAsset extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lesson_id", nullable = false)
-    private Lesson lesson;
+    private LessonContent lessonContent;
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
@@ -31,4 +30,7 @@ public class LessonAsset extends BaseUUIDEntity {
     private Long fileSizeBytes;
 
     private String mimeType;
+
+    @Column(nullable = false)
+    private Integer assetOrder;
 }
