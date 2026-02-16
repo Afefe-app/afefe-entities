@@ -602,8 +602,60 @@
             <a href="#Calendar.proto">Calendar.proto</a>
             <ul>
               
+                <li>
+                  <a href="#.CalendarEventDataGrpc"><span class="badge">M</span>CalendarEventDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.CalendarEventPageDataGrpc"><span class="badge">M</span>CalendarEventPageDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.CancelCalendarEventRequest"><span class="badge">M</span>CancelCalendarEventRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.CancelCalendarEventResponse"><span class="badge">M</span>CancelCalendarEventResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.CreateCalendarEventRequest"><span class="badge">M</span>CreateCalendarEventRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.CreateCalendarEventResponse"><span class="badge">M</span>CreateCalendarEventResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchCalendarEventByIdRequest"><span class="badge">M</span>FetchCalendarEventByIdRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchCalendarEventByIdResponse"><span class="badge">M</span>FetchCalendarEventByIdResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchCalendarEventsRequest"><span class="badge">M</span>FetchCalendarEventsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchCalendarEventsResponse"><span class="badge">M</span>FetchCalendarEventsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.RescheduleCalendarEventRequest"><span class="badge">M</span>RescheduleCalendarEventRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.RescheduleCalendarEventResponse"><span class="badge">M</span>RescheduleCalendarEventResponse</a>
+                </li>
               
               
+              
+              
+                <li>
+                  <a href="#.CalendarServiceGrpc"><span class="badge">S</span>CalendarServiceGrpc</a>
+                </li>
               
             </ul>
           </li>
@@ -5470,12 +5522,655 @@
       <p></p>
 
       
+        <h3 id=".CalendarEventDataGrpc">CalendarEventDataGrpc</h3>
+        <p>---- Shared data messages ----</p>
 
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>date</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fromTime</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>toTime</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timeZone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>eventType</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assignedCourse</td>
+                  <td><a href="#CourseDataGrpc">CourseDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Optional; when event is linked to a course </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CalendarEventPageDataGrpc">CalendarEventPageDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#CalendarEventDataGrpc">CalendarEventDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CancelCalendarEventRequest">CancelCalendarEventRequest</h3>
+        <p>---- Cancel calendar event ----</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>calendarEventId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CancelCalendarEventResponse">CancelCalendarEventResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CalendarEventDataGrpc">CalendarEventDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CreateCalendarEventRequest">CreateCalendarEventRequest</h3>
+        <p>---- Create calendar event ----</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>date</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>ISO date (e.g. 2025-01-15) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fromTime</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Local time (e.g. 09:00) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>toTime</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Local time (e.g. 10:30) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>coverPhotoUrl</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timeZone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>e.g. UTC, America/New_York </p></td>
+                </tr>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional; UUID of assigned course </p></td>
+                </tr>
+              
+                <tr>
+                  <td>eventType</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>e.g. DEFAULT, WORKSHOP </p></td>
+                </tr>
+              
+                <tr>
+                  <td>price</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional; decimal string </p></td>
+                </tr>
+              
+                <tr>
+                  <td>currency</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional; e.g. USD </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CreateCalendarEventResponse">CreateCalendarEventResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CalendarEventDataGrpc">CalendarEventDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCalendarEventByIdRequest">FetchCalendarEventByIdRequest</h3>
+        <p>---- Fetch calendar event by id ----</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>calendarEventId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCalendarEventByIdResponse">FetchCalendarEventByIdResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CalendarEventDataGrpc">CalendarEventDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCalendarEventsRequest">FetchCalendarEventsRequest</h3>
+        <p>---- Fetch calendar events (list with filters) ----</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional; filter by course UUID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>startDate</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional; ISO date </p></td>
+                </tr>
+              
+                <tr>
+                  <td>endDate</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional; ISO date </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timeZone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional; event type </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional; event status </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageNumber</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageSize</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort_direction</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>e.g. ASC, DESC </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchCalendarEventsResponse">FetchCalendarEventsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CalendarEventPageDataGrpc">CalendarEventPageDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".RescheduleCalendarEventRequest">RescheduleCalendarEventRequest</h3>
+        <p>---- Reschedule calendar event ----</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>calendarEventId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>newDate</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>ISO date </p></td>
+                </tr>
+              
+                <tr>
+                  <td>newFromTime</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>newToTime</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>newTimeZone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".RescheduleCalendarEventResponse">RescheduleCalendarEventResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CalendarEventDataGrpc">CalendarEventDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
 
       
 
       
+
+      
+        <h3 id=".CalendarServiceGrpc">CalendarServiceGrpc</h3>
+        <p>======================================================================================</p><p>CalendarServiceGrpc</p><p>---------------------------------------------------------------------------------------</p><p>gRPC service for the Instructor Calendar module. Manages physical class / event</p><p>scheduling: create, list, fetch by id, cancel, and reschedule calendar events.</p><p>Optional link to a course (assignedCourse). Identity/tenant from gRPC metadata.</p><p>======================================================================================</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CreateCalendarEvent</td>
+                <td><a href="#CreateCalendarEventRequest">.CreateCalendarEventRequest</a></td>
+                <td><a href="#CreateCalendarEventResponse">.CreateCalendarEventResponse</a></td>
+                <td><p>Creates a new calendar event (physical class session).</p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchCalendarEvents</td>
+                <td><a href="#FetchCalendarEventsRequest">.FetchCalendarEventsRequest</a></td>
+                <td><a href="#FetchCalendarEventsResponse">.FetchCalendarEventsResponse</a></td>
+                <td><p>Fetches calendar events with optional filters (course, date range, type, status) and pagination.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchCalendarEventById</td>
+                <td><a href="#FetchCalendarEventByIdRequest">.FetchCalendarEventByIdRequest</a></td>
+                <td><a href="#FetchCalendarEventByIdResponse">.FetchCalendarEventByIdResponse</a></td>
+                <td><p>Fetches a single calendar event by ID.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CancelCalendarEvent</td>
+                <td><a href="#CancelCalendarEventRequest">.CancelCalendarEventRequest</a></td>
+                <td><a href="#CancelCalendarEventResponse">.CancelCalendarEventResponse</a></td>
+                <td><p>Cancels a calendar event (e.g. sets status to CANCELLED).</p></td>
+              </tr>
+            
+              <tr>
+                <td>RescheduleCalendarEvent</td>
+                <td><a href="#RescheduleCalendarEventRequest">.RescheduleCalendarEventRequest</a></td>
+                <td><a href="#RescheduleCalendarEventResponse">.RescheduleCalendarEventResponse</a></td>
+                <td><p>Reschedules a calendar event to a new date/time.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
     
       
       <div class="file-heading">
