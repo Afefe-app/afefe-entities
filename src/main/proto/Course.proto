@@ -16,6 +16,7 @@ service CourseMgtServiceGrpc {
     rpc DeleteLesson(DeleteLessonRequest) returns (DeleteLessonResponse);
     rpc CreateLessonContent(CreateLessonContentRequest) returns (CreateLessonContentResponse);
     rpc UpdateLessonContent(UpdateLessonContentRequest) returns (UpdateLessonContentResponse);
+    rpc DeleteLessonContent(DeleteLessonContentRequest) returns (DeleteLessonContentResponse);
     rpc CreateLessonAsset(CreateLessonAssetRequest) returns (CreateLessonAssetResponse);
     rpc UpdateLessonAsset(UpdateLessonAssetRequest) returns (UpdateLessonAssetResponse);
     rpc DeleteLessonAsset(DeleteLessonAssetRequest) returns (DeleteLessonAssetResponse);
@@ -232,6 +233,17 @@ message CreateLessonContentDataGrpc {
     string description = 4;
     string contentType = 5;
     int32 courseVersion = 6;
+}
+
+// Delete Lesson Content Messages
+message DeleteLessonContentRequest {
+    string lessonContentId = 1;
+}
+
+message DeleteLessonContentResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CreateLessonContentDataGrpc responseData = 3;
 }
 
 // Lesson Asset Messages
