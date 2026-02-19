@@ -13,7 +13,8 @@ public enum EventType implements Enumerable {
     SEND_OTP("send-otp", "Send otp"),
     USER_RESET_PASSWORD("user-reset-password", "User reset password"),
 
-    INSTRUCTOR_CREATED("instructor-created", "A new instructor has been created")
+    INSTRUCTOR_CREATED("instructor-created", "A new instructor has been created"),
+    USER_WALLET_CREATED("user-wallet-created","User wallet has been created")
     ;
 
     private final String key;
