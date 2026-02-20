@@ -1,0 +1,32 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "WalletProto";
+
+// Wallet service for the afefe-payment microservice.
+// User/tenant from gRPC metadata.
+service WalletServiceGrpc {
+
+  // Creates a wallet for the authenticated user. If the user already has a wallet, returns the existing one.
+  rpc CreateWallet(CreateWalletRequest) returns (CreateWalletResponse);
+}
+
+message CreateWalletRequest {
+  // No fields - user is extracted from gRPC context metadata
+}
+
+message CreateWalletResponse {
+  string response_code = 1;
+  string response_message = 2;
+  WalletDataGrpc wallet_data = 3;
+}
+
+message WalletDataGrpc {
+  string id = 1;                    // Wallet UUID
+  string account_number = 2;
+  string available_balance = 3;      // Decimal as string
+  string customer_name = 4;
+  string currency = 5;               // e.g. USD
+  string wallet_product_name = 6;
+  string core_status = 7;
+}

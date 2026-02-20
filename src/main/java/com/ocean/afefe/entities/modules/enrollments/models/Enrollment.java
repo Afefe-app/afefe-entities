@@ -19,7 +19,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Enrollment extends BaseUUIDEntity {
+public class  Enrollment extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "org_id", nullable = false)
@@ -46,5 +46,4 @@ public class Enrollment extends BaseUUIDEntity {
     private Instant startedAt;
 
     private Instant completedAt;
-
 }

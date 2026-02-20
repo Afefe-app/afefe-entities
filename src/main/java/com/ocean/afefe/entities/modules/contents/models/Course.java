@@ -13,10 +13,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "courses")
@@ -95,6 +92,10 @@ public class Course extends BaseUUIDEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private User updatedBy;
 
+
+    public boolean requirePayment(){
+        return !this.isFree() || Objects.nonNull(this.getPrice()) && this.getPrice().compareTo(BigDecimal.ZERO) <= 0;
+    }
 
     @Override
     public void prePersist(){

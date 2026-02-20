@@ -607,6 +607,45 @@
         
           
           <li>
+            <a href="#Payment.proto">Payment.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.GetTransactionBySessionRequest"><span class="badge">M</span>GetTransactionBySessionRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.GetTransactionBySessionResponse"><span class="badge">M</span>GetTransactionBySessionResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.InitiateCourseCheckoutRequest"><span class="badge">M</span>InitiateCourseCheckoutRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.InitiateCourseCheckoutResponse"><span class="badge">M</span>InitiateCourseCheckoutResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.PaymentInitiationDataGrpc"><span class="badge">M</span>PaymentInitiationDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.TransactionDetailsGrpc"><span class="badge">M</span>TransactionDetailsGrpc</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#.BillingServiceGrpc"><span class="badge">S</span>BillingServiceGrpc</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#Calendar.proto">Calendar.proto</a>
             <ul>
               
@@ -713,6 +752,33 @@
         
           
           <li>
+            <a href="#Wallet.proto">Wallet.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.CreateWalletRequest"><span class="badge">M</span>CreateWalletRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.CreateWalletResponse"><span class="badge">M</span>CreateWalletResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.WalletDataGrpc"><span class="badge">M</span>WalletDataGrpc</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#.WalletServiceGrpc"><span class="badge">S</span>WalletServiceGrpc</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#LearnerCourse.proto">LearnerCourse.proto</a>
             <ul>
               
@@ -754,6 +820,18 @@
               
                 <li>
                   <a href="#.DeleteSavedCourseResponse"><span class="badge">M</span>DeleteSavedCourseResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.EnrollUserCourseRequest"><span class="badge">M</span>EnrollUserCourseRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.EnrollUserCourseResponse"><span class="badge">M</span>EnrollUserCourseResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.EnrollmentDataGrpc"><span class="badge">M</span>EnrollmentDataGrpc</a>
                 </li>
               
                 <li>
@@ -5594,6 +5672,310 @@
     
       
       <div class="file-heading">
+        <h2 id="Payment.proto">Payment.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".GetTransactionBySessionRequest">GetTransactionBySessionRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>session_transaction_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Internal reference (client reference id) of the payment transaction </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".GetTransactionBySessionResponse">GetTransactionBySessionResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>response_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>response_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>transaction_data</td>
+                  <td><a href="#TransactionDetailsGrpc">TransactionDetailsGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".InitiateCourseCheckoutRequest">InitiateCourseCheckoutRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>course_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>checkout_success_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>checkout_error_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>idempotency_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".InitiateCourseCheckoutResponse">InitiateCourseCheckoutResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>response_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>response_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>response_data</td>
+                  <td><a href="#PaymentInitiationDataGrpc">PaymentInitiationDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".PaymentInitiationDataGrpc">PaymentInitiationDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>PaymentType name, e.g. COURSE_ENROLLMENT </p></td>
+                </tr>
+              
+                <tr>
+                  <td>entity_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Course UUID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>currency</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>checkout_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".TransactionDetailsGrpc">TransactionDetailsGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Transaction UUID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>internal_reference</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>PaymentStatus: PENDING, FAILED, SUCCESS </p></td>
+                </tr>
+              
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>currency</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>paid_at</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>ISO-8601 instant or empty </p></td>
+                </tr>
+              
+                <tr>
+                  <td>entity_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>e.g. course UUID </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id=".BillingServiceGrpc">BillingServiceGrpc</h3>
+        <p>Billing service for the afefe-payment microservice.</p><p>Initiates course enrollment checkout (Stripe Session); user/tenant from gRPC metadata.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>InitiateCourseCheckout</td>
+                <td><a href="#InitiateCourseCheckoutRequest">.InitiateCourseCheckoutRequest</a></td>
+                <td><a href="#InitiateCourseCheckoutResponse">.InitiateCourseCheckoutResponse</a></td>
+                <td><p>Initiates a course enrollment payment: creates PaymentTransaction and Stripe Checkout Session,
+returns checkout URL for redirect. Optional idempotency_key for duplicate requests.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetTransactionBySession</td>
+                <td><a href="#GetTransactionBySessionRequest">.GetTransactionBySessionRequest</a></td>
+                <td><a href="#GetTransactionBySessionResponse">.GetTransactionBySessionResponse</a></td>
+                <td><p>Returns transaction details (especially payment status) for the given session/transaction reference (internal reference).</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
         <h2 id="Calendar.proto">Calendar.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -6550,6 +6932,150 @@
     
       
       <div class="file-heading">
+        <h2 id="Wallet.proto">Wallet.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".CreateWalletRequest">CreateWalletRequest</h3>
+        <p>No fields - user is extracted from gRPC context metadata</p>
+
+        
+
+        
+      
+        <h3 id=".CreateWalletResponse">CreateWalletResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>response_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>response_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>wallet_data</td>
+                  <td><a href="#WalletDataGrpc">WalletDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".WalletDataGrpc">WalletDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Wallet UUID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>account_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>available_balance</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Decimal as string </p></td>
+                </tr>
+              
+                <tr>
+                  <td>customer_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>currency</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>e.g. USD </p></td>
+                </tr>
+              
+                <tr>
+                  <td>wallet_product_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>core_status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id=".WalletServiceGrpc">WalletServiceGrpc</h3>
+        <p>Wallet service for the afefe-payment microservice.</p><p>User/tenant from gRPC metadata.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CreateWallet</td>
+                <td><a href="#CreateWalletRequest">.CreateWalletRequest</a></td>
+                <td><a href="#CreateWalletResponse">.CreateWalletResponse</a></td>
+                <td><p>Creates a wallet for the authenticated user. If the user already has a wallet, returns the existing one.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
         <h2 id="LearnerCourse.proto">LearnerCourse.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -7073,6 +7599,127 @@
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Confirmation message </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".EnrollUserCourseRequest">EnrollUserCourseRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>course_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the course to enroll in </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".EnrollUserCourseResponse">EnrollUserCourseResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>response_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>response_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>enrollment_data</td>
+                  <td><a href="#EnrollmentDataGrpc">EnrollmentDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".EnrollmentDataGrpc">EnrollmentDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Enrollment UUID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>course_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>current_module_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>e.g. ENROLLED </p></td>
+                </tr>
+              
+                <tr>
+                  <td>progress_percent</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>started_at</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>ISO-8601 instant or empty </p></td>
                 </tr>
               
             </tbody>
@@ -9796,6 +10443,13 @@ All filter parameters are optional. Results are paginated.</p></td>
                 <td><a href="#SaveCourseRequest">.SaveCourseRequest</a></td>
                 <td><a href="#SaveCourseResponse">.SaveCourseResponse</a></td>
                 <td><p>Saves a course to the user&#39;s wishlist. Prevents duplicate saves for the same course.</p></td>
+              </tr>
+            
+              <tr>
+                <td>EnrollUserCourse</td>
+                <td><a href="#EnrollUserCourseRequest">.EnrollUserCourseRequest</a></td>
+                <td><a href="#EnrollUserCourseResponse">.EnrollUserCourseResponse</a></td>
+                <td><p>Enrolls the user in a course. For paid courses, payment must be completed first.</p></td>
               </tr>
             
               <tr>

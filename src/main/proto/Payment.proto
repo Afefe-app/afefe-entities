@@ -1,0 +1,57 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "PaymentProto";
+
+// Billing service for the afefe-payment microservice.
+// Initiates course enrollment checkout (Stripe Session); user/tenant from gRPC metadata.
+service BillingServiceGrpc {
+
+  // Initiates a course enrollment payment: creates PaymentTransaction and Stripe Checkout Session,
+  // returns checkout URL for redirect. Optional idempotency_key for duplicate requests.
+  rpc InitiateCourseCheckout(InitiateCourseCheckoutRequest) returns (InitiateCourseCheckoutResponse);
+
+  // Returns transaction details (especially payment status) for the given session/transaction reference (internal reference).
+  rpc GetTransactionBySession(GetTransactionBySessionRequest) returns (GetTransactionBySessionResponse);
+}
+
+message InitiateCourseCheckoutRequest {
+  string course_id = 1;
+  string checkout_success_url = 2;
+  string checkout_error_url = 3;
+  string idempotency_key = 4;
+}
+
+message InitiateCourseCheckoutResponse {
+  string response_code = 1;
+  string response_message = 2;
+  PaymentInitiationDataGrpc response_data = 3;
+}
+
+message PaymentInitiationDataGrpc {
+  string type = 1;           // PaymentType name, e.g. COURSE_ENROLLMENT
+  string entity_id = 2;      // Course UUID
+  string amount = 3;
+  string currency = 4;
+  string checkout_url = 5;
+}
+
+message GetTransactionBySessionRequest {
+  string session_transaction_id = 1;  // Internal reference (client reference id) of the payment transaction
+}
+
+message GetTransactionBySessionResponse {
+  string response_code = 1;
+  string response_message = 2;
+  TransactionDetailsGrpc transaction_data = 3;
+}
+
+message TransactionDetailsGrpc {
+  string id = 1;                    // Transaction UUID
+  string internal_reference = 2;
+  string status = 3;                // PaymentStatus: PENDING, FAILED, SUCCESS
+  string amount = 4;
+  string currency = 5;
+  string paid_at = 6;               // ISO-8601 instant or empty
+  string entity_id = 7;             // e.g. course UUID
+}
