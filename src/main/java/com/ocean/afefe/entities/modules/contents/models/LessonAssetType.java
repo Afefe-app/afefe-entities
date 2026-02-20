@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum LessonAssetType {
     VIDEO_URL("Video URL"),
+    IMAGE_URL("Image URL"),
     PDF_URL("PDF URL"),
     HTML("HTML"),
     SCORM_PKG("Scorm PKG"),;

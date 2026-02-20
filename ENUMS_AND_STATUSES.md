@@ -199,14 +199,20 @@ const formattedPrice = `${currencySymbols[course.currency]}${course.price}`;
 | Enum Constant | Database Value | Description | Context |
 |---------------|----------------|-------------|---------|
 | `DRAFT` | `Draft` | Course is being created/edited | Work-in-progress state |
+| `IN_REVIEW` | `In Review` | Course is submitted for review | Awaiting approval state |
 | `PUBLISHED` | `Published` | Course is live and available | Active course state |
 
 #### Business Logic
 
 - **State Transitions**: 
-  - `DRAFT` → `PUBLISHED` (when instructor publishes)
+  - `DRAFT` → `IN_REVIEW` (when instructor submits for review)
+  - `DRAFT` → `PUBLISHED` (when instructor publishes directly)
+  - `IN_REVIEW` → `PUBLISHED` (when approved)
+  - `IN_REVIEW` → `DRAFT` (when rejected or sent back for edits)
   - `PUBLISHED` → `DRAFT` (when instructor unpublishes)
-- **Validation**: Only published courses are visible to learners
+- **Validation**: 
+  - Only published courses are visible to learners
+  - Courses in `PUBLISHED` or `IN_REVIEW` status cannot be updated
 - **Frontend Usage**: Show/hide courses based on status, display status badge
 
 #### Frontend Integration Example
@@ -214,6 +220,7 @@ const formattedPrice = `${currencySymbols[course.currency]}${course.price}`;
 ```typescript
 enum CourseStatus {
   DRAFT = 'Draft',
+  IN_REVIEW = 'In Review',
   PUBLISHED = 'Published'
 }
 
@@ -1036,6 +1043,7 @@ const statusColors = {
 | Enum Constant | Database Value | Description | Context |
 |---------------|----------------|-------------|---------|
 | `VIDEO_URL` | `Video URL` | Video file URL | External video link |
+| `IMAGE_URL` | `Image URL` | Image file URL | External image link |
 | `PDF_URL` | `PDF URL` | PDF document URL | PDF file link |
 | `HTML` | `HTML` | HTML content | HTML content asset |
 | `SCORM_PKG` | `Scorm PKG` | SCORM package | SCORM content package |
