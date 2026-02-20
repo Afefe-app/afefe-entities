@@ -11,8 +11,7 @@ service InstructorProfileServiceGrpc {
 // Update Profile Messages
 message UpdateProfileRequest {
     string fullName = 1;
-    string email = 2;
-    string avatarUrl = 3;
+    string avatarUrl = 2;
 }
 
 message UpdateProfileResponse {

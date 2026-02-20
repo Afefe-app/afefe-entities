@@ -9,6 +9,7 @@ service CourseMgtServiceGrpc {
     rpc CreateCourse(CreateCourseRequest) returns (CreateCourseResponse);
     rpc UpdateCourse(UpdateInstructorCourseRequest) returns (UpdateInstructorCourseResponse);
     rpc DeleteCourse(DeleteCourseRequest) returns (DeleteCourseResponse);
+    rpc PublishCourse(PublishCourseRequest) returns (PublishCourseResponse);
     rpc CreateModule(CreateModuleRequest) returns (CreateModuleResponse);
     rpc UpdateModule(UpdateModuleRequest) returns (UpdateModuleResponse);
     rpc DeleteModule(DeleteModuleRequest) returns (DeleteModuleResponse);
@@ -37,6 +38,7 @@ enum CourseStatusGrpc {
     COURSE_STATUS_UNSPECIFIED = 0;
     DRAFT = 1;
     PUBLISHED = 2;
+    IN_REVIEW = 3;
 }
 
 enum LessonContentTypeGrpc {
@@ -54,6 +56,7 @@ enum LessonAssetTypeGrpc {
     PDF_URL = 2;
     HTML = 3;
     SCORM_PKG = 4;
+    IMAGE_URL = 5;
 }
 
 enum QuestionTypeGrpc {
@@ -88,17 +91,16 @@ message UpdateInstructorCourseRequest {
     string coverImageUrl = 3;
     string description = 4;
     string summary = 5;
-    string status = 6;
-    repeated string tags = 7;
-    repeated CourseProposedAchievementGrpc proposedAchievements = 8;
-    repeated string requirements = 9;
-    string price = 10;
-    string currency = 11;
-    string level = 12;
-    string language = 13;
-    int32 estimatedMinutes = 14;
-    int32 priceCents = 15;
-    bool free = 16;
+    repeated string tags = 6;
+    repeated CourseProposedAchievementGrpc proposedAchievements = 7;
+    repeated string requirements = 8;
+    string price = 9;
+    string currency = 10;
+    string level = 11;
+    string language = 12;
+    int32 estimatedMinutes = 13;
+    int32 priceCents = 14;
+    bool free = 15;
 }
 
 message UpdateInstructorCourseResponse {
@@ -251,10 +253,11 @@ message CreateLessonAssetRequest {
     string lessonContentId = 1;
     string assetType = 2;
     string uri = 3;
-    string checksum = 4;
-    int64 fileSizeBytes = 5;
-    string mimeType = 6;
-    int32 assetOrder = 7;
+    string lessonText = 4;
+    string checksum = 5;
+    int64 fileSizeBytes = 6;
+    string mimeType = 7;
+    int32 assetOrder = 8;
 }
 
 message CreateLessonAssetResponse {
@@ -269,10 +272,11 @@ message UpdateLessonAssetRequest {
     string lessonContentId = 2;
     string assetType = 3;
     string uri = 4;
-    string checksum = 5;
-    int64 fileSizeBytes = 6;
-    string mimeType = 7;
-    int32 assetOrder = 8;
+    string lessonText = 5;
+    string checksum = 6;
+    int64 fileSizeBytes = 7;
+    string mimeType = 8;
+    int32 assetOrder = 9;
 }
 
 message UpdateLessonAssetResponse {
@@ -286,10 +290,11 @@ message LessonAssetData {
     string lessonContentId = 2;
     string assetType = 3;
     string uri = 4;
-    string checksum = 5;
-    int64 fileSizeBytes = 6;
-    string mimeType = 7;
-    int32 assetOrder = 8;
+    string lessonText = 5;
+    string checksum = 6;
+    int64 fileSizeBytes = 7;
+    string mimeType = 8;
+    int32 assetOrder = 9;
 }
 
 // Delete Lesson Asset Messages
@@ -298,6 +303,17 @@ message DeleteCourseRequest {
 }
 
 message DeleteCourseResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CourseDataGrpc responseData = 3;
+}
+
+// Publish Course Messages
+message PublishCourseRequest {
+    string courseId = 1;
+}
+
+message PublishCourseResponse {
     string responseCode = 1;
     string responseMessage = 2;
     CourseDataGrpc responseData = 3;
@@ -472,6 +488,7 @@ message FetchCoursesRequest {
     int32 pageNumber = 1; // Page number (0-based)
     int32 pageSize = 2;   // Number of items per page
     string sort = 3;      // Sort direction
+    string status = 4;    // Course status filter (DRAFT, IN_REVIEW, PUBLISHED)
 }
 
 message FetchCoursesResponse {

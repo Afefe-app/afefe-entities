@@ -22,8 +22,9 @@ public class LessonAsset extends BaseUUIDEntity {
     @Enumerated(value = EnumType.STRING)
     private LessonAssetType assetType;
 
-    @Column(nullable = false)
     private String uri;
+
+    private String lessonText;
 
     private String checksum;
 

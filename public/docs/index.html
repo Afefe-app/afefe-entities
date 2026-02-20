@@ -438,6 +438,14 @@
                 </li>
               
                 <li>
+                  <a href="#.PublishCourseRequest"><span class="badge">M</span>PublishCourseRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.PublishCourseResponse"><span class="badge">M</span>PublishCourseResponse</a>
+                </li>
+              
+                <li>
                   <a href="#.QuestionOptionDataGrpc"><span class="badge">M</span>QuestionOptionDataGrpc</a>
                 </li>
               
@@ -1784,6 +1792,13 @@
                 </tr>
               
                 <tr>
+                  <td>lessonText</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>checksum</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -3119,6 +3134,13 @@
                   <td><p>Sort direction </p></td>
                 </tr>
               
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Course status filter (DRAFT, IN_REVIEW, PUBLISHED) </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -3638,6 +3660,13 @@
                 </tr>
               
                 <tr>
+                  <td>lessonText</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>checksum</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -3973,6 +4002,68 @@
                 <tr>
                   <td>quizContentData</td>
                   <td><a href="#QuizContentDataGrpc">QuizContentDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".PublishCourseRequest">PublishCourseRequest</h3>
+        <p>Publish Course Messages</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".PublishCourseResponse">PublishCourseResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#CourseDataGrpc">CourseDataGrpc</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -4366,13 +4457,6 @@
                 </tr>
               
                 <tr>
-                  <td>status</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
                   <td>tags</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
@@ -4520,6 +4604,13 @@
               
                 <tr>
                   <td>uri</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lessonText</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -4799,6 +4890,12 @@
                 <td><p></p></td>
               </tr>
             
+              <tr>
+                <td>IN_REVIEW</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
           </tbody>
         </table>
       
@@ -4837,6 +4934,12 @@
               <tr>
                 <td>SCORM_PKG</td>
                 <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>IMAGE_URL</td>
+                <td>5</td>
                 <td><p></p></td>
               </tr>
             
@@ -4943,6 +5046,13 @@
                 <td>DeleteCourse</td>
                 <td><a href="#DeleteCourseRequest">.DeleteCourseRequest</a></td>
                 <td><a href="#DeleteCourseResponse">.DeleteCourseResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PublishCourse</td>
+                <td><a href="#PublishCourseRequest">.PublishCourseRequest</a></td>
+                <td><a href="#PublishCourseResponse">.PublishCourseResponse</a></td>
                 <td><p></p></td>
               </tr>
             
@@ -5495,13 +5605,6 @@
               
                 <tr>
                   <td>fullName</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>email</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
