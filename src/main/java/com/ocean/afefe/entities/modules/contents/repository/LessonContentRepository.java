@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface LessonContentRepository extends JpaRepository<LessonContent, UUID> {
-    List<LessonContent> findAllByLessonId(UUID lessonId);
+    List<LessonContent> findAllByLessonIdOrderByCreatedAtAsc(UUID lessonId);
 }

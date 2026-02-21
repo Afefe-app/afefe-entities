@@ -14,6 +14,7 @@ service CourseMgtServiceGrpc {
     rpc UpdateModule(UpdateModuleRequest) returns (UpdateModuleResponse);
     rpc DeleteModule(DeleteModuleRequest) returns (DeleteModuleResponse);
     rpc CreateLesson(CreateLessonRequest) returns (CreateLessonResponse);
+    rpc UpdateLesson(UpdateLessonRequest) returns (UpdateLessonResponse);
     rpc DeleteLesson(DeleteLessonRequest) returns (DeleteLessonResponse);
     rpc CreateLessonContent(CreateLessonContentRequest) returns (CreateLessonContentResponse);
     rpc UpdateLessonContent(UpdateLessonContentRequest) returns (UpdateLessonContentResponse);
@@ -180,6 +181,21 @@ message CreateLessonRequest {
 }
 
 message CreateLessonResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    LessonData responseData = 3;
+}
+
+// Update Lesson Messages
+message UpdateLessonRequest {
+    string lessonId = 1;
+    string courseId = 2;
+    string moduleId = 3;
+    string title = 4;
+    int32 position = 5;
+}
+
+message UpdateLessonResponse {
     string responseCode = 1;
     string responseMessage = 2;
     LessonData responseData = 3;
