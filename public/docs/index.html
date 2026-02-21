@@ -498,6 +498,14 @@
                 </li>
               
                 <li>
+                  <a href="#.UpdateLessonRequest"><span class="badge">M</span>UpdateLessonRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.UpdateLessonResponse"><span class="badge">M</span>UpdateLessonResponse</a>
+                </li>
+              
+                <li>
                   <a href="#.UpdateModuleRequest"><span class="badge">M</span>UpdateModuleRequest</a>
                 </li>
               
@@ -4779,6 +4787,96 @@
 
         
       
+        <h3 id=".UpdateLessonRequest">UpdateLessonRequest</h3>
+        <p>Update Lesson Messages</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>lessonId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>courseId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>moduleId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>position</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".UpdateLessonResponse">UpdateLessonResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#LessonData">LessonData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".UpdateModuleRequest">UpdateModuleRequest</h3>
         <p>Update Module Messages</p>
 
@@ -5081,6 +5179,13 @@
                 <td>CreateLesson</td>
                 <td><a href="#CreateLessonRequest">.CreateLessonRequest</a></td>
                 <td><a href="#CreateLessonResponse">.CreateLessonResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateLesson</td>
+                <td><a href="#UpdateLessonRequest">.UpdateLessonRequest</a></td>
+                <td><a href="#UpdateLessonResponse">.UpdateLessonResponse</a></td>
                 <td><p></p></td>
               </tr>
             
