@@ -133,6 +133,7 @@ message CourseDataGrpc {
     repeated string tags = 15;
     repeated string requirements = 16;
     repeated CourseProposedAchievementGrpc learningOutcomes = 17;
+    int64 lastUpdated = 18;
 }
 
 // Module Messages
