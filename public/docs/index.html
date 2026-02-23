@@ -462,6 +462,10 @@
                 </li>
               
                 <li>
+                  <a href="#.QuizInfoDataGrpc"><span class="badge">M</span>QuizInfoDataGrpc</a>
+                </li>
+              
+                <li>
                   <a href="#.QuizQuestionsDataGrpc"><span class="badge">M</span>QuizQuestionsDataGrpc</a>
                 </li>
               
@@ -1635,6 +1639,13 @@
                   <td>learningOutcomes</td>
                   <td><a href="#CourseProposedAchievementGrpc">CourseProposedAchievementGrpc</a></td>
                   <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lastUpdated</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -4002,6 +4013,13 @@
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>quizContentData</td>
+                  <td><a href="#QuizContentDataGrpc">QuizContentDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -4027,8 +4045,8 @@
                 </tr>
               
                 <tr>
-                  <td>quizIds</td>
-                  <td><a href="#string">string</a></td>
+                  <td>quizzes</td>
+                  <td><a href="#QuizInfoDataGrpc">QuizInfoDataGrpc</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
@@ -4082,13 +4100,6 @@
                   <td>lessonDetailsData</td>
                   <td><a href="#LessonDetailsDataGrpc">LessonDetailsDataGrpc</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>quizContentData</td>
-                  <td><a href="#QuizContentDataGrpc">QuizContentDataGrpc</a></td>
-                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -4365,6 +4376,44 @@
                 <tr>
                   <td>quizTitle</td>
                   <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".QuizInfoDataGrpc">QuizInfoDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>quizId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quizName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>numberOfQuestions</td>
+                  <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
