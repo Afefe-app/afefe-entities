@@ -491,13 +491,13 @@ message ModuleContentDataGrpc {
     string moduleSummary = 3;
     int32 modulePosition = 4;
     repeated LessonDetailsDataGrpc lessonDetailsData = 5;
-    QuizContentDataGrpc quizContentData = 6;
 }
 
 message LessonDetailsDataGrpc {
     string lessonId = 1;
     string lessonTitle = 2;
     int32 position = 3;
+    QuizContentDataGrpc quizContentData = 4;
 }
 
 // Fetch Courses Messages
@@ -590,7 +590,13 @@ message FetchLessonQuizIdsResponse {
 
 message LessonQuizIdsDataGrpc {
     string lessonId = 1;
-    repeated string quizIds = 2;
+    repeated QuizInfoDataGrpc quizzes = 2;
+}
+
+message QuizInfoDataGrpc {
+    string quizId = 1;
+    string quizName = 2;
+    int32 numberOfQuestions = 3;
 }
 
 // Fetch Course Information Messages
