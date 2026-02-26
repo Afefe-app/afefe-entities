@@ -19,6 +19,10 @@ service LearnerCourseServiceGrpc {
     // Fetches paginated upcoming physical class calendar events for the authenticated user.
     rpc FetchUpcomingCalendarEvents(FetchUpcomingCalendarEventsRequest) returns (FetchUpcomingCalendarEventsResponse);
 
+    // Fetches paginated enrollment history for the authenticated user.
+    // Optional filters: status, fromDate, toDate, searchKey (course title/description).
+    rpc FetchEnrollmentHistory(FetchEnrollmentHistoryRequest) returns (FetchEnrollmentHistoryResponse);
+
     // Fetches paginated recommended courses based on the user's industry interests.
     // Courses are matched by comparing course tags against the user's UserIndustryInterest entries.
     rpc FetchRecommendedCourses(FetchRecommendedCoursesRequest) returns (FetchRecommendedCoursesResponse);
@@ -212,6 +216,45 @@ message FetchUpcomingCalendarEventsResponse {
 message FetchUpcomingCalendarEventsDataGrpc {
     PaginationMetaGrpc meta = 1;                          // Pagination metadata (total elements, total pages, etc.)
     repeated PhysicalCalendarEventDataGrpc content = 2;   // List of calendar event records for the current page
+}
+
+// ======================================================================================
+// Fetch Enrollment History
+// ---------------------------------------------------------------------------------------
+// Retrieves paginated enrollment history for the authenticated learner.
+// Optional filters: status (ENROLLED, COMPLETED, etc.), fromDate, toDate, searchKey.
+// ======================================================================================
+
+// Request payload for fetching enrollment history.
+message FetchEnrollmentHistoryRequest {
+    string status = 1;      // Optional - filter by enrollment status (e.g. "ENROLLED", "COMPLETED")
+    string fromDate = 2;    // Optional - filter enrollments started on or after this date (ISO date string)
+    string toDate = 3;      // Optional - filter enrollments started on or before this date (ISO date string)
+    string searchKey = 4;  // Optional - search in course title and description
+    int32 pageNumber = 5;   // Page number (0-based)
+    int32 pageSize = 6;     // Number of items per page
+    string sort = 7;        // Sort direction (e.g. "ASC" or "DESC")
+}
+
+// Response wrapper for enrollment history.
+message FetchEnrollmentHistoryResponse {
+    string responseCode = 1;                              // Application response code
+    string responseMessage = 2;                             // Human-readable response message
+    FetchEnrollmentHistoryDataGrpc responseData = 3;       // Paginated enrollment history
+}
+
+// Paginated wrapper for enrollment history results.
+message FetchEnrollmentHistoryDataGrpc {
+    PaginationMetaGrpc meta = 1;                            // Pagination metadata
+    repeated BasicEnrollmentDataGrpc content = 2;          // List of enrollment records for the current page
+}
+
+// Basic enrollment record for history listing.
+message BasicEnrollmentDataGrpc {
+    string status = 1;                  // Enrollment status (e.g. "ENROLLED", "COMPLETED")
+    string courseTitle = 2;             // Title of the enrolled course
+    int32 currentModulePosition = 3;    // Position of the current module in the course
+    int32 progressPercent = 4;          // Progress percentage (0-100)
 }
 
 // ======================================================================================

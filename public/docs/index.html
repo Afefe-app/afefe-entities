@@ -803,6 +803,10 @@
             <ul>
               
                 <li>
+                  <a href="#.BasicEnrollmentDataGrpc"><span class="badge">M</span>BasicEnrollmentDataGrpc</a>
+                </li>
+              
+                <li>
                   <a href="#.CategoryDataGrpc"><span class="badge">M</span>CategoryDataGrpc</a>
                 </li>
               
@@ -904,6 +908,18 @@
               
                 <li>
                   <a href="#.FetchCourseRatingsResponse"><span class="badge">M</span>FetchCourseRatingsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchEnrollmentHistoryDataGrpc"><span class="badge">M</span>FetchEnrollmentHistoryDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchEnrollmentHistoryRequest"><span class="badge">M</span>FetchEnrollmentHistoryRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchEnrollmentHistoryResponse"><span class="badge">M</span>FetchEnrollmentHistoryResponse</a>
                 </li>
               
                 <li>
@@ -7338,6 +7354,51 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
       <p></p>
 
       
+        <h3 id=".BasicEnrollmentDataGrpc">BasicEnrollmentDataGrpc</h3>
+        <p>Basic enrollment record for history listing.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Enrollment status (e.g. &#34;ENROLLED&#34;, &#34;COMPLETED&#34;) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>courseTitle</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Title of the enrolled course </p></td>
+                </tr>
+              
+                <tr>
+                  <td>currentModulePosition</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Position of the current module in the course </p></td>
+                </tr>
+              
+                <tr>
+                  <td>progressPercent</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Progress percentage (0-100) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".CategoryDataGrpc">CategoryDataGrpc</h3>
         <p>Represents a course category (taxonomy classification).</p>
 
@@ -8436,6 +8497,141 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><a href="#FetchCourseRatingsDataGrpc">FetchCourseRatingsDataGrpc</a></td>
                   <td></td>
                   <td><p>Rating aggregate and review list </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchEnrollmentHistoryDataGrpc">FetchEnrollmentHistoryDataGrpc</h3>
+        <p>Paginated wrapper for enrollment history results.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p>Pagination metadata </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#BasicEnrollmentDataGrpc">BasicEnrollmentDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>List of enrollment records for the current page </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchEnrollmentHistoryRequest">FetchEnrollmentHistoryRequest</h3>
+        <p>Request payload for fetching enrollment history.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional - filter by enrollment status (e.g. &#34;ENROLLED&#34;, &#34;COMPLETED&#34;) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fromDate</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional - filter enrollments started on or after this date (ISO date string) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>toDate</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional - filter enrollments started on or before this date (ISO date string) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>searchKey</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional - search in course title and description </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageNumber</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Page number (0-based) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageSize</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Number of items per page </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Sort direction (e.g. &#34;ASC&#34; or &#34;DESC&#34;) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchEnrollmentHistoryResponse">FetchEnrollmentHistoryResponse</h3>
+        <p>Response wrapper for enrollment history.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Application response code </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Human-readable response message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#FetchEnrollmentHistoryDataGrpc">FetchEnrollmentHistoryDataGrpc</a></td>
+                  <td></td>
+                  <td><p>Paginated enrollment history </p></td>
                 </tr>
               
             </tbody>
@@ -10630,6 +10826,14 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                 <td><a href="#FetchUpcomingCalendarEventsRequest">.FetchUpcomingCalendarEventsRequest</a></td>
                 <td><a href="#FetchUpcomingCalendarEventsResponse">.FetchUpcomingCalendarEventsResponse</a></td>
                 <td><p>Fetches paginated upcoming physical class calendar events for the authenticated user.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchEnrollmentHistory</td>
+                <td><a href="#FetchEnrollmentHistoryRequest">.FetchEnrollmentHistoryRequest</a></td>
+                <td><a href="#FetchEnrollmentHistoryResponse">.FetchEnrollmentHistoryResponse</a></td>
+                <td><p>Fetches paginated enrollment history for the authenticated user.
+Optional filters: status, fromDate, toDate, searchKey (course title/description).</p></td>
               </tr>
             
               <tr>

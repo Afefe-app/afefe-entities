@@ -198,6 +198,9 @@
                         com.google.protobuf:protoc:3.25.3:exe:${os.detected.classifier}
                     </protocArtifact>
                     <protoSourceRoot>${project.basedir}/src/main/proto</protoSourceRoot>
+                    <additionalProtoPathElements>
+                        <additionalProtoPathElement>${project.basedir}/src/main/proto-well-known</additionalProtoPathElement>
+                    </additionalProtoPathElements>
                     <includes>
                         <include>**/*.proto</include>
                     </includes>
