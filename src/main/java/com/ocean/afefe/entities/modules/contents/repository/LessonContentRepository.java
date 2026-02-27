@@ -8,4 +8,7 @@ import java.util.UUID;
 
 public interface LessonContentRepository extends JpaRepository<LessonContent, UUID> {
     List<LessonContent> findAllByLessonIdOrderByCreatedAtAsc(UUID lessonId);
+
+    /** Batch fetch by lesson ids; order by createdAt within each lesson. */
+    List<LessonContent> findAllByLesson_IdInOrderByCreatedAtAsc(List<UUID> lessonIds);
 }
