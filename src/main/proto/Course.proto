@@ -133,7 +133,7 @@ message CourseDataGrpc {
     repeated string tags = 15;
     repeated string requirements = 16;
     repeated CourseProposedAchievementGrpc learningOutcomes = 17;
-    int64 lastUpdated = 18;
+    string lastUpdated = 18;
 }
 
 // Module Messages
@@ -372,14 +372,6 @@ message CreateQuizRequest {
     string moduleId = 2;
     string lessonId = 3;
     string title = 4;
-    string description = 5;
-    string quizName = 6;
-    int32 attemptLimit = 7;
-    int32 timeLimitMinutes = 8;
-    string gradingMethod = 9;
-    string visibility = 10;
-    int64 passScore = 11;
-    bool randomizeItems = 12;
 }
 
 message CreateQuestionAndOptionRequest{
