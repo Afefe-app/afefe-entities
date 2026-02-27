@@ -64,6 +64,9 @@ service LearnerCourseServiceGrpc {
     // Enrolls the user in a course. For paid courses, payment must be completed first.
     rpc EnrollUserCourse(EnrollUserCourseRequest) returns (EnrollUserCourseResponse);
 
+    // Starts a course: ensures the user is enrolled and transitions status from ENROLLED to IN_PROGRESS.
+    rpc StartCourse(StartCourseRequest) returns (StartCourseResponse);
+
     // Removes a course from the user's wishlist.
     rpc DeleteSavedCourse(DeleteSavedCourseRequest) returns (DeleteSavedCourseResponse);
 
@@ -546,6 +549,23 @@ message EnrollmentDataGrpc {
     string status = 4;               // e.g. ENROLLED
     int32 progress_percent = 5;
     string started_at = 6;            // ISO-8601 instant or empty
+}
+
+// ======================================================================================
+// Start Course
+// ---------------------------------------------------------------------------------------
+// Ensures the user is enrolled in the course and sets enrollment status to IN_PROGRESS.
+// Idempotent: if already IN_PROGRESS or COMPLETED, returns the existing enrollment.
+// ======================================================================================
+
+message StartCourseRequest {
+    string course_id = 1;  // UUID of the course to start
+}
+
+message StartCourseResponse {
+    string response_code = 1;
+    string response_message = 2;
+    EnrollmentDataGrpc enrollment_data = 3;
 }
 
 // ======================================================================================

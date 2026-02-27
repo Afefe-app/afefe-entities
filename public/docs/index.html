@@ -1099,6 +1099,14 @@
                 </li>
               
                 <li>
+                  <a href="#.StartCourseRequest"><span class="badge">M</span>StartCourseRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.StartCourseResponse"><span class="badge">M</span>StartCourseResponse</a>
+                </li>
+              
+                <li>
                   <a href="#.StartQuizAttemptRequest"><span class="badge">M</span>StartQuizAttemptRequest</a>
                 </li>
               
@@ -10524,6 +10532,68 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
 
         
       
+        <h3 id=".StartCourseRequest">StartCourseRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>course_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the course to start </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".StartCourseResponse">StartCourseResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>response_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>response_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>enrollment_data</td>
+                  <td><a href="#EnrollmentDataGrpc">EnrollmentDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".StartQuizAttemptRequest">StartQuizAttemptRequest</h3>
         <p>Request payload for starting a new quiz attempt.</p>
 
@@ -10911,6 +10981,13 @@ All filter parameters are optional. Results are paginated.</p></td>
                 <td><a href="#EnrollUserCourseRequest">.EnrollUserCourseRequest</a></td>
                 <td><a href="#EnrollUserCourseResponse">.EnrollUserCourseResponse</a></td>
                 <td><p>Enrolls the user in a course. For paid courses, payment must be completed first.</p></td>
+              </tr>
+            
+              <tr>
+                <td>StartCourse</td>
+                <td><a href="#StartCourseRequest">.StartCourseRequest</a></td>
+                <td><a href="#StartCourseResponse">.StartCourseResponse</a></td>
+                <td><p>Starts a course: ensures the user is enrolled and transitions status from ENROLLED to IN_PROGRESS.</p></td>
               </tr>
             
               <tr>
