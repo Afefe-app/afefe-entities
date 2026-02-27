@@ -99,12 +99,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.google.protobuf</groupId>
-            <artifactId>protobuf-java-util</artifactId>
-            <version>3.25.3</version>
-        </dependency>
-
-        <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
             <version>1.3.2</version>
@@ -198,6 +192,9 @@
                         com.google.protobuf:protoc:3.25.3:exe:${os.detected.classifier}
                     </protocArtifact>
                     <protoSourceRoot>${project.basedir}/src/main/proto</protoSourceRoot>
+                    <additionalProtoPathElements>
+                        <additionalProtoPathElement>${project.basedir}/src/main/proto-well-known</additionalProtoPathElement>
+                    </additionalProtoPathElements>
                     <includes>
                         <include>**/*.proto</include>
                     </includes>

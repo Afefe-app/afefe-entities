@@ -13,4 +13,5 @@ public interface LessonAssetRepository extends JpaRepository<LessonAsset, UUID> 
     List<LessonAsset> findAllByLessonContentIdIn(List<UUID> lessonIds);
 
     List<LessonAsset> findAllByLessonContentIdOrderByAssetOrder(UUID lessonContentId);
+    List<LessonAsset> findAllByLessonContent_Lesson_IdIn(List<UUID> lessonsIds);
 }

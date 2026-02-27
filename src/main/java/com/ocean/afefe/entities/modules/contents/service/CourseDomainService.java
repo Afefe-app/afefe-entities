@@ -17,6 +17,11 @@ public interface CourseDomainService {
     
     Course validateCourseExistenceById(UUID courseId, Organization organization);
     
+    /**
+     * Validates that the lesson asset exists and belongs to the given course (for learner progress).
+     */
+    LessonAsset validateLessonAssetBelongsToCourse(UUID lessonAssetId, UUID courseId, Organization organization);
+    
     CourseVersion getOrCreateCourseVersion(Course course, User createdBy);
     
     Module validateModuleExistence(UUID moduleId, CourseVersion courseVersion);

@@ -80,6 +80,19 @@ public class CourseDomainServiceImpl implements CourseDomainService {
     }
 
     @Override
+    public LessonAsset validateLessonAssetBelongsToCourse(UUID lessonAssetId, UUID courseId, Organization organization) {
+        Course course = validateCourseExistenceById(courseId, organization);
+        return lessonAssetRepository.findById(lessonAssetId)
+                .filter(asset -> {
+                    Course assetCourse = asset.getLessonContent().getLesson().getModule().getCourseVersion().getCourse();
+                    return Objects.equals(assetCourse.getId(), course.getId()) && Objects.equals(assetCourse.getOrg(), organization);
+                })
+                .orElseThrow(() -> HttpUtil.getResolvedException(
+                        ResponseCode.RECORD_NOT_FOUND,
+                        messageUtil.getMessage("lesson.asset.not.found.for.lesson.content")));
+    }
+
+    @Override
     public CourseVersion getOrCreateCourseVersion(Course course, User createdBy){
         Optional<CourseVersion> latestVersion = courseVersionRepository.findTopByCourseOrderByVersionNumDesc(course);
         if(latestVersion.isPresent()){

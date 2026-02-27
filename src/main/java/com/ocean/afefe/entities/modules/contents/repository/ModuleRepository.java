@@ -1,5 +1,6 @@
 package com.ocean.afefe.entities.modules.contents.repository;
 
+import com.ocean.afefe.entities.modules.contents.models.Course;
 import com.ocean.afefe.entities.modules.contents.models.Module;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,4 +14,6 @@ public interface ModuleRepository extends JpaRepository<Module, UUID> {
     List<Module> findByCourseVersionId(UUID courseVersionId);
 
     List<Module> findByCourseVersionIdOrderByPositionAsc(UUID courseVersionId);
+
+    Module findTopByCourseVersion_CourseOrderByPositionAsc(Course course);
 }

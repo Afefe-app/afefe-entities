@@ -1,6 +1,7 @@
 package com.ocean.afefe.entities.core.security.resolver;
 
 import com.ocean.afefe.entities.common.RequestContextMeta;
+import com.tensorpoint.toolkit.tpointcore.commons.HttpUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,7 @@ public class RequestContextMetaArgumentResolver implements HandlerMethodArgument
         return RequestContextMeta.builder()
                 .requestUrl(servletRequest.getRequestURI())
                 .requestParams(new HashMap<>())
-                .requestHeaders(new HashMap<>())
+                .requestHeaders(HttpUtil.extractHeaders(servletRequest))
                 .build();
     }
 }

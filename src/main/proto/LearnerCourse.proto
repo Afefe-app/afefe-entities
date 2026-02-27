@@ -19,6 +19,10 @@ service LearnerCourseServiceGrpc {
     // Fetches paginated upcoming physical class calendar events for the authenticated user.
     rpc FetchUpcomingCalendarEvents(FetchUpcomingCalendarEventsRequest) returns (FetchUpcomingCalendarEventsResponse);
 
+    // Fetches paginated enrollment history for the authenticated user.
+    // Optional filters: status, fromDate, toDate, searchKey (course title/description).
+    rpc FetchEnrollmentHistory(FetchEnrollmentHistoryRequest) returns (FetchEnrollmentHistoryResponse);
+
     // Fetches paginated recommended courses based on the user's industry interests.
     // Courses are matched by comparing course tags against the user's UserIndustryInterest entries.
     rpc FetchRecommendedCourses(FetchRecommendedCoursesRequest) returns (FetchRecommendedCoursesResponse);
@@ -56,6 +60,16 @@ service LearnerCourseServiceGrpc {
 
     // Saves a course to the user's wishlist. Prevents duplicate saves for the same course.
     rpc SaveCourse(SaveCourseRequest) returns (SaveCourseResponse);
+
+    // Enrolls the user in a course. For paid courses, payment must be completed first.
+    rpc EnrollUserCourse(EnrollUserCourseRequest) returns (EnrollUserCourseResponse);
+
+    // Starts a course: ensures the user is enrolled and transitions status from ENROLLED to IN_PROGRESS.
+    rpc StartCourse(StartCourseRequest) returns (StartCourseResponse);
+
+    // Records or updates progress for a lesson asset (e.g. video position, mark complete).
+    // Updates LessonProgress and ResumePoint for the enrollment/lesson-asset pair.
+    rpc RecordLessonAssetProgress(RecordLessonAssetProgressRequest) returns (RecordLessonAssetProgressResponse);
 
     // Removes a course from the user's wishlist.
     rpc DeleteSavedCourse(DeleteSavedCourseRequest) returns (DeleteSavedCourseResponse);
@@ -209,6 +223,46 @@ message FetchUpcomingCalendarEventsResponse {
 message FetchUpcomingCalendarEventsDataGrpc {
     PaginationMetaGrpc meta = 1;                          // Pagination metadata (total elements, total pages, etc.)
     repeated PhysicalCalendarEventDataGrpc content = 2;   // List of calendar event records for the current page
+}
+
+// ======================================================================================
+// Fetch Enrollment History
+// ---------------------------------------------------------------------------------------
+// Retrieves paginated enrollment history for the authenticated learner.
+// Optional filters: status (ENROLLED, COMPLETED, etc.), fromDate, toDate, searchKey.
+// ======================================================================================
+
+// Request payload for fetching enrollment history.
+message FetchEnrollmentHistoryRequest {
+    string status = 1;      // Optional - filter by enrollment status (e.g. "ENROLLED", "COMPLETED")
+    string fromDate = 2;    // Optional - filter enrollments started on or after this date (ISO date string)
+    string toDate = 3;      // Optional - filter enrollments started on or before this date (ISO date string)
+    string searchKey = 4;  // Optional - search in course title and description
+    int32 pageNumber = 5;   // Page number (0-based)
+    int32 pageSize = 6;     // Number of items per page
+    string sort = 7;        // Sort direction (e.g. "ASC" or "DESC")
+}
+
+// Response wrapper for enrollment history.
+message FetchEnrollmentHistoryResponse {
+    string responseCode = 1;                              // Application response code
+    string responseMessage = 2;                             // Human-readable response message
+    FetchEnrollmentHistoryDataGrpc responseData = 3;       // Paginated enrollment history
+}
+
+// Paginated wrapper for enrollment history results.
+message FetchEnrollmentHistoryDataGrpc {
+    PaginationMetaGrpc meta = 1;                            // Pagination metadata
+    repeated BasicEnrollmentDataGrpc content = 2;          // List of enrollment records for the current page
+}
+
+// Basic enrollment record for history listing.
+message BasicEnrollmentDataGrpc {
+    string status = 1;                  // Enrollment status (e.g. "ENROLLED", "COMPLETED")
+    string courseTitle = 2;             // Title of the enrolled course
+    int32 currentModulePosition = 3;    // Position of the current module in the course
+    int32 progressPercent = 4;          // Progress percentage (0-100)
+    repeated LessonAssetProgressDataGrpc lesson_asset_progress = 5;  // Per-asset progress for this enrollment
 }
 
 // ======================================================================================
@@ -474,6 +528,79 @@ message SaveCourseResponse {
 message SavedCourseDataGrpc {
     string savedCourseId = 1;          // Unique wishlist entry identifier (UUID)
     LearnerCourseDataGrpc course = 2;  // Full course card data
+}
+
+// ======================================================================================
+// Enroll User in Course
+// ---------------------------------------------------------------------------------------
+// Enrolls the authenticated user in a course. If the course requires payment,
+// payment must be completed first. If already enrolled, returns existing enrollment.
+// ======================================================================================
+
+message EnrollUserCourseRequest {
+    string course_id = 1;  // UUID of the course to enroll in
+}
+
+message EnrollUserCourseResponse {
+    string response_code = 1;
+    string response_message = 2;
+    EnrollmentDataGrpc enrollment_data = 3;
+}
+
+message EnrollmentDataGrpc {
+    string id = 1;                    // Enrollment UUID
+    string course_id = 2;
+    string current_module_id = 3;
+    string status = 4;               // e.g. ENROLLED
+    int32 progress_percent = 5;
+    string started_at = 6;            // ISO-8601 instant or empty
+    repeated LessonAssetProgressDataGrpc lesson_asset_progress = 7;  // Per-asset progress for this enrollment
+}
+
+// ======================================================================================
+// Start Course
+// ---------------------------------------------------------------------------------------
+// Ensures the user is enrolled in the course and sets enrollment status to IN_PROGRESS.
+// Idempotent: if already IN_PROGRESS or COMPLETED, returns the existing enrollment.
+// ======================================================================================
+
+message StartCourseRequest {
+    string course_id = 1;  // UUID of the course to start
+}
+
+message StartCourseResponse {
+    string response_code = 1;
+    string response_message = 2;
+    EnrollmentDataGrpc enrollment_data = 3;
+}
+
+// ======================================================================================
+// Record Lesson Asset Progress
+// ---------------------------------------------------------------------------------------
+// Records or updates progress for a lesson asset (e.g. video position, mark complete).
+// Validates enrollment and that the lesson asset belongs to the course.
+// ======================================================================================
+
+message RecordLessonAssetProgressRequest {
+    string course_id = 1;           // UUID of the course
+    string lesson_asset_id = 2;      // UUID of the lesson asset
+    int32 position_seconds = 3;     // Optional - last playback position in seconds
+    bool mark_complete = 4;         // Optional - set lesson asset progress to COMPLETED
+}
+
+message LessonAssetProgressDataGrpc {
+    string lesson_asset_id = 1;
+    string status = 2;             // NOT_STARTED, IN_PROGRESS, COMPLETED
+    int32 last_position_seconds = 3;
+    string last_viewed_at = 4;      // ISO-8601 instant
+    string completed_at = 5;       // ISO-8601 instant, set when completed
+}
+
+message RecordLessonAssetProgressResponse {
+    string response_code = 1;
+    string response_message = 2;
+    EnrollmentDataGrpc enrollment_data = 3;
+    LessonAssetProgressDataGrpc lesson_asset_progress = 4;
 }
 
 // ======================================================================================
