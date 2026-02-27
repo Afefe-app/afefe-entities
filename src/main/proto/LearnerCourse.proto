@@ -262,6 +262,7 @@ message BasicEnrollmentDataGrpc {
     string courseTitle = 2;             // Title of the enrolled course
     int32 currentModulePosition = 3;    // Position of the current module in the course
     int32 progressPercent = 4;          // Progress percentage (0-100)
+    repeated LessonAssetProgressDataGrpc lesson_asset_progress = 5;  // Per-asset progress for this enrollment
 }
 
 // ======================================================================================
@@ -553,6 +554,7 @@ message EnrollmentDataGrpc {
     string status = 4;               // e.g. ENROLLED
     int32 progress_percent = 5;
     string started_at = 6;            // ISO-8601 instant or empty
+    repeated LessonAssetProgressDataGrpc lesson_asset_progress = 7;  // Per-asset progress for this enrollment
 }
 
 // ======================================================================================
