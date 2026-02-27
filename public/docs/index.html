@@ -1019,11 +1019,19 @@
                 </li>
               
                 <li>
+                  <a href="#.LearnerLessonContentDataGrpc"><span class="badge">M</span>LearnerLessonContentDataGrpc</a>
+                </li>
+              
+                <li>
                   <a href="#.LessonAssetDataGrpc"><span class="badge">M</span>LessonAssetDataGrpc</a>
                 </li>
               
                 <li>
                   <a href="#.LessonAssetProgressDataGrpc"><span class="badge">M</span>LessonAssetProgressDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.LessonAssetWithProgressDataGrpc"><span class="badge">M</span>LessonAssetWithProgressDataGrpc</a>
                 </li>
               
                 <li>
@@ -9490,6 +9498,65 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
 
         
       
+        <h3 id=".LearnerLessonContentDataGrpc">LearnerLessonContentDataGrpc</h3>
+        <p>A single lesson content block within a lesson, containing its assets (and optional progress per asset). Learner API only.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>lesson_content_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique lesson content identifier (UUID) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Lesson content title </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional description </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Content type (e.g. &#34;VIDEO&#34;, &#34;TEXT&#34;, &#34;PDF&#34;) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>course_version</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Course version </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><a href="#LessonAssetWithProgressDataGrpc">LessonAssetWithProgressDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>Assets under this content, with optional progress </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".LessonAssetDataGrpc">LessonAssetDataGrpc</h3>
         <p>A file or media asset attached to a lesson.</p>
 
@@ -9594,8 +9661,88 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
 
         
       
+        <h3 id=".LessonAssetWithProgressDataGrpc">LessonAssetWithProgressDataGrpc</h3>
+        <p>Lesson asset with optional progress (when in enrollment context). Matches REST LessonAssetWithProgressData.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>asset_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>uri</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mime_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>file_size_bytes</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Progress status (e.g. NOT_STARTED, IN_PROGRESS, COMPLETED) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_position_seconds</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_viewed_at</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>ISO instant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>completed_at</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>ISO instant </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".LessonDataGrpc">LessonDataGrpc</h3>
-        <p>A single lesson within a module, containing its assets.</p>
+        <p>A single lesson within a module, containing its assets and lesson contents (hierarchy: lesson -> lesson contents -> assets).</p>
 
         
           <table class="field-table">
@@ -9657,7 +9804,14 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td>assets</td>
                   <td><a href="#LessonAssetDataGrpc">LessonAssetDataGrpc</a></td>
                   <td>repeated</td>
-                  <td><p>List of media/file assets attached to this lesson </p></td>
+                  <td><p>Flat list of all assets under this lesson (backward compatibility) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lesson_contents</td>
+                  <td><a href="#LearnerLessonContentDataGrpc">LearnerLessonContentDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p>Lesson contents, each with its assets (and optional progress) </p></td>
                 </tr>
               
             </tbody>

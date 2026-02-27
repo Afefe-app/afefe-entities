@@ -22,6 +22,11 @@ import java.util.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedEntityGraph(
+    name = "Course.ownerInstructorUser",
+    attributeNodes = @NamedAttributeNode(value = "ownerInstructor", subgraph = "instructorUser"),
+    subgraphs = @NamedSubgraph(name = "instructorUser", attributeNodes = @NamedAttributeNode("user"))
+)
 public class Course extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

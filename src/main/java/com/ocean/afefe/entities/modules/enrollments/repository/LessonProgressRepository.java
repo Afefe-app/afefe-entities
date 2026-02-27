@@ -19,6 +19,6 @@ public interface LessonProgressRepository extends JpaRepository<LessonProgress, 
 
     List<LessonProgress> findByEnrollment(Enrollment enrollment);
 
-    @Query("select lp from LessonProgress lp join fetch lp.enrollment where lp.enrollment.id in :enrollmentIds")
+    @Query("select lp from LessonProgress lp join fetch lp.enrollment join fetch lp.lessonAsset where lp.enrollment.id in :enrollmentIds")
     List<LessonProgress> findByEnrollmentIdIn(@Param("enrollmentIds") List<UUID> enrollmentIds);
 }

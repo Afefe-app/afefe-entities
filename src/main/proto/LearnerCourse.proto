@@ -681,7 +681,7 @@ message ModuleDataGrpc {
     repeated LessonDataGrpc lessons = 5;   // Ordered list of lessons within this module
 }
 
-// A single lesson within a module, containing its assets.
+// A single lesson within a module, containing its assets and lesson contents (hierarchy: lesson -> lesson contents -> assets).
 message LessonDataGrpc {
     string lessonId = 1;                       // Unique lesson identifier (UUID)
     string title = 2;                          // Lesson title
@@ -690,7 +690,31 @@ message LessonDataGrpc {
     int32 durationSeconds = 5;                 // Estimated lesson duration in seconds
     int32 position = 6;                        // Display order position within the module
     bool isPublished = 7;                      // Whether the lesson is published and visible to learners
-    repeated LessonAssetDataGrpc assets = 8;   // List of media/file assets attached to this lesson
+    repeated LessonAssetDataGrpc assets = 8;   // Flat list of all assets under this lesson (backward compatibility)
+    repeated LearnerLessonContentDataGrpc lesson_contents = 9;  // Lesson contents, each with its assets (and optional progress)
+}
+
+// A single lesson content block within a lesson, containing its assets (and optional progress per asset). Learner API only.
+message LearnerLessonContentDataGrpc {
+    string lesson_content_id = 1;              // Unique lesson content identifier (UUID)
+    string title = 2;                          // Lesson content title
+    string description = 3;                    // Optional description
+    string content_type = 4;                   // Content type (e.g. "VIDEO", "TEXT", "PDF")
+    int32 course_version = 5;                  // Course version
+    repeated LessonAssetWithProgressDataGrpc assets = 6;  // Assets under this content, with optional progress
+}
+
+// Lesson asset with optional progress (when in enrollment context). Matches REST LessonAssetWithProgressData.
+message LessonAssetWithProgressDataGrpc {
+    string asset_id = 1;
+    string asset_type = 2;
+    string uri = 3;
+    string mime_type = 4;
+    int64 file_size_bytes = 5;
+    string status = 6;                         // Progress status (e.g. NOT_STARTED, IN_PROGRESS, COMPLETED)
+    int32 last_position_seconds = 7;
+    string last_viewed_at = 8;                 // ISO instant
+    string completed_at = 9;                   // ISO instant
 }
 
 // A file or media asset attached to a lesson.

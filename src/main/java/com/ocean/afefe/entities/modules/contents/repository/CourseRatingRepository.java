@@ -24,7 +24,7 @@ public interface CourseRatingRepository extends JpaRepository<CourseRating, UUID
     @Query("select cr from CourseRating cr where cr.course = :course")
     List<CourseRating> findAllByCourse(@Param("course") Course course);
 
-    @Query("select cr from CourseRating cr where cr.course = :course and cr.org = :org")
+    @Query("select cr from CourseRating cr join fetch cr.user where cr.course = :course and cr.org = :org")
     List<CourseRating> findAllByCourseAndOrg(@Param("course") Course course, @Param("org") Organization org);
 
     @Query("select avg(cr.rating) from CourseRating cr where cr.course = :course")

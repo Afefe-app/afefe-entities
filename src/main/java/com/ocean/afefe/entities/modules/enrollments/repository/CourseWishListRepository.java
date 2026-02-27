@@ -5,10 +5,9 @@ import com.ocean.afefe.entities.modules.auth.models.User;
 import com.ocean.afefe.entities.modules.contents.models.Course;
 import com.ocean.afefe.entities.modules.enrollments.models.CourseWishList;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.List;
@@ -19,6 +18,7 @@ import java.util.UUID;
 @Repository
 public interface CourseWishListRepository extends JpaRepository<CourseWishList, UUID> {
 
+    @org.springframework.data.jpa.repository.EntityGraph(attributePaths = {"course", "course.ownerInstructor", "course.ownerInstructor.user"})
     List<CourseWishList> findAllByUserAndOrg(User user, Organization org);
 
     Optional<CourseWishList> findByUserAndCourse(User user, Course course);
