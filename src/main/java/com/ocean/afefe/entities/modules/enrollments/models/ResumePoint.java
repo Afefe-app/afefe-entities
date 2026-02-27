@@ -1,11 +1,9 @@
 package com.ocean.afefe.entities.modules.enrollments.models;
 
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
-import com.ocean.afefe.entities.modules.contents.models.Lesson;
+import com.ocean.afefe.entities.modules.contents.models.LessonAsset;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(
@@ -23,8 +21,8 @@ public class ResumePoint extends BaseUUIDEntity {
     private Enrollment enrollment;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lesson_id", nullable = false)
-    private Lesson lesson;
+    @JoinColumn(name = "lesson_asset_id", nullable = false)
+    private LessonAsset lessonAsset;
 
     @Column(nullable = false)
     private Integer positionSeconds;

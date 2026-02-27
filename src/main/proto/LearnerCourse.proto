@@ -67,6 +67,10 @@ service LearnerCourseServiceGrpc {
     // Starts a course: ensures the user is enrolled and transitions status from ENROLLED to IN_PROGRESS.
     rpc StartCourse(StartCourseRequest) returns (StartCourseResponse);
 
+    // Records or updates progress for a lesson asset (e.g. video position, mark complete).
+    // Updates LessonProgress and ResumePoint for the enrollment/lesson-asset pair.
+    rpc RecordLessonAssetProgress(RecordLessonAssetProgressRequest) returns (RecordLessonAssetProgressResponse);
+
     // Removes a course from the user's wishlist.
     rpc DeleteSavedCourse(DeleteSavedCourseRequest) returns (DeleteSavedCourseResponse);
 
@@ -566,6 +570,35 @@ message StartCourseResponse {
     string response_code = 1;
     string response_message = 2;
     EnrollmentDataGrpc enrollment_data = 3;
+}
+
+// ======================================================================================
+// Record Lesson Asset Progress
+// ---------------------------------------------------------------------------------------
+// Records or updates progress for a lesson asset (e.g. video position, mark complete).
+// Validates enrollment and that the lesson asset belongs to the course.
+// ======================================================================================
+
+message RecordLessonAssetProgressRequest {
+    string course_id = 1;           // UUID of the course
+    string lesson_asset_id = 2;      // UUID of the lesson asset
+    int32 position_seconds = 3;     // Optional - last playback position in seconds
+    bool mark_complete = 4;         // Optional - set lesson asset progress to COMPLETED
+}
+
+message LessonAssetProgressDataGrpc {
+    string lesson_asset_id = 1;
+    string status = 2;             // NOT_STARTED, IN_PROGRESS, COMPLETED
+    int32 last_position_seconds = 3;
+    string last_viewed_at = 4;      // ISO-8601 instant
+    string completed_at = 5;       // ISO-8601 instant, set when completed
+}
+
+message RecordLessonAssetProgressResponse {
+    string response_code = 1;
+    string response_message = 2;
+    EnrollmentDataGrpc enrollment_data = 3;
+    LessonAssetProgressDataGrpc lesson_asset_progress = 4;
 }
 
 // ======================================================================================
