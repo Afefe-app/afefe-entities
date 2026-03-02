@@ -11,7 +11,7 @@ import java.util.Objects;
 public class PageUtils {
 
     public static Pageable from(PageParameters pageParameters, String... sortProperties) {
-        String[] sortProps = Objects.isNull(sortProperties) ? new String[]{ "createdAt" } : sortProperties;
+        String[] sortProps = Objects.isNull(sortProperties) || sortProperties.length == 0 ? new String[]{ "createdAt" } : sortProperties;
         return PageRequest.of(
                 pageParameters.getPageNumber(),
                 pageParameters.getPageSize(),
