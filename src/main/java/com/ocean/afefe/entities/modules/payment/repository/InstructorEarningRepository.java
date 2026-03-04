@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @Repository
@@ -15,4 +16,7 @@ public interface InstructorEarningRepository extends JpaRepository<InstructorEar
 
     @EntityGraph(attributePaths = { "instructor", "enrollmentPayment" })
     Page<InstructorEarning> findAllByInstructor(Instructor instructor, Pageable pageable);
+
+    @EntityGraph(attributePaths = { "instructor", "enrollmentPayment" })
+    Page<InstructorEarning> findAllByInstructorAndCreatedAtBetween(Instructor instructor, Instant startDate, Instant endDate);
 }

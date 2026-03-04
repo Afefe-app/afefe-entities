@@ -1,6 +1,7 @@
 package com.ocean.afefe.entities.modules.auth.models;
 
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
+import com.tensorpoint.toolkit.tpointcore.commons.Country;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,6 +28,11 @@ public class User extends BaseUUIDEntity {
     @Column(nullable = false, columnDefinition = "VARCHAR")
     @Enumerated(value = EnumType.STRING)
     private UserType userType;
+
+    @Column
+    @Builder.Default
+    @Enumerated(value = EnumType.STRING)
+    private Country country = Country.NIGERIA;
 
     private boolean isActive;
 

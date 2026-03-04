@@ -84,6 +84,10 @@ public class PaymentTransaction extends BaseUUIDEntity {
     @Column(columnDefinition = "TEXT")
     private String gatewayCheckoutUrl;
 
+    @Column
+    @Enumerated(value = EnumType.STRING)
+    private Currency paymentCurrency;
+
     public boolean isCompleted(){
         return PaymentStatus.SUCCESS.equals(this.getStatus());
     }

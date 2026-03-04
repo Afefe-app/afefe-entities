@@ -1,0 +1,73 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "InstructorFinanceProto";
+import "Common.proto";
+
+// ======================================================================================
+// InstructorFinanceServiceGrpc
+// ---------------------------------------------------------------------------------------
+// gRPC service for the Instructor Finance module. Fetches earning metrics and
+// paginated list of earnings. User/tenant from gRPC metadata.
+// ======================================================================================
+service InstructorFinanceServiceGrpc {
+
+    // Fetches instructor earning metric (available balance, total earnings, total payout) for a given period.
+    rpc FetchInstructorEarningMetric(FetchInstructorEarningMetricRequest) returns (FetchInstructorEarningMetricResponse);
+
+    // Fetches paginated list of instructor earnings.
+    rpc FetchInstructorEarnings(FetchInstructorEarningsRequest) returns (FetchInstructorEarningsResponse);
+}
+
+// ---------------------------------------------------------------------------------------
+// Shared
+// ---------------------------------------------------------------------------------------
+// MoneyGrpc is in Common.proto
+
+// ---------------------------------------------------------------------------------------
+// Fetch Instructor Earning Metric
+// ---------------------------------------------------------------------------------------
+message FetchInstructorEarningMetricRequest {
+    int64 days = 1; // Period in days (e.g. 30). Optional, server may default.
+}
+
+message FetchInstructorEarningMetricResponse {
+    string response_code = 1;
+    string response_message = 2;
+    InstructorEarningMetricDataGrpc response_data = 3;
+}
+
+message InstructorEarningMetricDataGrpc {
+    MoneyGrpc available_balance = 1;
+    MoneyGrpc total_earnings = 2;
+    MoneyGrpc total_payout = 3;
+}
+
+// ---------------------------------------------------------------------------------------
+// Fetch Instructor Earnings (paginated list)
+// ---------------------------------------------------------------------------------------
+message FetchInstructorEarningsRequest {
+    int32 page_number = 1;
+    int32 page_size = 2;
+    string sort = 3;
+}
+
+message FetchInstructorEarningsResponse {
+    string response_code = 1;
+    string response_message = 2;
+    FetchInstructorEarningsDataGrpc response_data = 3;
+}
+
+message FetchInstructorEarningsDataGrpc {
+    PaginationMetaGrpc meta = 1;
+    repeated InstructorEarningDataGrpc content = 2;
+}
+
+message InstructorEarningDataGrpc {
+    string user_id = 1;           // User ID (e.g. BigInteger as string)
+    string user_image_url = 2;
+    string user_name = 3;
+    MoneyGrpc money = 4;
+    string course_title = 5;
+    string date = 6;
+}

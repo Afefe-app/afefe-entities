@@ -3,6 +3,7 @@ package com.ocean.afefe.entities.modules.payment.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import com.ocean.afefe.entities.modules.contents.models.Instructor;
+import com.tensorpoint.toolkit.tpointcore.commons.Currency;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,6 +29,9 @@ public class InstructorEarning extends BaseUUIDEntity {
     @Enumerated(value = EnumType.STRING)
     private EarningStatus status = EarningStatus.PENDING;
 
+    @Builder.Default
+    private BigDecimal baseEarning = BigDecimal.ZERO;
+
     private BigDecimal currentAvailableBalance = BigDecimal.ZERO;
 
     private BigDecimal currentTotalDeposits = BigDecimal.ZERO;
@@ -38,4 +42,15 @@ public class InstructorEarning extends BaseUUIDEntity {
 
     @Column(columnDefinition = "TEXT")
     private String settlementFailureReason;
+
+    @Enumerated(value = EnumType.STRING)
+    private Currency baseCurrency;
+
+    @Enumerated(value = EnumType.STRING)
+    private Currency paymentCurrency;
+
+    @Enumerated(value = EnumType.STRING)
+    private Currency userCountryCurrency;
+
+    private BigDecimal currentRateValue;
 }

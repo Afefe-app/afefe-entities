@@ -31,6 +31,9 @@ service LearnerCourseServiceGrpc {
     // Not paginated - returns a flat list.
     rpc FetchRecentlyViewedCourses(FetchRecentlyViewedCoursesRequest) returns (FetchRecentlyViewedCoursesResponse);
 
+    // Records a course as recently viewed for the current user. Used to build the user's recently viewed list.
+    rpc SaveRecentlyViewedCourse(SaveRecentlyViewedCourseRequest) returns (SaveRecentlyViewedCourseResponse);
+
     // Fetches a basic course overview by course ID (title, cover image, instructor, learning outcomes, requirements).
     rpc FetchCourseOverview(FetchCourseOverviewRequest) returns (FetchCourseOverviewResponse);
 
@@ -134,13 +137,8 @@ service LearnerCourseServiceGrpc {
 // Shared Data Messages
 // ---------------------------------------------------------------------------------------
 // Reusable data structures referenced by multiple request/response messages.
+// MoneyGrpc is defined in Common.proto.
 // ======================================================================================
-
-// Represents a monetary value with amount and currency code.
-message MoneyGrpc {
-    string amount = 1;   // Decimal amount as string (e.g. "29.99")
-    string currency = 2; // ISO 4217 currency code (e.g. "USD", "NGN")
-}
 
 // Basic instructor summary used in course cards and listings.
 message InstructorBasicDataGrpc {
@@ -314,6 +312,22 @@ message FetchRecentlyViewedCoursesResponse {
 // Non-paginated list of recently viewed courses (max 20).
 message FetchRecentlyViewedCoursesDataGrpc {
     repeated LearnerCourseDataGrpc content = 1; // List of recently viewed course records
+}
+
+// ======================================================================================
+// Save Recently Viewed Course
+// ---------------------------------------------------------------------------------------
+// Records a course as recently viewed for the authenticated user.
+// ======================================================================================
+
+message SaveRecentlyViewedCourseRequest {
+    string course_id = 1; // UUID of the course to record as viewed
+}
+
+message SaveRecentlyViewedCourseResponse {
+    string response_code = 1;
+    string response_message = 2;
+    string response_data = 3; // Optional confirmation message
 }
 
 // ======================================================================================
