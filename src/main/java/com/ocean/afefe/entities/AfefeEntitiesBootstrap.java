@@ -9,6 +9,7 @@ import com.ocean.afefe.entities.domain.DomainModule;
 import com.ocean.afefe.entities.modules.calendar.CalendarModule;
 import com.ocean.afefe.entities.modules.contents.ContentModule;
 import com.ocean.afefe.entities.modules.enrollments.EnrollmentModule;
+import com.ocean.afefe.entities.modules.payment.PaymentModule;
 import com.ocean.afefe.entities.modules.taxonomy.TaxonomyModule;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -26,6 +27,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         ContentModule.class,
         CalendarModule.class,
         EnrollmentModule.class,
+        PaymentModule.class,
         TaxonomyModule.class,
         GrpcCommons.class,
 })
