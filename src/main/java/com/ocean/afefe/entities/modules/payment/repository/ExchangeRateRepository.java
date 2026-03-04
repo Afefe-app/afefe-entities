@@ -11,5 +11,5 @@ import java.util.UUID;
 @Repository
 public interface ExchangeRateRepository extends JpaRepository<ExchangeRate, UUID> {
 
-    Optional<ExchangeRate> findTopByFromAndToOrderByCreatedAt(Currency from, Currency to);
+    Optional<ExchangeRate> findTopByFromCurrencyAndToCurrencyOrderByCreatedAt(Currency from, Currency to);
 }

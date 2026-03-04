@@ -28,7 +28,7 @@ public class ExchangeRateDomainServiceImpl implements ExchangeRateDomainService{
     public ExchangeRate getUserCountryExchangeRate(Currency baseCurrency, Country country){
         String userCountryCurrencyCode = country.getCurrencyCode().toUpperCase();
         Currency currency = Currency.valueOf(userCountryCurrencyCode);
-        Optional<ExchangeRate> exchangeRateOptional = exchangeRateRepository.findTopByFromAndToOrderByCreatedAt(baseCurrency, currency);
+        Optional<ExchangeRate> exchangeRateOptional = exchangeRateRepository.findTopByFromCurrencyAndToCurrencyOrderByCreatedAt(baseCurrency, currency);
         return exchangeRateOptional.orElseGet(() -> saveNewExchangeRate(currency));
     }
 
@@ -39,7 +39,7 @@ public class ExchangeRateDomainServiceImpl implements ExchangeRateDomainService{
 
     @Override
     public ExchangeRate getCurrencyExchangeRate(Currency baseCurrency, Currency currency){
-        Optional<ExchangeRate> exchangeRateOptional = exchangeRateRepository.findTopByFromAndToOrderByCreatedAt(baseCurrency, currency);
+        Optional<ExchangeRate> exchangeRateOptional = exchangeRateRepository.findTopByFromCurrencyAndToCurrencyOrderByCreatedAt(baseCurrency, currency);
         return exchangeRateOptional.orElseGet(() -> saveNewExchangeRate(currency));
     }
 
