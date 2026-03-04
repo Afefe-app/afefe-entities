@@ -73,7 +73,6 @@ public class CourseDomainServiceImpl implements CourseDomainService {
     @Override
     public Course validateCourseExistenceById(UUID courseId, Organization organization){
         return courseRepository.findById(courseId)
-                .filter(course -> Objects.equals(course.getOrg(), organization))
                 .orElseThrow(() -> HttpUtil.getResolvedException(
                         ResponseCode.RECORD_NOT_FOUND, 
                         messageUtil.getMessage("course.not.found")));

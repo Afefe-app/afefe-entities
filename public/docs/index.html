@@ -647,6 +647,49 @@
         
           
           <li>
+            <a href="#InstructorFinance.proto">InstructorFinance.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.FetchInstructorEarningMetricRequest"><span class="badge">M</span>FetchInstructorEarningMetricRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchInstructorEarningMetricResponse"><span class="badge">M</span>FetchInstructorEarningMetricResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchInstructorEarningsDataGrpc"><span class="badge">M</span>FetchInstructorEarningsDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchInstructorEarningsRequest"><span class="badge">M</span>FetchInstructorEarningsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchInstructorEarningsResponse"><span class="badge">M</span>FetchInstructorEarningsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.InstructorEarningDataGrpc"><span class="badge">M</span>InstructorEarningDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.InstructorEarningMetricDataGrpc"><span class="badge">M</span>InstructorEarningMetricDataGrpc</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#.InstructorFinanceServiceGrpc"><span class="badge">S</span>InstructorFinanceServiceGrpc</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#Payment.proto">Payment.proto</a>
             <ul>
               
@@ -1063,10 +1106,6 @@
                 </li>
               
                 <li>
-                  <a href="#.MoneyGrpc"><span class="badge">M</span>MoneyGrpc</a>
-                </li>
-              
-                <li>
                   <a href="#.PhysicalCalendarEventDataGrpc"><span class="badge">M</span>PhysicalCalendarEventDataGrpc</a>
                 </li>
               
@@ -1120,6 +1159,14 @@
               
                 <li>
                   <a href="#.SaveCourseResponse"><span class="badge">M</span>SaveCourseResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.SaveRecentlyViewedCourseRequest"><span class="badge">M</span>SaveRecentlyViewedCourseRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.SaveRecentlyViewedCourseResponse"><span class="badge">M</span>SaveRecentlyViewedCourseResponse</a>
                 </li>
               
                 <li>
@@ -1285,6 +1332,10 @@
               
                 <li>
                   <a href="#.IdentityAuthGrpc"><span class="badge">M</span>IdentityAuthGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.MoneyGrpc"><span class="badge">M</span>MoneyGrpc</a>
                 </li>
               
                 <li>
@@ -6155,6 +6206,312 @@
     
       
       <div class="file-heading">
+        <h2 id="InstructorFinance.proto">InstructorFinance.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".FetchInstructorEarningMetricRequest">FetchInstructorEarningMetricRequest</h3>
+        <p>---------------------------------------------------------------------------------------</p><p>Fetch Instructor Earning Metric</p><p>---------------------------------------------------------------------------------------</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>days</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Period in days (e.g. 30). Optional, server may default. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchInstructorEarningMetricResponse">FetchInstructorEarningMetricResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>response_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>response_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>response_data</td>
+                  <td><a href="#InstructorEarningMetricDataGrpc">InstructorEarningMetricDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchInstructorEarningsDataGrpc">FetchInstructorEarningsDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#InstructorEarningDataGrpc">InstructorEarningDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchInstructorEarningsRequest">FetchInstructorEarningsRequest</h3>
+        <p>---------------------------------------------------------------------------------------</p><p>Fetch Instructor Earnings (paginated list)</p><p>---------------------------------------------------------------------------------------</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>page_number</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchInstructorEarningsResponse">FetchInstructorEarningsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>response_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>response_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>response_data</td>
+                  <td><a href="#FetchInstructorEarningsDataGrpc">FetchInstructorEarningsDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".InstructorEarningDataGrpc">InstructorEarningDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>User ID (e.g. BigInteger as string) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_image_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>money</td>
+                  <td><a href="#MoneyGrpc">MoneyGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>course_title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>date</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".InstructorEarningMetricDataGrpc">InstructorEarningMetricDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>available_balance</td>
+                  <td><a href="#MoneyGrpc">MoneyGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>total_earnings</td>
+                  <td><a href="#MoneyGrpc">MoneyGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>total_payout</td>
+                  <td><a href="#MoneyGrpc">MoneyGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id=".InstructorFinanceServiceGrpc">InstructorFinanceServiceGrpc</h3>
+        <p>======================================================================================</p><p>InstructorFinanceServiceGrpc</p><p>---------------------------------------------------------------------------------------</p><p>gRPC service for the Instructor Finance module. Fetches earning metrics and</p><p>paginated list of earnings. User/tenant from gRPC metadata.</p><p>======================================================================================</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>FetchInstructorEarningMetric</td>
+                <td><a href="#FetchInstructorEarningMetricRequest">.FetchInstructorEarningMetricRequest</a></td>
+                <td><a href="#FetchInstructorEarningMetricResponse">.FetchInstructorEarningMetricResponse</a></td>
+                <td><p>Fetches instructor earning metric (available balance, total earnings, total payout) for a given period.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchInstructorEarnings</td>
+                <td><a href="#FetchInstructorEarningsRequest">.FetchInstructorEarningsRequest</a></td>
+                <td><a href="#FetchInstructorEarningsResponse">.FetchInstructorEarningsResponse</a></td>
+                <td><p>Fetches paginated list of instructor earnings.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
         <h2 id="Payment.proto">Payment.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -10111,37 +10468,6 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
 
         
       
-        <h3 id=".MoneyGrpc">MoneyGrpc</h3>
-        <p>Represents a monetary value with amount and currency code.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>amount</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Decimal amount as string (e.g. &#34;29.99&#34;) </p></td>
-                </tr>
-              
-                <tr>
-                  <td>currency</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>ISO 4217 currency code (e.g. &#34;USD&#34;, &#34;NGN&#34;) </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id=".PhysicalCalendarEventDataGrpc">PhysicalCalendarEventDataGrpc</h3>
         <p>Represents a physical (in-person) calendar event / class session.</p>
 
@@ -10891,6 +11217,68 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
 
         
       
+        <h3 id=".SaveRecentlyViewedCourseRequest">SaveRecentlyViewedCourseRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>course_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of the course to record as viewed </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SaveRecentlyViewedCourseResponse">SaveRecentlyViewedCourseResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>response_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>response_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>response_data</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional confirmation message </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".SavedCourseDataGrpc">SavedCourseDataGrpc</h3>
         <p>Represents a saved course (wishlist entry) with embedded course details.</p>
 
@@ -11424,6 +11812,13 @@ Courses are matched by comparing course tags against the user&#39;s UserIndustry
                 <td><a href="#FetchRecentlyViewedCoursesResponse">.FetchRecentlyViewedCoursesResponse</a></td>
                 <td><p>Fetches the user&#39;s recently viewed courses (max 20 items, viewed within the last 7 days).
 Not paginated - returns a flat list.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SaveRecentlyViewedCourse</td>
+                <td><a href="#SaveRecentlyViewedCourseRequest">.SaveRecentlyViewedCourseRequest</a></td>
+                <td><a href="#SaveRecentlyViewedCourseResponse">.SaveRecentlyViewedCourseResponse</a></td>
+                <td><p>Records a course as recently viewed for the current user. Used to build the user&#39;s recently viewed list.</p></td>
               </tr>
             
               <tr>
@@ -12367,6 +12762,37 @@ Returns scores, duration, and detailed answer-level data including correctness a
               
                 <tr>
                   <td>tokenExpiredAt</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".MoneyGrpc">MoneyGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>currency</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
