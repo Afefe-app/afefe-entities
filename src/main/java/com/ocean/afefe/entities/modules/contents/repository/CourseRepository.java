@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,4 +22,6 @@ public interface CourseRepository extends JpaRepository<Course, UUID>, QuerydslP
     boolean existsByTitleHashAndOwnerInstructorAndOrg(String title, Instructor instructor, Organization organization);
 
     long countByOwnerInstructor(Instructor instructor);
+
+    long countByOwnerInstructorAndCreatedAtAfter(Instructor instructor, Instant after);
 }

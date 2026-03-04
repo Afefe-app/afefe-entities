@@ -32,6 +32,7 @@ service CourseMgtServiceGrpc {
     rpc FetchLessonQuizIds(FetchLessonQuizIdsRequest) returns (FetchLessonQuizIdsResponse);
     rpc FetchCourseInformation(FetchCourseInformationRequest) returns (FetchCourseInformationResponse);
     rpc FetchCourseRatings(InstructorFetchCourseRatingsRequest) returns (InstructorFetchCourseRatingsResponse);
+    rpc FetchDashboardSummary(FetchDashboardSummaryRequest) returns (FetchDashboardSummaryResponse);
 }
 
 // Enums
@@ -636,4 +637,38 @@ message RatingDistributionDataGrpc {
     int64 threeStar = 3;
     int64 fourStar = 4;
     int64 fiveStar = 5;
+}
+
+// Dashboard Summary Messages
+message FetchDashboardSummaryRequest {
+    string timeframe = 1; // "12m", "30d", "7d", "24h" - default: "30d"
+}
+
+message FetchDashboardSummaryResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    DashboardSummaryDataGrpc responseData = 3;
+}
+
+message DashboardSummaryDataGrpc {
+    string timeframe = 1;
+    MetricDataGrpc totalCourses = 2;
+    MetricDataGrpc totalLearners = 3;
+    RevenueMetricDataGrpc totalRevenue = 4;
+    MetricDataGrpc averageRating = 5;
+}
+
+message MetricDataGrpc {
+    int64 value = 1;
+    string formattedValue = 2;
+    double percentChange = 3;
+    bool isPositive = 4;
+}
+
+message RevenueMetricDataGrpc {
+    int64 value = 1;
+    string formattedValue = 2;
+    double percentChange = 3;
+    bool isPositive = 4;
+    string currency = 5;
 }

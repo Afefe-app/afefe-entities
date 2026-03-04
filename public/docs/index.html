@@ -294,6 +294,10 @@
                 </li>
               
                 <li>
+                  <a href="#.DashboardSummaryDataGrpc"><span class="badge">M</span>DashboardSummaryDataGrpc</a>
+                </li>
+              
+                <li>
                   <a href="#.DeleteCourseRequest"><span class="badge">M</span>DeleteCourseRequest</a>
                 </li>
               
@@ -359,6 +363,14 @@
               
                 <li>
                   <a href="#.FetchCoursesResponse"><span class="badge">M</span>FetchCoursesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchDashboardSummaryRequest"><span class="badge">M</span>FetchDashboardSummaryRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchDashboardSummaryResponse"><span class="badge">M</span>FetchDashboardSummaryResponse</a>
                 </li>
               
                 <li>
@@ -434,6 +446,10 @@
                 </li>
               
                 <li>
+                  <a href="#.MetricDataGrpc"><span class="badge">M</span>MetricDataGrpc</a>
+                </li>
+              
+                <li>
                   <a href="#.ModuleContentDataGrpc"><span class="badge">M</span>ModuleContentDataGrpc</a>
                 </li>
               
@@ -475,6 +491,10 @@
               
                 <li>
                   <a href="#.RatingDistributionDataGrpc"><span class="badge">M</span>RatingDistributionDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.RevenueMetricDataGrpc"><span class="badge">M</span>RevenueMetricDataGrpc</a>
                 </li>
               
                 <li>
@@ -2716,6 +2736,58 @@
 
         
       
+        <h3 id=".DashboardSummaryDataGrpc">DashboardSummaryDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>timeframe</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>totalCourses</td>
+                  <td><a href="#MetricDataGrpc">MetricDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>totalLearners</td>
+                  <td><a href="#MetricDataGrpc">MetricDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>totalRevenue</td>
+                  <td><a href="#RevenueMetricDataGrpc">RevenueMetricDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>averageRating</td>
+                  <td><a href="#MetricDataGrpc">MetricDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".DeleteCourseRequest">DeleteCourseRequest</h3>
         <p>Delete Lesson Asset Messages</p>
 
@@ -3260,6 +3332,68 @@
                 <tr>
                   <td>responseData</td>
                   <td><a href="#FetchCoursesDataGrpc">FetchCoursesDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchDashboardSummaryRequest">FetchDashboardSummaryRequest</h3>
+        <p>Dashboard Summary Messages</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>timeframe</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>&#34;12m&#34;, &#34;30d&#34;, &#34;7d&#34;, &#34;24h&#34; - default: &#34;30d&#34; </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchDashboardSummaryResponse">FetchDashboardSummaryResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#DashboardSummaryDataGrpc">DashboardSummaryDataGrpc</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -4046,6 +4180,51 @@
 
         
       
+        <h3 id=".MetricDataGrpc">MetricDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>formattedValue</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>percentChange</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>isPositive</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".ModuleContentDataGrpc">ModuleContentDataGrpc</h3>
         <p></p>
 
@@ -4523,6 +4702,58 @@
                 <tr>
                   <td>fiveStar</td>
                   <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".RevenueMetricDataGrpc">RevenueMetricDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>formattedValue</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>percentChange</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>isPositive</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>currency</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -5420,6 +5651,13 @@
                 <td>FetchCourseRatings</td>
                 <td><a href="#InstructorFetchCourseRatingsRequest">.InstructorFetchCourseRatingsRequest</a></td>
                 <td><a href="#InstructorFetchCourseRatingsResponse">.InstructorFetchCourseRatingsResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchDashboardSummary</td>
+                <td><a href="#FetchDashboardSummaryRequest">.FetchDashboardSummaryRequest</a></td>
+                <td><a href="#FetchDashboardSummaryResponse">.FetchDashboardSummaryResponse</a></td>
                 <td><p></p></td>
               </tr>
             
