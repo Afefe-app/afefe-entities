@@ -6,7 +6,11 @@ import feign.RequestTemplate;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.openfeign.support.SpringDecoder;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 
+@Primary
+@Component
 public class AfefeFeignConfig extends SpringDecoder implements RequestInterceptor {
 
     private final OmnixFeignLogger omnixFeignLogger;
