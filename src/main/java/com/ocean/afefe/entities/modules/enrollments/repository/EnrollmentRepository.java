@@ -35,4 +35,18 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, UUID>, Q
     Page<Enrollment> findByCourse_OwnerInstructor(Instructor instructor, Pageable pageable);
 
     long countByCourse_OwnerInstructorAndStatus(Instructor instructor, EnrollmentStatus status);
+
+    @Query("SELECT e FROM Enrollment e " +
+           "JOIN FETCH e.user " +
+           "JOIN FETCH e.course " +
+           "WHERE e.course.id = :courseId " +
+           "AND e.course.ownerInstructor = :instructor " +
+           "ORDER BY e.startedAt DESC")
+    Page<Enrollment> findByCourseIdAndOwnerInstructorOrderByStartedAtDesc(
+            @Param("courseId") UUID courseId,
+            @Param("instructor") Instructor instructor,
+            Pageable pageable);
+
+    @Query("SELECT COUNT(DISTINCT e.user.id) FROM Enrollment e WHERE e.course.id = :courseId AND e.startedAt >= :after")
+    long countDistinctLearnersByCourseIdAndStartedAtAfter(@Param("courseId") UUID courseId, @Param("after") Instant after);
 }

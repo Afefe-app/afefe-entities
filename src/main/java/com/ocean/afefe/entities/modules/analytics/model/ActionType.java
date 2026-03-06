@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum ActionType implements Enumerable {
 
-    COURSE("course purchase"),
+    COURSE_PURCHASE("course purchase"),
     REVIEW_RATING("review and rating"),
     ;
     private final String description;

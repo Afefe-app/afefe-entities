@@ -7,7 +7,9 @@ import com.ocean.afefe.entities.modules.contents.models.Instructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
@@ -24,4 +26,10 @@ public interface CourseRepository extends JpaRepository<Course, UUID>, QuerydslP
     long countByOwnerInstructor(Instructor instructor);
 
     long countByOwnerInstructorAndCreatedAtAfter(Instructor instructor, Instant after);
+
+    @Query("SELECT COUNT(c) FROM Course c WHERE c.ownerInstructor = :instructor AND c.status = :status AND c.createdAt >= :after")
+    long countByOwnerInstructorAndStatusAndCreatedAtAfter(
+            @Param("instructor") Instructor instructor,
+            @Param("status") CourseStatus status,
+            @Param("after") Instant after);
 }
