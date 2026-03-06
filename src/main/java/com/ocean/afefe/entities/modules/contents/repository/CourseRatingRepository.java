@@ -5,12 +5,15 @@ import com.ocean.afefe.entities.modules.auth.models.User;
 import com.ocean.afefe.entities.modules.contents.models.Course;
 import com.ocean.afefe.entities.modules.contents.models.CourseRating;
 import com.ocean.afefe.entities.modules.contents.models.Instructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -41,4 +44,26 @@ public interface CourseRatingRepository extends JpaRepository<CourseRating, UUID
 
     @Query("SELECT COUNT(cr) FROM CourseRating cr WHERE cr.course = :course AND cr.rating = :rating AND cr.org = :org")
     Long getRatingCountByCourseAndRatingAndOrg(@Param("course") Course course, @Param("rating") Integer rating, @Param("org") Organization org);
+
+    @Query("SELECT AVG(cr.rating) FROM CourseRating cr WHERE cr.course.ownerInstructor = :instructor AND cr.ratedAt >= :after")
+    Double getAverageRatingByInstructorAndRatedAtAfter(@Param("instructor") Instructor instructor, @Param("after") Instant after);
+
+    @Query("SELECT COUNT(cr) FROM CourseRating cr WHERE cr.course.ownerInstructor = :instructor AND cr.ratedAt >= :after")
+    long getRatingCountByInstructorAndRatedAtAfter(@Param("instructor") Instructor instructor, @Param("after") Instant after);
+
+    @Query("SELECT cr FROM CourseRating cr " +
+           "JOIN FETCH cr.user " +
+           "JOIN FETCH cr.course " +
+           "WHERE cr.course.id = :courseId " +
+           "AND cr.course.ownerInstructor = :instructor " +
+           "AND cr.org = :org " +
+           "ORDER BY cr.ratedAt DESC")
+    Page<CourseRating> findByCourseIdAndOwnerInstructorAndOrgOrderByRatedAtDesc(
+            @Param("courseId") UUID courseId,
+            @Param("instructor") Instructor instructor,
+            @Param("org") Organization org,
+            Pageable pageable);
+
+    @Query("SELECT AVG(cr.rating) FROM CourseRating cr WHERE cr.course.id = :courseId AND cr.ratedAt >= :after")
+    Double getAverageRatingByCourseIdAndRatedAtAfter(@Param("courseId") UUID courseId, @Param("after") Instant after);
 }
