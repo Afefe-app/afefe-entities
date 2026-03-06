@@ -17,6 +17,9 @@ service InstructorFinanceServiceGrpc {
 
     // Fetches paginated list of instructor earnings.
     rpc FetchInstructorEarnings(FetchInstructorEarningsRequest) returns (FetchInstructorEarningsResponse);
+
+    // Fetches paginated list of instructor payouts.
+    rpc FetchInstructorPayout(FetchInstructorPayoutRequest) returns (FetchInstructorPayoutResponse);
 }
 
 // ---------------------------------------------------------------------------------------
@@ -70,4 +73,32 @@ message InstructorEarningDataGrpc {
     MoneyGrpc money = 4;
     string course_title = 5;
     string date = 6;
+}
+
+// ---------------------------------------------------------------------------------------
+// Fetch Instructor Payout (paginated list)
+// ---------------------------------------------------------------------------------------
+message FetchInstructorPayoutRequest {
+    int32 page_number = 1;
+    int32 page_size = 2;
+    string sort = 3;
+}
+
+message FetchInstructorPayoutResponse {
+    string response_code = 1;
+    string response_message = 2;
+    FetchInstructorPayoutDataGrpc response_data = 3;
+}
+
+message FetchInstructorPayoutDataGrpc {
+    PaginationMetaGrpc meta = 1;
+    repeated InstructorPayoutDataGrpc content = 2;
+}
+
+message InstructorPayoutDataGrpc {
+    string serial_number = 1;   // Payout log ID as string
+    string amount = 2;
+    string currency = 3;
+    string status = 4;         // PENDING, COMPLETED, FAILED
+    string date = 5;
 }

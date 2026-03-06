@@ -747,11 +747,27 @@
                 </li>
               
                 <li>
+                  <a href="#.FetchInstructorPayoutDataGrpc"><span class="badge">M</span>FetchInstructorPayoutDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchInstructorPayoutRequest"><span class="badge">M</span>FetchInstructorPayoutRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchInstructorPayoutResponse"><span class="badge">M</span>FetchInstructorPayoutResponse</a>
+                </li>
+              
+                <li>
                   <a href="#.InstructorEarningDataGrpc"><span class="badge">M</span>InstructorEarningDataGrpc</a>
                 </li>
               
                 <li>
                   <a href="#.InstructorEarningMetricDataGrpc"><span class="badge">M</span>InstructorEarningMetricDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.InstructorPayoutDataGrpc"><span class="badge">M</span>InstructorPayoutDataGrpc</a>
                 </li>
               
               
@@ -7276,6 +7292,113 @@
 
         
       
+        <h3 id=".FetchInstructorPayoutDataGrpc">FetchInstructorPayoutDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#InstructorPayoutDataGrpc">InstructorPayoutDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchInstructorPayoutRequest">FetchInstructorPayoutRequest</h3>
+        <p>---------------------------------------------------------------------------------------</p><p>Fetch Instructor Payout (paginated list)</p><p>---------------------------------------------------------------------------------------</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>page_number</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchInstructorPayoutResponse">FetchInstructorPayoutResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>response_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>response_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>response_data</td>
+                  <td><a href="#FetchInstructorPayoutDataGrpc">FetchInstructorPayoutDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".InstructorEarningDataGrpc">InstructorEarningDataGrpc</h3>
         <p></p>
 
@@ -7373,6 +7496,58 @@
 
         
       
+        <h3 id=".InstructorPayoutDataGrpc">InstructorPayoutDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>serial_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Payout log ID as string </p></td>
+                </tr>
+              
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>currency</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>PENDING, COMPLETED, FAILED </p></td>
+                </tr>
+              
+                <tr>
+                  <td>date</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
 
       
 
@@ -7399,6 +7574,13 @@
                 <td><a href="#FetchInstructorEarningsRequest">.FetchInstructorEarningsRequest</a></td>
                 <td><a href="#FetchInstructorEarningsResponse">.FetchInstructorEarningsResponse</a></td>
                 <td><p>Fetches paginated list of instructor earnings.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchInstructorPayout</td>
+                <td><a href="#FetchInstructorPayoutRequest">.FetchInstructorPayoutRequest</a></td>
+                <td><a href="#FetchInstructorPayoutResponse">.FetchInstructorPayoutResponse</a></td>
+                <td><p>Fetches paginated list of instructor payouts.</p></td>
               </tr>
             
           </tbody>

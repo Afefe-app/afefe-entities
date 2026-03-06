@@ -6,8 +6,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
@@ -20,4 +23,28 @@ public interface InstructorEarningRepository extends JpaRepository<InstructorEar
 
     @EntityGraph(attributePaths = { "instructor", "enrollmentPayment" })
     List<InstructorEarning> findAllByInstructorAndCreatedAtBetween(Instructor instructor, Instant startDate, Instant endDate);
+
+    @Query(value = """
+        select coalesce(sum(ie.baseEarning), 0) 
+        from InstructorEarning ie 
+        where ie.instructor = :instructor 
+        and ie.createdAt 
+        between :startDate and :endDate
+    """)
+    BigDecimal getTotalEarningBetween(@Param("instructor") Instructor instructor, @Param("startDate") Instant startDate, @Param("endDate") Instant endDate);
+
+    @Query(value = """
+        select coalesce(sum(ie.baseEarning), 0) 
+        from InstructorEarning ie 
+        where ie.instructor = :instructor 
+    """)
+    BigDecimal getTotalEarningNow(@Param("instructor") Instructor instructor);
+
+    @Query(value = """
+        select coalesce(sum(ie.baseEarning), 0) 
+        from InstructorEarning ie 
+        where ie.instructor = :instructor 
+        and ie.createdAt <= :date
+    """)
+    BigDecimal getTotalEarningToDate(@Param("instructor") Instructor instructor, @Param("date") Instant date);
 }

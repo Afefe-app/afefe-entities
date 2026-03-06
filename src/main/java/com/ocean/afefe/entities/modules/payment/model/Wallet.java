@@ -41,4 +41,8 @@ public class Wallet extends BaseUUIDEntity {
 
     @Column(nullable = false)
     private String coreStatus;
+
+    public Currency getUserCountryCurrency(){
+        return Currency.valueOf(this.getUser().getCountry().getCurrencyCode());
+    }
 }
