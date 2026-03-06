@@ -32,6 +32,12 @@ service CourseMgtServiceGrpc {
     rpc FetchLessonQuizIds(FetchLessonQuizIdsRequest) returns (FetchLessonQuizIdsResponse);
     rpc FetchCourseInformation(FetchCourseInformationRequest) returns (FetchCourseInformationResponse);
     rpc FetchCourseRatings(InstructorFetchCourseRatingsRequest) returns (InstructorFetchCourseRatingsResponse);
+    rpc FetchDashboardSummary(FetchDashboardSummaryRequest) returns (FetchDashboardSummaryResponse);
+    rpc FetchCourseManagementSummary(FetchCourseManagementSummaryRequest) returns (FetchCourseManagementSummaryResponse);
+    rpc FetchRecentActivity(FetchRecentActivityRequest) returns (FetchRecentActivityResponse);
+    rpc FetchSalesTimeseries(FetchSalesTimeseriesRequest) returns (FetchSalesTimeseriesResponse);
+    rpc FetchCourseLearners(FetchCourseLearnersRequest) returns (FetchCourseLearnersResponse);
+    rpc FetchCourseAnalyticsSummary(FetchCourseAnalyticsSummaryRequest) returns (FetchCourseAnalyticsSummaryResponse);
 }
 
 // Enums
@@ -605,6 +611,9 @@ message FetchCourseInformationResponse {
 // Fetch Course Ratings Messages
 message InstructorFetchCourseRatingsRequest {
     string courseId = 1; // Course UUID
+    int32 pageNumber = 2;
+    int32 pageSize = 3;
+    string sort = 4; // "ASC" or "DESC"
 }
 
 message InstructorFetchCourseRatingsResponse {
@@ -614,10 +623,18 @@ message InstructorFetchCourseRatingsResponse {
 }
 
 message CourseRatingsDataGrpc {
-    repeated InstructorCourseReviewDataGrpc reviews = 1;
-    int64 totalReviews = 2;
-    double overallRating = 3;
-    RatingDistributionDataGrpc ratingDistribution = 4;
+    PaginationMetaGrpc meta = 1;
+    repeated RatingDataGrpc records = 2;
+}
+
+message RatingDataGrpc {
+    string learnerId = 1;
+    string learnerName = 2;
+    string learnerAvatarUrl = 3;
+    string courseId = 4;
+    string courseTitle = 5;
+    int32 rating = 6;
+    string createdAt = 7;
 }
 
 message InstructorCourseReviewDataGrpc {
@@ -636,4 +653,153 @@ message RatingDistributionDataGrpc {
     int64 threeStar = 3;
     int64 fourStar = 4;
     int64 fiveStar = 5;
+}
+
+// Dashboard Summary Messages
+message FetchDashboardSummaryRequest {
+    string timeframe = 1; // "12m", "30d", "7d", "24h" - default: "30d"
+}
+
+message FetchDashboardSummaryResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    DashboardSummaryDataGrpc responseData = 3;
+}
+
+message DashboardSummaryDataGrpc {
+    string timeframe = 1;
+    MetricDataGrpc totalCourses = 2;
+    MetricDataGrpc totalLearners = 3;
+    RevenueMetricDataGrpc totalRevenue = 4;
+    MetricDataGrpc averageRating = 5;
+}
+
+message MetricDataGrpc {
+    int64 value = 1;
+    string formattedValue = 2;
+    double percentChange = 3;
+    bool isPositive = 4;
+}
+
+message RevenueMetricDataGrpc {
+    int64 value = 1;
+    string formattedValue = 2;
+    double percentChange = 3;
+    bool isPositive = 4;
+    string currency = 5;
+}
+
+// Course Management Summary Messages
+message FetchCourseManagementSummaryRequest {
+    string timeframe = 1; // "12m", "30d", "7d", "24h" - default: "30d"
+}
+
+message FetchCourseManagementSummaryResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CourseManagementSummaryDataGrpc responseData = 3;
+}
+
+message CourseManagementSummaryDataGrpc {
+    string timeframe = 1;
+    MetricDataGrpc myCourses = 2;
+    MetricDataGrpc totalLearners = 3;
+    MetricDataGrpc totalRatings = 4;
+    MetricDataGrpc totalDrafts = 5;
+}
+
+// Recent Activity Messages
+message FetchRecentActivityRequest {
+    int32 pageNumber = 1; // Page index (0-based). Default: 0
+    int32 pageSize = 2; // Page size. Default: 20
+    string sort = 3; // "ASC" | "DESC". Default: "DESC"
+}
+
+message FetchRecentActivityResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    RecentActivityDataGrpc responseData = 3;
+}
+
+message RecentActivityDataGrpc {
+    PaginationMetaGrpc meta = 1;
+    repeated RecentActivityItemGrpc records = 2;
+}
+
+message RecentActivityItemGrpc {
+    string userId = 1;
+    string learnerName = 2;
+    string learnerAvatarUrl = 3;
+    string email = 4;
+    string courseTitle = 5;
+    string occurredAt = 6;
+    string action = 7;
+}
+
+// Sales Timeseries Messages
+message FetchSalesTimeseriesRequest {
+    string timeframe = 1; // "12m", "30d", "7d", "24h" - default: "30d"
+}
+
+message FetchSalesTimeseriesResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    SalesTimeseriesDataGrpc responseData = 3;
+}
+
+message SalesTimeseriesDataGrpc {
+    string timeframe = 1;
+    string currency = 2;
+    repeated TimeseriesPointGrpc points = 3;
+}
+
+message TimeseriesPointGrpc {
+    string label = 1;
+    int64 value = 2;
+}
+
+message FetchCourseAnalyticsSummaryRequest {
+    string courseId = 1;
+    string timeframe = 2; // "12m", "30d", "7d", "24h" - default: "30d"
+}
+
+message FetchCourseAnalyticsSummaryResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CourseAnalyticsSummaryDataGrpc responseData = 3;
+}
+
+message CourseAnalyticsSummaryDataGrpc {
+    string timeframe = 1;
+    MetricDataGrpc totalLearners = 2;
+    MetricDataGrpc averageRating = 3;
+    MetricDataGrpc activeLearners = 4;
+}
+
+message FetchCourseLearnersRequest {
+    string courseId = 1;
+    int32 pageNumber = 2;
+    int32 pageSize = 3;
+    string sort = 4; // "ASC" or "DESC"
+}
+
+message FetchCourseLearnersResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CourseLearnersDataGrpc responseData = 3;
+}
+
+message CourseLearnersDataGrpc {
+    PaginationMetaGrpc meta = 1;
+    repeated LearnerDataGrpc records = 2;
+}
+
+message LearnerDataGrpc {
+    string learnerId = 1;
+    string learnerName = 2;
+    string learnerAvatarUrl = 3;
+    string courseId = 4;
+    string courseTitle = 5;
+    int32 completionPercent = 6;
+    string dateEnrolled = 7;
 }
