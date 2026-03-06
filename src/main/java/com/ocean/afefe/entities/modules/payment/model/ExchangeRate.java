@@ -30,6 +30,6 @@ public class ExchangeRate extends BaseUUIDEntity {
     @Enumerated(value = EnumType.STRING)
     private Currency toCurrency;
 
-    @Column(nullable = false)
+    @Column(nullable = false, scale = 10, precision = 38)
     private BigDecimal value;
 }

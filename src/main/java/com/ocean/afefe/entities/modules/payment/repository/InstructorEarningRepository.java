@@ -30,6 +30,7 @@ public interface InstructorEarningRepository extends JpaRepository<InstructorEar
         where ie.instructor = :instructor 
         and ie.createdAt 
         between :startDate and :endDate
+        and ie.status = 'COMPLETED'
     """)
     BigDecimal getTotalEarningBetween(@Param("instructor") Instructor instructor, @Param("startDate") Instant startDate, @Param("endDate") Instant endDate);
 
@@ -37,6 +38,7 @@ public interface InstructorEarningRepository extends JpaRepository<InstructorEar
         select coalesce(sum(ie.baseEarning), 0) 
         from InstructorEarning ie 
         where ie.instructor = :instructor 
+        and ie.status = 'COMPLETED'
     """)
     BigDecimal getTotalEarningNow(@Param("instructor") Instructor instructor);
 
@@ -45,6 +47,7 @@ public interface InstructorEarningRepository extends JpaRepository<InstructorEar
         from InstructorEarning ie 
         where ie.instructor = :instructor 
         and ie.createdAt <= :date
+        and ie.status = 'COMPLETED'
     """)
     BigDecimal getTotalEarningToDate(@Param("instructor") Instructor instructor, @Param("date") Instant date);
 }

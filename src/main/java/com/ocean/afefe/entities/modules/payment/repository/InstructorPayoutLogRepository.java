@@ -22,7 +22,8 @@ public interface InstructorPayoutLogRepository extends JpaRepository<InstructorP
         select coalesce(sum(pl.payoutAmount), 0)
         from InstructorPayoutLog pl
         where pl.instructor = :instructor
-          and pl.createdAt between :startDate and :endDate
+        and pl.createdAt between :startDate and :endDate
+        and pl.status = 'COMPLETED'
     """)
         BigDecimal getTotalPayoutBetween(
                 @Param("instructor") Instructor instructor,
@@ -34,6 +35,7 @@ public interface InstructorPayoutLogRepository extends JpaRepository<InstructorP
         select coalesce(sum(pl.payoutAmount), 0)
         from InstructorPayoutLog pl
         where pl.instructor = :instructor
+        and pl.status = 'COMPLETED'
     """)
     BigDecimal getTotalPayoutNow(@Param("instructor") Instructor instructor);
 
@@ -42,6 +44,7 @@ public interface InstructorPayoutLogRepository extends JpaRepository<InstructorP
         from InstructorPayoutLog pl
         where pl.instructor = :instructor
         and pl.createdAt <= :date
+        and pl.status = 'COMPLETED'
     """)
     BigDecimal getTotalPayoutToDate(@Param("instructor") Instructor instructor, @Param("date") Instant date);
 }
