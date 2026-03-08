@@ -98,8 +98,9 @@ public class Course extends BaseUUIDEntity {
     private User updatedBy;
 
 
-    public boolean requirePayment(){
-        return !this.isFree() || Objects.nonNull(this.getPrice()) && this.getPrice().compareTo(BigDecimal.ZERO) <= 0;
+    public boolean requirePayment() {
+        return !this.isFree()
+                || (Objects.nonNull(this.getPrice()) && this.getPrice().compareTo(BigDecimal.ZERO) > 0);
     }
 
     @Override
