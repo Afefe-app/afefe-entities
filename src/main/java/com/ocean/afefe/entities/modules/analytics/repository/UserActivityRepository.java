@@ -26,18 +26,16 @@ public interface UserActivityRepository extends JpaRepository<UserActivity, Base
             @Param("instructor") Instructor instructor,
             Pageable pageable);
 
-    @Query("SELECT DISTINCT ua.course FROM UserActivity ua " +
+    @Query("SELECT DISTINCT ua.course, ua.updatedAt FROM UserActivity ua " +
            "WHERE ua.course.ownerInstructor = :instructor " +
-           "AND ua.course.status = :status " +
-           "ORDER BY ua.course.updatedAt DESC")
+           "AND ua.course.status = :status " )
     Page<Course> findDistinctCoursesByOwnerInstructorAndStatusOrderByUpdatedAtDesc(
             @Param("instructor") Instructor instructor,
             @Param("status") com.ocean.afefe.entities.modules.contents.models.CourseStatus status,
             Pageable pageable);
 
-    @Query("SELECT DISTINCT ua.course FROM UserActivity ua " +
-           "WHERE ua.course.ownerInstructor = :instructor " +
-           "ORDER BY ua.course.updatedAt DESC")
+    @Query("SELECT DISTINCT ua.course, ua.updatedAt FROM UserActivity ua " +
+           "WHERE ua.course.ownerInstructor = :instructor " )
     Page<Course> findDistinctCoursesByOwnerInstructorOrderByUpdatedAtDesc(
             @Param("instructor") Instructor instructor,
             Pageable pageable);
