@@ -38,6 +38,7 @@ service CourseMgtServiceGrpc {
     rpc FetchSalesTimeseries(FetchSalesTimeseriesRequest) returns (FetchSalesTimeseriesResponse);
     rpc FetchCourseLearners(FetchCourseLearnersRequest) returns (FetchCourseLearnersResponse);
     rpc FetchCourseAnalyticsSummary(FetchCourseAnalyticsSummaryRequest) returns (FetchCourseAnalyticsSummaryResponse);
+    rpc FetchCourseRatingsForDashboard(FetchCourseRatingsForDashboardRequest) returns (FetchCourseRatingsForDashboardResponse);
 }
 
 // Enums
@@ -619,12 +620,30 @@ message InstructorFetchCourseRatingsRequest {
 message InstructorFetchCourseRatingsResponse {
     string responseCode = 1;
     string responseMessage = 2;
-    CourseRatingsDataGrpc responseData = 3;
+    CourseRatingsAndReviewsDataGrpc responseData = 3;
 }
 
-message CourseRatingsDataGrpc {
-    PaginationMetaGrpc meta = 1;
-    repeated RatingDataGrpc records = 2;
+message CourseRatingsAndReviewsDataGrpc {
+    double rating = 1; // Overall average rating
+    int64 reviewCount = 2; // Total number of reviews
+    repeated RatingDistributionItemGrpc ratingDistribution = 3;
+    repeated ReviewDataGrpc reviews = 4;
+    PaginationMetaGrpc meta = 5;
+}
+
+message RatingDistributionItemGrpc {
+    int32 stars = 1;
+    double percentage = 2;
+}
+
+message ReviewDataGrpc {
+    string id = 1;
+    string learnerId = 2;
+    string learnerName = 3;
+    string avatarUrl = 4;
+    string createdAt = 5;
+    int32 rating = 6;
+    string comment = 7;
 }
 
 message RatingDataGrpc {
@@ -802,4 +821,23 @@ message LearnerDataGrpc {
     string courseTitle = 5;
     int32 completionPercent = 6;
     string dateEnrolled = 7;
+}
+
+// Course Ratings For Dashboard Messages
+message FetchCourseRatingsForDashboardRequest {
+    string courseId = 1; // Optional - empty/null means all courses
+    int32 pageNumber = 2;
+    int32 pageSize = 3;
+    string sort = 4; // "ASC" or "DESC"
+}
+
+message FetchCourseRatingsForDashboardResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CourseRatingsForDashboardDataGrpc responseData = 3;
+}
+
+message CourseRatingsForDashboardDataGrpc {
+    PaginationMetaGrpc meta = 1;
+    repeated RatingDataGrpc records = 2;
 }

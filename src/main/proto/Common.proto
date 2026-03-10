@@ -89,11 +89,6 @@ message GrpcStringResponse{
   repeated string errors = 4;
 }
 
-message MoneyGrpc {
-  string amount = 1;
-  string currency = 2;
-}
-
 message PaginationMetaGrpc{
   int32 pageNumber = 1;
   int32 pageSize = 2;
