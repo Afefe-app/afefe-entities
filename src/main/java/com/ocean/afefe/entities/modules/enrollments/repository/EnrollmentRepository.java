@@ -14,6 +14,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -49,4 +50,6 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, UUID>, Q
 
     @Query("SELECT COUNT(DISTINCT e.user.id) FROM Enrollment e WHERE e.course.id = :courseId AND e.startedAt >= :after")
     long countDistinctLearnersByCourseIdAndStartedAtAfter(@Param("courseId") UUID courseId, @Param("after") Instant after);
+
+    boolean existsByUserAndCourseAndStatusIn(User user, Course course, List<EnrollmentStatus> status);
 }
