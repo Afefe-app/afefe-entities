@@ -16,5 +16,7 @@ public interface ContentNoteRepository extends JpaRepository<ContentNote, UUID> 
 
     Page<ContentNote> findAllByUserAndOrg(User user, Organization org, Pageable pageable);
 
+    Page<ContentNote> findAllByUserAndOrgAndObjectId(User user, Organization org, UUID objectId, Pageable pageable);
+
     Optional<ContentNote> findByIdAndUser(UUID id, User user);
 }
