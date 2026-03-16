@@ -32,4 +32,13 @@ public interface CourseRepository extends JpaRepository<Course, UUID>, QuerydslP
             @Param("instructor") Instructor instructor,
             @Param("status") CourseStatus status,
             @Param("after") Instant after);
+
+    @Query("SELECT COUNT(c) FROM Course c WHERE c.ownerInstructor = :instructor AND c.createdAt <= :date")
+    long countByOwnerInstructorAndCreatedAtToDate(@Param("instructor") Instructor instructor, @Param("date") Instant date);
+
+    @Query("SELECT COUNT(c) FROM Course c WHERE c.ownerInstructor = :instructor AND c.status = :status AND c.createdAt <= :date")
+    long countByOwnerInstructorAndStatusAndCreatedAtToDate(
+            @Param("instructor") Instructor instructor,
+            @Param("status") CourseStatus status,
+            @Param("date") Instant date);
 }

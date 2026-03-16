@@ -77,4 +77,13 @@ public interface CourseRatingRepository extends JpaRepository<CourseRating, UUID
 
     @Query("SELECT AVG(cr.rating) FROM CourseRating cr WHERE cr.course.id = :courseId AND cr.ratedAt >= :after")
     Double getAverageRatingByCourseIdAndRatedAtAfter(@Param("courseId") UUID courseId, @Param("after") Instant after);
+
+    @Query("SELECT AVG(cr.rating) FROM CourseRating cr WHERE cr.course.id = :courseId AND cr.ratedAt <= :date")
+    Double getAverageRatingByCourseIdAndRatedAtToDate(@Param("courseId") UUID courseId, @Param("date") Instant date);
+
+    @Query("SELECT AVG(cr.rating) FROM CourseRating cr WHERE cr.course.ownerInstructor = :instructor AND cr.ratedAt <= :date")
+    Double getAverageRatingByInstructorAndRatedAtToDate(@Param("instructor") Instructor instructor, @Param("date") Instant date);
+
+    @Query("SELECT COUNT(cr) FROM CourseRating cr WHERE cr.course.ownerInstructor = :instructor AND cr.ratedAt <= :date")
+    long getRatingCountByInstructorAndRatedAtToDate(@Param("instructor") Instructor instructor, @Param("date") Instant date);
 }

@@ -13,4 +13,6 @@ public interface QuizRepository extends JpaRepository<Quiz, UUID> {
     List<Quiz> findAllByLessonId(UUID lessonId);
 
     List<Quiz> findAllByLessonIdIn(List<UUID> lessonIds);
+
+    List<Quiz> findAllByCourse_Id(UUID courseId);
 }

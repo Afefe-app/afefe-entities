@@ -7,6 +7,7 @@ import com.ocean.afefe.entities.modules.contents.models.Instructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Repository
-public interface UserActivityRepository extends JpaRepository<UserActivity, BaseUUIDEntity> {
+public interface UserActivityRepository extends JpaRepository<UserActivity, BaseUUIDEntity>, JpaSpecificationExecutor<UserActivity> {
 
     @Query("SELECT ua FROM UserActivity ua " +
            "JOIN FETCH ua.user " +
@@ -42,4 +43,7 @@ public interface UserActivityRepository extends JpaRepository<UserActivity, Base
 
     @Query("SELECT COUNT(DISTINCT ua.user.id) FROM UserActivity ua WHERE ua.course.id = :courseId AND ua.createdAt >= :after")
     long countDistinctActiveLearnersByCourseIdAndCreatedAtAfter(@Param("courseId") UUID courseId, @Param("after") Instant after);
+
+    @Query("SELECT COUNT(DISTINCT ua.user.id) FROM UserActivity ua WHERE ua.course.id = :courseId AND ua.createdAt <= :date")
+    long countDistinctActiveLearnersByCourseIdAndCreatedAtToDate(@Param("courseId") UUID courseId, @Param("date") Instant date);
 }
