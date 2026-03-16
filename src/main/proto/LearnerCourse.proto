@@ -257,6 +257,8 @@ message FetchEnrollmentHistoryDataGrpc {
 // Basic enrollment record for history listing.
 message BasicEnrollmentDataGrpc {
     string status = 1;                  // Enrollment status (e.g. "ENROLLED", "COMPLETED")
+    string courseId = 6;                 // Course UUID
+    string coverImageUrl = 7;            // Course cover image URL
     string courseTitle = 2;             // Title of the enrolled course
     int32 currentModulePosition = 3;    // Position of the current module in the course
     int32 progressPercent = 4;          // Progress percentage (0-100)
@@ -385,6 +387,7 @@ message CourseDetailsDataGrpc {
     InstructorBasicDataGrpc instructor = 17;    // Course instructor summary
     int64 totalStudents = 18;                   // Total number of enrolled students
     bool isSaved = 19;                          // Whether the current user has saved this course to their wishlist
+    bool isEnrolled = 20;                       // Whether the current user is enrolled in this course
 }
 
 // Request payload for fetching comprehensive course details.
