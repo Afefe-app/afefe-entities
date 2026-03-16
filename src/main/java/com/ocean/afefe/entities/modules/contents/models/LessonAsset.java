@@ -24,6 +24,7 @@ public class LessonAsset extends BaseUUIDEntity {
 
     private String uri;
 
+    @Column(columnDefinition = "TEXT")
     private String lessonText;
 
     private String checksum;

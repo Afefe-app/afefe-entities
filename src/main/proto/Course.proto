@@ -38,6 +38,9 @@ service CourseMgtServiceGrpc {
     rpc FetchSalesTimeseries(FetchSalesTimeseriesRequest) returns (FetchSalesTimeseriesResponse);
     rpc FetchCourseLearners(FetchCourseLearnersRequest) returns (FetchCourseLearnersResponse);
     rpc FetchCourseAnalyticsSummary(FetchCourseAnalyticsSummaryRequest) returns (FetchCourseAnalyticsSummaryResponse);
+    rpc FetchQuizCompletion(FetchQuizCompletionRequest) returns (FetchQuizCompletionResponse);
+    rpc FetchCourseRatingsForDashboard(FetchCourseRatingsForDashboardRequest) returns (FetchCourseRatingsForDashboardResponse);
+    rpc FetchModuleDropOff(FetchModuleDropOffRequest) returns (FetchModuleDropOffResponse);
 }
 
 // Enums
@@ -619,12 +622,30 @@ message InstructorFetchCourseRatingsRequest {
 message InstructorFetchCourseRatingsResponse {
     string responseCode = 1;
     string responseMessage = 2;
-    CourseRatingsDataGrpc responseData = 3;
+    CourseRatingsAndReviewsDataGrpc responseData = 3;
 }
 
-message CourseRatingsDataGrpc {
-    PaginationMetaGrpc meta = 1;
-    repeated RatingDataGrpc records = 2;
+message CourseRatingsAndReviewsDataGrpc {
+    double rating = 1; // Overall average rating
+    int64 reviewCount = 2; // Total number of reviews
+    repeated RatingDistributionItemGrpc ratingDistribution = 3;
+    repeated ReviewDataGrpc reviews = 4;
+    PaginationMetaGrpc meta = 5;
+}
+
+message RatingDistributionItemGrpc {
+    int32 stars = 1;
+    double percentage = 2;
+}
+
+message ReviewDataGrpc {
+    string id = 1;
+    string learnerId = 2;
+    string learnerName = 3;
+    string avatarUrl = 4;
+    string createdAt = 5;
+    int32 rating = 6;
+    string comment = 7;
 }
 
 message RatingDataGrpc {
@@ -736,6 +757,36 @@ message RecentActivityItemGrpc {
     string action = 7;
 }
 
+// Search Recent Activity Messages
+message SearchRecentActivityRequest {
+    int32 pageNumber = 1; // Page index (0-based). Default: 0
+    int32 pageSize = 2; // Page size. Default: 20
+    string sort = 3; // "ASC" | "DESC". Default: "DESC"
+    string email = 4; // Optional - filter by user email
+    string name = 5; // Optional - filter by user name
+    string action = 6; // Optional - filter by action
+    string courseTitle = 7; // Optional - filter by course title
+    string date = 8; // Optional - filter from date to now (ISO 8601)
+}
+
+// Module Drop-Off Messages
+message FetchModuleDropOffRequest {
+    string courseId = 1;
+    string timeframe = 2; // "12m", "30d", "7d", "24h" - default: "30d"
+}
+
+message ModuleDropOffItemGrpc {
+    string moduleId = 1;
+    string moduleTitle = 2;
+    int64 learnersCount = 3;
+}
+
+message FetchModuleDropOffResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    repeated ModuleDropOffItemGrpc responseData = 3;
+}
+
 // Sales Timeseries Messages
 message FetchSalesTimeseriesRequest {
     string timeframe = 1; // "12m", "30d", "7d", "24h" - default: "30d"
@@ -776,6 +827,24 @@ message CourseAnalyticsSummaryDataGrpc {
     MetricDataGrpc activeLearners = 4;
 }
 
+message FetchQuizCompletionRequest {
+    string courseId = 1;
+    string timeframe = 2; // "12m", "30d", "7d", "24h" - default: "30d"
+}
+
+message QuizCompletionItemGrpc {
+    string quizId = 1;
+    string quizTitle = 2;
+    int64 activeLearners = 3;
+    int64 totalLearners = 4;
+}
+
+message FetchQuizCompletionResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    repeated QuizCompletionItemGrpc responseData = 3;
+}
+
 message FetchCourseLearnersRequest {
     string courseId = 1;
     int32 pageNumber = 2;
@@ -802,4 +871,23 @@ message LearnerDataGrpc {
     string courseTitle = 5;
     int32 completionPercent = 6;
     string dateEnrolled = 7;
+}
+
+// Course Ratings For Dashboard Messages
+message FetchCourseRatingsForDashboardRequest {
+    string courseId = 1; // Optional - empty/null means all courses
+    int32 pageNumber = 2;
+    int32 pageSize = 3;
+    string sort = 4; // "ASC" or "DESC"
+}
+
+message FetchCourseRatingsForDashboardResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    CourseRatingsForDashboardDataGrpc responseData = 3;
+}
+
+message CourseRatingsForDashboardDataGrpc {
+    PaginationMetaGrpc meta = 1;
+    repeated RatingDataGrpc records = 2;
 }

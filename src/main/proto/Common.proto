@@ -89,15 +89,15 @@ message GrpcStringResponse{
   repeated string errors = 4;
 }
 
-message MoneyGrpc {
-  string amount = 1;
-  string currency = 2;
-}
-
 message PaginationMetaGrpc{
   int32 pageNumber = 1;
   int32 pageSize = 2;
   int32 pageCount = 3;
   int32 totalCount = 4;
   int32 numberOfPages = 5;
+}
+
+message MoneyGrpc {
+  string amount = 1;      // Monetary amount as string (e.g., "1000.00")
+  string currency = 2;   // ISO 4217 currency code as string (e.g., "NGN", "USD", "GBP", "EUR")
 }
