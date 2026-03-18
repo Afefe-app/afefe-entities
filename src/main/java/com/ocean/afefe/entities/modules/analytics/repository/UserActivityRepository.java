@@ -46,4 +46,18 @@ public interface UserActivityRepository extends JpaRepository<UserActivity, Base
 
     @Query("SELECT COUNT(DISTINCT ua.user.id) FROM UserActivity ua WHERE ua.course.id = :courseId AND ua.createdAt <= :date")
     long countDistinctActiveLearnersByCourseIdAndCreatedAtToDate(@Param("courseId") UUID courseId, @Param("date") Instant date);
+
+    @Query("""
+        SELECT COUNT(DISTINCT ua.user.id)
+        FROM UserActivity ua
+        WHERE ua.course.ownerInstructor = :instructor
+          AND ua.userType = com.ocean.afefe.entities.modules.auth.models.UserType.PLATFORM_LEARNER
+          AND ua.createdAt >= :startDate
+          AND ua.createdAt < :endDate
+    """)
+    long countDistinctActiveLearnersByInstructorAndCreatedAtBetween(
+            @Param("instructor") Instructor instructor,
+            @Param("startDate") Instant startDate,
+            @Param("endDate") Instant endDate
+    );
 }

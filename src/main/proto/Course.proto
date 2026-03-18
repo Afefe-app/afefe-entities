@@ -35,12 +35,15 @@ service CourseMgtServiceGrpc {
     rpc FetchDashboardSummary(FetchDashboardSummaryRequest) returns (FetchDashboardSummaryResponse);
     rpc FetchCourseManagementSummary(FetchCourseManagementSummaryRequest) returns (FetchCourseManagementSummaryResponse);
     rpc FetchRecentActivity(FetchRecentActivityRequest) returns (FetchRecentActivityResponse);
+    rpc SearchRecentActivity(SearchRecentActivityRequest) returns (FetchRecentActivityResponse);
     rpc FetchSalesTimeseries(FetchSalesTimeseriesRequest) returns (FetchSalesTimeseriesResponse);
     rpc FetchCourseLearners(FetchCourseLearnersRequest) returns (FetchCourseLearnersResponse);
     rpc FetchCourseAnalyticsSummary(FetchCourseAnalyticsSummaryRequest) returns (FetchCourseAnalyticsSummaryResponse);
     rpc FetchQuizCompletion(FetchQuizCompletionRequest) returns (FetchQuizCompletionResponse);
     rpc FetchCourseRatingsForDashboard(FetchCourseRatingsForDashboardRequest) returns (FetchCourseRatingsForDashboardResponse);
     rpc FetchModuleDropOff(FetchModuleDropOffRequest) returns (FetchModuleDropOffResponse);
+    rpc FetchLearnersActivity(FetchLearnersActivityRequest) returns (FetchLearnersActivityResponse);
+    rpc FetchPerformanceTrends(FetchPerformanceTrendsRequest) returns (FetchPerformanceTrendsResponse);
 }
 
 // Enums
@@ -704,10 +707,11 @@ message MetricDataGrpc {
 
 message RevenueMetricDataGrpc {
     int64 value = 1;
-    string formattedValue = 2;
-    double percentChange = 3;
-    bool isPositive = 4;
-    string currency = 5;
+    int32 valueScale = 2;
+    string formattedValue = 3;
+    double percentChange = 4;
+    bool isPositive = 5;
+    string currency = 6;
 }
 
 // Course Management Summary Messages
@@ -787,6 +791,44 @@ message FetchModuleDropOffResponse {
     repeated ModuleDropOffItemGrpc responseData = 3;
 }
 
+// Learners Activity Messages
+message FetchLearnersActivityRequest {
+    string timeframe = 1; // "12m" | "30d" | "7d" | "24h"
+}
+
+message LearnersActivityPointGrpc {
+    string label = 1;
+    int64 activeLearners = 2;
+    int64 totalLearners = 3;
+}
+
+message FetchLearnersActivityResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    string timeframe = 3;
+    repeated LearnersActivityPointGrpc points = 4;
+}
+
+// Performance Trends Messages
+message FetchPerformanceTrendsRequest {
+    string timeframe = 1; // "12m" | "30d" | "7d" | "24h"
+}
+
+message PerformanceTrendsPointGrpc {
+    string label = 1;
+    string revenueGenerated = 2; // BigDecimal serialized as string
+    double courseCompletionRate = 3;
+}
+
+message FetchPerformanceTrendsResponse {
+    string responseCode = 1;
+    string responseMessage = 2;
+    string timeframe = 3;
+    string currency = 4;
+    repeated PerformanceTrendsPointGrpc points = 5;
+    int32 valueScale = 6;
+}
+
 // Sales Timeseries Messages
 message FetchSalesTimeseriesRequest {
     string timeframe = 1; // "12m", "30d", "7d", "24h" - default: "30d"
@@ -801,7 +843,8 @@ message FetchSalesTimeseriesResponse {
 message SalesTimeseriesDataGrpc {
     string timeframe = 1;
     string currency = 2;
-    repeated TimeseriesPointGrpc points = 3;
+    int32 valueScale = 3;
+    repeated TimeseriesPointGrpc points = 4;
 }
 
 message TimeseriesPointGrpc {
