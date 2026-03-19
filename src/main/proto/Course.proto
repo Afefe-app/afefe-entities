@@ -34,7 +34,6 @@ service CourseMgtServiceGrpc {
     rpc FetchCourseRatings(InstructorFetchCourseRatingsRequest) returns (InstructorFetchCourseRatingsResponse);
     rpc FetchDashboardSummary(FetchDashboardSummaryRequest) returns (FetchDashboardSummaryResponse);
     rpc FetchCourseManagementSummary(FetchCourseManagementSummaryRequest) returns (FetchCourseManagementSummaryResponse);
-    rpc FetchRecentActivity(FetchRecentActivityRequest) returns (FetchRecentActivityResponse);
     rpc SearchRecentActivity(SearchRecentActivityRequest) returns (FetchRecentActivityResponse);
     rpc FetchSalesTimeseries(FetchSalesTimeseriesRequest) returns (FetchSalesTimeseriesResponse);
     rpc FetchCourseLearners(FetchCourseLearnersRequest) returns (FetchCourseLearnersResponse);
@@ -733,13 +732,7 @@ message CourseManagementSummaryDataGrpc {
     MetricDataGrpc totalDrafts = 5;
 }
 
-// Recent Activity Messages
-message FetchRecentActivityRequest {
-    int32 pageNumber = 1; // Page index (0-based). Default: 0
-    int32 pageSize = 2; // Page size. Default: 20
-    string sort = 3; // "ASC" | "DESC". Default: "DESC"
-}
-
+// Recent Activity Messages (used by SearchRecentActivity)
 message FetchRecentActivityResponse {
     string responseCode = 1;
     string responseMessage = 2;
@@ -766,11 +759,8 @@ message SearchRecentActivityRequest {
     int32 pageNumber = 1; // Page index (0-based). Default: 0
     int32 pageSize = 2; // Page size. Default: 20
     string sort = 3; // "ASC" | "DESC". Default: "DESC"
-    string email = 4; // Optional - filter by user email
-    string name = 5; // Optional - filter by user name
-    string action = 6; // Optional - filter by action
-    string courseTitle = 7; // Optional - filter by course title
-    string date = 8; // Optional - filter from date to now (ISO 8601)
+    string search = 4; // Optional - searches across email, name, action, course title
+    string date = 5; // Optional - filter from date to now (ISO 8601)
 }
 
 // Module Drop-Off Messages

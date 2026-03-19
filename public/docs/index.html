@@ -486,10 +486,6 @@
                 </li>
               
                 <li>
-                  <a href="#.FetchRecentActivityRequest"><span class="badge">M</span>FetchRecentActivityRequest</a>
-                </li>
-              
-                <li>
                   <a href="#.FetchRecentActivityResponse"><span class="badge">M</span>FetchRecentActivityResponse</a>
                 </li>
               
@@ -4476,6 +4472,13 @@
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>valueScale</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -4614,46 +4617,8 @@
 
         
       
-        <h3 id=".FetchRecentActivityRequest">FetchRecentActivityRequest</h3>
-        <p>Recent Activity Messages</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>pageNumber</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>Page index (0-based). Default: 0 </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pageSize</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>Page size. Default: 20 </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sort</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>&#34;ASC&#34; | &#34;DESC&#34;. Default: &#34;DESC&#34; </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id=".FetchRecentActivityResponse">FetchRecentActivityResponse</h3>
-        <p></p>
+        <p>Recent Activity Messages (used by SearchRecentActivity)</p>
 
         
           <table class="field-table">
@@ -6454,31 +6419,10 @@
                 </tr>
               
                 <tr>
-                  <td>email</td>
+                  <td>search</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Optional - filter by user email </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Optional - filter by user name </p></td>
-                </tr>
-              
-                <tr>
-                  <td>action</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Optional - filter by action </p></td>
-                </tr>
-              
-                <tr>
-                  <td>courseTitle</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Optional - filter by course title </p></td>
+                  <td><p>Optional - searches across email, name, action, course title </p></td>
                 </tr>
               
                 <tr>
@@ -7426,13 +7370,6 @@
                 <td>FetchCourseManagementSummary</td>
                 <td><a href="#FetchCourseManagementSummaryRequest">.FetchCourseManagementSummaryRequest</a></td>
                 <td><a href="#FetchCourseManagementSummaryResponse">.FetchCourseManagementSummaryResponse</a></td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>FetchRecentActivity</td>
-                <td><a href="#FetchRecentActivityRequest">.FetchRecentActivityRequest</a></td>
-                <td><a href="#FetchRecentActivityResponse">.FetchRecentActivityResponse</a></td>
                 <td><p></p></td>
               </tr>
             
