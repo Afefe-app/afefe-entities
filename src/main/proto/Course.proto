@@ -286,6 +286,8 @@ message CreateLessonAssetRequest {
     int64 fileSizeBytes = 6;
     string mimeType = 7;
     int32 assetOrder = 8;
+    // If unset, server defaults to 30 seconds
+    optional int64 estimated_duration_seconds = 9;
 }
 
 message CreateLessonAssetResponse {
@@ -305,6 +307,7 @@ message UpdateLessonAssetRequest {
     int64 fileSizeBytes = 7;
     string mimeType = 8;
     int32 assetOrder = 9;
+    optional int64 estimated_duration_seconds = 10;
 }
 
 message UpdateLessonAssetResponse {
@@ -323,6 +326,7 @@ message LessonAssetData {
     int64 fileSizeBytes = 7;
     string mimeType = 8;
     int32 assetOrder = 9;
+    int64 estimated_duration_seconds = 10;
 }
 
 // Delete Lesson Asset Messages

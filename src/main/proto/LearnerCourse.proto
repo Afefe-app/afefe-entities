@@ -388,6 +388,8 @@ message CourseDetailsDataGrpc {
     int64 totalStudents = 18;                   // Total number of enrolled students
     bool isSaved = 19;                          // Whether the current user has saved this course to their wishlist
     bool isEnrolled = 20;                       // Whether the current user is enrolled in this course
+    int32 numberOfQuizzes = 21;                 // Total number of quizzes attached to this course
+    bool hasCertificate = 22;                   // Whether the course issues a certificate on completion
 }
 
 // Request payload for fetching comprehensive course details.
@@ -687,6 +689,7 @@ message CourseModulesDataGrpc {
     string courseId = 1;                   // UUID of the course
     string title = 2;                      // Course title
     repeated ModuleDataGrpc modules = 3;   // Ordered list of course modules
+    int32 duration = 4;                    // Total estimated course duration in minutes (from course metadata)
 }
 
 // A single course module containing its lessons.
@@ -733,6 +736,7 @@ message LessonAssetWithProgressDataGrpc {
     int32 last_position_seconds = 7;
     string last_viewed_at = 8;                 // ISO instant
     string completed_at = 9;                   // ISO instant
+    int64 estimated_duration_seconds = 10;     // Expected duration for this asset (from lesson_assets)
 }
 
 // A file or media asset attached to a lesson.

@@ -68,7 +68,8 @@ public class Course extends BaseUUIDEntity {
     @Column( columnDefinition = "TEXT")
     private String summary;
 
-    private String level;
+    @Builder.Default
+    private String level = CourseLevel.INTERMEDIATE.name();
 
     private String language;
 
@@ -90,6 +91,9 @@ public class Course extends BaseUUIDEntity {
     private int reviews = 0;
 
     private Instant viewedAt;
+
+    @Builder.Default
+    private boolean hasCertificate = true;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User createdBy;

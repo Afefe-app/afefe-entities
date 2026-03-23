@@ -35,4 +35,7 @@ public class LessonAsset extends BaseUUIDEntity {
 
     @Column(nullable = false)
     private Integer assetOrder;
+
+    @Builder.Default
+    private long estimatedDurationSeconds = 0;
 }

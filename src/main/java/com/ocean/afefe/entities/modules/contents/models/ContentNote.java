@@ -5,6 +5,8 @@ import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.UUID;
 
@@ -35,7 +37,13 @@ public class ContentNote extends BaseUUIDEntity {
     @Enumerated(value = EnumType.STRING)
     private ContentNoteObjectType objectType;
 
-    @Column(name = "object_id", nullable = false, columnDefinition = "uuid")
+    /**
+     * Referenced entity id (course, module, lesson, or asset). Persisted as VARCHAR in PostgreSQL
+     * so Hibernate must map UUID as string; otherwise comparisons fail with
+     * {@code operator does not exist: character varying = uuid}.
+     */
+    @Column(name = "object_id", nullable = false, length = 36)
+    @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID objectId;
 
     @Column(columnDefinition = "TEXT", nullable = false)
