@@ -257,9 +257,9 @@ message FetchEnrollmentHistoryDataGrpc {
 // Basic enrollment record for history listing.
 message BasicEnrollmentDataGrpc {
     string status = 1;                  // Enrollment status (e.g. "ENROLLED", "COMPLETED")
+    string courseId = 6;                 // Course UUID
+    string coverImageUrl = 7;            // Course cover image URL
     string courseTitle = 2;             // Title of the enrolled course
-    string courseId = 6;                // UUID of the enrolled course
-    string coverImageUrl = 7;           // URL of the course cover image
     int32 currentModulePosition = 3;    // Position of the current module in the course
     int32 progressPercent = 4;          // Progress percentage (0-100)
     repeated LessonAssetProgressDataGrpc lesson_asset_progress = 5;  // Per-asset progress for this enrollment
@@ -696,6 +696,7 @@ message ModuleDataGrpc {
     int32 position = 3;                    // Display order position within the course
     string summary = 4;                    // Module summary/description
     repeated LessonDataGrpc lessons = 5;   // Ordered list of lessons within this module
+    int32 durationSeconds = 6;             // Total duration of all lessons in this module (seconds)
 }
 
 // A single lesson within a module, containing its assets and lesson contents (hierarchy: lesson -> lesson contents -> assets).
@@ -741,6 +742,7 @@ message LessonAssetDataGrpc {
     string uri = 3;           // URL or URI to the asset resource
     string mimeType = 4;     // MIME type of the asset (e.g. "video/mp4", "application/pdf")
     int64 fileSizeBytes = 5; // File size in bytes
+    string lessonText = 6;   // Raw text content from the lesson asset
 }
 
 // ======================================================================================

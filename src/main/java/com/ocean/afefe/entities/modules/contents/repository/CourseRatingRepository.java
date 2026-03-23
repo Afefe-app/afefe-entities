@@ -56,14 +56,34 @@ public interface CourseRatingRepository extends JpaRepository<CourseRating, UUID
            "JOIN FETCH cr.course " +
            "WHERE cr.course.id = :courseId " +
            "AND cr.course.ownerInstructor = :instructor " +
-           "AND cr.org = :org " +
-           "ORDER BY cr.ratedAt DESC")
-    Page<CourseRating> findByCourseIdAndOwnerInstructorAndOrgOrderByRatedAtDesc(
+           "AND cr.org = :org")
+    Page<CourseRating> findByCourseIdAndOwnerInstructorAndOrg(
             @Param("courseId") UUID courseId,
             @Param("instructor") Instructor instructor,
             @Param("org") Organization org,
             Pageable pageable);
 
+    @Query("SELECT cr FROM CourseRating cr " +
+           "JOIN FETCH cr.user " +
+           "JOIN FETCH cr.course " +
+           "WHERE cr.course.ownerInstructor = :instructor " +
+           "AND cr.org = :org " +
+           "AND (:courseId IS NULL OR cr.course.id = :courseId)")
+    Page<CourseRating> findByOwnerInstructorAndOrg(
+            @Param("instructor") Instructor instructor,
+            @Param("org") Organization org,
+            @Param("courseId") UUID courseId,
+            Pageable pageable);
+
     @Query("SELECT AVG(cr.rating) FROM CourseRating cr WHERE cr.course.id = :courseId AND cr.ratedAt >= :after")
     Double getAverageRatingByCourseIdAndRatedAtAfter(@Param("courseId") UUID courseId, @Param("after") Instant after);
+
+    @Query("SELECT AVG(cr.rating) FROM CourseRating cr WHERE cr.course.id = :courseId AND cr.ratedAt <= :date")
+    Double getAverageRatingByCourseIdAndRatedAtToDate(@Param("courseId") UUID courseId, @Param("date") Instant date);
+
+    @Query("SELECT AVG(cr.rating) FROM CourseRating cr WHERE cr.course.ownerInstructor = :instructor AND cr.ratedAt <= :date")
+    Double getAverageRatingByInstructorAndRatedAtToDate(@Param("instructor") Instructor instructor, @Param("date") Instant date);
+
+    @Query("SELECT COUNT(cr) FROM CourseRating cr WHERE cr.course.ownerInstructor = :instructor AND cr.ratedAt <= :date")
+    long getRatingCountByInstructorAndRatedAtToDate(@Param("instructor") Instructor instructor, @Param("date") Instant date);
 }

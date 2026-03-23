@@ -51,5 +51,40 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, UUID>, Q
     @Query("SELECT COUNT(DISTINCT e.user.id) FROM Enrollment e WHERE e.course.id = :courseId AND e.startedAt >= :after")
     long countDistinctLearnersByCourseIdAndStartedAtAfter(@Param("courseId") UUID courseId, @Param("after") Instant after);
 
+    @Query("SELECT COUNT(DISTINCT e.user.id) FROM Enrollment e WHERE e.course.id = :courseId AND e.startedAt <= :date")
+    long countDistinctLearnersByCourseIdAndStartedAtToDate(@Param("courseId") UUID courseId, @Param("date") Instant date);
+
+    @Query("SELECT COUNT(DISTINCT e.user.id) FROM Enrollment e WHERE e.course.ownerInstructor = :instructor AND e.startedAt <= :date")
+    long countDistinctLearnersByInstructorAndStartedAtToDate(@Param("instructor") Instructor instructor, @Param("date") Instant date);
+
+    @Query("""
+        SELECT COUNT(DISTINCT e.user.id)
+        FROM Enrollment e
+        WHERE e.course.ownerInstructor = :instructor
+          AND e.status = com.ocean.afefe.entities.modules.enrollments.models.EnrollmentStatus.COMPLETED
+          AND e.completedAt >= :startDate
+          AND e.completedAt < :endDate
+    """)
+    long countDistinctCompletedLearnersByInstructorAndCompletedAtBetween(
+            @Param("instructor") Instructor instructor,
+            @Param("startDate") Instant startDate,
+            @Param("endDate") Instant endDate
+    );
+
+    @Query("""
+        SELECT e.currentModule.id, COUNT(DISTINCT e.user.id)
+        FROM Enrollment e
+        WHERE e.course.id = :courseId
+          AND e.status != 'COMPLETED'
+          AND e.startedAt >= :startDate
+          AND e.startedAt <= :endDate
+        GROUP BY e.currentModule.id
+    """)
+    List<Object[]> countDropOffLearnersByModuleAndCourseIdAndStartedAtBetween(
+            @Param("courseId") UUID courseId,
+            @Param("startDate") Instant startDate,
+            @Param("endDate") Instant endDate
+    );
+
     boolean existsByUserAndCourseAndStatusIn(User user, Course course, List<EnrollmentStatus> status);
 }

@@ -34,7 +34,7 @@ public class CourseRating extends BaseUUIDEntity {
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
-    @Column(nullable = false)
+    @Column(nullable = false, scale = 2)
     private Integer rating; // 1-5 stars
 
     @Column(columnDefinition = "TEXT")
