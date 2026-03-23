@@ -256,12 +256,14 @@
                 <executions>
                     <execution>
                         <id>compile-proto</id>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>compile</goal>
                         </goals>
                     </execution>
                     <execution>
                         <id>compile-grpc</id>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>compile-custom</goal>
                         </goals>
