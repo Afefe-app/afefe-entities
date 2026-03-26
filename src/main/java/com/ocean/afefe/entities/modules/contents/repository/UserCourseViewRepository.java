@@ -5,11 +5,10 @@ import com.ocean.afefe.entities.modules.contents.models.UserCourseView;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 
 @Repository
 public interface UserCourseViewRepository extends JpaRepository<UserCourseView, UUID> {
-
-    Optional<UserCourseView> findByUser(User user);
+    List<UserCourseView> findAllByUser(User user);
 }
