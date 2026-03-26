@@ -10,6 +10,8 @@ public enum EnrollmentStatus implements Enumerable {
 
     ENROLLED("Enrolled"),
     IN_PROGRESS("In Progress"),
-    COMPLETED("Completed");
+    COMPLETED("Completed"),
+    WITHDRAWN("Withdrawn")
+    ;
     private final String description;
 }

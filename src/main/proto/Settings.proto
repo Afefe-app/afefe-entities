@@ -1,0 +1,75 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "SettingsProto";
+import "Common.proto";
+
+service SettingsResourceServiceGrpc {
+   rpc FetchProfileSettings(IamFetchProfileSettingsRequest) returns (IamProfileSettingsResponse);
+   rpc UpdatePersonalInfo(IamUpdatePersonalInfoRequest) returns (IamPersonalInfoResponse);
+   rpc ChangePassword(IamChangePasswordRequest) returns (GrpcStringResponse);
+   rpc UpdateNotificationPreferences(IamUpdateNotificationPreferencesRequest) returns (IamNotificationPreferencesResponse);
+}
+
+message IamFetchProfileSettingsRequest {}
+
+message IamNotificationPreferencesData {
+  bool updatesAndOfferingsPush = 1;
+  bool updatesAndOfferingsEmail = 2;
+  bool remindersPush = 3;
+  bool remindersEmail = 4;
+}
+
+message IamProfileSettingsData {
+  string firstName = 1;
+  string lastName = 2;
+  string email = 3;
+  string avatarUrl = 4;
+  string bio = 5;
+  IamNotificationPreferencesData notificationPreferences = 6;
+}
+
+message IamProfileSettingsResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  IamProfileSettingsData responseData = 3;
+}
+
+message IamUpdatePersonalInfoRequest {
+  string firstName = 1;
+  string lastName = 2;
+  string bio = 3;
+  string avatarUrl = 4;
+}
+
+message IamPersonalInfoData {
+  string firstName = 1;
+  string lastName = 2;
+  string avatarUrl = 3;
+  string bio = 4;
+}
+
+message IamPersonalInfoResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  IamPersonalInfoData responseData = 3;
+}
+
+message IamChangePasswordRequest {
+  string currentPassword = 1;
+  string newPassword = 2;
+  string confirmNewPassword = 3;
+}
+
+message IamUpdateNotificationPreferencesRequest {
+  bool updatesAndOfferingsPush = 1;
+  bool updatesAndOfferingsEmail = 2;
+  bool remindersPush = 3;
+  bool remindersEmail = 4;
+}
+
+message IamNotificationPreferencesResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  IamNotificationPreferencesData responseData = 3;
+}

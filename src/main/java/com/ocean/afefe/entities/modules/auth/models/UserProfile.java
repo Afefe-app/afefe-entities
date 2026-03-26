@@ -2,6 +2,7 @@ package com.ocean.afefe.entities.modules.auth.models;
 
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import com.tensorpoint.toolkit.tpointcore.commons.TimeZone;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
@@ -30,4 +31,7 @@ public class UserProfile extends BaseUUIDEntity {
     private TimeZone timeZone;
 
     private String jobTitle;
+
+    @Column(columnDefinition = "TEXT")
+    private String bio;
 }

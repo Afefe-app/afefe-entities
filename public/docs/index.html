@@ -889,6 +889,61 @@
         
           
           <li>
+            <a href="#Settings.proto">Settings.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.IamChangePasswordRequest"><span class="badge">M</span>IamChangePasswordRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.IamFetchProfileSettingsRequest"><span class="badge">M</span>IamFetchProfileSettingsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.IamNotificationPreferencesData"><span class="badge">M</span>IamNotificationPreferencesData</a>
+                </li>
+              
+                <li>
+                  <a href="#.IamNotificationPreferencesResponse"><span class="badge">M</span>IamNotificationPreferencesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.IamPersonalInfoData"><span class="badge">M</span>IamPersonalInfoData</a>
+                </li>
+              
+                <li>
+                  <a href="#.IamPersonalInfoResponse"><span class="badge">M</span>IamPersonalInfoResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.IamProfileSettingsData"><span class="badge">M</span>IamProfileSettingsData</a>
+                </li>
+              
+                <li>
+                  <a href="#.IamProfileSettingsResponse"><span class="badge">M</span>IamProfileSettingsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.IamUpdateNotificationPreferencesRequest"><span class="badge">M</span>IamUpdateNotificationPreferencesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.IamUpdatePersonalInfoRequest"><span class="badge">M</span>IamUpdatePersonalInfoRequest</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#.SettingsResourceServiceGrpc"><span class="badge">S</span>SettingsResourceServiceGrpc</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#Calendar.proto">Calendar.proto</a>
             <ul>
               
@@ -8718,6 +8773,458 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                 <td><a href="#GetTransactionBySessionRequest">.GetTransactionBySessionRequest</a></td>
                 <td><a href="#GetTransactionBySessionResponse">.GetTransactionBySessionResponse</a></td>
                 <td><p>Returns transaction details (especially payment status) for the given session/transaction reference (internal reference).</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="Settings.proto">Settings.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".IamChangePasswordRequest">IamChangePasswordRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>currentPassword</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>newPassword</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>confirmNewPassword</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".IamFetchProfileSettingsRequest">IamFetchProfileSettingsRequest</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".IamNotificationPreferencesData">IamNotificationPreferencesData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>updatesAndOfferingsPush</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updatesAndOfferingsEmail</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remindersPush</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remindersEmail</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".IamNotificationPreferencesResponse">IamNotificationPreferencesResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#IamNotificationPreferencesData">IamNotificationPreferencesData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".IamPersonalInfoData">IamPersonalInfoData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>firstName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lastName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>avatarUrl</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bio</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".IamPersonalInfoResponse">IamPersonalInfoResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#IamPersonalInfoData">IamPersonalInfoData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".IamProfileSettingsData">IamProfileSettingsData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>firstName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lastName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>avatarUrl</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bio</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>notificationPreferences</td>
+                  <td><a href="#IamNotificationPreferencesData">IamNotificationPreferencesData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".IamProfileSettingsResponse">IamProfileSettingsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#IamProfileSettingsData">IamProfileSettingsData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".IamUpdateNotificationPreferencesRequest">IamUpdateNotificationPreferencesRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>updatesAndOfferingsPush</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updatesAndOfferingsEmail</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remindersPush</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remindersEmail</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".IamUpdatePersonalInfoRequest">IamUpdatePersonalInfoRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>firstName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lastName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bio</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>avatarUrl</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id=".SettingsResourceServiceGrpc">SettingsResourceServiceGrpc</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>FetchProfileSettings</td>
+                <td><a href="#IamFetchProfileSettingsRequest">.IamFetchProfileSettingsRequest</a></td>
+                <td><a href="#IamProfileSettingsResponse">.IamProfileSettingsResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdatePersonalInfo</td>
+                <td><a href="#IamUpdatePersonalInfoRequest">.IamUpdatePersonalInfoRequest</a></td>
+                <td><a href="#IamPersonalInfoResponse">.IamPersonalInfoResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ChangePassword</td>
+                <td><a href="#IamChangePasswordRequest">.IamChangePasswordRequest</a></td>
+                <td><a href="#GrpcStringResponse">.GrpcStringResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateNotificationPreferences</td>
+                <td><a href="#IamUpdateNotificationPreferencesRequest">.IamUpdateNotificationPreferencesRequest</a></td>
+                <td><a href="#IamNotificationPreferencesResponse">.IamNotificationPreferencesResponse</a></td>
+                <td><p></p></td>
               </tr>
             
           </tbody>
