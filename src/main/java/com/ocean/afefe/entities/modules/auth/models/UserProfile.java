@@ -22,8 +22,6 @@ public class UserProfile extends BaseUUIDEntity {
 
     private String displayName;
 
-    private String avatarUrl;
-
     private String phone;
 
     private String locale;
