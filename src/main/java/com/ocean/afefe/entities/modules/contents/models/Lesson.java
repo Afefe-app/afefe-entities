@@ -1,11 +1,8 @@
 package com.ocean.afefe.entities.modules.contents.models;
 
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
-import com.ocean.afefe.entities.modules.assessment.model.Quiz;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.List;
 
 @Entity
 @Table(
@@ -38,4 +35,9 @@ public class Lesson extends BaseUUIDEntity {
     private int position;
 
     private Boolean isPublished;
+
+    /** True when at least one quiz exists for this lesson. Maintained by application code. */
+    @Builder.Default
+    @Column(nullable = false)
+    private boolean hasQuiz = false;
 }

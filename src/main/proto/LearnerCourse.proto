@@ -172,7 +172,7 @@ message LearnerCourseDataGrpc {
     InstructorBasicDataGrpc instructor = 8; // Course instructor summary
     MoneyGrpc price = 9;                   // Course price
     bool isSaved = 10;                     // Whether the current user has saved this course to their wishlist
-    bool hasQuiz = 11;                     // Whether the course has at least one quiz (denormalized on Course entity)
+    reserved 11;                           // was hasQuiz (course-level; removed — use per-lesson flags in modules)
 }
 
 // Course overview data with learning outcomes and requirements.
@@ -186,7 +186,7 @@ message CourseOverviewDataGrpc {
     repeated string requirements = 6;     // List of prerequisite requirements
     string description = 7;              // Full course description
     bool isSaved = 8;                    // Whether the current user has saved this course to their wishlist
-    bool hasQuiz = 9;                    // Whether the course has at least one quiz (denormalized on Course entity)
+    reserved 9;                          // was hasQuiz (course-level; removed)
 }
 
 // Individual course rating/review submitted by a learner.
@@ -265,7 +265,7 @@ message BasicEnrollmentDataGrpc {
     int32 currentModulePosition = 3;    // Position of the current module in the course
     int32 progressPercent = 4;          // Progress percentage (0-100)
     repeated LessonAssetProgressDataGrpc lesson_asset_progress = 5;  // Per-asset progress for this enrollment
-    bool hasQuiz = 8;                   // Whether the enrolled course has at least one quiz
+    reserved 8;                          // was hasQuiz (course-level; removed)
 }
 
 // ======================================================================================
@@ -393,7 +393,7 @@ message CourseDetailsDataGrpc {
     bool isEnrolled = 20;                       // Whether the current user is enrolled in this course
     int32 numberOfQuizzes = 21;                 // Total number of quizzes attached to this course
     bool hasCertificate = 22;                   // Whether the course issues a certificate on completion
-    bool hasQuiz = 23;                          // Whether the course has at least one quiz (denormalized on Course entity)
+    reserved 23;                                // was hasQuiz (course-level; removed — see numberOfQuizzes)
 }
 
 // Request payload for fetching comprehensive course details.
@@ -694,7 +694,7 @@ message CourseModulesDataGrpc {
     string title = 2;                      // Course title
     repeated ModuleDataGrpc modules = 3;   // Ordered list of course modules
     int32 duration = 4;                    // Total estimated course duration in minutes (from course metadata)
-    bool hasQuiz = 5;                      // Whether the course has at least one quiz (denormalized on Course entity)
+    reserved 5;                              // was hasQuiz (course-level; removed)
 }
 
 // A single course module containing its lessons.
@@ -718,6 +718,10 @@ message LessonDataGrpc {
     bool isPublished = 7;                      // Whether the lesson is published and visible to learners
     repeated LessonAssetDataGrpc assets = 8;   // Flat list of all assets under this lesson (backward compatibility)
     repeated LearnerLessonContentDataGrpc lesson_contents = 9;  // Lesson contents, each with its assets (and optional progress)
+    bool has_quiz = 10;                        // Lesson has an attached quiz (denormalized on Lesson)
+    bool quiz_completed = 11;                   // User has a submitted/graded attempt for this lesson's quiz (enrollment-scoped)
+    int32 attempt_count = 12;                  // Count of attempts for this user+enrollment+quiz
+    int32 max_attempt = 13;                    // Quiz attempt limit; 0 if unlimited or no quiz
 }
 
 // A single lesson content block within a lesson, containing its assets (and optional progress per asset). Learner API only.

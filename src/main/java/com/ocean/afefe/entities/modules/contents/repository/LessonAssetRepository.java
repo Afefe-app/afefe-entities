@@ -1,6 +1,7 @@
 package com.ocean.afefe.entities.modules.contents.repository;
 
 import com.ocean.afefe.entities.modules.contents.models.LessonAsset;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +11,7 @@ import java.util.UUID;
 @Repository
 public interface LessonAssetRepository extends JpaRepository<LessonAsset, UUID> {
 
+    @EntityGraph(type = EntityGraph.EntityGraphType.FETCH, attributePaths = {"lessonContent"})
     List<LessonAsset> findAllByLessonContentIdIn(List<UUID> lessonIds);
 
     List<LessonAsset> findAllByLessonContentIdOrderByAssetOrder(UUID lessonContentId);

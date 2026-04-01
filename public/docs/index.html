@@ -5926,6 +5926,13 @@
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>max_attempt</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Quiz.attemptLimit; 0 if unlimited / unset </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -10398,13 +10405,6 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><p>Per-asset progress for this enrollment </p></td>
                 </tr>
               
-                <tr>
-                  <td>hasQuiz</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Whether the enrolled course has at least one quiz </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
@@ -10666,13 +10666,6 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><p>Whether the course issues a certificate on completion </p></td>
                 </tr>
               
-                <tr>
-                  <td>hasQuiz</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Whether the course has at least one quiz (denormalized on Course entity) </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
@@ -10716,13 +10709,6 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>Total estimated course duration in minutes (from course metadata) </p></td>
-                </tr>
-              
-                <tr>
-                  <td>hasQuiz</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Whether the course has at least one quiz (denormalized on Course entity) </p></td>
                 </tr>
               
             </tbody>
@@ -10796,13 +10782,6 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>Whether the current user has saved this course to their wishlist </p></td>
-                </tr>
-              
-                <tr>
-                  <td>hasQuiz</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Whether the course has at least one quiz (denormalized on Course entity) </p></td>
                 </tr>
               
             </tbody>
@@ -12581,13 +12560,6 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><p>Whether the current user has saved this course to their wishlist </p></td>
                 </tr>
               
-                <tr>
-                  <td>hasQuiz</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Whether the course has at least one quiz (denormalized on Course entity) </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
@@ -12923,6 +12895,34 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><a href="#LearnerLessonContentDataGrpc">LearnerLessonContentDataGrpc</a></td>
                   <td>repeated</td>
                   <td><p>Lesson contents, each with its assets (and optional progress) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>has_quiz</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Lesson has an attached quiz (denormalized on Lesson) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quiz_completed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>User has a submitted/graded attempt for this lesson&#39;s quiz (enrollment-scoped) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>attempt_count</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Count of attempts for this user&#43;enrollment&#43;quiz </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_attempt</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Quiz attempt limit; 0 if unlimited or no quiz </p></td>
                 </tr>
               
             </tbody>

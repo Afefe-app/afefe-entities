@@ -540,6 +540,7 @@ message FetchModuleContentResponse {
 message QuizContentDataGrpc {
     string quizId = 1;
     string quizTitle = 2;
+    int32 max_attempt = 3;  // Quiz.attemptLimit; 0 if unlimited / unset
 }
 
 // Fetch Quiz Questions Messages

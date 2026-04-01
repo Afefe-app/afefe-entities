@@ -95,11 +95,6 @@ public class Course extends BaseUUIDEntity {
     @Builder.Default
     private boolean hasCertificate = true;
 
-    /** Denormalized: true when at least one {@link com.ocean.afefe.entities.modules.assessment.model.Quiz} exists for this course. Maintained by application code, not derived at read time. */
-    @Builder.Default
-    @Column(nullable = false)
-    private boolean hasQuiz = false;
-
     @ManyToOne(fetch = FetchType.LAZY)
     private User createdBy;
 
