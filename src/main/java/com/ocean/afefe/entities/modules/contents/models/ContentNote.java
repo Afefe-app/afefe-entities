@@ -8,6 +8,7 @@ import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -48,4 +49,8 @@ public class ContentNote extends BaseUUIDEntity {
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String body;
+
+    /** Snapshot of lesson-asset progress when the note was taken (e.g. percent 0–100); nullable. */
+    @Column(precision = 5, scale = 2)
+    private BigDecimal assetProgress;
 }

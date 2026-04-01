@@ -10495,6 +10495,13 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><p>Timestamp when the note was created (ISO datetime string) </p></td>
                 </tr>
               
+                <tr>
+                  <td>assetProgress</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional; decimal string with up to 2 fractional digits (e.g. playback/progress %) </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -13633,6 +13640,13 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><p>Note body text content </p></td>
                 </tr>
               
+                <tr>
+                  <td>assetProgress</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional; empty if unset; decimal string, scale 2 (e.g. &#34;72.50&#34;) </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -14245,6 +14259,13 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Updated note body text content </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assetProgress</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>If set: update stored progress; empty string clears; omit field to leave unchanged </p></td>
                 </tr>
               
             </tbody>

@@ -785,6 +785,7 @@ message SubmitCourseRatingResponse {
 // ======================================================================================
 // Content Notes
 // ---------------------------------------------------------------------------------------
+// Convention: new message fields in this file use lowerCamelCase identifiers.
 // CRUD operations for user content notes.
 // Notes can be associated with different course objects via objectType and objectId:
 //   - COURSE: Note attached to the course itself
@@ -801,6 +802,7 @@ message ContentNoteDataGrpc {
     string objectId = 3;   // UUID of the associated object
     string body = 4;       // Note body text content
     string createdAt = 5;  // Timestamp when the note was created (ISO datetime string)
+    string assetProgress = 6; // Optional; decimal string with up to 2 fractional digits (e.g. playback/progress %)
 }
 
 // Request payload for creating a new content note.
@@ -808,6 +810,7 @@ message SaveContentNoteRequest {
     string objectType = 1; // Type of the associated object: "COURSE", "MODULE", "LESSON", or "ASSET"
     string objectId = 2;   // UUID of the associated object (validated for existence)
     string body = 3;       // Note body text content
+    string assetProgress = 4; // Optional; empty if unset; decimal string, scale 2 (e.g. "72.50")
 }
 
 // Response wrapper for creating a content note.
@@ -821,6 +824,7 @@ message SaveContentNoteResponse {
 message UpdateContentNoteRequest {
     string noteId = 1; // UUID of the note to update (must be owned by the authenticated user)
     string body = 2;   // Updated note body text content
+    optional string assetProgress = 3; // If set: update stored progress; empty string clears; omit field to leave unchanged
 }
 
 // Response wrapper for updating a content note.
