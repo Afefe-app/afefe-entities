@@ -36,7 +36,7 @@ jobs:
           test -f public/docs/index.html
           echo "Found public/docs/index.html"
 
-      # Option A (recommended): serve public/docs/index.html as the SITE ROOT "/"
+      # Option A (recommended): serve public/docs/index.html as the SITE ROOT "/".
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
