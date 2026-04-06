@@ -705,6 +705,9 @@ message ModuleDataGrpc {
     string summary = 4;                    // Module summary/description
     repeated LessonDataGrpc lessons = 5;   // Ordered list of lessons within this module
     int32 durationSeconds = 6;             // Total duration of all lessons in this module (seconds)
+    int32 noOfVideos = 7;                  // Lesson contents that are VIDEO or include a VIDEO_URL asset (deduped per block)
+    int32 noOfReadingFiles = 8;            // TEXT, PDF, SCORM, INTERACTIVE blocks, or blocks with SCORM_PKG asset (deduped; excludes video blocks)
+    int32 noOfQuiz = 9;                    // Count of lessons in this module that have a quiz
 }
 
 // A single lesson within a module, containing its assets and lesson contents (hierarchy: lesson -> lesson contents -> assets).
@@ -746,7 +749,7 @@ message LessonAssetWithProgressDataGrpc {
     string last_viewed_at = 8;                 // ISO instant
     string completed_at = 9;                   // ISO instant
     int64 estimated_duration_seconds = 10;     // Expected duration for this asset (from lesson_assets)
-    string lesson_text = 11;                   // Raw text content from the lesson asset (e.g. for TEXT/HTML)
+    string lessonText = 11;                    // Raw text content from the lesson asset (e.g. for TEXT/HTML)
 }
 
 // A file or media asset attached to a lesson.

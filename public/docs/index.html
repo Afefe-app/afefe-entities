@@ -12825,7 +12825,7 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                 </tr>
               
                 <tr>
-                  <td>lesson_text</td>
+                  <td>lessonText</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Raw text content from the lesson asset (e.g. for TEXT/HTML) </p></td>
@@ -12996,6 +12996,27 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>Total duration of all lessons in this module (seconds) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>noOfVideos</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Lesson contents that are VIDEO or include a VIDEO_URL asset (deduped per block) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>noOfReadingFiles</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>TEXT, PDF, SCORM, INTERACTIVE blocks, or blocks with SCORM_PKG asset (deduped; excludes video blocks) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>noOfQuiz</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Count of lessons in this module that have a quiz </p></td>
                 </tr>
               
             </tbody>
