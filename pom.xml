@@ -316,6 +316,13 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Spring Boot 3.4.x pulls maven-jar-plugin 3.4.2; some macOS builds hit NoSuchFileException
+                 when assembling protobuf classes (e.g. *OrBuilder.class). 3.3.x is stable here. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+            </plugin>
         </plugins>
     </build>
 
