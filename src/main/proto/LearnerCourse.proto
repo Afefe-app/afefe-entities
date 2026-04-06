@@ -746,6 +746,7 @@ message LessonAssetWithProgressDataGrpc {
     string last_viewed_at = 8;                 // ISO instant
     string completed_at = 9;                   // ISO instant
     int64 estimated_duration_seconds = 10;     // Expected duration for this asset (from lesson_assets)
+    string lesson_text = 11;                   // Raw text content from the lesson asset (e.g. for TEXT/HTML)
 }
 
 // A file or media asset attached to a lesson.
