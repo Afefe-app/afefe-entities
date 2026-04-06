@@ -2,8 +2,15 @@ package com.ocean.afefe.entities.common;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.Message;
+import com.ocean.afefe.entities.proto.FetchContentNotesResponse;
+import com.ocean.afefe.entities.proto.FetchCourseRatingsDataGrpc;
+import com.ocean.afefe.entities.proto.FetchEnrollmentHistoryDataGrpc;
+import com.ocean.afefe.entities.proto.FetchRecommendedCoursesDataGrpc;
+import com.ocean.afefe.entities.proto.FetchUpcomingCalendarEventsDataGrpc;
+import com.ocean.afefe.entities.proto.FilterCoursesDataGrpc;
 import com.ocean.afefe.entities.proto.GrpcStringResponse;
 import com.ocean.afefe.entities.proto.PaginationMetaGrpc;
+import com.ocean.afefe.entities.proto.SearchCoursesDataGrpc;
 import com.tensorpoint.toolkit.pagination.PaginationMeta;
 import com.tensorpoint.toolkit.tpointcore.commons.*;
 import io.grpc.stub.StreamObserver;
@@ -39,6 +46,35 @@ public class GrpcCommons {
                 .setNumberOfPages((int) paginationMeta.getNumberOfPages())
                 .setTotalCount((int) paginationMeta.getTotalCount())
                 .build();
+    }
+
+    /** Keeps PaginationMetaGrpc off dependent modules' compile classpath (e.g. learner standalone builds). */
+    public void fillPaginationMeta(FetchUpcomingCalendarEventsDataGrpc.Builder builder, PaginationMeta meta) {
+        builder.setMeta(map(meta));
+    }
+
+    public void fillPaginationMeta(FetchEnrollmentHistoryDataGrpc.Builder builder, PaginationMeta meta) {
+        builder.setMeta(map(meta));
+    }
+
+    public void fillPaginationMeta(FetchRecommendedCoursesDataGrpc.Builder builder, PaginationMeta meta) {
+        builder.setMeta(map(meta));
+    }
+
+    public void fillPaginationMeta(FetchCourseRatingsDataGrpc.Builder builder, PaginationMeta meta) {
+        builder.setMeta(map(meta));
+    }
+
+    public void fillPaginationMeta(SearchCoursesDataGrpc.Builder builder, PaginationMeta meta) {
+        builder.setMeta(map(meta));
+    }
+
+    public void fillPaginationMeta(FilterCoursesDataGrpc.Builder builder, PaginationMeta meta) {
+        builder.setMeta(map(meta));
+    }
+
+    public void fillPaginationMeta(FetchContentNotesResponse.Builder builder, PaginationMeta meta) {
+        builder.setMeta(map(meta));
     }
 
     public GrpcStringResponse mapError(OmnixApiException omnixApiException) {
