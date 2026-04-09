@@ -1,6 +1,7 @@
 package com.ocean.afefe.entities.modules.enrollments.repository;
 
 import com.ocean.afefe.entities.modules.auth.models.User;
+import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.contents.models.Course;
 import com.ocean.afefe.entities.modules.contents.models.Instructor;
 import com.ocean.afefe.entities.modules.enrollments.models.Enrollment;
@@ -14,6 +15,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -54,8 +56,39 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, UUID>, Q
     @Query("SELECT COUNT(DISTINCT e.user.id) FROM Enrollment e WHERE e.course.id = :courseId AND e.startedAt <= :date")
     long countDistinctLearnersByCourseIdAndStartedAtToDate(@Param("courseId") UUID courseId, @Param("date") Instant date);
 
+    @Query("""
+        SELECT COUNT(DISTINCT e.user.id)
+        FROM Enrollment e
+        WHERE e.course.id = :courseId
+          AND e.status = com.ocean.afefe.entities.modules.enrollments.models.EnrollmentStatus.COMPLETED
+    """)
+    long countDistinctCompletedLearnersByCourseId(@Param("courseId") UUID courseId);
+
+    @Query("""
+        SELECT DISTINCT e.course.id
+        FROM Enrollment e
+        WHERE e.course.org = :org
+          AND e.course.status = com.ocean.afefe.entities.modules.contents.models.CourseStatus.PUBLISHED
+          AND e.user.id IN :userIds
+    """)
+    List<UUID> findDistinctPublishedCourseIdsByOrgAndUserIds(
+            @Param("org") Organization org,
+            @Param("userIds") Collection<UUID> userIds
+    );
+
     @Query("SELECT COUNT(DISTINCT e.user.id) FROM Enrollment e WHERE e.course.ownerInstructor = :instructor AND e.startedAt <= :date")
     long countDistinctLearnersByInstructorAndStartedAtToDate(@Param("instructor") Instructor instructor, @Param("date") Instant date);
+
+    @Query("SELECT COUNT(DISTINCT e.user.id) FROM Enrollment e WHERE e.course.org = :org AND e.startedAt <= :date")
+    long countDistinctLearnersByOrgAndStartedAtToDate(@Param("org") Organization org, @Param("date") Instant date);
+
+    @Query("SELECT COUNT(DISTINCT e.user.id) FROM Enrollment e WHERE e.course.org = :org AND e.startedAt >= :after")
+    long countDistinctLearnersByOrgAndStartedAtAfter(@Param("org") Organization org, @Param("after") Instant after);
+
+    @Query("SELECT COUNT(DISTINCT e.user.id) FROM Enrollment e WHERE e.course.id IN :courseIds AND e.startedAt <= :date")
+    long countDistinctLearnersByCourseIdsAndStartedAtToDate(
+            @Param("courseIds") Collection<UUID> courseIds,
+            @Param("date") Instant date);
 
     @Query("""
         SELECT COUNT(DISTINCT e.user.id)
@@ -67,6 +100,20 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, UUID>, Q
     """)
     long countDistinctCompletedLearnersByInstructorAndCompletedAtBetween(
             @Param("instructor") Instructor instructor,
+            @Param("startDate") Instant startDate,
+            @Param("endDate") Instant endDate
+    );
+
+    @Query("""
+        SELECT COUNT(DISTINCT e.user.id)
+        FROM Enrollment e
+        WHERE e.course.org = :org
+          AND e.status = com.ocean.afefe.entities.modules.enrollments.models.EnrollmentStatus.COMPLETED
+          AND e.completedAt >= :startDate
+          AND e.completedAt < :endDate
+    """)
+    long countDistinctCompletedLearnersByOrgAndCompletedAtBetween(
+            @Param("org") Organization org,
             @Param("startDate") Instant startDate,
             @Param("endDate") Instant endDate
     );
