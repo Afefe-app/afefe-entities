@@ -2,6 +2,7 @@ package com.ocean.afefe.entities.modules.analytics.repository;
 
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import com.ocean.afefe.entities.modules.analytics.model.UserActivity;
+import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.contents.models.Course;
 import com.ocean.afefe.entities.modules.contents.models.Instructor;
 import org.springframework.data.domain.Page;
@@ -13,6 +14,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -57,6 +59,34 @@ public interface UserActivityRepository extends JpaRepository<UserActivity, Base
     """)
     long countDistinctActiveLearnersByInstructorAndCreatedAtBetween(
             @Param("instructor") Instructor instructor,
+            @Param("startDate") Instant startDate,
+            @Param("endDate") Instant endDate
+    );
+
+    @Query("""
+        SELECT COUNT(DISTINCT ua.user.id)
+        FROM UserActivity ua
+        WHERE ua.course.org = :org
+          AND ua.userType = com.ocean.afefe.entities.modules.auth.models.UserType.PLATFORM_LEARNER
+          AND ua.createdAt >= :startDate
+          AND ua.createdAt < :endDate
+    """)
+    long countDistinctActiveLearnersByOrgAndCreatedAtBetween(
+            @Param("org") Organization org,
+            @Param("startDate") Instant startDate,
+            @Param("endDate") Instant endDate
+    );
+
+    @Query("""
+        SELECT COUNT(DISTINCT ua.user.id)
+        FROM UserActivity ua
+        WHERE ua.course.id IN :courseIds
+          AND ua.userType = com.ocean.afefe.entities.modules.auth.models.UserType.PLATFORM_LEARNER
+          AND ua.createdAt >= :startDate
+          AND ua.createdAt < :endDate
+    """)
+    long countDistinctActiveLearnersByCourseIdsAndCreatedAtBetween(
+            @Param("courseIds") List<UUID> courseIds,
             @Param("startDate") Instant startDate,
             @Param("endDate") Instant endDate
     );

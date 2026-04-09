@@ -1,0 +1,166 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "HrProto";
+
+import "Common.proto";
+
+service HrServiceGrpc {
+  rpc FetchHrOverview(FetchHrOverviewRequest) returns (FetchHrOverviewResponse);
+  rpc FetchEmployeesActivity(FetchEmployeesActivityRequest) returns (FetchEmployeesActivityResponse);
+  rpc FetchTopEmployees(FetchTopEmployeesRequest) returns (FetchTopEmployeesResponse);
+  rpc SearchHrRecentActivity(SearchHrRecentActivityRequest) returns (SearchHrRecentActivityResponse);
+  rpc FetchLearningPathCompletion(FetchLearningPathCompletionRequest) returns (FetchLearningPathCompletionResponse);
+}
+
+service HrCourseMgtServiceGrpc {
+  rpc FetchCourseLibrary(FetchCourseLibraryRequest) returns (FetchCourseLibraryResponse);
+}
+
+message FetchHrOverviewRequest {
+  string timeframe = 1; // "12m" | "30d" | "7d" | "24h"
+}
+
+message MetricCardDataGrpc {
+  int64 value = 1;
+  double percentChange = 2;
+  bool isPositive = 3;
+}
+
+message FetchHrOverviewResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  HrOverviewDataGrpc responseData = 3;
+}
+
+message FetchCourseLibraryRequest {
+  int32 pageNumber = 1;
+  int32 pageSize = 2;
+  string sort = 3; // "ASC" | "DESC"
+  string search = 4;
+}
+
+message FetchCourseLibraryResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  CourseLibraryPageDataGrpc responseData = 3;
+}
+
+message CourseLibraryPageDataGrpc {
+  PaginationMetaGrpc meta = 1;
+  repeated CourseLibraryItemGrpc content = 2;
+}
+
+message CourseLibraryItemGrpc {
+  string courseId = 1;
+  string title = 2;
+  string coverImageUrl = 3;
+  string addedAt = 4;
+  string addedAgo = 5;
+}
+
+message HrOverviewDataGrpc {
+  string timeframe = 1;
+  MetricCardDataGrpc totalCourses = 2;
+  MetricCardDataGrpc averageRatings = 3;
+  MetricCardDataGrpc totalLearningPaths = 4;
+  MetricCardDataGrpc employeesOnboarded = 5;
+}
+
+message FetchEmployeesActivityRequest {
+  string learningPathId = 1; // optional UUID
+}
+
+message EmployeesActivityPointGrpc {
+  string label = 1;
+  int64 activeEmployees = 2;
+  int64 totalEmployees = 3;
+}
+
+message FetchEmployeesActivityResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  EmployeesActivityDataGrpc responseData = 3;
+}
+
+message EmployeesActivityDataGrpc {
+  repeated EmployeesActivityPointGrpc points = 1;
+}
+
+message FetchTopEmployeesRequest {
+  string timeframe = 1;
+  int32 pageNumber = 2;
+  int32 pageSize = 3;
+  string sort = 4; // "ASC" | "DESC"
+}
+
+message TopEmployeeItemGrpc {
+  string userId = 1;
+  string name = 2;
+  string email = 3;
+  double quizPoints = 4;
+  int32 rank = 5;
+}
+
+message FetchTopEmployeesResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TopEmployeesDataGrpc responseData = 3;
+}
+
+message TopEmployeesDataGrpc {
+  string timeframe = 1;
+  repeated TopEmployeeItemGrpc employees = 2;
+}
+
+message SearchHrRecentActivityRequest {
+  int32 pageNumber = 1;
+  int32 pageSize = 2;
+  string sort = 3; // "ASC" | "DESC"
+  string search = 4;
+  string date = 5; // ISO instant
+}
+
+message SearchHrRecentActivityResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  RecentActivityPageDataGrpc responseData = 3;
+}
+
+message RecentActivityPageDataGrpc {
+  PaginationMetaGrpc meta = 1;
+  repeated HrRecentActivityItemGrpc content = 2;
+}
+
+message HrRecentActivityItemGrpc {
+  string id = 1;
+  string action = 2;
+  string email = 3;
+  string name = 4;
+  string courseTitle = 5;
+  string createdAt = 6;
+}
+
+message FetchLearningPathCompletionRequest {
+  string learningPathId = 1; // optional UUID
+}
+
+message FetchLearningPathCompletionResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  LearningPathCompletionDataGrpc responseData = 3;
+}
+
+message LearningPathCompletionDataGrpc {
+  string learningPathId = 1;
+  repeated LearningPathCompletionPointGrpc courses = 2;
+}
+
+message LearningPathCompletionPointGrpc {
+  string courseId = 1;
+  string courseTitle = 2;
+  int64 completedLearners = 3;
+  int64 totalLearners = 4;
+  int32 completionRate = 5;
+}
+

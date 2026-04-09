@@ -3,7 +3,10 @@ package com.ocean.afefe.entities.modules.assessment.repository;
 import com.ocean.afefe.entities.modules.assessment.model.Quiz;
 import com.ocean.afefe.entities.modules.assessment.model.QuizAttempt;
 import com.ocean.afefe.entities.modules.assessment.model.QuizAttemptStatus;
+import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -74,4 +77,22 @@ public interface QuizAttemptRepository extends JpaRepository<QuizAttempt, UUID> 
             @Param("userId") UUID userId,
             @Param("enrollmentId") UUID enrollmentId,
             @Param("submittedStatuses") List<QuizAttemptStatus> submittedStatuses);
+
+    @Query("""
+        SELECT qa.user.id, COALESCE(SUM(qa.scoreObtained), 0)
+        FROM QuizAttempt qa
+        WHERE qa.status = 'GRADED'
+          AND qa.submittedAt IS NOT NULL
+          AND qa.submittedAt >= :startDate
+          AND qa.submittedAt < :endDate
+          AND qa.enrollment.course.org = :org
+        GROUP BY qa.user.id
+        ORDER BY COALESCE(SUM(qa.scoreObtained), 0) DESC
+        """)
+    List<Object[]> sumQuizPointsByOrgAndSubmittedAtBetween(
+            Organization org,
+             Instant startDate,
+             Instant endDate,
+            Pageable pageable);
+
 }

@@ -39,7 +39,7 @@ public class Course extends BaseUUIDEntity {
     @Column(nullable = false)
     private String coverImageUrl;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
     @Column(columnDefinition = "TEXT")
