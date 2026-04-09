@@ -10718,6 +10718,20 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><p>Total estimated course duration in minutes (from course metadata) </p></td>
                 </tr>
               
+                <tr>
+                  <td>currentModuleId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>UUID of resume/current module (see REST contract); empty if none </p></td>
+                </tr>
+              
+                <tr>
+                  <td>currentModulePosition</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Same as ModuleDataGrpc.position for currentModuleId; 0 if none </p></td>
+                </tr>
+              
             </tbody>
           </table>
 

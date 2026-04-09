@@ -25,6 +25,7 @@ public interface PaymentTransactionRepository extends JpaRepository<PaymentTrans
     List<PaymentTransaction> findByOrganizationOrderByCreatedAtDesc(Organization organization);
 
     List<PaymentTransaction> findByUserAndStatus(User user, PaymentStatus status);
+    List<PaymentTransaction> findAllByStatus(PaymentStatus status);
 
     List<PaymentTransaction> findByUserAndPaymentTypeOrderByCreatedAtDesc(User user, PaymentType paymentType);
     PaymentTransaction findTopByUserAndEntityIdOrderByCreatedAtDesc(User user, UUID entityId);
