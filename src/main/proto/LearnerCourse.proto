@@ -695,6 +695,8 @@ message CourseModulesDataGrpc {
     repeated ModuleDataGrpc modules = 3;   // Ordered list of course modules
     int32 duration = 4;                    // Total estimated course duration in minutes (from course metadata)
     reserved 5;                              // was hasQuiz (course-level; removed)
+    string currentModuleId = 6;            // UUID of resume/current module (see REST contract); empty if none
+    int32 currentModulePosition = 7;         // Same as ModuleDataGrpc.position for currentModuleId; 0 if none
 }
 
 // A single course module containing its lessons.

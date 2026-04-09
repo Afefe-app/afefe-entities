@@ -12,5 +12,7 @@ import java.util.UUID;
 public interface OrgRepository extends JpaRepository<Organization, UUID> {
 
     Organization findFirstByRole(OrganizationRole role);
+    long countByRole(OrganizationRole role);
+    boolean existsBySlugIgnoreCase(String slug);
 
 }
