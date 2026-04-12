@@ -809,6 +809,7 @@ message ContentNoteDataGrpc {
     string body = 4;       // Note body text content
     string createdAt = 5;  // Timestamp when the note was created (ISO datetime string)
     string assetProgress = 6; // Optional; decimal string with up to 2 fractional digits (e.g. playback/progress %)
+    string assetProgressTime = 7; // Optional; client-defined playback timestamp / position label when the note was taken
 }
 
 // Request payload for creating a new content note.
@@ -817,6 +818,7 @@ message SaveContentNoteRequest {
     string objectId = 2;   // UUID of the associated object (validated for existence)
     string body = 3;       // Note body text content
     string assetProgress = 4; // Optional; empty if unset; decimal string, scale 2 (e.g. "72.50")
+    string assetProgressTime = 5; // Optional; empty if unset; e.g. ISO-8601 duration or wall-clock position string
 }
 
 // Response wrapper for creating a content note.
@@ -831,6 +833,7 @@ message UpdateContentNoteRequest {
     string noteId = 1; // UUID of the note to update (must be owned by the authenticated user)
     string body = 2;   // Updated note body text content
     optional string assetProgress = 3; // If set: update stored progress; empty string clears; omit field to leave unchanged
+    optional string assetProgressTime = 4; // If set: update stored time snapshot; empty string clears; omit to leave unchanged
 }
 
 // Response wrapper for updating a content note.

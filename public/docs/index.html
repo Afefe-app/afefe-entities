@@ -10617,6 +10617,13 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><p>Optional; decimal string with up to 2 fractional digits (e.g. playback/progress %) </p></td>
                 </tr>
               
+                <tr>
+                  <td>assetProgressTime</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional; client-defined playback timestamp / position label when the note was taken </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -13804,6 +13811,13 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><p>Optional; empty if unset; decimal string, scale 2 (e.g. &#34;72.50&#34;) </p></td>
                 </tr>
               
+                <tr>
+                  <td>assetProgressTime</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional; empty if unset; e.g. ISO-8601 duration or wall-clock position string </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -14423,6 +14437,13 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>If set: update stored progress; empty string clears; omit field to leave unchanged </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assetProgressTime</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>If set: update stored time snapshot; empty string clears; omit to leave unchanged </p></td>
                 </tr>
               
             </tbody>
