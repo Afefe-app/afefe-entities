@@ -51,6 +51,9 @@ public class ContentNote extends BaseUUIDEntity {
     private String body;
 
     /** Snapshot of lesson-asset progress when the note was taken (e.g. percent 0–100); nullable. */
+    @Builder.Default
     @Column(precision = 5, scale = 2)
-    private BigDecimal assetProgress;
+    private BigDecimal assetProgress = BigDecimal.ZERO;
+
+    private String assetProgressTime;
 }
