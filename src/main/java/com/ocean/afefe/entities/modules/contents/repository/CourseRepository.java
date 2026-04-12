@@ -27,6 +27,11 @@ public interface CourseRepository extends JpaRepository<Course, UUID>, QuerydslP
 
     long countByOwnerInstructorAndCreatedAtAfter(Instructor instructor, Instant after);
 
+    long countByOrg(Organization organization);
+
+    @Query("SELECT COUNT(c) FROM Course c WHERE c.org = :org AND c.createdAt >= :after")
+    long countByOrgAndCreatedAtAfter(@Param("org") Organization organization, @Param("after") Instant after);
+
     @Query("SELECT COUNT(c) FROM Course c WHERE c.ownerInstructor = :instructor AND c.status = :status AND c.createdAt >= :after")
     long countByOwnerInstructorAndStatusAndCreatedAtAfter(
             @Param("instructor") Instructor instructor,
@@ -41,4 +46,44 @@ public interface CourseRepository extends JpaRepository<Course, UUID>, QuerydslP
             @Param("instructor") Instructor instructor,
             @Param("status") CourseStatus status,
             @Param("date") Instant date);
+
+    @Query("SELECT COUNT(c) FROM Course c WHERE c.org = :org AND c.createdAt <= :date")
+    long countByOrgAndCreatedAtToDate(@Param("org") Organization org, @Param("date") Instant date);
+
+    @Query("""
+        SELECT c
+        FROM Course c
+        WHERE c.org = :org
+          AND c.status = com.ocean.afefe.entities.modules.contents.models.CourseStatus.PUBLISHED
+    """)
+    Page<Course> findPublishedByOrg(@Param("org") Organization org, Pageable pageable);
+
+    @Query("""
+        SELECT c
+        FROM Course c
+        WHERE c.org = :org
+          AND c.status = com.ocean.afefe.entities.modules.contents.models.CourseStatus.PUBLISHED
+          AND c.id IN :courseIds
+    """)
+    Page<Course> findPublishedByOrgAndIdIn(
+            @Param("org") Organization org,
+            @Param("courseIds") List<UUID> courseIds,
+            Pageable pageable
+    );
+
+    @Query("""
+        SELECT DISTINCT c.id
+        FROM Course c
+        WHERE c.org = :org
+          AND c.status = com.ocean.afefe.entities.modules.contents.models.CourseStatus.PUBLISHED
+          AND (
+              LOWER(COALESCE(c.title, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+              OR LOWER(COALESCE(c.summary, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+              OR LOWER(COALESCE(c.tags, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+          )
+    """)
+    List<UUID> findDistinctPublishedIdsByOrgAndSearch(
+            @Param("org") Organization org,
+            @Param("search") String search
+    );
 }
