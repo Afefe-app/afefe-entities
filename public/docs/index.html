@@ -11231,6 +11231,13 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                   <td><p>Per-asset progress for this enrollment </p></td>
                 </tr>
               
+                <tr>
+                  <td>current_module_position</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Matches course module order index when current_module_id is set </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -13710,15 +13717,15 @@ returns checkout URL for redirect. Optional idempotency_key for duplicate reques
                 <tr>
                   <td>position_seconds</td>
                   <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>Optional - last playback position in seconds </p></td>
+                  <td>optional</td>
+                  <td><p>Last playback position in seconds (omit to leave unchanged) </p></td>
                 </tr>
               
                 <tr>
                   <td>mark_complete</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Optional - set lesson asset progress to COMPLETED </p></td>
+                  <td>optional</td>
+                  <td><p>Set lesson asset progress to COMPLETED (omit for false / no-op) </p></td>
                 </tr>
               
             </tbody>

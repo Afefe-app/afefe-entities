@@ -578,6 +578,7 @@ message EnrollmentDataGrpc {
     int32 progress_percent = 5;
     string started_at = 6;            // ISO-8601 instant or empty
     repeated LessonAssetProgressDataGrpc lesson_asset_progress = 7;  // Per-asset progress for this enrollment
+    optional int32 current_module_position = 8; // Matches course module order index when current_module_id is set
 }
 
 // ======================================================================================
@@ -607,8 +608,8 @@ message StartCourseResponse {
 message RecordLessonAssetProgressRequest {
     string course_id = 1;           // UUID of the course
     string lesson_asset_id = 2;      // UUID of the lesson asset
-    int32 position_seconds = 3;     // Optional - last playback position in seconds
-    bool mark_complete = 4;         // Optional - set lesson asset progress to COMPLETED
+    optional int32 position_seconds = 3;     // Last playback position in seconds (omit to leave unchanged)
+    optional bool mark_complete = 4;         // Set lesson asset progress to COMPLETED (omit for false / no-op)
 }
 
 message LessonAssetProgressDataGrpc {
