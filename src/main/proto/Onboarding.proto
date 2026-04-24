@@ -7,6 +7,7 @@ import "Common.proto";
 service OnboardingAuthServiceGrpc{
    rpc RegisterIndividualUser(IamIndividualRegistrationRequest) returns (IamIndividualRegistrationResponse);
    rpc RegisterInstructor(IamInstructorRegistrationRequest) returns (IamInstructorRegistrationResponse);
+   rpc RegisterTrainee(IamTraineeRegistrationRequest) returns (IamTraineeRegistrationResponse);
 }
 
 message IamIndividualRegistrationRequest{
@@ -32,6 +33,21 @@ message IamInstructorRegistrationRequest{
 }
 
 message IamInstructorRegistrationResponse{
+  string responseCode = 1;
+  string responseMessage = 2;
+  IamUserProfileData responseData = 3;
+}
+
+message IamTraineeRegistrationRequest{
+  string emailAddress = 1;
+  string password = 2;
+  string fullName = 3;
+  string securityCode = 4;
+  string biography = 5;
+  string websiteUrl = 6;
+}
+
+message IamTraineeRegistrationResponse{
   string responseCode = 1;
   string responseMessage = 2;
   IamUserProfileData responseData = 3;

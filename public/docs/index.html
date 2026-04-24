@@ -194,6 +194,14 @@
                   <a href="#.IamInstructorRegistrationResponse"><span class="badge">M</span>IamInstructorRegistrationResponse</a>
                 </li>
               
+                <li>
+                  <a href="#.IamTraineeRegistrationRequest"><span class="badge">M</span>IamTraineeRegistrationRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.IamTraineeRegistrationResponse"><span class="badge">M</span>IamTraineeRegistrationResponse</a>
+                </li>
+              
               
               
               
@@ -1894,6 +1902,103 @@
 
         
       
+        <h3 id=".IamTraineeRegistrationRequest">IamTraineeRegistrationRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>emailAddress</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fullName</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>securityCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>biography</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>websiteUrl</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".IamTraineeRegistrationResponse">IamTraineeRegistrationResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#IamUserProfileData">IamUserProfileData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
 
       
 
@@ -1919,6 +2024,13 @@
                 <td>RegisterInstructor</td>
                 <td><a href="#IamInstructorRegistrationRequest">.IamInstructorRegistrationRequest</a></td>
                 <td><a href="#IamInstructorRegistrationResponse">.IamInstructorRegistrationResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>RegisterTrainee</td>
+                <td><a href="#IamTraineeRegistrationRequest">.IamTraineeRegistrationRequest</a></td>
+                <td><a href="#IamTraineeRegistrationResponse">.IamTraineeRegistrationResponse</a></td>
                 <td><p></p></td>
               </tr>
             
