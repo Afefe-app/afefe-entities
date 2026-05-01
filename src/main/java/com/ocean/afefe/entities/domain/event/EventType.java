@@ -14,10 +14,13 @@ public enum EventType implements Enumerable {
     USER_RESET_PASSWORD("user-reset-password", "User reset password"),
 
     INSTRUCTOR_CREATED("instructor-created", "A new instructor has been created"),
+    HR_USER_REGISTERED("hr-user-registered", "An HR user completed onboarding"),
     USER_WALLET_CREATED("user-wallet-created","User wallet has been created"),
 
     SUPPORT_TICKET_CREATED("support-ticket-created", "A new support ticket has been created"),
-    CONTACT_FORM_SUBMITTED("contact-form-submitted", "A contact form inquiry has been submitted")
+    CONTACT_FORM_SUBMITTED("contact-form-submitted", "A contact form inquiry has been submitted"),
+
+    STAFF_PROVISIONED("staff-provisioned", "HR provisioned a staff learner; invitation email with credentials")
     ;
 
     private final String key;
