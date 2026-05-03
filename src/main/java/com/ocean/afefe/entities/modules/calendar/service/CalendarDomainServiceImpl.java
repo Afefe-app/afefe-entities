@@ -4,6 +4,7 @@ import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.calendar.model.CalendarEvent;
 import com.ocean.afefe.entities.modules.calendar.repository.CalendarEventRepository;
 import com.ocean.afefe.entities.modules.contents.models.Instructor;
+import com.ocean.afefe.entities.modules.trainings.models.Trainer;
 import com.tensorpoint.toolkit.tpointcore.commons.HttpUtil;
 import com.tensorpoint.toolkit.tpointcore.commons.MessageUtil;
 import com.tensorpoint.toolkit.tpointcore.commons.ResponseCode;
@@ -25,6 +26,14 @@ public class CalendarDomainServiceImpl implements CalendarDomainService {
     @Override
     public CalendarEvent validateCalendarEventExistence(UUID calendarEventId, Organization organization, Instructor instructor) {
         return Optional.ofNullable(calendarEventRepository.findFirstByIdAndCreatedBy(calendarEventId, instructor.getUser()))
+                .orElseThrow(() -> HttpUtil.getResolvedException(
+                        ResponseCode.RECORD_NOT_FOUND,
+                        messageUtil.getMessage("calendar.event.not.found")));
+    }
+
+    @Override
+    public CalendarEvent validateCalendarEventExistence(UUID calendarEventId, Organization organization, Trainer trainer) {
+        return Optional.ofNullable(calendarEventRepository.findFirstByIdAndCreatedBy(calendarEventId, trainer.getUser()))
                 .orElseThrow(() -> HttpUtil.getResolvedException(
                         ResponseCode.RECORD_NOT_FOUND,
                         messageUtil.getMessage("calendar.event.not.found")));
