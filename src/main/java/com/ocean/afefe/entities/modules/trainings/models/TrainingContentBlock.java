@@ -28,6 +28,13 @@ public class TrainingContentBlock extends BaseUUIDEntity {
     @Column(columnDefinition = "TEXT")
     private String payloadJson;
 
+    /**
+     * Primary URL delivered to clients for this block (video stream, image, PDF, HTML page, etc.).
+     * Supplements {@link #payloadJson}; business rule is that content is surfaced to the FE via this URL when set.
+     */
+    @Column(columnDefinition = "TEXT")
+    private String resourceUrl;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "trainee_quiz_id")
     private TraineeQuiz traineeQuiz;
