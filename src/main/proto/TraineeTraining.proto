@@ -1,0 +1,443 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.ocean.afefe.entities.proto";
+option java_outer_classname = "TraineeTrainingProto";
+import "Common.proto";
+import "Course.proto";
+
+// gRPC API for afefe-trainee programme trainings (catalogue + /me progress).
+// Identity and tenant context come from gRPC metadata (same as REST).
+
+service TraineeTrainingServiceGrpc {
+
+  rpc SearchTrainings(SearchTrainingsRequest) returns (SearchTrainingsResponse);
+  rpc FetchRecommendedTrainings(FetchRecommendedTrainingsRequest) returns (FetchRecommendedTrainingsResponse);
+  rpc FetchRecentlyViewedTrainings(FetchRecentlyViewedTrainingsRequest) returns (FetchRecentlyViewedTrainingsResponse);
+  rpc RecordTrainingView(RecordTrainingViewRequest) returns (RecordTrainingViewResponse);
+
+  rpc FetchTrainingOverview(FetchTrainingOverviewRequest) returns (FetchTrainingOverviewResponse);
+  rpc FetchTrainingCurriculum(FetchTrainingCurriculumRequest) returns (FetchTrainingCurriculumResponse);
+  rpc FetchTrainingContentItem(FetchTrainingContentItemRequest) returns (FetchTrainingContentItemResponse);
+  rpc FetchTrainingRatings(FetchTrainingRatingsRequest) returns (FetchTrainingRatingsResponse);
+  rpc SubmitTrainingRating(SubmitTrainingRatingRequest) returns (SubmitTrainingRatingResponse);
+  rpc EnrollTraining(EnrollTrainingRequest) returns (EnrollTrainingResponse);
+  rpc FetchQuizForAttempt(FetchQuizForAttemptRequest) returns (FetchQuizForAttemptResponse);
+
+  rpc FetchMyEnrollments(FetchMyEnrollmentsRequest) returns (FetchMyEnrollmentsResponse);
+  rpc UpdateContentItemProgress(UpdateContentItemProgressRequest) returns (UpdateContentItemProgressResponse);
+  rpc UpdateBlockProgress(UpdateBlockProgressRequest) returns (UpdateBlockProgressResponse);
+  rpc TraineeStartQuizAttempt(TraineeStartQuizAttemptRequest) returns (TraineeStartQuizAttemptResponse);
+  rpc SubmitTraineeQuizAttempt(SubmitTraineeQuizAttemptRequest) returns (SubmitTraineeQuizAttemptResponse);
+
+  rpc FetchSavedTrainings(FetchSavedTrainingsRequest) returns (FetchSavedTrainingsResponse);
+  rpc SaveTraining(SaveTrainingRequest) returns (SaveTrainingResponse);
+  rpc RemoveSavedTraining(RemoveSavedTrainingRequest) returns (RemoveSavedTrainingResponse);
+
+  rpc FetchMyCertificates(FetchMyCertificatesRequest) returns (FetchMyCertificatesResponse);
+  rpc FetchCertificateById(FetchCertificateByIdRequest) returns (FetchCertificateByIdResponse);
+}
+
+// ---- Shared data types ----
+
+message TrainerBasicDataGrpc {
+  string trainerName = 1;
+  string trainerProfileImage = 2;
+}
+
+message TrainingSummaryDataGrpc {
+  string trainingId = 1;
+  string coverImageUrl = 2;
+  repeated string tags = 3;
+  double rating = 4;
+  int32 reviews = 5;
+  string title = 6;
+  string description = 7;
+  TrainerBasicDataGrpc trainer = 8;
+  MoneyGrpc price = 9;
+  bool isSaved = 10;
+}
+
+message TrainingSummaryPageDataGrpc {
+  PaginationMetaGrpc meta = 1;
+  repeated TrainingSummaryDataGrpc content = 2;
+}
+
+message TrainingOverviewDataGrpc {
+  string trainingId = 1;
+  string coverImageUrl = 2;
+  string title = 3;
+  TrainerBasicDataGrpc trainer = 4;
+  repeated CourseProposedAchievementGrpc learningOutcomes = 5;
+  repeated string requirements = 6;
+  string description = 7;
+  optional int32 estimatedMinutes = 8;
+  bool hasCertificate = 9;
+  string level = 10;
+  bool isSaved = 11;
+}
+
+message TrainingBlockDataGrpc {
+  string blockId = 1;
+  string blockType = 2;
+  string payloadJson = 3;
+  string resourceUrl = 4;
+  string traineeQuizId = 5;
+  int64 estimatedDurationSeconds = 6;
+  string progressStatus = 7;
+  optional int32 lastPositionSeconds = 8;
+  string lastViewedAt = 9;
+  string completedAt = 10;
+}
+
+message TrainingContentItemDataGrpc {
+  string contentItemId = 1;
+  string title = 2;
+  string itemFormat = 3;
+  optional int32 durationSeconds = 4;
+  int32 position = 5;
+  optional bool isPublished = 6;
+  bool hasQuiz = 7;
+  string progressStatus = 8;
+  optional int32 progressPercent = 9;
+  repeated TrainingBlockDataGrpc blocks = 10;
+}
+
+message TrainingWeekDataGrpc {
+  string weekId = 1;
+  string title = 2;
+  int32 position = 3;
+  repeated TrainingContentItemDataGrpc contentItems = 4;
+}
+
+message TrainingMonthDataGrpc {
+  string monthId = 1;
+  string title = 2;
+  int32 position = 3;
+  string summary = 4;
+  repeated TrainingWeekDataGrpc weeks = 5;
+}
+
+message TrainingCurriculumDataGrpc {
+  string trainingId = 1;
+  string title = 2;
+  optional int32 durationMinutes = 3;
+  string enrollmentId = 4;
+  repeated TrainingMonthDataGrpc months = 5;
+}
+
+message TrainingEnrollmentSummaryDataGrpc {
+  string enrollmentId = 1;
+  string trainingId = 2;
+  string trainingTitle = 3;
+  string coverImageUrl = 4;
+  string status = 5;
+  int32 progressPercent = 6;
+  string currentMonthId = 7;
+  optional int32 currentMonthPosition = 8;
+}
+
+message TrainingReviewDataGrpc {
+  string ratingId = 1;
+  string reviewerName = 2;
+  string reviewerProfileImage = 3;
+  string reviewDate = 4;
+  double rating = 5;
+  string review = 6;
+}
+
+message FetchTrainingRatingsDataGrpc {
+  int64 totalReviewCount = 1;
+  double overallRating = 2;
+  PaginationMetaGrpc meta = 3;
+  repeated TrainingReviewDataGrpc reviews = 4;
+}
+
+message SavedTrainingDataGrpc {
+  string savedTrainingId = 1;
+  TrainingSummaryDataGrpc training = 2;
+}
+
+message TrainingCertificateDataGrpc {
+  string certificateId = 1;
+  string trainingId = 2;
+  string trainingTitle = 3;
+  string issuedAt = 4;
+  string certificateUrl = 5;
+}
+
+message TraineeQuizOptionPublicDataGrpc {
+  string optionId = 1;
+  string label = 2;
+  int32 position = 3;
+}
+
+message TraineeQuizQuestionPublicDataGrpc {
+  string questionId = 1;
+  string prompt = 2;
+  int32 position = 3;
+  repeated TraineeQuizOptionPublicDataGrpc options = 4;
+}
+
+message TraineeQuizForAttemptDataGrpc {
+  string quizId = 1;
+  string title = 2;
+  optional int32 attemptLimit = 3;
+  repeated TraineeQuizQuestionPublicDataGrpc questions = 4;
+}
+
+message TraineeQuizAttemptDataGrpc {
+  string attemptId = 1;
+  string quizId = 2;
+  int32 attemptNumber = 3;
+  string attemptStatus = 4;
+  optional int32 scorePercent = 5;
+}
+
+message FetchRecentlyViewedTrainingsDataGrpc {
+  repeated TrainingSummaryDataGrpc content = 1;
+}
+
+message FetchMyEnrollmentsDataGrpc {
+  repeated TrainingEnrollmentSummaryDataGrpc enrollments = 1;
+}
+
+message FetchSavedTrainingsDataGrpc {
+  repeated SavedTrainingDataGrpc content = 1;
+}
+
+message FetchMyCertificatesDataGrpc {
+  repeated TrainingCertificateDataGrpc certificates = 1;
+}
+
+// ---- Search / catalogue ----
+
+message SearchTrainingsRequest {
+  string searchKey = 1;
+  int32 pageNumber = 2;
+  int32 pageSize = 3;
+  string sort = 4;
+}
+
+message SearchTrainingsResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TrainingSummaryPageDataGrpc responseData = 3;
+}
+
+message FetchRecommendedTrainingsRequest {
+  int32 pageNumber = 1;
+  int32 pageSize = 2;
+  string sort = 3;
+}
+
+message FetchRecommendedTrainingsResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TrainingSummaryPageDataGrpc responseData = 3;
+}
+
+message FetchRecentlyViewedTrainingsRequest {}
+
+message FetchRecentlyViewedTrainingsResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  FetchRecentlyViewedTrainingsDataGrpc responseData = 3;
+}
+
+message RecordTrainingViewRequest {
+  string trainingId = 1;
+}
+
+message RecordTrainingViewResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  string responseData = 3;
+}
+
+message FetchTrainingOverviewRequest {
+  string trainingId = 1;
+}
+
+message FetchTrainingOverviewResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TrainingOverviewDataGrpc responseData = 3;
+}
+
+message FetchTrainingCurriculumRequest {
+  string trainingId = 1;
+}
+
+message FetchTrainingCurriculumResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TrainingCurriculumDataGrpc responseData = 3;
+}
+
+message FetchTrainingContentItemRequest {
+  string trainingId = 1;
+  string contentItemId = 2;
+}
+
+message FetchTrainingContentItemResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TrainingContentItemDataGrpc responseData = 3;
+}
+
+message FetchTrainingRatingsRequest {
+  string trainingId = 1;
+  int32 pageNumber = 2;
+  int32 pageSize = 3;
+  string sort = 4;
+}
+
+message FetchTrainingRatingsResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  FetchTrainingRatingsDataGrpc responseData = 3;
+}
+
+message SubmitTrainingRatingRequest {
+  string trainingId = 1;
+  int32 rating = 2;
+  string review = 3;
+}
+
+message SubmitTrainingRatingResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TrainingReviewDataGrpc responseData = 3;
+}
+
+message EnrollTrainingRequest {
+  string trainingId = 1;
+}
+
+message EnrollTrainingResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TrainingEnrollmentSummaryDataGrpc responseData = 3;
+}
+
+message FetchQuizForAttemptRequest {
+  string trainingId = 1;
+  string quizId = 2;
+}
+
+message FetchQuizForAttemptResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TraineeQuizForAttemptDataGrpc responseData = 3;
+}
+
+// ---- /me trainings ----
+
+message FetchMyEnrollmentsRequest {}
+
+message FetchMyEnrollmentsResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  FetchMyEnrollmentsDataGrpc responseData = 3;
+}
+
+message UpdateContentItemProgressRequest {
+  string enrollmentId = 1;
+  string contentItemId = 2;
+  string progressStatus = 3;
+  optional int32 progressPercent = 4;
+  string currentBlockId = 5;
+}
+
+message UpdateContentItemProgressResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  string responseData = 3;
+}
+
+message UpdateBlockProgressRequest {
+  string enrollmentId = 1;
+  string blockId = 2;
+  optional int32 lastPositionSeconds = 3;
+  optional bool markCompleted = 4;
+}
+
+message UpdateBlockProgressResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  string responseData = 3;
+}
+
+message TraineeStartQuizAttemptRequest {
+  string enrollmentId = 1;
+  string quizId = 2;
+}
+
+message TraineeStartQuizAttemptResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TraineeQuizAttemptDataGrpc responseData = 3;
+}
+
+message TraineeQuizAnswerItemGrpc {
+  string questionId = 1;
+  string selectedOptionId = 2;
+}
+
+message SubmitTraineeQuizAttemptRequest {
+  string enrollmentId = 1;
+  string attemptId = 2;
+  repeated TraineeQuizAnswerItemGrpc answers = 3;
+}
+
+message SubmitTraineeQuizAttemptResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TraineeQuizAttemptDataGrpc responseData = 3;
+}
+
+message FetchSavedTrainingsRequest {}
+
+message FetchSavedTrainingsResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  FetchSavedTrainingsDataGrpc responseData = 3;
+}
+
+message SaveTrainingRequest {
+  string trainingId = 1;
+}
+
+message SaveTrainingResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  SavedTrainingDataGrpc responseData = 3;
+}
+
+message RemoveSavedTrainingRequest {
+  string trainingId = 1;
+}
+
+message RemoveSavedTrainingResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  string responseData = 3;
+}
+
+message FetchMyCertificatesRequest {}
+
+message FetchMyCertificatesResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  FetchMyCertificatesDataGrpc responseData = 3;
+}
+
+message FetchCertificateByIdRequest {
+  string certificateId = 1;
+}
+
+message FetchCertificateByIdResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TrainingCertificateDataGrpc responseData = 3;
+}
