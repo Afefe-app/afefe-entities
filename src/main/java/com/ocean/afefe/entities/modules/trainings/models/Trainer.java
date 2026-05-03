@@ -27,6 +27,7 @@ public class Trainer extends BaseUUIDEntity {
 
     @Column(columnDefinition = "TEXT")
     private String bio;
+    private String workPlace;
 
     private String websiteUrl;
 }
