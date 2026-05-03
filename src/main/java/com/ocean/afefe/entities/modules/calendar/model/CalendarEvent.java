@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import com.ocean.afefe.entities.modules.auth.models.User;
 import com.ocean.afefe.entities.modules.contents.models.Course;
+import com.ocean.afefe.entities.modules.trainings.models.Training;
 import com.tensorpoint.toolkit.tpointcore.commons.Currency;
 import com.tensorpoint.toolkit.tpointcore.commons.StringValues;
 import com.tensorpoint.toolkit.tpointcore.commons.TimeZone;
@@ -42,6 +43,9 @@ public class CalendarEvent extends BaseUUIDEntity {
     @ManyToOne
     private Course assignedCourse;
 
+    @ManyToOne
+    private Training assignedTraining;
+
     @Column(nullable = false)
     private String title;
 
@@ -49,6 +53,15 @@ public class CalendarEvent extends BaseUUIDEntity {
     private String description;
 
     private String location;
+
+    @Builder.Default
+    private boolean eventMarker = false;
+
+    @Builder.Default
+    private boolean addLocation = false;
+
+    @Builder.Default
+    private boolean videoConferencing = false;
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
