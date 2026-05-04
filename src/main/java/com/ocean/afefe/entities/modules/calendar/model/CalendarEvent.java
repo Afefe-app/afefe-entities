@@ -55,12 +55,15 @@ public class CalendarEvent extends BaseUUIDEntity {
     private String location;
 
     @Builder.Default
+    @Column(nullable = false)
     private boolean eventMarker = false;
 
     @Builder.Default
+    @Column(nullable = false)
     private boolean addLocation = false;
 
     @Builder.Default
+    @Column(nullable = false)
     private boolean videoConferencing = false;
 
     @Column(nullable = false)
