@@ -13,6 +13,7 @@ import java.util.List;
 public class GenericWebMvcRegistry implements WebMvcConfigurer {
 
     private final TenantUserArgumentResolver tenantUserArgumentResolver;
+    private final HrArgumentResolver hrArgumentResolver;
     private final RequestContextMetaArgumentResolver requestContextMetaArgumentResolver;
 
     public void addInterceptors(InterceptorRegistry registry) {
@@ -21,5 +22,6 @@ public class GenericWebMvcRegistry implements WebMvcConfigurer {
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(requestContextMetaArgumentResolver);
         resolvers.add(tenantUserArgumentResolver);
+        resolvers.add(hrArgumentResolver);
     }
 }
