@@ -33,8 +33,16 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         TrainingsModule.class,
         GrpcCommons.class,
 })
-@EnableJpaRepositories(value = {"com.ocean.afefe.entities"})
-@EntityScan(basePackages = { "com.ocean.afefe.entities" })
+// Exclude com.ocean.afefe.entities.proto: protobuf-generated classes live there and are not
+// repositories; scanning them breaks startup (Spring ASM can fail on large generated classes).
+@EnableJpaRepositories(basePackages = {
+        "com.ocean.afefe.entities.modules",
+        "com.ocean.afefe.entities.core.localstore"
+})
+@EntityScan(basePackages = {
+        "com.ocean.afefe.entities.modules",
+        "com.ocean.afefe.entities.core.localstore"
+})
 @EnableConfigurationProperties({
         SecurityPathsProps.class
 })

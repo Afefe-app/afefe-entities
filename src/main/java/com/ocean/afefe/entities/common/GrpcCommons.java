@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.Message;
 import com.ocean.afefe.entities.proto.FetchContentNotesResponse;
 import com.ocean.afefe.entities.proto.FetchCourseRatingsDataGrpc;
+import com.ocean.afefe.entities.proto.FetchTrainingRatingsDataGrpc;
 import com.ocean.afefe.entities.proto.FetchEnrollmentHistoryDataGrpc;
 import com.ocean.afefe.entities.proto.FetchRecommendedCoursesDataGrpc;
 import com.ocean.afefe.entities.proto.FetchUpcomingCalendarEventsDataGrpc;
@@ -11,6 +12,7 @@ import com.ocean.afefe.entities.proto.FilterCoursesDataGrpc;
 import com.ocean.afefe.entities.proto.GrpcStringResponse;
 import com.ocean.afefe.entities.proto.PaginationMetaGrpc;
 import com.ocean.afefe.entities.proto.SearchCoursesDataGrpc;
+import com.ocean.afefe.entities.proto.TrainingSummaryPageDataGrpc;
 import com.tensorpoint.toolkit.pagination.PaginationMeta;
 import com.tensorpoint.toolkit.tpointcore.commons.*;
 import io.grpc.stub.StreamObserver;
@@ -74,6 +76,14 @@ public class GrpcCommons {
     }
 
     public void fillPaginationMeta(FetchContentNotesResponse.Builder builder, PaginationMeta meta) {
+        builder.setMeta(map(meta));
+    }
+
+    public void fillPaginationMeta(TrainingSummaryPageDataGrpc.Builder builder, PaginationMeta meta) {
+        builder.setMeta(map(meta));
+    }
+
+    public void fillPaginationMeta(FetchTrainingRatingsDataGrpc.Builder builder, PaginationMeta meta) {
         builder.setMeta(map(meta));
     }
 
