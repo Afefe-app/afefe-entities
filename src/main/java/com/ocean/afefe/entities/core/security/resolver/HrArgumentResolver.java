@@ -42,17 +42,17 @@ public class HrArgumentResolver implements HandlerMethodArgumentResolver {
         Object attr = servletRequest.getAttribute(CommonValues.TENANT_USER_KEY);
         if (!(attr instanceof TenantUser tenantUser)) {
             throw HttpUtil.getResolvedException(
-                    ResponseCode.FORBIDDEN,
+                    ResponseCode.FAILED_MODEL,
                     "Organization tenant context is required before HR resolution; declare TenantUser before Hr."
             );
         }
         if (tenantUser.getUser() == null || tenantUser.getOrganization() == null) {
-            throw HttpUtil.getResolvedException(ResponseCode.FORBIDDEN, "HR operations require a signed-in organization context.");
+            throw HttpUtil.getResolvedException(ResponseCode.FAILED_MODEL, "HR operations require a signed-in organization context.");
         }
 
         Hr hr = hrRepository
                 .findByUserAndOrg(tenantUser.getUser(), tenantUser.getOrganization())
-                .orElseThrow(() -> HttpUtil.getResolvedException(ResponseCode.FORBIDDEN, BaseSecurityFilter.FORBIDDEN_RESOURCE_MESSAGE));
+                .orElseThrow(() -> HttpUtil.getResolvedException(ResponseCode.FAILED_MODEL, BaseSecurityFilter.FORBIDDEN_RESOURCE_MESSAGE));
         servletRequest.setAttribute(CommonValues.HR_KEY, hr);
         return hr;
     }
