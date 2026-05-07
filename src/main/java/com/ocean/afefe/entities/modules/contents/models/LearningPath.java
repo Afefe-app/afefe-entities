@@ -29,6 +29,9 @@ public class LearningPath extends BaseUUIDEntity {
     @Column(nullable = false)
     private Boolean isPublished;
 
+    /** Total estimated duration for the path (minutes); optional until backfilled */
+    private Integer durationMinutes;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private User createdBy;
 

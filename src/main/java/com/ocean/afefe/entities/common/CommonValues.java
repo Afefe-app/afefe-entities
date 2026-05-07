@@ -7,4 +7,5 @@ public interface CommonValues {
     String ORG_MEMBER_KEY = "orgMember";
     String ORGANIZATION_KEY = "organization";
     String TENANT_USER_KEY = "tenantUser";
+    String HR_KEY = "hr";
 }

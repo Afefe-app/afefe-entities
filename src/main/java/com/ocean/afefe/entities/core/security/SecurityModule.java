@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Import;
         RequestContextMetaArgumentResolver.class,
         RequestMetaContextResolverGrpc.class,
         TenantUserArgumentResolver.class,
+        HrArgumentResolver.class,
         TenantUserContextResolverGrpc.class,
         GenericWebMvcRegistry.class
 

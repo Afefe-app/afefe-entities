@@ -134,4 +134,21 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, UUID>, Q
     );
 
     boolean existsByUserAndCourseAndStatusIn(User user, Course course, List<EnrollmentStatus> status);
+
+    /**
+     * Distinct org learners with at least one enrollment on a course in the given learning paths (same org).
+     */
+    @Query("""
+        SELECT lp.id, COUNT(DISTINCT e.user.id)
+        FROM LearningPathNode n
+        JOIN n.learningPath lp
+        JOIN Enrollment e
+        WHERE e.course = n.course AND e.org = lp.org
+          AND lp.id IN :pathIds
+          AND lp.org = :org
+        GROUP BY lp.id
+        """)
+    List<Object[]> countDistinctLearnersGroupedByLearningPathIds(
+            @Param("pathIds") Collection<UUID> pathIds,
+            @Param("org") Organization org);
 }

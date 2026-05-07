@@ -5,8 +5,11 @@ import com.ocean.afefe.entities.modules.auth.models.User;
 import com.ocean.afefe.entities.modules.trainings.models.Training;
 import com.ocean.afefe.entities.modules.trainings.models.TrainingEnrollment;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -21,4 +24,7 @@ public interface TrainingEnrollmentRepository extends JpaRepository<TrainingEnro
     List<TrainingEnrollment> findByUserAndOrgOrderByUpdatedAtDesc(User user, Organization org);
 
     Optional<TrainingEnrollment> findByIdAndUser_Id(UUID enrollmentId, UUID userId);
+
+    @Query("SELECT COUNT(DISTINCT e.user.id) FROM TrainingEnrollment e WHERE e.org = :org AND e.createdAt <= :date")
+    long countDistinctTraineesByOrgAndCreatedAtToDate(@Param("org") Organization org, @Param("date") Instant date);
 }
