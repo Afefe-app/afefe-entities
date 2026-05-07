@@ -57,6 +57,7 @@ public class CalendarEvent extends BaseUUIDEntity {
     @Builder.Default
     @Column(nullable = false)
     private boolean eventMarker = false;
+    private String eventMarkerColor;
 
     @Builder.Default
     @Column(nullable = false)
