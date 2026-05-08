@@ -1622,6 +1622,14 @@
                 </li>
               
                 <li>
+                  <a href="#.FetchAttendanceSessionContextRequest"><span class="badge">M</span>FetchAttendanceSessionContextRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchAttendanceSessionContextResponse"><span class="badge">M</span>FetchAttendanceSessionContextResponse</a>
+                </li>
+              
+                <li>
                   <a href="#.FetchCertificateByIdRequest"><span class="badge">M</span>FetchCertificateByIdRequest</a>
                 </li>
               
@@ -1694,6 +1702,30 @@
                 </li>
               
                 <li>
+                  <a href="#.FetchTraineeUpcomingCalendarEventsDataGrpc"><span class="badge">M</span>FetchTraineeUpcomingCalendarEventsDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchTraineeUpcomingCalendarEventsRequest"><span class="badge">M</span>FetchTraineeUpcomingCalendarEventsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchTraineeUpcomingCalendarEventsResponse"><span class="badge">M</span>FetchTraineeUpcomingCalendarEventsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchTrainingAttendanceSessionsDataGrpc"><span class="badge">M</span>FetchTrainingAttendanceSessionsDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchTrainingAttendanceSessionsRequest"><span class="badge">M</span>FetchTrainingAttendanceSessionsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FetchTrainingAttendanceSessionsResponse"><span class="badge">M</span>FetchTrainingAttendanceSessionsResponse</a>
+                </li>
+              
+                <li>
                   <a href="#.FetchTrainingContentItemRequest"><span class="badge">M</span>FetchTrainingContentItemRequest</a>
                 </li>
               
@@ -1727,6 +1759,18 @@
               
                 <li>
                   <a href="#.FetchTrainingRatingsResponse"><span class="badge">M</span>FetchTrainingRatingsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.MarkTrainingSessionAttendanceDataGrpc"><span class="badge">M</span>MarkTrainingSessionAttendanceDataGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.MarkTrainingSessionAttendanceRequest"><span class="badge">M</span>MarkTrainingSessionAttendanceRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.MarkTrainingSessionAttendanceResponse"><span class="badge">M</span>MarkTrainingSessionAttendanceResponse</a>
                 </li>
               
                 <li>
@@ -1779,6 +1823,18 @@
               
                 <li>
                   <a href="#.SubmitTrainingRatingResponse"><span class="badge">M</span>SubmitTrainingRatingResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.TraineeAttendanceSessionContextGrpc"><span class="badge">M</span>TraineeAttendanceSessionContextGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.TraineeAttendanceSessionSummaryGrpc"><span class="badge">M</span>TraineeAttendanceSessionSummaryGrpc</a>
+                </li>
+              
+                <li>
+                  <a href="#.TraineeCalendarEventDataGrpc"><span class="badge">M</span>TraineeCalendarEventDataGrpc</a>
                 </li>
               
                 <li>
@@ -16447,6 +16503,75 @@ Returns scores, duration, and detailed answer-level data including correctness a
 
         
       
+        <h3 id=".FetchAttendanceSessionContextRequest">FetchAttendanceSessionContextRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>enrollmentId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>calendarEventId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchAttendanceSessionContextResponse">FetchAttendanceSessionContextResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#TraineeAttendanceSessionContextGrpc">TraineeAttendanceSessionContextGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".FetchCertificateByIdRequest">FetchCertificateByIdRequest</h3>
         <p></p>
 
@@ -16930,6 +17055,227 @@ Returns scores, duration, and detailed answer-level data including correctness a
 
         
       
+        <h3 id=".FetchTraineeUpcomingCalendarEventsDataGrpc">FetchTraineeUpcomingCalendarEventsDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#TraineeCalendarEventDataGrpc">TraineeCalendarEventDataGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchTraineeUpcomingCalendarEventsRequest">FetchTraineeUpcomingCalendarEventsRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>pageNumber</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageSize</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchTraineeUpcomingCalendarEventsResponse">FetchTraineeUpcomingCalendarEventsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#FetchTraineeUpcomingCalendarEventsDataGrpc">FetchTraineeUpcomingCalendarEventsDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchTrainingAttendanceSessionsDataGrpc">FetchTrainingAttendanceSessionsDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>meta</td>
+                  <td><a href="#PaginationMetaGrpc">PaginationMetaGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#TraineeAttendanceSessionSummaryGrpc">TraineeAttendanceSessionSummaryGrpc</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchTrainingAttendanceSessionsRequest">FetchTrainingAttendanceSessionsRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>enrollmentId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageNumber</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pageSize</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FetchTrainingAttendanceSessionsResponse">FetchTrainingAttendanceSessionsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#FetchTrainingAttendanceSessionsDataGrpc">FetchTrainingAttendanceSessionsDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".FetchTrainingContentItemRequest">FetchTrainingContentItemRequest</h3>
         <p></p>
 
@@ -17240,6 +17586,141 @@ Returns scores, duration, and detailed answer-level data including correctness a
                 <tr>
                   <td>responseData</td>
                   <td><a href="#FetchTrainingRatingsDataGrpc">FetchTrainingRatingsDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".MarkTrainingSessionAttendanceDataGrpc">MarkTrainingSessionAttendanceDataGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>calendarEventId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>markedAt</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".MarkTrainingSessionAttendanceRequest">MarkTrainingSessionAttendanceRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>enrollmentId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>calendarEventId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>liveLocationUsed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>latitude</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>longitude</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".MarkTrainingSessionAttendanceResponse">MarkTrainingSessionAttendanceResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>responseCode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>responseData</td>
+                  <td><a href="#MarkTrainingSessionAttendanceDataGrpc">MarkTrainingSessionAttendanceDataGrpc</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -17692,6 +18173,260 @@ Returns scores, duration, and detailed answer-level data including correctness a
                 <tr>
                   <td>responseData</td>
                   <td><a href="#TrainingReviewDataGrpc">TrainingReviewDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".TraineeAttendanceSessionContextGrpc">TraineeAttendanceSessionContextGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>calendarEventId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sessionTitle</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>date</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timeRange</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timeZoneLabel</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>virtualSession</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opensMinutesBefore</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>alreadyMarked</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>markedAt</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>requiresLiveLocation</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>attendanceEnabled</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>withinMarkingWindow</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>windowNotOpenMessage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".TraineeAttendanceSessionSummaryGrpc">TraineeAttendanceSessionSummaryGrpc</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>calendarEventId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sessionTitle</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sessionDate</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>markedAt</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".TraineeCalendarEventDataGrpc">TraineeCalendarEventDataGrpc</h3>
+        <p>Calendar listing (upcoming DEFAULT-type events). Organizer is the user who created the event.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>eventId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>coverPhoto</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>date</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>startTime</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>daysLeft</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>organizer</td>
+                  <td><a href="#TrainerBasicDataGrpc">TrainerBasicDataGrpc</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>price</td>
+                  <td><a href="#MoneyGrpc">MoneyGrpc</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -19064,6 +19799,27 @@ Returns scores, duration, and detailed answer-level data including correctness a
                 <td>FetchCertificateById</td>
                 <td><a href="#FetchCertificateByIdRequest">.FetchCertificateByIdRequest</a></td>
                 <td><a href="#FetchCertificateByIdResponse">.FetchCertificateByIdResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchAttendanceSessionContext</td>
+                <td><a href="#FetchAttendanceSessionContextRequest">.FetchAttendanceSessionContextRequest</a></td>
+                <td><a href="#FetchAttendanceSessionContextResponse">.FetchAttendanceSessionContextResponse</a></td>
+                <td><p>Attendance (per scheduled class / CalendarEvent)</p></td>
+              </tr>
+            
+              <tr>
+                <td>FetchTrainingAttendanceSessions</td>
+                <td><a href="#FetchTrainingAttendanceSessionsRequest">.FetchTrainingAttendanceSessionsRequest</a></td>
+                <td><a href="#FetchTrainingAttendanceSessionsResponse">.FetchTrainingAttendanceSessionsResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>MarkTrainingSessionAttendance</td>
+                <td><a href="#MarkTrainingSessionAttendanceRequest">.MarkTrainingSessionAttendanceRequest</a></td>
+                <td><a href="#MarkTrainingSessionAttendanceResponse">.MarkTrainingSessionAttendanceResponse</a></td>
                 <td><p></p></td>
               </tr>
             

@@ -86,4 +86,24 @@ public class CalendarEvent extends BaseUUIDEntity {
 
     @ManyToOne
     private User updatedBy;
+
+    /** SHA-256 hex of token; see {@link com.ocean.afefe.entities.modules.trainings.attendance.AttendanceTokenHasher}. */
+    @Column(name = "attendance_token_hash", length = 64)
+    private String attendanceTokenHash;
+
+    /** Minutes before {@link #fromTime} when marking opens; defaults to 10 in application logic when null. */
+    private Integer attendanceOpensMinutesBefore;
+
+    @Builder.Default
+    @Column(nullable = false)
+    private boolean attendanceRequiresLiveLocation = false;
+
+    /** Optional venue latitude for geofence validation (physical sessions). */
+    private BigDecimal sessionLatitude;
+
+    /** Optional venue longitude for geofence validation. */
+    private BigDecimal sessionLongitude;
+
+    /** Geofence radius in meters when lat/lng set. */
+    private Integer attendanceGeofenceRadiusMeters;
 }
