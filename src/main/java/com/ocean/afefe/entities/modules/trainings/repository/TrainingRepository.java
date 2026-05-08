@@ -1,9 +1,15 @@
 package com.ocean.afefe.entities.modules.trainings.repository;
+import com.ocean.afefe.entities.modules.auth.models.Organization;
 
 import com.ocean.afefe.entities.modules.trainings.models.Training;
 import com.ocean.afefe.entities.modules.trainings.models.Trainer;
+import com.ocean.afefe.entities.modules.trainings.models.TrainingStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -18,4 +24,24 @@ public interface TrainingRepository extends JpaRepository<Training, UUID>, JpaSp
     Optional<Training> findByIdAndTrainerAndOrg_Id(UUID id, Trainer trainer, UUID orgId);
 
     List<Training> findAllByTrainerAndOrg_IdOrderByTitleAsc(Trainer trainer, UUID orgId);
+
+    boolean existsByProgrammeIdAndTrainerAndOrg(String programmeId, Trainer trainer, Organization org);
+
+    @Query("""
+            SELECT t
+            FROM Training t
+            WHERE t.trainer = :trainer
+              AND t.org = :org
+              AND (:status IS NULL OR t.status = :status)
+              AND (
+                :search IS NULL OR :search = ''
+                OR LOWER(COALESCE(t.title, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+                OR LOWER(COALESCE(t.programmeId, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+              )
+            """)
+    Page<Training> searchByTrainerAndOrg(@Param("trainer") Trainer trainer,
+                                         @Param("org") Organization org,
+                                         @Param("status") TrainingStatus status,
+                                         @Param("search") String search,
+                                         Pageable pageable);
 }
