@@ -3,6 +3,7 @@ package com.ocean.afefe.entities.modules.trainings.repository;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.trainings.models.Trainer;
 import com.ocean.afefe.entities.modules.trainings.models.Training;
+import com.ocean.afefe.entities.modules.trainings.models.TrainingStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,8 @@ import java.util.UUID;
 public interface DashboardTrainingRepository extends JpaRepository<Training, UUID> {
 
     long countByTrainerAndOrg(Trainer trainer, Organization org);
+    long countByTrainerAndOrgAndStatus(Trainer trainer, Organization org, TrainingStatus status);
 
     long countByTrainerAndOrgAndCreatedAtBetween(Trainer trainer, Organization org, Instant start, Instant end);
+    long countByTrainerAndOrgAndStatusAndCreatedAtBetween(Trainer trainer, Organization org, TrainingStatus status, Instant start, Instant end);
 }

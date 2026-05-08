@@ -5,10 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface TrainingMonthRepository extends JpaRepository<TrainingMonth, UUID> {
 
     List<TrainingMonth> findByTraining_IdOrderByPositionAsc(UUID trainingId);
+    Optional<TrainingMonth> findByIdAndTraining_Id(UUID monthId, UUID trainingId);
+    long countByTraining_Id(UUID trainingId);
 }
