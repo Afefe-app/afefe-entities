@@ -36,6 +36,9 @@ service TraineeTrainingServiceGrpc {
   rpc FetchMyCertificates(FetchMyCertificatesRequest) returns (FetchMyCertificatesResponse);
   rpc FetchCertificateById(FetchCertificateByIdRequest) returns (FetchCertificateByIdResponse);
 
+  rpc FetchUpcomingCalendarEvents(FetchTraineeUpcomingCalendarEventsRequest)
+      returns (FetchTraineeUpcomingCalendarEventsResponse);
+
   // Attendance (per scheduled class / CalendarEvent)
   rpc FetchAttendanceSessionContext(FetchAttendanceSessionContextRequest) returns (FetchAttendanceSessionContextResponse);
   rpc FetchTrainingAttendanceSessions(FetchTrainingAttendanceSessionsRequest) returns (FetchTrainingAttendanceSessionsResponse);
