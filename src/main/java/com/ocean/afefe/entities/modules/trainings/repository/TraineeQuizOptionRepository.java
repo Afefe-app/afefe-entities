@@ -12,4 +12,5 @@ import java.util.UUID;
 public interface TraineeQuizOptionRepository extends JpaRepository<TraineeQuizOption, UUID> {
 
     List<TraineeQuizOption> findByQuestionOrderByPositionAsc(TraineeQuizQuestion question);
+    List<TraineeQuizOption> findByQuestion_IdInOrderByQuestion_PositionAscPositionAsc(List<UUID> questionIds);
 }

@@ -16,6 +16,9 @@ public class TraineeQuiz extends BaseUUIDEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "training_id", nullable = false)
     private Training training;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "training_week_id")
+    private TrainingWeek trainingWeek;
 
     @Column(nullable = false)
     private String title;
