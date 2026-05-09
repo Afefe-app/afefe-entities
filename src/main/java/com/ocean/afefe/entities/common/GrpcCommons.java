@@ -4,9 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.Message;
 import com.ocean.afefe.entities.proto.FetchContentNotesResponse;
 import com.ocean.afefe.entities.proto.FetchCourseRatingsDataGrpc;
+import com.ocean.afefe.entities.proto.FetchTrainingAttendanceSessionsDataGrpc;
 import com.ocean.afefe.entities.proto.FetchTrainingRatingsDataGrpc;
 import com.ocean.afefe.entities.proto.FetchEnrollmentHistoryDataGrpc;
 import com.ocean.afefe.entities.proto.FetchRecommendedCoursesDataGrpc;
+import com.ocean.afefe.entities.proto.FetchTraineeUpcomingCalendarEventsDataGrpc;
 import com.ocean.afefe.entities.proto.FetchUpcomingCalendarEventsDataGrpc;
 import com.ocean.afefe.entities.proto.FilterCoursesDataGrpc;
 import com.ocean.afefe.entities.proto.GrpcStringResponse;
@@ -55,6 +57,10 @@ public class GrpcCommons {
         builder.setMeta(map(meta));
     }
 
+    public void fillPaginationMeta(FetchTraineeUpcomingCalendarEventsDataGrpc.Builder builder, PaginationMeta meta) {
+        builder.setMeta(map(meta));
+    }
+
     public void fillPaginationMeta(FetchEnrollmentHistoryDataGrpc.Builder builder, PaginationMeta meta) {
         builder.setMeta(map(meta));
     }
@@ -84,6 +90,10 @@ public class GrpcCommons {
     }
 
     public void fillPaginationMeta(FetchTrainingRatingsDataGrpc.Builder builder, PaginationMeta meta) {
+        builder.setMeta(map(meta));
+    }
+
+    public void fillPaginationMeta(FetchTrainingAttendanceSessionsDataGrpc.Builder builder, PaginationMeta meta) {
         builder.setMeta(map(meta));
     }
 

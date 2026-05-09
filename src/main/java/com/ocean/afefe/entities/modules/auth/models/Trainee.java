@@ -30,4 +30,6 @@ public class Trainee extends BaseUUIDEntity {
 
     @Column(columnDefinition = "TEXT")
     private String bio;
+
+    private Boolean certified;
 }

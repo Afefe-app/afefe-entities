@@ -276,44 +276,6 @@
                             </pluginArtifact>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>generate-proto-docs</id>
-                        <goals>
-                            <goal>compile-custom</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/proto-docs</outputDirectory>
-                            <pluginId>doc</pluginId>
-                            <pluginArtifact>
-                                io.github.pseudomuto:protoc-gen-doc:1.5.1:exe:${os.detected.classifier}
-                            </pluginArtifact>
-                            <pluginParameter>html,index.html</pluginParameter>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.1</version>
-                <executions>
-                    <execution>
-                        <id>copy-grpc-docs-into-starter-jar</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.basedir}/public/docs</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>${project.build.directory}/proto-docs</directory>
-                                    <includes>
-                                        <include>index.html</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
             <!-- Spring Boot 3.4.x pulls maven-jar-plugin 3.4.2; some macOS builds hit NoSuchFileException
@@ -339,5 +301,61 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>proto-docs</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.xolstice.maven.plugins</groupId>
+                        <artifactId>protobuf-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>generate-proto-docs</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>compile-custom</goal>
+                                </goals>
+                                <configuration>
+                                    <clearOutputDirectory>false</clearOutputDirectory>
+                                    <outputDirectory>${project.build.directory}/proto-docs</outputDirectory>
+                                    <pluginId>doc</pluginId>
+                                    <pluginArtifact>
+                                        io.github.pseudomuto:protoc-gen-doc:1.5.1:exe:${os.detected.classifier}
+                                    </pluginArtifact>
+                                    <pluginParameter>html,index.html</pluginParameter>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <executions>
+                            <execution>
+                                <id>copy-grpc-docs-into-starter-jar</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.basedir}/public/docs</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.build.directory}/proto-docs</directory>
+                                            <includes>
+                                                <include>index.html</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

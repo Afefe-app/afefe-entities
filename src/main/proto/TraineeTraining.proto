@@ -35,6 +35,14 @@ service TraineeTrainingServiceGrpc {
 
   rpc FetchMyCertificates(FetchMyCertificatesRequest) returns (FetchMyCertificatesResponse);
   rpc FetchCertificateById(FetchCertificateByIdRequest) returns (FetchCertificateByIdResponse);
+
+  rpc FetchUpcomingCalendarEvents(FetchTraineeUpcomingCalendarEventsRequest)
+      returns (FetchTraineeUpcomingCalendarEventsResponse);
+
+  // Attendance (per scheduled class / CalendarEvent)
+  rpc FetchAttendanceSessionContext(FetchAttendanceSessionContextRequest) returns (FetchAttendanceSessionContextResponse);
+  rpc FetchTrainingAttendanceSessions(FetchTrainingAttendanceSessionsRequest) returns (FetchTrainingAttendanceSessionsResponse);
+  rpc MarkTrainingSessionAttendance(MarkTrainingSessionAttendanceRequest) returns (MarkTrainingSessionAttendanceResponse);
 }
 
 // ---- Shared data types ----
@@ -42,6 +50,36 @@ service TraineeTrainingServiceGrpc {
 message TrainerBasicDataGrpc {
   string trainerName = 1;
   string trainerProfileImage = 2;
+}
+
+// Calendar listing (upcoming DEFAULT-type events). Organizer is the user who created the event.
+message TraineeCalendarEventDataGrpc {
+  string eventId = 1;
+  string coverPhoto = 2;
+  string date = 3;
+  string startTime = 4;
+  string daysLeft = 5;
+  string title = 6;
+  string description = 7;
+  TrainerBasicDataGrpc organizer = 8;
+  MoneyGrpc price = 9;
+}
+
+message FetchTraineeUpcomingCalendarEventsRequest {
+  int32 pageNumber = 1;
+  int32 pageSize = 2;
+  string sort = 3;
+}
+
+message FetchTraineeUpcomingCalendarEventsDataGrpc {
+  PaginationMetaGrpc meta = 1;
+  repeated TraineeCalendarEventDataGrpc content = 2;
+}
+
+message FetchTraineeUpcomingCalendarEventsResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  FetchTraineeUpcomingCalendarEventsDataGrpc responseData = 3;
 }
 
 message TrainingSummaryDataGrpc {
@@ -440,4 +478,82 @@ message FetchCertificateByIdResponse {
   string responseCode = 1;
   string responseMessage = 2;
   TrainingCertificateDataGrpc responseData = 3;
+}
+
+// ---- Attendance (per class session) ----
+
+message TraineeAttendanceSessionContextGrpc {
+  string calendarEventId = 1;
+  string sessionTitle = 2;
+  string date = 3;
+  string timeRange = 4;
+  string timeZoneLabel = 5;
+  string location = 6;
+  bool virtualSession = 7;
+  int32 opensMinutesBefore = 8;
+  bool alreadyMarked = 9;
+  string markedAt = 10;
+  string status = 11;
+  bool requiresLiveLocation = 12;
+  bool attendanceEnabled = 13;
+  bool withinMarkingWindow = 14;
+  string windowNotOpenMessage = 15;
+}
+
+message FetchAttendanceSessionContextRequest {
+  string enrollmentId = 1;
+  string calendarEventId = 2;
+}
+
+message FetchAttendanceSessionContextResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TraineeAttendanceSessionContextGrpc responseData = 3;
+}
+
+message TraineeAttendanceSessionSummaryGrpc {
+  string calendarEventId = 1;
+  string sessionTitle = 2;
+  string sessionDate = 3;
+  string status = 4;
+  string markedAt = 5;
+}
+
+message FetchTrainingAttendanceSessionsDataGrpc {
+  PaginationMetaGrpc meta = 1;
+  repeated TraineeAttendanceSessionSummaryGrpc content = 2;
+}
+
+message FetchTrainingAttendanceSessionsRequest {
+  string enrollmentId = 1;
+  int32 pageNumber = 2;
+  int32 pageSize = 3;
+  string sort = 4;
+}
+
+message FetchTrainingAttendanceSessionsResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  FetchTrainingAttendanceSessionsDataGrpc responseData = 3;
+}
+
+message MarkTrainingSessionAttendanceRequest {
+  string enrollmentId = 1;
+  string calendarEventId = 2;
+  string token = 3;
+  bool liveLocationUsed = 4;
+  optional string latitude = 5;
+  optional string longitude = 6;
+}
+
+message MarkTrainingSessionAttendanceDataGrpc {
+  string calendarEventId = 1;
+  string status = 2;
+  string markedAt = 3;
+}
+
+message MarkTrainingSessionAttendanceResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  MarkTrainingSessionAttendanceDataGrpc responseData = 3;
 }

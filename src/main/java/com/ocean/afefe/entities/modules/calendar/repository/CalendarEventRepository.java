@@ -7,13 +7,15 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
-
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface CalendarEventRepository extends JpaRepository<CalendarEvent, UUID>, QuerydslPredicateExecutor<CalendarEvent> {
 
     CalendarEvent findFirstByIdAndCreatedBy(UUID id, User user);
+
+    Optional<CalendarEvent> findByIdAndAssignedTraining_Id(UUID id, UUID trainingId);
 
     List<CalendarEvent> findAllByCreatedByAndDateBetweenOrderByDateAscFromTimeAsc(User createdBy, LocalDate startDate, LocalDate endDate);
 }
