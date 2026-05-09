@@ -21,6 +21,7 @@ public class TraineeQuizQuestion extends BaseUUIDEntity {
     private Integer position;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 40)
+    @Builder.Default
     private TraineeQuizQuestionType questionType = TraineeQuizQuestionType.MULTI_CHOICE;
 
     @Column(nullable = false, columnDefinition = "TEXT")
