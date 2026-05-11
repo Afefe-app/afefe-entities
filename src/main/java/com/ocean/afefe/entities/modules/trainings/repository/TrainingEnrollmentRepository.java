@@ -2,6 +2,7 @@ package com.ocean.afefe.entities.modules.trainings.repository;
 
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
+import com.ocean.afefe.entities.modules.enrollments.models.EnrollmentStatus;
 import com.ocean.afefe.entities.modules.trainings.models.Training;
 import com.ocean.afefe.entities.modules.trainings.models.TrainingEnrollment;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,6 +24,9 @@ public interface TrainingEnrollmentRepository extends JpaRepository<TrainingEnro
     Optional<TrainingEnrollment> findByUserAndTraining_Id(User user, UUID trainingId);
 
     List<TrainingEnrollment> findByUserAndOrgOrderByUpdatedAtDesc(User user, Organization org);
+
+    List<TrainingEnrollment> findByUserAndOrgAndStatusInOrderByUpdatedAtDesc(
+            User user, Organization org, Collection<EnrollmentStatus> statuses);
 
     Optional<TrainingEnrollment> findByIdAndUser_Id(UUID enrollmentId, UUID userId);
 

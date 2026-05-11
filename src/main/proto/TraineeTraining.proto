@@ -36,7 +36,7 @@ service TraineeTrainingServiceGrpc {
   rpc FetchMyCertificates(FetchMyCertificatesRequest) returns (FetchMyCertificatesResponse);
   rpc FetchCertificateById(FetchCertificateByIdRequest) returns (FetchCertificateByIdResponse);
 
-  rpc FetchUpcomingCalendarEvents(FetchTraineeUpcomingCalendarEventsRequest)
+  rpc FetchTraineeUpcomingCalendarEvents(FetchTraineeUpcomingCalendarEventsRequest)
       returns (FetchTraineeUpcomingCalendarEventsResponse);
 
   // Attendance (per scheduled class / CalendarEvent)
@@ -371,7 +371,10 @@ message FetchQuizForAttemptResponse {
 
 // ---- /me trainings ----
 
-message FetchMyEnrollmentsRequest {}
+// Optional filter: EnrollmentStatus names (ENROLLED, IN_PROGRESS, COMPLETED, WITHDRAWN). Empty = all statuses.
+message FetchMyEnrollmentsRequest {
+  repeated string statuses = 1;
+}
 
 message FetchMyEnrollmentsResponse {
   string responseCode = 1;

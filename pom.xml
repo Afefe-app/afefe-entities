@@ -242,6 +242,8 @@
                 <artifactId>protobuf-maven-plugin</artifactId>
                 <version>0.6.1</version>
                 <configuration>
+                    <!-- Both compile + compile-custom target the same output tree; default true wipes java/ before grpc -->
+                    <clearOutputDirectory>false</clearOutputDirectory>
                     <protocArtifact>
                         com.google.protobuf:protoc:3.25.3:exe:${os.detected.classifier}
                     </protocArtifact>
@@ -268,8 +270,6 @@
                             <goal>compile-custom</goal>
                         </goals>
                         <configuration>
-                            <!-- Default is true; it clears the whole protobuf output tree and deletes java/ from compile-proto -->
-                            <clearOutputDirectory>false</clearOutputDirectory>
                             <pluginId>grpc-java</pluginId>
                             <pluginArtifact>
                                 io.grpc:protoc-gen-grpc-java:1.64.0:exe:${os.detected.classifier}
