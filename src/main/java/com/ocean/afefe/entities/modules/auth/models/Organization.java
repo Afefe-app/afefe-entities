@@ -23,6 +23,7 @@ public class Organization extends BaseUUIDEntity {
     private String slug;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private OrganizationStatus status;
 
     @Column(nullable = false)
@@ -33,24 +34,22 @@ public class Organization extends BaseUUIDEntity {
     @Enumerated(value = EnumType.STRING)
     private OrganizationRole role;
 
-    @Column(length = 500)
-    private String website;
+    /** Optional public contact shown in government lists; falls back to first joined OrgMember admin if absent. */
+    private String contactEmail;
+
+    private String websiteUrl;
 
     @Column(columnDefinition = "TEXT")
-    private String address;
+    private String addressLine;
 
-    @Column(length = 500)
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(length = 1000)
     private String logoUrl;
 
-    @Column(length = 16)
-    private String primaryColor;
+    private String primaryColorHex;
 
-    @Column(length = 16)
-    private String secondaryColor;
+    private String secondaryColorHex;
 
-    @Column(length = 16)
-    private String tertiaryColor;
+    private String tertiaryColorHex;
 }

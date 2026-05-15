@@ -20,6 +20,8 @@ public interface TrainerCurriculumSubmissionRepository extends JpaRepository<Tra
 
     Optional<TrainerCurriculumSubmission> findByIdAndTrainerAndOrg(UUID id, Trainer trainer, Organization org);
 
+    Optional<TrainerCurriculumSubmission> findFirstByTrainerAndOrgOrderBySubmittedAtDesc(Trainer trainer, Organization org);
+
     long countByTrainerAndOrg(Trainer trainer, Organization org);
 
     long countByTrainerAndOrgAndSubmittedAtBetween(Trainer trainer, Organization org, Instant start, Instant end);

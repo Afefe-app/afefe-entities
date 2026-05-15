@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum OrganizationStatus implements Enumerable {
     PENDING("Pending"),
-    ACTIVE("Active");
+    ACTIVE("Active"),
+    INACTIVE("Inactive");
     private final String description;
 }
