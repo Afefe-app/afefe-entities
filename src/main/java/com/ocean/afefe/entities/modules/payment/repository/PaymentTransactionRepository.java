@@ -5,6 +5,8 @@ import com.ocean.afefe.entities.modules.auth.models.User;
 import com.ocean.afefe.entities.modules.payment.model.PaymentStatus;
 import com.ocean.afefe.entities.modules.payment.model.PaymentTransaction;
 import com.ocean.afefe.entities.modules.payment.model.PaymentType;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
@@ -21,6 +23,8 @@ public interface PaymentTransactionRepository extends JpaRepository<PaymentTrans
     Optional<PaymentTransaction> findByIdempotencyKey(String idempotencyKey);
 
     List<PaymentTransaction> findByUserOrderByCreatedAtDesc(User user);
+
+    Page<PaymentTransaction> findByUserOrderByCreatedAtDesc(User user, Pageable pageable);
 
     List<PaymentTransaction> findByOrganizationOrderByCreatedAtDesc(Organization organization);
 

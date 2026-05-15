@@ -2,6 +2,7 @@ package com.ocean.afefe.entities.modules.contents.repository;
 
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
+import com.ocean.afefe.entities.modules.auth.models.UserType;
 import com.ocean.afefe.entities.modules.contents.models.Course;
 import com.ocean.afefe.entities.modules.contents.models.CourseRating;
 import com.ocean.afefe.entities.modules.contents.models.Instructor;
@@ -14,6 +15,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -89,4 +91,44 @@ public interface CourseRatingRepository extends JpaRepository<CourseRating, UUID
 
     @Query("SELECT AVG(cr.rating) FROM CourseRating cr WHERE cr.org = :org AND cr.ratedAt <= :date")
     Double getAverageRatingByOrgAndRatedAtToDate(@Param("org") Organization org, @Param("date") Instant date);
+
+    @Query("SELECT AVG(cr.rating) FROM CourseRating cr WHERE cr.user.userType = :userType")
+    Double getAverageRatingByUserType(@Param("userType") UserType userType);
+
+    @Query("SELECT AVG(cr.rating) FROM CourseRating cr WHERE cr.user.userType = :userType AND cr.ratedAt >= :start AND cr.ratedAt < :end")
+    Double getAverageRatingByUserTypeAndRatedAtBetween(
+            @Param("userType") UserType userType,
+            @Param("start") Instant start,
+            @Param("end") Instant end);
+
+    @Query("SELECT cr.user.id, AVG(cr.rating) FROM CourseRating cr WHERE cr.user.id IN :userIds GROUP BY cr.user.id")
+    List<Object[]> getAverageRatingGroupedByUserIds(@Param("userIds") Collection<UUID> userIds);
+
+    Page<CourseRating> findByUser_IdOrderByRatedAtDesc(UUID userId, Pageable pageable);
+
+    @Query("""
+            SELECT AVG(cr.rating)
+            FROM CourseRating cr
+            JOIN cr.user u
+            WHERE u.userType = :userType
+              AND cr.ratedAt >= :start
+              AND cr.ratedAt < :end
+            """)
+    Double getAverageRatingForUserTypeRatedBetween(
+            @Param("userType") UserType userType,
+            @Param("start") Instant start,
+            @Param("end") Instant end);
+
+    @Query("""
+            SELECT ins.user.id, AVG(cr.rating)
+            FROM CourseRating cr
+            JOIN cr.course c
+            JOIN c.ownerInstructor ins
+            WHERE ins.user.id IN :userIds
+              AND ins.org.id = :orgId
+            GROUP BY ins.user.id
+            """)
+    List<Object[]> getAverageRatingGroupedByInstructorUserIdsForOrg(
+            @Param("userIds") Collection<UUID> userIds,
+            @Param("orgId") UUID orgId);
 }

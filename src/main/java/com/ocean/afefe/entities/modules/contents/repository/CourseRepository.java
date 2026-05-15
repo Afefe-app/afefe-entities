@@ -13,6 +13,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -88,4 +89,16 @@ public interface CourseRepository extends JpaRepository<Course, UUID>, QuerydslP
             @Param("org") Organization org,
             @Param("search") String search
     );
+
+    @Query("""
+            SELECT ins.user.id, COUNT(c)
+            FROM Course c
+            JOIN c.ownerInstructor ins
+            WHERE ins.user.id IN :userIds
+              AND ins.org.id = :orgId
+            GROUP BY ins.user.id
+            """)
+    List<Object[]> countCoursesGroupedByInstructorUserIdsForOrg(
+            @Param("userIds") Collection<UUID> userIds,
+            @Param("orgId") UUID orgId);
 }
