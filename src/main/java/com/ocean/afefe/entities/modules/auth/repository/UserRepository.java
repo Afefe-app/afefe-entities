@@ -9,12 +9,15 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID>, JpaSpecificationExecutor<User> {
     Optional<User> findByEmailAddress(String emailAddress);
+
     long countByUserType(UserType userType);
 
     /** B2B learner: platform learner with at least one organization membership where {@code joinedAt} is set. */
@@ -38,4 +41,6 @@ public interface UserRepository extends JpaRepository<User, UUID>, JpaSpecificat
             @Param("ut") UserType ut,
             @Param("start") Instant start,
             @Param("end") Instant end);
+
+    List<User> findAllByIdIn(Collection<UUID> ids);
 }

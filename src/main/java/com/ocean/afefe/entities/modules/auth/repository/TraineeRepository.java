@@ -5,6 +5,7 @@ import com.ocean.afefe.entities.modules.auth.models.Trainee;
 import com.ocean.afefe.entities.modules.auth.models.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -21,6 +22,13 @@ import java.util.UUID;
 public interface TraineeRepository extends JpaRepository<Trainee, UUID>, JpaSpecificationExecutor<Trainee> {
 
     Optional<Trainee> findByUserAndOrganization(User user, Organization organization);
+
+    Optional<Trainee> findByIdAndOrganization(UUID id, Organization organization);
+
+    @EntityGraph(attributePaths = "user")
+    List<Trainee> findAllByOrganization(Organization organization);
+
+    boolean existsByUser_IdAndOrganization(UUID userId, Organization organization);
 
     Optional<Trainee> findByUser_IdAndOrganization_Id(UUID userId, UUID organizationId);
 
