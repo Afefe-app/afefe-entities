@@ -1,7 +1,8 @@
 package com.ocean.afefe.entities.modules.enrollments.repository;
 
-import com.ocean.afefe.entities.modules.auth.models.User;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
+import com.ocean.afefe.entities.modules.auth.models.User;
+import com.ocean.afefe.entities.modules.auth.models.UserType;
 import com.ocean.afefe.entities.modules.contents.models.Course;
 import com.ocean.afefe.entities.modules.contents.models.Instructor;
 import com.ocean.afefe.entities.modules.enrollments.models.Enrollment;
@@ -151,4 +152,53 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, UUID>, Q
     List<Object[]> countDistinctLearnersGroupedByLearningPathIds(
             @Param("pathIds") Collection<UUID> pathIds,
             @Param("org") Organization org);
+
+    Page<Enrollment> findByUser_IdOrderByStartedAtDesc(UUID userId, Pageable pageable);
+
+    Page<Enrollment> findByUser_IdAndStatusOrderByStartedAtDesc(UUID userId, EnrollmentStatus status, Pageable pageable);
+
+    @Query("SELECT e.user.id, AVG(e.progressPercent) FROM Enrollment e WHERE e.user.id IN :userIds GROUP BY e.user.id")
+    List<Object[]> averageProgressPercentGroupedByUserIds(@Param("userIds") Collection<UUID> userIds);
+
+    @Query("SELECT AVG(e.progressPercent) FROM Enrollment e WHERE e.user.userType = :ut")
+    Double averageProgressPercentForUserType(@Param("ut") UserType ut);
+
+    @Query("SELECT AVG(e.progressPercent) FROM Enrollment e WHERE e.user.userType = :ut AND e.startedAt >= :start AND e.startedAt < :end")
+    Double averageProgressPercentForUserTypeStartedBetween(
+            @Param("ut") UserType ut,
+            @Param("start") Instant start,
+            @Param("end") Instant end);
+
+    long countByUser_Id(UUID userId);
+
+    long countByUser_IdAndStatusIn(UUID userId, Collection<EnrollmentStatus> statuses);
+
+    @Query("""
+            SELECT COUNT(e)
+            FROM Enrollment e
+            JOIN e.user u
+            WHERE u.userType = :ut
+              AND e.status = com.ocean.afefe.entities.modules.enrollments.models.EnrollmentStatus.COMPLETED
+              AND e.completedAt >= :start
+              AND e.completedAt < :end
+            """)
+    long countCompletedEnrollmentsBetweenForLearners(
+            @Param("ut") UserType ut,
+            @Param("start") Instant start,
+            @Param("end") Instant end
+    );
+
+    @Query("""
+            SELECT COUNT(e)
+            FROM Enrollment e
+            JOIN e.user u
+            WHERE u.userType = :ut
+              AND e.startedAt >= :start
+              AND e.startedAt < :end
+            """)
+    long countEnrollmentsStartedBetweenForLearners(
+            @Param("ut") UserType ut,
+            @Param("start") Instant start,
+            @Param("end") Instant end
+    );
 }

@@ -1,5 +1,6 @@
 package com.ocean.afefe.entities.modules.auth.repository;
 
+import com.ocean.afefe.entities.common.Status;
 import com.ocean.afefe.entities.modules.auth.models.OrgMember;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
@@ -97,4 +98,11 @@ public interface OrgMemberRepository extends JpaRepository<OrgMember, UUID> {
             @Param("learningPathId") UUID learningPathId,
             @Param("search") String search,
             Pageable pageable);
+
+    boolean existsByUserAndJoinedAtIsNotNull(User user);
+
+    boolean existsByUserAndJoinedAtIsNullAndInvitationStatus(User user, Status invitationStatus);
+
+    @Query("SELECT COUNT(DISTINCT om.user.id) FROM OrgMember om WHERE om.joinedAt IS NOT NULL AND om.joinedAt >= :start AND om.joinedAt < :end")
+    long countDistinctUsersJoinedOrganizationBetween(@Param("start") Instant start, @Param("end") Instant end);
 }
