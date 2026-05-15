@@ -9,7 +9,8 @@ import lombok.RequiredArgsConstructor;
 public enum CalendarEventType implements Enumerable {
 
     DEFAULT("Default"),
-    VIDEO_CONFERENCING("Video conferencing")
+    VIDEO_CONFERENCING("Video conferencing"),
+    PHYSICAL_CLASS("Physical class")
     ;
     private final String description;
 }

@@ -40,5 +40,9 @@ public class TrainingCertificate extends BaseUUIDEntity {
     @Column(nullable = false)
     private Instant issuedAt;
 
+    private String fileName;
+
+    private Integer fileSizeBytes;
+
     private String certificateUrl;
 }
