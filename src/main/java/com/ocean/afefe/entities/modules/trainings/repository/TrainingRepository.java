@@ -11,8 +11,11 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import java.util.List;
 
+import java.time.Instant;
+
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -24,6 +27,10 @@ public interface TrainingRepository extends JpaRepository<Training, UUID>, JpaSp
     Optional<Training> findByIdAndTrainerAndOrg_Id(UUID id, Trainer trainer, UUID orgId);
 
     List<Training> findAllByTrainerAndOrg_IdOrderByTitleAsc(Trainer trainer, UUID orgId);
+
+    long countByOrg_Id(UUID orgId);
+
+    long countByOrg_IdAndCreatedAtBetween(UUID orgId, Instant start, Instant end);
 
     boolean existsByProgrammeIdAndTrainerAndOrg(String programmeId, Trainer trainer, Organization org);
 
@@ -44,4 +51,16 @@ public interface TrainingRepository extends JpaRepository<Training, UUID>, JpaSp
                                          @Param("status") TrainingStatus status,
                                          @Param("search") String search,
                                          Pageable pageable);
+
+    @Query("""
+            SELECT tr.user.id, COUNT(t)
+            FROM Training t
+            JOIN t.trainer tr
+            WHERE tr.user.id IN :userIds
+              AND tr.org.id = :orgId
+            GROUP BY tr.user.id
+            """)
+    List<Object[]> countTrainingsGroupedByTrainerUserIdsForOrg(
+            @Param("userIds") Collection<UUID> userIds,
+            @Param("orgId") UUID orgId);
 }

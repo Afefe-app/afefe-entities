@@ -23,13 +23,33 @@ public class Organization extends BaseUUIDEntity {
     private String slug;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private OrganizationStatus status;
 
     @Column(nullable = false)
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private OrgPlanTier planTier;
 
     @Column(nullable = false)
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private OrganizationRole role;
+
+    /** Optional public contact shown in government lists; falls back to first joined OrgMember admin if absent. */
+    private String contactEmail;
+
+    private String websiteUrl;
+
+    @Column(columnDefinition = "TEXT")
+    private String addressLine;
+
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    private String logoUrl;
+
+    private String primaryColorHex;
+
+    private String secondaryColorHex;
+
+    private String tertiaryColorHex;
 }

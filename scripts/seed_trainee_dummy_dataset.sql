@@ -1,5 +1,5 @@
 -- =============================================================================
--- Afefe trainee / IAM dummy dataset (PostgreSQL)
+-- Afefe organization / IAM dummy dataset (PostgreSQL)
 -- =============================================================================
 -- One organization, 2 trainers, 5 trainees, 12 trainings (10 PUBLISHED + 2
 -- DRAFT), large curricula (months → weeks → lessons → blocks), many quizzes,
@@ -168,7 +168,7 @@ BEGIN
                 up.id,
                 v_org_id,
                 'Trainee ' || te_idx::text,
-                'Seeded trainee bio #' || te_idx::text
+                'Seeded organization bio #' || te_idx::text
             FROM user_profile up WHERE up.user_id = u_id LIMIT 1;
         END IF;
     END LOOP;
@@ -189,7 +189,7 @@ BEGIN
         END IF;
     END LOOP;
 
-    -- User industry interests (3 per trainee)
+    -- User industry interests (3 per organization)
     FOR te_idx IN 1..5 LOOP
         u_id := CASE te_idx
             WHEN 1 THEN v_trainee_u1 WHEN 2 THEN v_trainee_u2 WHEN 3 THEN v_trainee_u3

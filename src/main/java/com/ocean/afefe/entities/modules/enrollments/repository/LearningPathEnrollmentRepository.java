@@ -28,4 +28,13 @@ public interface LearningPathEnrollmentRepository extends JpaRepository<Learning
     List<Object[]> countGroupedByLearningPathIds(
             @Param("pathIds") Collection<UUID> pathIds,
             @Param("org") Organization org);
+
+    long countByOrganization_Id(UUID organizationId);
+
+    @Query("""
+            SELECT COUNT(DISTINCT lpe.learningPath.id)
+            FROM LearningPathEnrollment lpe
+            WHERE lpe.organization.id = :orgId
+            """)
+    long countDistinctLearningPathsByOrganization_Id(@Param("orgId") UUID orgId);
 }
