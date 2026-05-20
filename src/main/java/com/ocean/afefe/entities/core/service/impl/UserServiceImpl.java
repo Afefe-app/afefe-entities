@@ -8,7 +8,9 @@ import com.ocean.afefe.entities.modules.auth.models.User;
 import com.ocean.afefe.entities.modules.auth.models.UserProfile;
 import com.ocean.afefe.entities.modules.auth.repository.OrgMemberRepository;
 import com.ocean.afefe.entities.modules.auth.repository.UserProfileRepository;
+import com.ocean.afefe.entities.modules.auth.repository.UserRepository;
 import com.tensorpoint.toolkit.tpointcore.commons.HttpUtil;
+import com.tensorpoint.toolkit.tpointcore.commons.MessageUtil;
 import com.tensorpoint.toolkit.tpointcore.commons.ResponseCode;
 import com.tensorpoint.toolkit.tpointcore.commons.TimeZone;
 import com.tensorpoint.toolkit.tpointcore.date.DateUtils;
@@ -16,11 +18,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    private final MessageUtil messageUtil;
+    private final UserRepository userRepository;
     private final OrgMemberRepository orgMemberRepository;
     private final UserProfileRepository userProfileRepository;
 
@@ -56,5 +61,11 @@ public class UserServiceImpl implements UserService {
             throw HttpUtil.getResolvedException(ResponseCode.RECORD_NOT_FOUND, "User record not found in current organization");
         }
         return orgMember.getUser();
+    }
+
+    @Override
+    public User validateUserExistenceByEmailAddress(String emailAddress) {
+        return userRepository.findByEmailAddress(emailAddress)
+                .orElseThrow(() -> HttpUtil.getResolvedException(ResponseCode.RECORD_NOT_FOUND, messageUtil.getMessage("User record not found")));
     }
 }

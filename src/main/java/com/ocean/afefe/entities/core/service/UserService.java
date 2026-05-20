@@ -11,4 +11,6 @@ public interface UserService {
     OrgMember registerUserInOrganization(User user, Organization organization);
 
     User validateUserExistenceByEmailAndOrganization(String emailAddress, Organization organization);
+
+    User validateUserExistenceByEmailAddress(String emailAddress);
 }
