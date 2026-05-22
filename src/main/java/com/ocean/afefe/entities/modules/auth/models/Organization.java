@@ -23,7 +23,7 @@ public class Organization extends BaseUUIDEntity {
     private String slug;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private OrganizationStatus status;
 
     @Column(nullable = false)
