@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum TrainingStatus implements Enumerable {
     DRAFT("Draft"),
+    IN_REVIEW("In review"),
     PUBLISHED("Published");
 
     private final String description;
