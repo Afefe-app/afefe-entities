@@ -52,6 +52,14 @@ public class TrainerCurriculumSubmission extends BaseUUIDEntity {
     private String durationLabel;
 
     @Column(columnDefinition = "TEXT")
+    private String description;
+
+    private String targetAudience;
+
+    @Column(columnDefinition = "TEXT")
+    private String prerequisitesJson;
+
+    @Column(columnDefinition = "TEXT")
     private String learningObjectivesJson;
 
     @Column(columnDefinition = "TEXT")
