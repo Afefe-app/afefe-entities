@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum TrainingStatus implements Enumerable {
+public enum TrainerProctoredTestStatus implements Enumerable {
     DRAFT("Draft"),
     IN_REVIEW("In review"),
     PUBLISHED("Published");
