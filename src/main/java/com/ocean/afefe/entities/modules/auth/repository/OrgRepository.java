@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -14,6 +15,8 @@ import java.util.UUID;
 public interface OrgRepository extends JpaRepository<Organization, UUID>, JpaSpecificationExecutor<Organization> {
 
     Organization findFirstByRole(OrganizationRole role);
+
+    Optional<Organization> findFirstByGuidIgnoreCaseAndRole(String guid, OrganizationRole role);
     long countByRole(OrganizationRole role);
     boolean existsBySlugIgnoreCase(String slug);
 

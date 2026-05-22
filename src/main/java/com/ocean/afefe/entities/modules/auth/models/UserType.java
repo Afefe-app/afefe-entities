@@ -14,7 +14,8 @@ public enum UserType implements Enumerable {
     PLATFORM_HR("Platform HR"),
 
     PLATFORM_TRAINER("Trainer"),
-    PLATFORM_TRAINEE("Trainee")
+    PLATFORM_TRAINEE("Trainee"),
+    PLATFORM_ORGANISATION("Organisation"),
     ;
     private final String description;
 }

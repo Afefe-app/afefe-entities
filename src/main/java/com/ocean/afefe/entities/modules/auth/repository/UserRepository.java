@@ -18,6 +18,8 @@ import java.util.UUID;
 public interface UserRepository extends JpaRepository<User, UUID>, JpaSpecificationExecutor<User> {
     Optional<User> findByEmailAddress(String emailAddress);
 
+    Optional<User> findByEmailAddressIgnoreCase(String emailAddress);
+
     long countByUserType(UserType userType);
 
     /** B2B learner: platform learner with at least one organization membership where {@code joinedAt} is set. */
