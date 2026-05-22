@@ -12,4 +12,8 @@ import java.util.UUID;
 public interface TrainerRepository extends JpaRepository<Trainer, UUID> {
 
     Optional<Trainer> findByUserAndOrg_Id(User user, UUID orgId);
+
+    Optional<Trainer> findByUser_IdAndOrg_Id(UUID userId, UUID orgId);
+
+    long countByOrg_Id(UUID orgId);
 }

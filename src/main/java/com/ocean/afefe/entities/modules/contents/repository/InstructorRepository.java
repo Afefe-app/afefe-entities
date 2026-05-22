@@ -12,6 +12,7 @@ import java.util.UUID;
 @Repository
 public interface InstructorRepository extends JpaRepository<Instructor, UUID> {
 
-
     Optional<Instructor> findByUserAndOrg(User user, Organization organization);
+
+    Optional<Instructor> findByUser_IdAndOrg_Id(UUID userId, UUID orgId);
 }

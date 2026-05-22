@@ -3,6 +3,7 @@ package com.ocean.afefe.entities.modules.analytics.repository;
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import com.ocean.afefe.entities.modules.analytics.model.UserActivity;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
+import com.ocean.afefe.entities.modules.auth.models.UserType;
 import com.ocean.afefe.entities.modules.contents.models.Course;
 import com.ocean.afefe.entities.modules.contents.models.Instructor;
 import org.springframework.data.domain.Page;
@@ -89,5 +90,19 @@ public interface UserActivityRepository extends JpaRepository<UserActivity, Base
             @Param("courseIds") List<UUID> courseIds,
             @Param("startDate") Instant startDate,
             @Param("endDate") Instant endDate
+    );
+
+    @Query("""
+            SELECT COUNT(DISTINCT ua.user.id)
+            FROM UserActivity ua
+            JOIN ua.user u
+            WHERE u.userType = :ut
+              AND ua.createdAt >= :start
+              AND ua.createdAt < :end
+            """)
+    long countDistinctLearnersWithActivityBetween(
+            @Param("ut") UserType ut,
+            @Param("start") Instant start,
+            @Param("end") Instant end
     );
 }

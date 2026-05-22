@@ -1,5 +1,6 @@
 package com.ocean.afefe.entities.modules.auth.repository;
 
+import com.ocean.afefe.entities.common.Status;
 import com.ocean.afefe.entities.modules.auth.models.OrgMember;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
@@ -97,4 +98,24 @@ public interface OrgMemberRepository extends JpaRepository<OrgMember, UUID> {
             @Param("learningPathId") UUID learningPathId,
             @Param("search") String search,
             Pageable pageable);
+
+    boolean existsByUserAndJoinedAtIsNotNull(User user);
+
+    boolean existsByUserAndJoinedAtIsNullAndInvitationStatus(User user, Status invitationStatus);
+
+    @Query("SELECT COUNT(DISTINCT om.user.id) FROM OrgMember om WHERE om.joinedAt IS NOT NULL AND om.joinedAt >= :start AND om.joinedAt < :end")
+    long countDistinctUsersJoinedOrganizationBetween(@Param("start") Instant start, @Param("end") Instant end);
+
+    /**
+     * Earliest joined admin members per org among the given ids for contact-email fallback (ordered by org id, join time).
+     */
+    @Query("""
+            SELECT om.organization.id, om.user.emailAddress, om.joinedAt
+            FROM OrgMember om
+            WHERE om.organization.id IN :orgIds
+              AND om.joinedAt IS NOT NULL
+              AND om.user.userType = com.ocean.afefe.entities.modules.auth.models.UserType.PLATFORM_ADMIN
+            ORDER BY om.organization.id ASC, om.joinedAt ASC
+            """)
+    List<Object[]> findAdminMemberContactRowsByOrganizationIds(@Param("orgIds") Collection<UUID> orgIds);
 }
