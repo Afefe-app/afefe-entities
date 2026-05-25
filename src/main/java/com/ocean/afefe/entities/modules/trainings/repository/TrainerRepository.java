@@ -16,4 +16,6 @@ public interface TrainerRepository extends JpaRepository<Trainer, UUID> {
     Optional<Trainer> findByUser_IdAndOrg_Id(UUID userId, UUID orgId);
 
     long countByOrg_Id(UUID orgId);
+
+    java.util.List<Trainer> findByOrg_IdOrderByDisplayNameAsc(UUID orgId);
 }

@@ -43,6 +43,13 @@ service TraineeTrainingServiceGrpc {
   rpc FetchAttendanceSessionContext(FetchAttendanceSessionContextRequest) returns (FetchAttendanceSessionContextResponse);
   rpc FetchTrainingAttendanceSessions(FetchTrainingAttendanceSessionsRequest) returns (FetchTrainingAttendanceSessionsResponse);
   rpc MarkTrainingSessionAttendance(MarkTrainingSessionAttendanceRequest) returns (MarkTrainingSessionAttendanceResponse);
+
+  // OJT (trainee self-reported session logs)
+  rpc FetchOjtOverview(FetchOjtOverviewRequest) returns (FetchOjtOverviewResponse);
+  rpc FetchOjtSessions(FetchOjtSessionsRequest) returns (FetchOjtSessionsResponse);
+  rpc FetchOjtSessionById(FetchOjtSessionByIdRequest) returns (FetchOjtSessionByIdResponse);
+  rpc CreateOjtSession(CreateOjtSessionRequest) returns (CreateOjtSessionResponse);
+  rpc FetchOjtSupervisors(FetchOjtSupervisorsRequest) returns (FetchOjtSupervisorsResponse);
 }
 
 // ---- Shared data types ----
@@ -559,4 +566,134 @@ message MarkTrainingSessionAttendanceResponse {
   string responseCode = 1;
   string responseMessage = 2;
   MarkTrainingSessionAttendanceDataGrpc responseData = 3;
+}
+
+// ---- OJT (self-reported session logs) ----
+
+message OjtMilestoneDataGrpc {
+  string title = 1;
+  string targetDate = 2;
+  string status = 3;
+  string milestoneType = 4;
+}
+
+message OjtOverviewDataGrpc {
+  optional int32 daysLeft = 1;
+  int64 totalHoursLogged = 2;
+  optional int32 minOjtHours = 3;
+  repeated OjtMilestoneDataGrpc milestones = 4;
+}
+
+message OjtSessionRowDataGrpc {
+  string ojtSessionId = 1;
+  string sessionId = 2;
+  string supervisorName = 3;
+  string supervisorAvatarUrl = 4;
+  string sessionLocation = 5;
+  int32 hoursLogged = 6;
+  string sessionDate = 7;
+}
+
+message OjtSupportingDocumentGrpc {
+  string fileName = 1;
+  string fileUrl = 2;
+  optional int32 fileSizeBytes = 3;
+  string contentType = 4;
+}
+
+message OjtSessionDetailDataGrpc {
+  string ojtSessionId = 1;
+  string sessionId = 2;
+  string supervisorUserId = 3;
+  string supervisorName = 4;
+  string supervisorAvatarUrl = 5;
+  string sessionLocation = 6;
+  int32 hoursLogged = 7;
+  string sessionDate = 8;
+  string description = 9;
+  bool liveLocationUsed = 10;
+  optional string latitude = 11;
+  optional string longitude = 12;
+  repeated OjtSupportingDocumentGrpc supportingDocuments = 13;
+  string createdAt = 14;
+}
+
+message OjtSupervisorDataGrpc {
+  string userId = 1;
+  string fullName = 2;
+  string displayName = 3;
+  string avatarUrl = 4;
+}
+
+message FetchOjtOverviewRequest {
+  string enrollmentId = 1;
+}
+
+message FetchOjtOverviewResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  OjtOverviewDataGrpc responseData = 3;
+}
+
+message FetchOjtSessionsDataGrpc {
+  PaginationMetaGrpc meta = 1;
+  repeated OjtSessionRowDataGrpc content = 2;
+}
+
+message FetchOjtSessionsRequest {
+  string enrollmentId = 1;
+  int32 pageNumber = 2;
+  int32 pageSize = 3;
+  string sort = 4;
+}
+
+message FetchOjtSessionsResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  FetchOjtSessionsDataGrpc responseData = 3;
+}
+
+message FetchOjtSessionByIdRequest {
+  string enrollmentId = 1;
+  string ojtSessionId = 2;
+}
+
+message FetchOjtSessionByIdResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  OjtSessionDetailDataGrpc responseData = 3;
+}
+
+message CreateOjtSessionRequest {
+  string enrollmentId = 1;
+  string sessionLocation = 2;
+  string supervisorUserId = 3;
+  string supervisorName = 4;
+  string sessionDate = 5;
+  int32 durationHours = 6;
+  string description = 7;
+  bool liveLocationUsed = 8;
+  optional string latitude = 9;
+  optional string longitude = 10;
+  repeated OjtSupportingDocumentGrpc supportingDocuments = 11;
+}
+
+message CreateOjtSessionResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  OjtSessionDetailDataGrpc responseData = 3;
+}
+
+message FetchOjtSupervisorsDataGrpc {
+  repeated OjtSupervisorDataGrpc supervisors = 1;
+}
+
+message FetchOjtSupervisorsRequest {
+  string enrollmentId = 1;
+}
+
+message FetchOjtSupervisorsResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  FetchOjtSupervisorsDataGrpc responseData = 3;
 }
