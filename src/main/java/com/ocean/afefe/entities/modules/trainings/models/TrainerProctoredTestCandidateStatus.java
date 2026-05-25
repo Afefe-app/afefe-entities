@@ -6,10 +6,11 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum TrainingStatus implements Enumerable {
-    DRAFT("Draft"),
-    IN_REVIEW("In review"),
-    PUBLISHED("Published");
+public enum TrainerProctoredTestCandidateStatus implements Enumerable {
+    PENDING("Pending"),
+    INVITED("Invited"),
+    ACCEPTED("Accepted"),
+    DECLINED("Declined");
 
     private final String description;
 }
