@@ -88,6 +88,21 @@ public interface TrainingEnrollmentRepository extends JpaRepository<TrainingEnro
 
     List<TrainingEnrollment> findByOrgAndUser_IdOrderByUpdatedAtDesc(Organization org, UUID userId);
 
+    Optional<TrainingEnrollment> findByIdAndOrg_IdAndUser_Id(UUID id, UUID orgId, UUID userId);
+
+    @Query("""
+            SELECT e FROM TrainingEnrollment e
+            WHERE e.org.id = :orgId
+              AND e.training.id = :trainingId
+              AND e.startedAt IS NOT NULL
+              AND e.status <> com.ocean.afefe.entities.modules.enrollments.models.EnrollmentStatus.WITHDRAWN
+            ORDER BY e.startedAt ASC
+            """)
+    List<TrainingEnrollment> findEarliestStartedByOrgAndTraining(
+            @Param("orgId") UUID orgId,
+            @Param("trainingId") UUID trainingId,
+            Pageable pageable);
+
     @Query("""
             SELECT e.currentMonth.id, COUNT(DISTINCT e.user.id)
             FROM TrainingEnrollment e
