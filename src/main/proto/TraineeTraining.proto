@@ -70,12 +70,18 @@ message TraineeCalendarEventDataGrpc {
   string description = 7;
   TrainerBasicDataGrpc organizer = 8;
   MoneyGrpc price = 9;
+  string eventType = 10;
+  bool virtualSession = 11;
 }
 
 message FetchTraineeUpcomingCalendarEventsRequest {
   int32 pageNumber = 1;
   int32 pageSize = 2;
   string sort = 3;
+  /** Optional inclusive lower bound on event date (ISO-8601, e.g. 2026-06-01). */
+  string startDate = 4;
+  /** Optional inclusive upper bound on event date (ISO-8601). */
+  string endDate = 5;
 }
 
 message FetchTraineeUpcomingCalendarEventsDataGrpc {
