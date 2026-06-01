@@ -4,12 +4,17 @@ import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.User;
 import com.ocean.afefe.entities.modules.contents.models.LearningPath;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+
+import java.time.Instant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -45,4 +50,17 @@ public class LearningPathEnrollment extends BaseUUIDEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "learning_path_id", nullable = false)
     private LearningPath learningPath;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Builder.Default
+    private LearningPathEnrollmentStatus status = LearningPathEnrollmentStatus.ASSIGNED;
+
+    private Instant assignedAt;
+
+    private Instant dueAt;
+
+    /** Cached path progress (0–100); derived from course enrollments when not set */
+    private Integer progressPercent;
 }
+

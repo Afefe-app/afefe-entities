@@ -5,7 +5,6 @@ import com.ocean.afefe.entities.modules.auth.models.OrgMember;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.OrganizationRole;
 import com.ocean.afefe.entities.modules.auth.models.User;
-import com.ocean.afefe.entities.modules.auth.models.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,6 +14,7 @@ import org.springframework.data.repository.query.Param;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface OrgMemberRepository extends JpaRepository<OrgMember, UUID> {
@@ -25,6 +25,8 @@ public interface OrgMemberRepository extends JpaRepository<OrgMember, UUID> {
     OrgMember findFirstByUser_EmailAddressIgnoreCaseAndOrganization(String emailAddress, Organization organization);
 
     OrgMember findFirstByUserAndOrganization_Role(User user, OrganizationRole role);
+
+    Optional<OrgMember> findByUser_IdAndOrganization(UUID userId, Organization organization);
     long countByOrganization(Organization organization);
 
     @Query("SELECT COUNT(om) FROM OrgMember om WHERE om.organization = :org AND om.joinedAt IS NOT NULL AND om.joinedAt >= :after")

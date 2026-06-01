@@ -10,6 +10,7 @@ import com.ocean.afefe.entities.modules.enrollments.models.EnrollmentStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
@@ -22,7 +23,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface EnrollmentRepository extends JpaRepository<Enrollment, UUID>, QuerydslPredicateExecutor<Enrollment> {
+public interface EnrollmentRepository extends JpaRepository<Enrollment, UUID>,
+        QuerydslPredicateExecutor<Enrollment>, JpaSpecificationExecutor<Enrollment> {
 
     Optional<Enrollment> findByUserAndCourseAndStatus(User user, Course course, EnrollmentStatus status);
 
@@ -201,4 +203,65 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, UUID>, Q
             @Param("start") Instant start,
             @Param("end") Instant end
     );
+
+    @Query("""
+            SELECT AVG(COALESCE(e.progressPercent, 0))
+            FROM Enrollment e
+            WHERE e.org = :org
+              AND e.user.id = :userId
+              AND e.course.id IN :courseIds
+            """)
+    Double averageProgressPercentByUserOrgAndCourseIds(
+            @Param("org") Organization org,
+            @Param("userId") UUID userId,
+            @Param("courseIds") Collection<UUID> courseIds
+    );
+
+    @Query("""
+            SELECT e.user.id, AVG(COALESCE(e.progressPercent, 0))
+            FROM Enrollment e
+            WHERE e.org = :org
+              AND e.user.id IN :userIds
+              AND e.course.id IN :courseIds
+            GROUP BY e.user.id
+            """)
+    List<Object[]> averageProgressPercentGroupedByUserIdsForCourses(
+            @Param("org") Organization org,
+            @Param("userIds") Collection<UUID> userIds,
+            @Param("courseIds") Collection<UUID> courseIds
+    );
+
+    @Query("""
+            SELECT e FROM Enrollment e
+            JOIN FETCH e.course
+            WHERE e.org = :org AND e.user.id = :userId AND e.course.id IN :courseIds
+            """)
+    List<Enrollment> findByOrgAndUser_IdAndCourse_IdIn(
+            @Param("org") Organization org,
+            @Param("userId") UUID userId,
+            @Param("courseIds") Collection<UUID> courseIds
+    );
+
+    long countByUser_IdAndStatusNot(UUID userId, EnrollmentStatus status);
+
+    /**
+     * Path assignees with a non-completed enrollment on a path course (drop-off at that course).
+     */
+    @Query("""
+            SELECT COUNT(DISTINCT e.user.id)
+            FROM Enrollment e
+            INNER JOIN LearningPathEnrollment lpe
+              ON lpe.user = e.user AND lpe.organization = e.org AND lpe.learningPath.id = :learningPathId
+            WHERE e.course.id = :courseId
+              AND e.org = :org
+              AND e.status <> com.ocean.afefe.entities.modules.enrollments.models.EnrollmentStatus.COMPLETED
+              AND (:startedAfter IS NULL OR e.startedAt >= :startedAfter)
+              AND (:startedBefore IS NULL OR e.startedAt < :startedBefore)
+            """)
+    long countDistinctDropOffLearnersForPathCourse(
+            @Param("learningPathId") UUID learningPathId,
+            @Param("courseId") UUID courseId,
+            @Param("org") Organization org,
+            @Param("startedAfter") Instant startedAfter,
+            @Param("startedBefore") Instant startedBefore);
 }
