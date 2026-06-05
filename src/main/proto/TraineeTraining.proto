@@ -25,6 +25,13 @@ service TraineeTrainingServiceGrpc {
 
   rpc FetchMyEnrollments(FetchMyEnrollmentsRequest) returns (FetchMyEnrollmentsResponse);
   rpc FetchEnrollmentGrades(FetchEnrollmentGradesRequest) returns (FetchEnrollmentGradesResponse);
+
+  rpc SaveTrainingContentNote(SaveTrainingContentNoteRequest) returns (SaveTrainingContentNoteResponse);
+  rpc UpdateTrainingContentNote(UpdateTrainingContentNoteRequest) returns (UpdateTrainingContentNoteResponse);
+  rpc DeleteTrainingContentNote(DeleteTrainingContentNoteRequest) returns (DeleteTrainingContentNoteResponse);
+  rpc FetchTrainingContentNoteById(FetchTrainingContentNoteByIdRequest) returns (FetchTrainingContentNoteByIdResponse);
+  rpc FetchTrainingContentNotes(FetchTrainingContentNotesRequest) returns (FetchTrainingContentNotesResponse);
+
   rpc UpdateContentItemProgress(UpdateContentItemProgressRequest) returns (UpdateContentItemProgressResponse);
   rpc UpdateBlockProgress(UpdateBlockProgressRequest) returns (UpdateBlockProgressResponse);
   rpc TraineeStartQuizAttempt(TraineeStartQuizAttemptRequest) returns (TraineeStartQuizAttemptResponse);
@@ -269,6 +276,76 @@ message TrainingGradeRowDataGrpc {
 
 message FetchEnrollmentGradesDataGrpc {
   repeated TrainingGradeRowDataGrpc grades = 1;
+}
+
+message TrainingContentNoteDataGrpc {
+  string noteId = 1;
+  string objectType = 2; // TRAINING, MONTH, WEEK, CONTENT_ITEM, or BLOCK
+  string objectId = 3;
+  string body = 4;
+  string createdAt = 5;
+  string assetProgress = 6;
+  string assetProgressTime = 7;
+}
+
+message SaveTrainingContentNoteRequest {
+  string objectType = 1;
+  string objectId = 2;
+  string body = 3;
+  string assetProgress = 4;
+  string assetProgressTime = 5;
+}
+
+message SaveTrainingContentNoteResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TrainingContentNoteDataGrpc responseData = 3;
+}
+
+message UpdateTrainingContentNoteRequest {
+  string noteId = 1;
+  string body = 2;
+  optional string assetProgress = 3;
+  optional string assetProgressTime = 4;
+}
+
+message UpdateTrainingContentNoteResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TrainingContentNoteDataGrpc responseData = 3;
+}
+
+message DeleteTrainingContentNoteRequest {
+  string noteId = 1;
+}
+
+message DeleteTrainingContentNoteResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+}
+
+message FetchTrainingContentNoteByIdRequest {
+  string noteId = 1;
+}
+
+message FetchTrainingContentNoteByIdResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TrainingContentNoteDataGrpc responseData = 3;
+}
+
+message FetchTrainingContentNotesRequest {
+  int32 pageNumber = 1;
+  int32 pageSize = 2;
+  string sort = 3;
+  string object_id = 4;
+}
+
+message FetchTrainingContentNotesResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  repeated TrainingContentNoteDataGrpc records = 3;
+  PaginationMetaGrpc meta = 4;
 }
 
 message FetchSavedTrainingsDataGrpc {

@@ -699,6 +699,56 @@ BEGIN
         END IF;
     END IF;
 
+    -- ---- Training content notes (alt trainee 1, programme 1) ----------------
+    SELECT tr.id INTO v_tid FROM trainings tr
+    WHERE tr.org_id = v_org_id AND tr.slug = 'fe-demo-training-01' LIMIT 1;
+
+    IF v_tid IS NOT NULL THEN
+        FOR v_iid IN
+            SELECT ci.id FROM training_content_items ci
+            JOIN training_weeks w ON w.id = ci.week_id
+            JOIN training_months m ON m.id = w.month_id
+            WHERE m.training_id = v_tid
+            ORDER BY m.position, w.position, ci.position LIMIT 3
+        LOOP
+            IF NOT EXISTS (
+                SELECT 1 FROM training_content_notes n
+                WHERE n.user_id = v_trainee_u2 AND n.object_id = v_iid::text AND n.object_type = 'CONTENT_ITEM'
+            ) THEN
+                INSERT INTO training_content_notes (
+                    id, guid, created_at, updated_at, org_id, user_id, content_item_id,
+                    object_type, object_id, body, asset_progress, asset_progress_time
+                ) VALUES (
+                    gen_random_uuid(), replace(gen_random_uuid()::text, '-', ''), v_now, v_now,
+                    v_org_id, v_trainee_u2, v_iid, 'CONTENT_ITEM', v_iid::text,
+                    'FE demo note on lesson ' || replace(v_iid::text, '-', ''), 0, NULL
+                );
+            END IF;
+        END LOOP;
+
+        SELECT b.id, b.content_item_id INTO v_bid, v_iid
+        FROM training_content_blocks b
+        JOIN training_content_items ci ON ci.id = b.content_item_id
+        JOIN training_weeks w ON w.id = ci.week_id
+        JOIN training_months m ON m.id = w.month_id
+        WHERE m.training_id = v_tid AND b.block_type = 'VIDEO_EMBED'
+        ORDER BY m.position, w.position, ci.position LIMIT 1;
+
+        IF v_bid IS NOT NULL AND NOT EXISTS (
+            SELECT 1 FROM training_content_notes n
+            WHERE n.user_id = v_trainee_u2 AND n.object_id = v_bid::text AND n.object_type = 'BLOCK'
+        ) THEN
+            INSERT INTO training_content_notes (
+                id, guid, created_at, updated_at, org_id, user_id, content_item_id,
+                object_type, object_id, body, asset_progress, asset_progress_time
+            ) VALUES (
+                gen_random_uuid(), replace(gen_random_uuid()::text, '-', ''), v_now, v_now,
+                v_org_id, v_trainee_u2, v_iid, 'BLOCK', v_bid::text,
+                'Video checkpoint note — key concept recap', 42.50, '00:05:30'
+            );
+        END IF;
+    END IF;
+
     RAISE NOTICE 'FE full trainee seed complete. Org %', v_org_id;
 END $$;
 
