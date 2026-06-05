@@ -88,9 +88,15 @@ DECLARE
     v_ojt_log_1       uuid := 'c0fe0000-0000-4000-8000-000000000511'::uuid;
     v_ojt_log_2       uuid := 'c0fe0000-0000-4000-8000-000000000512'::uuid;
     v_ojt_log_3       uuid := 'c0fe0000-0000-4000-8000-000000000513'::uuid;
+    v_ojt_log_alt1_1  uuid := 'c0fe0000-0000-4000-8000-000000000521'::uuid;
+    v_ojt_log_alt1_2  uuid := 'c0fe0000-0000-4000-8000-000000000522'::uuid;
+    v_ojt_log_alt1_3  uuid := 'c0fe0000-0000-4000-8000-000000000523'::uuid;
     v_ojt_display_1   text := 'STU-00511';
     v_ojt_display_2   text := 'STU-00512';
     v_ojt_display_3   text := 'STU-00513';
+    v_ojt_display_alt1_1 text := 'STU-00521';
+    v_ojt_display_alt1_2 text := 'STU-00522';
+    v_ojt_display_alt1_3 text := 'STU-00523';
 BEGIN
     -- ---- Super organization (trainee IAM tenant) ---------------------------
     SELECT id INTO v_org_id
@@ -257,23 +263,51 @@ BEGIN
                         v_fmt, 300 + (it_idx * 60), true, (it_idx % 2) = 0
                     );
 
-                    n_blocks := 2 + (it_idx % 2);
-                    FOR bl_idx IN 1..n_blocks LOOP
-                        v_blk_type := (ARRAY['READING', 'VIDEO_EMBED', 'IMAGE', 'RESOURCE_FILE'])[1 + ((bl_idx + it_idx) % 4)];
+                    IF v_fmt = 'VIDEO' THEN
                         v_bid := gen_random_uuid();
                         INSERT INTO training_content_blocks (
                             id, guid, created_at, updated_at, content_item_id, sort_order, block_type, payload_json, resource_url, trainee_quiz_id, estimated_duration_seconds
                         ) VALUES (
-                            v_bid, replace(v_bid::text, '-', ''), v_now, v_now, v_iid, bl_idx, v_blk_type,
-                            '{"body":"FE block p' || t_idx::text || ' l' || it_idx::text || ' b' || bl_idx::text || '"}',
-                            CASE v_blk_type::text
-                                WHEN 'VIDEO_EMBED' THEN 'https://videos.example.com/fe/p' || t_idx::text || '-l' || it_idx::text || '.m3u8'
-                                WHEN 'IMAGE' THEN 'https://picsum.photos/seed/fe' || t_idx::text || it_idx::text || bl_idx::text || '/1200/800'
-                                WHEN 'RESOURCE_FILE' THEN 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
-                                ELSE 'https://example.com/fe/readings/p' || t_idx::text || '-l' || it_idx::text || '.html'
-                            END, NULL, (120 * bl_idx)::bigint
+                            v_bid, replace(v_bid::text, '-', ''), v_now, v_now, v_iid, 1, 'VIDEO_EMBED', '{}',
+                            'https://videos.example.com/fe/p' || t_idx::text || '-l' || it_idx::text || '.m3u8',
+                            NULL, 300::bigint
                         );
-                    END LOOP;
+                    ELSIF v_fmt = 'READING' THEN
+                        v_bid := gen_random_uuid();
+                        INSERT INTO training_content_blocks (
+                            id, guid, created_at, updated_at, content_item_id, sort_order, block_type, payload_json, resource_url, trainee_quiz_id, estimated_duration_seconds
+                        ) VALUES (
+                            v_bid, replace(v_bid::text, '-', ''), v_now, v_now, v_iid, 1, 'READING',
+                            '{"body":"<p>FE reading for programme ' || t_idx::text || ', lesson ' || it_idx::text || '.</p>"}',
+                            'https://example.com/fe/readings/p' || t_idx::text || '-l' || it_idx::text || '.html',
+                            NULL, 180::bigint
+                        );
+                    ELSIF v_fmt = 'PRACTICE_QUIZ' THEN
+                        v_bid := gen_random_uuid();
+                        INSERT INTO training_content_blocks (
+                            id, guid, created_at, updated_at, content_item_id, sort_order, block_type, payload_json, resource_url, trainee_quiz_id, estimated_duration_seconds
+                        ) VALUES (
+                            v_bid, replace(v_bid::text, '-', ''), v_now, v_now, v_iid, 1, 'PRACTICE_QUIZ', '{}', NULL, NULL, 600::bigint
+                        );
+                    ELSE
+                        n_blocks := 2 + (it_idx % 2);
+                        FOR bl_idx IN 1..n_blocks LOOP
+                            v_blk_type := (ARRAY['READING', 'VIDEO_EMBED', 'IMAGE', 'RESOURCE_FILE'])[1 + ((bl_idx + it_idx) % 4)];
+                            v_bid := gen_random_uuid();
+                            INSERT INTO training_content_blocks (
+                                id, guid, created_at, updated_at, content_item_id, sort_order, block_type, payload_json, resource_url, trainee_quiz_id, estimated_duration_seconds
+                            ) VALUES (
+                                v_bid, replace(v_bid::text, '-', ''), v_now, v_now, v_iid, bl_idx, v_blk_type,
+                                '{"body":"FE block p' || t_idx::text || ' l' || it_idx::text || ' b' || bl_idx::text || '"}',
+                                CASE v_blk_type::text
+                                    WHEN 'VIDEO_EMBED' THEN 'https://videos.example.com/fe/p' || t_idx::text || '-l' || it_idx::text || '.m3u8'
+                                    WHEN 'IMAGE' THEN 'https://picsum.photos/seed/fe' || t_idx::text || it_idx::text || bl_idx::text || '/1200/800'
+                                    WHEN 'RESOURCE_FILE' THEN 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
+                                    ELSE 'https://example.com/fe/readings/p' || t_idx::text || '-l' || it_idx::text || '.html'
+                                END, NULL, (120 * bl_idx)::bigint
+                            );
+                        END LOOP;
+                    END IF;
                 END LOOP;
             END LOOP;
         END LOOP;
@@ -298,6 +332,24 @@ BEGIN
                         (gen_random_uuid(), replace(gen_random_uuid()::text, '-', ''), v_now, v_now, v_qn_id, 2, 'Distractor A', false),
                         (gen_random_uuid(), replace(gen_random_uuid()::text, '-', ''), v_now, v_now, v_qn_id, 3, 'Distractor B', false);
                 END LOOP;
+            END LOOP;
+
+            -- Link PRACTICE_QUIZ content blocks to trainee quizzes (round-robin per training)
+            q_idx := 0;
+            FOR v_iid IN
+                SELECT ci.id FROM training_content_items ci
+                JOIN training_weeks w ON w.id = ci.week_id
+                JOIN training_months m ON m.id = w.month_id
+                WHERE m.training_id = v_tid AND ci.item_format = 'PRACTICE_QUIZ'
+                ORDER BY m.position, w.position, ci.position
+            LOOP
+                SELECT q.id INTO v_qid FROM trainee_quizzes q
+                WHERE q.training_id = v_tid ORDER BY q.created_at LIMIT 1 OFFSET (q_idx % 2);
+                IF v_qid IS NOT NULL THEN
+                    UPDATE training_content_blocks SET trainee_quiz_id = v_qid, updated_at = v_now
+                    WHERE content_item_id = v_iid AND block_type = 'PRACTICE_QUIZ';
+                END IF;
+                q_idx := q_idx + 1;
             END LOOP;
         END IF;
     END LOOP;
@@ -610,6 +662,37 @@ BEGIN
                  4, 'Supported live operations queue and logged daily KPI observations.', true, 6.5244000, 3.3792000, NULL,
                  v_ojt_display_3)
             ON CONFLICT (id) DO UPDATE SET
+                session_date = EXCLUDED.session_date,
+                duration_hours = EXCLUDED.duration_hours,
+                description = EXCLUDED.description;
+        END IF;
+
+        -- Alt trainee 1 (fe.trainee.alt1@afefe.test) — same programme, separate enrollment
+        SELECT e.id INTO v_enr FROM training_enrollments e
+        WHERE e.user_id = v_trainee_u2 AND e.training_id = v_tid LIMIT 1;
+
+        IF v_enr IS NOT NULL THEN
+            INSERT INTO trainee_ojt_session_log (
+                id, guid, created_at, updated_at, org_id, training_enrollment_id,
+                supervisor_user_id, supervisor_name, session_location, session_date,
+                duration_hours, description, live_location_used, submitted_latitude, submitted_longitude,
+                supporting_documents_json, display_session_id
+            ) VALUES
+                (v_ojt_log_alt1_1, replace(v_ojt_log_alt1_1::text, '-', ''), v_now - interval '20 days', v_now, v_org_id, v_enr,
+                 v_trainer_u1, 'FE Trainer 1', 'Ocean Academy — Workshop floor', v_today - 20,
+                 7, 'Orientation week: shadowed onboarding and documentation workflows.', false, NULL, NULL,
+                 '[{"fileName":"alt1-onboarding-notes.pdf","fileUrl":"https://res.cloudinary.com/demo/raw/upload/v1/fe/alt1-onboarding-notes.pdf","fileSizeBytes":204800,"contentType":"application/pdf"}]',
+                 v_ojt_display_alt1_1),
+                (v_ojt_log_alt1_2, replace(v_ojt_log_alt1_2::text, '-', ''), v_now - interval '13 days', v_now, v_org_id, v_enr,
+                 v_trainer_u2, 'FE Trainer 2', 'Ocean Academy — Room B', v_today - 13,
+                 5, 'Practiced team stand-ups and received feedback from the lead trainer.', false, NULL, NULL, NULL,
+                 v_ojt_display_alt1_2),
+                (v_ojt_log_alt1_3, replace(v_ojt_log_alt1_3::text, '-', ''), v_now - interval '6 days', v_now, v_org_id, v_enr,
+                 v_trainer_u2, 'FE Trainer 2', 'Lagos HQ — Operations desk', v_today - 6,
+                 4, 'Supported live operations and logged daily KPI observations.', true, 6.5244000, 3.3792000, NULL,
+                 v_ojt_display_alt1_3)
+            ON CONFLICT (id) DO UPDATE SET
+                training_enrollment_id = EXCLUDED.training_enrollment_id,
                 session_date = EXCLUDED.session_date,
                 duration_hours = EXCLUDED.duration_hours,
                 description = EXCLUDED.description;

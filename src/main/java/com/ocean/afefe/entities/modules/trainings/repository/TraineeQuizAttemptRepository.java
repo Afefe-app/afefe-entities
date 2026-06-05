@@ -25,6 +25,8 @@ public interface TraineeQuizAttemptRepository extends JpaRepository<TraineeQuizA
 
     Optional<TraineeQuizAttempt> findByIdAndEnrollment_Id(UUID attemptId, UUID enrollmentId);
 
+    List<TraineeQuizAttempt> findByEnrollment_IdOrderByQuiz_IdAscAttemptNumberDesc(UUID enrollmentId);
+
     @Query("""
             SELECT ta.enrollment.user.id, COALESCE(SUM(COALESCE(ta.scorePercent, 0)), 0)
             FROM TraineeQuizAttempt ta

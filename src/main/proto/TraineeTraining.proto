@@ -24,6 +24,7 @@ service TraineeTrainingServiceGrpc {
   rpc FetchQuizForAttempt(FetchQuizForAttemptRequest) returns (FetchQuizForAttemptResponse);
 
   rpc FetchMyEnrollments(FetchMyEnrollmentsRequest) returns (FetchMyEnrollmentsResponse);
+  rpc FetchEnrollmentGrades(FetchEnrollmentGradesRequest) returns (FetchEnrollmentGradesResponse);
   rpc UpdateContentItemProgress(UpdateContentItemProgressRequest) returns (UpdateContentItemProgressResponse);
   rpc UpdateBlockProgress(UpdateBlockProgressRequest) returns (UpdateBlockProgressResponse);
   rpc TraineeStartQuizAttempt(TraineeStartQuizAttemptRequest) returns (TraineeStartQuizAttemptResponse);
@@ -125,6 +126,7 @@ message TrainingOverviewDataGrpc {
   bool hasCertificate = 9;
   string level = 10;
   bool isSaved = 11;
+  string enrollmentId = 12; // UUID when trainee is enrolled; empty otherwise
 }
 
 message TrainingBlockDataGrpc {
@@ -138,6 +140,7 @@ message TrainingBlockDataGrpc {
   optional int32 lastPositionSeconds = 8;
   string lastViewedAt = 9;
   string completedAt = 10;
+  string body = 11; // Inline HTML/text for READING blocks (from payloadJson.body)
 }
 
 message TrainingContentItemDataGrpc {
@@ -250,6 +253,22 @@ message FetchRecentlyViewedTrainingsDataGrpc {
 
 message FetchMyEnrollmentsDataGrpc {
   repeated TrainingEnrollmentSummaryDataGrpc enrollments = 1;
+}
+
+message TrainingGradeRowDataGrpc {
+  string quizId = 1;
+  string contentItemId = 2;
+  string attemptId = 3;
+  string itemName = 4;
+  string itemTypeLabel = 5;
+  string status = 6; // PASSED, PENDING, or FAILED
+  string startedAt = 7;
+  string submittedAt = 8;
+  optional int32 gradePercent = 9;
+}
+
+message FetchEnrollmentGradesDataGrpc {
+  repeated TrainingGradeRowDataGrpc grades = 1;
 }
 
 message FetchSavedTrainingsDataGrpc {
@@ -393,6 +412,16 @@ message FetchMyEnrollmentsResponse {
   string responseCode = 1;
   string responseMessage = 2;
   FetchMyEnrollmentsDataGrpc responseData = 3;
+}
+
+message FetchEnrollmentGradesRequest {
+  string enrollmentId = 1;
+}
+
+message FetchEnrollmentGradesResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  FetchEnrollmentGradesDataGrpc responseData = 3;
 }
 
 message UpdateContentItemProgressRequest {
