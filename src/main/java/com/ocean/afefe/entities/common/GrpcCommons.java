@@ -3,7 +3,9 @@ package com.ocean.afefe.entities.common;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.Message;
 import com.ocean.afefe.entities.proto.FetchContentNotesResponse;
+import com.ocean.afefe.entities.proto.FetchTrainingContentNotesResponse;
 import com.ocean.afefe.entities.proto.FetchCourseRatingsDataGrpc;
+import com.ocean.afefe.entities.proto.FetchOjtSessionsDataGrpc;
 import com.ocean.afefe.entities.proto.FetchTrainingAttendanceSessionsDataGrpc;
 import com.ocean.afefe.entities.proto.FetchTrainingRatingsDataGrpc;
 import com.ocean.afefe.entities.proto.FetchEnrollmentHistoryDataGrpc;
@@ -85,6 +87,10 @@ public class GrpcCommons {
         builder.setMeta(map(meta));
     }
 
+    public void fillPaginationMeta(FetchTrainingContentNotesResponse.Builder builder, PaginationMeta meta) {
+        builder.setMeta(map(meta));
+    }
+
     public void fillPaginationMeta(TrainingSummaryPageDataGrpc.Builder builder, PaginationMeta meta) {
         builder.setMeta(map(meta));
     }
@@ -94,6 +100,10 @@ public class GrpcCommons {
     }
 
     public void fillPaginationMeta(FetchTrainingAttendanceSessionsDataGrpc.Builder builder, PaginationMeta meta) {
+        builder.setMeta(map(meta));
+    }
+
+    public void fillPaginationMeta(FetchOjtSessionsDataGrpc.Builder builder, PaginationMeta meta) {
         builder.setMeta(map(meta));
     }
 

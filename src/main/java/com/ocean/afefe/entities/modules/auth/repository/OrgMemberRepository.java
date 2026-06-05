@@ -3,6 +3,7 @@ package com.ocean.afefe.entities.modules.auth.repository;
 import com.ocean.afefe.entities.common.Status;
 import com.ocean.afefe.entities.modules.auth.models.OrgMember;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
+import com.ocean.afefe.entities.modules.auth.models.OrganizationRole;
 import com.ocean.afefe.entities.modules.auth.models.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,12 +14,19 @@ import org.springframework.data.repository.query.Param;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface OrgMemberRepository extends JpaRepository<OrgMember, UUID> {
     boolean existsByUserAndOrganization(User user, Organization organization);
     boolean existsByUser_EmailAddressAndOrganization(String emailAddress, Organization organization);
     OrgMember findFirstByUser_EmailAddressAndOrganization(String emailAddress, Organization organization);
+
+    OrgMember findFirstByUser_EmailAddressIgnoreCaseAndOrganization(String emailAddress, Organization organization);
+
+    OrgMember findFirstByUserAndOrganization_Role(User user, OrganizationRole role);
+
+    Optional<OrgMember> findByUser_IdAndOrganization(UUID userId, Organization organization);
     long countByOrganization(Organization organization);
 
     @Query("SELECT COUNT(om) FROM OrgMember om WHERE om.organization = :org AND om.joinedAt IS NOT NULL AND om.joinedAt >= :after")
@@ -114,7 +122,7 @@ public interface OrgMemberRepository extends JpaRepository<OrgMember, UUID> {
             FROM OrgMember om
             WHERE om.organization.id IN :orgIds
               AND om.joinedAt IS NOT NULL
-              AND om.user.userType = com.ocean.afefe.entities.modules.auth.models.UserType.PLATFORM_ADMIN
+              AND om.user.userType = com.ocean.afefe.entities.modules.auth.models.UserType.PLATFORM_ORGANISATION
             ORDER BY om.organization.id ASC, om.joinedAt ASC
             """)
     List<Object[]> findAdminMemberContactRowsByOrganizationIds(@Param("orgIds") Collection<UUID> orgIds);

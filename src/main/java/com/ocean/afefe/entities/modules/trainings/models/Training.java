@@ -96,6 +96,12 @@ public class Training extends BaseUUIDEntity {
     /** Optional external programme identifier from authoring UI */
     private String programmeId;
 
+    /** OJT programme window in days from enrollment start (countdown). */
+    private Integer ojtDurationDays;
+
+    /** Minimum logged OJT hours target for completion milestone. */
+    private Integer minOjtHours;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private User createdBy;
 

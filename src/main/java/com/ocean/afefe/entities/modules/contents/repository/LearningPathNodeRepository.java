@@ -36,6 +36,8 @@ public interface LearningPathNodeRepository extends JpaRepository<LearningPathNo
             @Param("org") Organization org
     );
 
+    List<LearningPathNode> findByLearningPath_Id(UUID learningPathId);
+
     @Query("""
         SELECT DISTINCT n.course.id
         FROM LearningPathNode n

@@ -4,12 +4,14 @@ import com.ocean.afefe.entities.core.localstore.FileResourceCacheConfig;
 import com.ocean.afefe.entities.core.security.SecurityModule;
 import com.ocean.afefe.entities.core.service.impl.OrganizationServiceImpl;
 import com.ocean.afefe.entities.core.service.impl.UserServiceImpl;
+import com.ocean.afefe.entities.modules.trainings.ojt.OjtMilestoneCompletionEvaluator;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Import({
         OrganizationServiceImpl.class,
         UserServiceImpl.class,
+        OjtMilestoneCompletionEvaluator.class,
         SecurityModule.class,
         FileResourceCacheConfig.class
 })

@@ -91,6 +91,17 @@ public interface CourseRepository extends JpaRepository<Course, UUID>, QuerydslP
     );
 
     @Query("""
+        SELECT c FROM Course c
+        WHERE c.org = :org
+          AND c.status = com.ocean.afefe.entities.modules.contents.models.CourseStatus.PUBLISHED
+          AND c.id IN :courseIds
+        """)
+    List<Course> findPublishedByOrgAndIdIn(
+            @Param("org") Organization org,
+            @Param("courseIds") Collection<UUID> courseIds
+    );
+
+    @Query("""
             SELECT ins.user.id, COUNT(c)
             FROM Course c
             JOIN c.ownerInstructor ins

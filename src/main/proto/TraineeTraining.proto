@@ -24,6 +24,14 @@ service TraineeTrainingServiceGrpc {
   rpc FetchQuizForAttempt(FetchQuizForAttemptRequest) returns (FetchQuizForAttemptResponse);
 
   rpc FetchMyEnrollments(FetchMyEnrollmentsRequest) returns (FetchMyEnrollmentsResponse);
+  rpc FetchEnrollmentGrades(FetchEnrollmentGradesRequest) returns (FetchEnrollmentGradesResponse);
+
+  rpc SaveTrainingContentNote(SaveTrainingContentNoteRequest) returns (SaveTrainingContentNoteResponse);
+  rpc UpdateTrainingContentNote(UpdateTrainingContentNoteRequest) returns (UpdateTrainingContentNoteResponse);
+  rpc DeleteTrainingContentNote(DeleteTrainingContentNoteRequest) returns (DeleteTrainingContentNoteResponse);
+  rpc FetchTrainingContentNoteById(FetchTrainingContentNoteByIdRequest) returns (FetchTrainingContentNoteByIdResponse);
+  rpc FetchTrainingContentNotes(FetchTrainingContentNotesRequest) returns (FetchTrainingContentNotesResponse);
+
   rpc UpdateContentItemProgress(UpdateContentItemProgressRequest) returns (UpdateContentItemProgressResponse);
   rpc UpdateBlockProgress(UpdateBlockProgressRequest) returns (UpdateBlockProgressResponse);
   rpc TraineeStartQuizAttempt(TraineeStartQuizAttemptRequest) returns (TraineeStartQuizAttemptResponse);
@@ -43,6 +51,13 @@ service TraineeTrainingServiceGrpc {
   rpc FetchAttendanceSessionContext(FetchAttendanceSessionContextRequest) returns (FetchAttendanceSessionContextResponse);
   rpc FetchTrainingAttendanceSessions(FetchTrainingAttendanceSessionsRequest) returns (FetchTrainingAttendanceSessionsResponse);
   rpc MarkTrainingSessionAttendance(MarkTrainingSessionAttendanceRequest) returns (MarkTrainingSessionAttendanceResponse);
+
+  // OJT (trainee self-reported session logs)
+  rpc FetchOjtOverview(FetchOjtOverviewRequest) returns (FetchOjtOverviewResponse);
+  rpc FetchOjtSessions(FetchOjtSessionsRequest) returns (FetchOjtSessionsResponse);
+  rpc FetchOjtSessionById(FetchOjtSessionByIdRequest) returns (FetchOjtSessionByIdResponse);
+  rpc CreateOjtSession(CreateOjtSessionRequest) returns (CreateOjtSessionResponse);
+  rpc FetchOjtSupervisors(FetchOjtSupervisorsRequest) returns (FetchOjtSupervisorsResponse);
 }
 
 // ---- Shared data types ----
@@ -63,12 +78,20 @@ message TraineeCalendarEventDataGrpc {
   string description = 7;
   TrainerBasicDataGrpc organizer = 8;
   MoneyGrpc price = 9;
+  string eventType = 10;
+  bool virtualSession = 11;
+  string trainingId = 12;
+  string enrollmentId = 13; // UUID when trainee is enrolled; empty otherwise
 }
 
 message FetchTraineeUpcomingCalendarEventsRequest {
   int32 pageNumber = 1;
   int32 pageSize = 2;
   string sort = 3;
+  /** Optional inclusive lower bound on event date (ISO-8601, e.g. 2026-06-01). */
+  string startDate = 4;
+  /** Optional inclusive upper bound on event date (ISO-8601). */
+  string endDate = 5;
 }
 
 message FetchTraineeUpcomingCalendarEventsDataGrpc {
@@ -112,6 +135,7 @@ message TrainingOverviewDataGrpc {
   bool hasCertificate = 9;
   string level = 10;
   bool isSaved = 11;
+  string enrollmentId = 12; // UUID when trainee is enrolled; empty otherwise
 }
 
 message TrainingBlockDataGrpc {
@@ -125,6 +149,7 @@ message TrainingBlockDataGrpc {
   optional int32 lastPositionSeconds = 8;
   string lastViewedAt = 9;
   string completedAt = 10;
+  string body = 11; // Inline HTML/text for READING blocks (from payloadJson.body)
 }
 
 message TrainingContentItemDataGrpc {
@@ -145,6 +170,8 @@ message TrainingWeekDataGrpc {
   string title = 2;
   int32 position = 3;
   repeated TrainingContentItemDataGrpc contentItems = 4;
+  bool hasQuiz = 5;
+  string traineeQuizId = 6; // from the week's PRACTICE_QUIZ content item, when present
 }
 
 message TrainingMonthDataGrpc {
@@ -237,6 +264,92 @@ message FetchRecentlyViewedTrainingsDataGrpc {
 
 message FetchMyEnrollmentsDataGrpc {
   repeated TrainingEnrollmentSummaryDataGrpc enrollments = 1;
+}
+
+message TrainingGradeRowDataGrpc {
+  string quizId = 1;
+  string contentItemId = 2;
+  string attemptId = 3;
+  string itemName = 4;
+  string itemTypeLabel = 5;
+  string status = 6; // PASSED, PENDING, or FAILED
+  string startedAt = 7;
+  string submittedAt = 8;
+  optional int32 gradePercent = 9;
+}
+
+message FetchEnrollmentGradesDataGrpc {
+  repeated TrainingGradeRowDataGrpc grades = 1;
+}
+
+message TrainingContentNoteDataGrpc {
+  string noteId = 1;
+  string objectType = 2; // TRAINING, MONTH, WEEK, CONTENT_ITEM, or BLOCK
+  string objectId = 3;
+  string body = 4;
+  string createdAt = 5;
+  string assetProgress = 6;
+  string assetProgressTime = 7;
+}
+
+message SaveTrainingContentNoteRequest {
+  string objectType = 1;
+  string objectId = 2;
+  string body = 3;
+  string assetProgress = 4;
+  string assetProgressTime = 5;
+}
+
+message SaveTrainingContentNoteResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TrainingContentNoteDataGrpc responseData = 3;
+}
+
+message UpdateTrainingContentNoteRequest {
+  string noteId = 1;
+  string body = 2;
+  optional string assetProgress = 3;
+  optional string assetProgressTime = 4;
+}
+
+message UpdateTrainingContentNoteResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TrainingContentNoteDataGrpc responseData = 3;
+}
+
+message DeleteTrainingContentNoteRequest {
+  string noteId = 1;
+}
+
+message DeleteTrainingContentNoteResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+}
+
+message FetchTrainingContentNoteByIdRequest {
+  string noteId = 1;
+}
+
+message FetchTrainingContentNoteByIdResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TrainingContentNoteDataGrpc responseData = 3;
+}
+
+message FetchTrainingContentNotesRequest {
+  int32 pageNumber = 1;
+  int32 pageSize = 2;
+  string sort = 3;
+  string object_id = 4;
+}
+
+message FetchTrainingContentNotesResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  repeated TrainingContentNoteDataGrpc records = 3;
+  PaginationMetaGrpc meta = 4;
 }
 
 message FetchSavedTrainingsDataGrpc {
@@ -380,6 +493,16 @@ message FetchMyEnrollmentsResponse {
   string responseCode = 1;
   string responseMessage = 2;
   FetchMyEnrollmentsDataGrpc responseData = 3;
+}
+
+message FetchEnrollmentGradesRequest {
+  string enrollmentId = 1;
+}
+
+message FetchEnrollmentGradesResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  FetchEnrollmentGradesDataGrpc responseData = 3;
 }
 
 message UpdateContentItemProgressRequest {
@@ -559,4 +682,134 @@ message MarkTrainingSessionAttendanceResponse {
   string responseCode = 1;
   string responseMessage = 2;
   MarkTrainingSessionAttendanceDataGrpc responseData = 3;
+}
+
+// ---- OJT (self-reported session logs) ----
+
+message OjtMilestoneDataGrpc {
+  string title = 1;
+  string targetDate = 2;
+  string status = 3;
+  string milestoneType = 4;
+}
+
+message OjtOverviewDataGrpc {
+  optional int32 daysLeft = 1;
+  int64 totalHoursLogged = 2;
+  optional int32 minOjtHours = 3;
+  repeated OjtMilestoneDataGrpc milestones = 4;
+}
+
+message OjtSessionRowDataGrpc {
+  string ojtSessionId = 1;
+  string sessionId = 2;
+  string supervisorName = 3;
+  string supervisorAvatarUrl = 4;
+  string sessionLocation = 5;
+  int32 hoursLogged = 6;
+  string sessionDate = 7;
+}
+
+message OjtSupportingDocumentGrpc {
+  string fileName = 1;
+  string fileUrl = 2;
+  optional int32 fileSizeBytes = 3;
+  string contentType = 4;
+}
+
+message OjtSessionDetailDataGrpc {
+  string ojtSessionId = 1;
+  string sessionId = 2;
+  string supervisorUserId = 3;
+  string supervisorName = 4;
+  string supervisorAvatarUrl = 5;
+  string sessionLocation = 6;
+  int32 hoursLogged = 7;
+  string sessionDate = 8;
+  string description = 9;
+  bool liveLocationUsed = 10;
+  optional string latitude = 11;
+  optional string longitude = 12;
+  repeated OjtSupportingDocumentGrpc supportingDocuments = 13;
+  string createdAt = 14;
+}
+
+message OjtSupervisorDataGrpc {
+  string userId = 1;
+  string fullName = 2;
+  string displayName = 3;
+  string avatarUrl = 4;
+}
+
+message FetchOjtOverviewRequest {
+  string enrollmentId = 1;
+}
+
+message FetchOjtOverviewResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  OjtOverviewDataGrpc responseData = 3;
+}
+
+message FetchOjtSessionsDataGrpc {
+  PaginationMetaGrpc meta = 1;
+  repeated OjtSessionRowDataGrpc content = 2;
+}
+
+message FetchOjtSessionsRequest {
+  string enrollmentId = 1;
+  int32 pageNumber = 2;
+  int32 pageSize = 3;
+  string sort = 4;
+}
+
+message FetchOjtSessionsResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  FetchOjtSessionsDataGrpc responseData = 3;
+}
+
+message FetchOjtSessionByIdRequest {
+  string enrollmentId = 1;
+  string ojtSessionId = 2;
+}
+
+message FetchOjtSessionByIdResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  OjtSessionDetailDataGrpc responseData = 3;
+}
+
+message CreateOjtSessionRequest {
+  string enrollmentId = 1;
+  string sessionLocation = 2;
+  string supervisorUserId = 3;
+  string supervisorName = 4;
+  string sessionDate = 5;
+  int32 durationHours = 6;
+  string description = 7;
+  bool liveLocationUsed = 8;
+  optional string latitude = 9;
+  optional string longitude = 10;
+  repeated OjtSupportingDocumentGrpc supportingDocuments = 11;
+}
+
+message CreateOjtSessionResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  OjtSessionDetailDataGrpc responseData = 3;
+}
+
+message FetchOjtSupervisorsDataGrpc {
+  repeated OjtSupervisorDataGrpc supervisors = 1;
+}
+
+message FetchOjtSupervisorsRequest {
+  string enrollmentId = 1;
+}
+
+message FetchOjtSupervisorsResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  FetchOjtSupervisorsDataGrpc responseData = 3;
 }

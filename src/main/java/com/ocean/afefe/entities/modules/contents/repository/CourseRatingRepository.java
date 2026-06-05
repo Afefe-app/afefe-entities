@@ -131,4 +131,13 @@ public interface CourseRatingRepository extends JpaRepository<CourseRating, UUID
     List<Object[]> getAverageRatingGroupedByInstructorUserIdsForOrg(
             @Param("userIds") Collection<UUID> userIds,
             @Param("orgId") UUID orgId);
+
+    @Query("""
+            SELECT cr FROM CourseRating cr
+            WHERE cr.org = :org AND cr.user.id IN :userIds AND cr.course.id IN :courseIds
+            """)
+    List<CourseRating> findByOrgAndUserIdInAndCourseIdIn(
+            @Param("org") Organization org,
+            @Param("userIds") Collection<UUID> userIds,
+            @Param("courseIds") Collection<UUID> courseIds);
 }

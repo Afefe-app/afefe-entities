@@ -37,4 +37,28 @@ public interface LearningPathEnrollmentRepository extends JpaRepository<Learning
             WHERE lpe.organization.id = :orgId
             """)
     long countDistinctLearningPathsByOrganization_Id(@Param("orgId") UUID orgId);
+
+    Optional<LearningPathEnrollment> findByIdAndOrganization(UUID id, Organization organization);
+
+    @Query("""
+            SELECT lpe FROM LearningPathEnrollment lpe
+            JOIN FETCH lpe.learningPath
+            WHERE lpe.organization = :org AND lpe.user.id IN :userIds
+            """)
+    List<LearningPathEnrollment> findByOrganizationAndUser_IdInWithLearningPath(
+            @Param("org") Organization org,
+            @Param("userIds") Collection<UUID> userIds);
+
+    @Query("""
+            SELECT lpe.learningPath.id, lpe.learningPath.title, COUNT(lpe)
+            FROM LearningPathEnrollment lpe
+            WHERE lpe.organization = :org
+              AND (:assignedAfter IS NULL OR lpe.assignedAt >= :assignedAfter)
+              AND (:assignedBefore IS NULL OR lpe.assignedAt < :assignedBefore)
+            GROUP BY lpe.learningPath.id, lpe.learningPath.title
+            """)
+    List<Object[]> countGroupedByLearningPathForOrganization(
+            @Param("org") Organization org,
+            @Param("assignedAfter") java.time.Instant assignedAfter,
+            @Param("assignedBefore") java.time.Instant assignedBefore);
 }
