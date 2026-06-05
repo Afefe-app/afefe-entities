@@ -80,6 +80,8 @@ message TraineeCalendarEventDataGrpc {
   MoneyGrpc price = 9;
   string eventType = 10;
   bool virtualSession = 11;
+  string trainingId = 12;
+  string enrollmentId = 13; // UUID when trainee is enrolled; empty otherwise
 }
 
 message FetchTraineeUpcomingCalendarEventsRequest {
