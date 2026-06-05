@@ -41,4 +41,8 @@ public interface TraineeQuizAttemptRepository extends JpaRepository<TraineeQuizA
             @Param("startDate") Instant startDate,
             @Param("endDate") Instant endDate,
             Pageable pageable);
+
+    long countDistinctEnrollment_User_IdByQuiz_IdAndEnrollment_Org(UUID quizId, Organization org);
+
+    long countDistinctEnrollment_User_IdByQuiz_IdAndEnrollment_OrgAndSubmittedAtIsNotNull(UUID quizId, Organization org);
 }

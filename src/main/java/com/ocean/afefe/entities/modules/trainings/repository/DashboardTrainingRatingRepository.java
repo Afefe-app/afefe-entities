@@ -53,4 +53,55 @@ public interface DashboardTrainingRatingRepository extends JpaRepository<Trainin
             @Param("org") Organization org,
             Pageable pageable
     );
+
+    @Query("""
+        SELECT AVG(tr.rating)
+        FROM TrainingRating tr
+        WHERE tr.training.trainer = :trainer
+          AND tr.org = :org
+          AND tr.training.id = :trainingId
+    """)
+    Double findAverageRatingByTrainerAndOrgAndTrainingId(
+            @Param("trainer") Trainer trainer,
+            @Param("org") Organization org,
+            @Param("trainingId") UUID trainingId
+    );
+
+    @Query("""
+        SELECT AVG(tr.rating)
+        FROM TrainingRating tr
+        WHERE tr.training.trainer = :trainer
+          AND tr.org = :org
+          AND tr.training.id = :trainingId
+          AND tr.ratedAt >= :start
+          AND tr.ratedAt < :end
+    """)
+    Double findAverageRatingByTrainerAndOrgAndTrainingIdAndRatedAtBetween(
+            @Param("trainer") Trainer trainer,
+            @Param("org") Organization org,
+            @Param("trainingId") UUID trainingId,
+            @Param("start") Instant start,
+            @Param("end") Instant end
+    );
+
+    @Query("""
+        SELECT tr
+        FROM TrainingRating tr
+        JOIN FETCH tr.user
+        JOIN FETCH tr.training
+        WHERE tr.training.trainer = :trainer
+          AND tr.org = :org
+          AND tr.training.id = :trainingId
+          AND tr.ratedAt >= :start
+          AND tr.ratedAt < :end
+        ORDER BY tr.ratedAt DESC
+    """)
+    List<TrainingRating> findRecentRatingsByTrainerAndOrgAndTrainingAndRatedAtBetween(
+            @Param("trainer") Trainer trainer,
+            @Param("org") Organization org,
+            @Param("trainingId") UUID trainingId,
+            @Param("start") Instant start,
+            @Param("end") Instant end,
+            Pageable pageable
+    );
 }
