@@ -170,6 +170,8 @@ message TrainingWeekDataGrpc {
   string title = 2;
   int32 position = 3;
   repeated TrainingContentItemDataGrpc contentItems = 4;
+  bool hasQuiz = 5;
+  string traineeQuizId = 6; // from the week's PRACTICE_QUIZ content item, when present
 }
 
 message TrainingMonthDataGrpc {
