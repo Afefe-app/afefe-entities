@@ -35,14 +35,59 @@ public class TrainerProctoredTestCandidate extends BaseUUIDEntity {
     @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private String candidateCode;
+
     @Enumerated(EnumType.STRING)
     @Builder.Default
     @Column(nullable = false)
     private TrainerProctoredTestCandidateStatus inviteStatus = TrainerProctoredTestCandidateStatus.PENDING;
+
+    @Enumerated(EnumType.STRING)
+    @Builder.Default
+    @Column(nullable = false)
+    private TrainerProctoredTestCandidateTestStatus testStatus = TrainerProctoredTestCandidateTestStatus.IN_PROGRESS;
+
+    @Enumerated(EnumType.STRING)
+    @Builder.Default
+    @Column(nullable = false)
+    private TrainerProctoredTestCandidateRemark testRemark = TrainerProctoredTestCandidateRemark.NIL;
+
+    @Builder.Default
+    @Column(nullable = false)
+    private boolean shortlisted = false;
+
+    private Integer totalQuestions;
+
+    private Integer questionsAnswered;
+
+    private Integer testScorePercent;
+
+    private Integer tabSwitchCount;
+
+    private Integer noiseIncidentCount;
+
+    private Integer multipleFaceCount;
+
+    private Integer flaggedIncidentCount;
 
     private Instant candidateStartAt;
 
     private Instant candidateEndAt;
 
     private Instant invitedAt;
+
+    private Instant startedAt;
+
+    private Instant completedAt;
+
+    private Long durationSeconds;
+
+    private String videoUrl;
+
+    private String videoThumbnailUrl;
+
+    @Builder.Default
+    @Column(nullable = false)
+    private boolean liveSession = false;
 }
