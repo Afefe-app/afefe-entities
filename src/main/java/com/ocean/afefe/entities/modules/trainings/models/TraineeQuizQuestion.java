@@ -26,4 +26,7 @@ public class TraineeQuizQuestion extends BaseUUIDEntity {
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String prompt;
+
+    /** Points awarded for a correct answer; defaults to 1 when null. */
+    private Integer points;
 }

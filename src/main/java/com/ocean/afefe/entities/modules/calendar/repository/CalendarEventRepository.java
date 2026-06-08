@@ -6,7 +6,9 @@ import com.ocean.afefe.entities.modules.calendar.model.CalendarEventType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.domain.Page;
@@ -29,6 +31,17 @@ public interface CalendarEventRepository extends JpaRepository<CalendarEvent, UU
 
     Page<CalendarEvent> findByAssignedTraining_IdAndEventTypeOrderByDateAscFromTimeAsc(
             UUID trainingId, CalendarEventType eventType, Pageable pageable);
+
+    @Query("""
+            SELECT ce FROM CalendarEvent ce
+            WHERE ce.assignedTraining.id = :trainingId
+              AND ce.status NOT IN :excludedStatuses
+            ORDER BY ce.date DESC, ce.fromTime DESC
+            """)
+    Page<CalendarEvent> findByAssignedTraining_IdExcludingStatusesOrderByDateDescFromTimeDesc(
+            @Param("trainingId") UUID trainingId,
+            @Param("excludedStatuses") java.util.List<com.ocean.afefe.entities.modules.calendar.model.CalendarEventStatus> excludedStatuses,
+            Pageable pageable);
 
     long countByAssignedTraining_IdIn(List<UUID> trainingIds);
 

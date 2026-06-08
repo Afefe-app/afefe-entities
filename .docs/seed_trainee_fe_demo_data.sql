@@ -269,7 +269,7 @@ BEGIN
                             id, guid, created_at, updated_at, content_item_id, sort_order, block_type, payload_json, resource_url, trainee_quiz_id, estimated_duration_seconds
                         ) VALUES (
                             v_bid, replace(v_bid::text, '-', ''), v_now, v_now, v_iid, 1, 'VIDEO_EMBED', '{}',
-                            'https://videos.example.com/fe/p' || t_idx::text || '-l' || it_idx::text || '.m3u8',
+                            'https://filesamples.com/samples/video/mp4/sample_640x360.mp4',
                             NULL, 300::bigint
                         );
                     ELSIF v_fmt = 'READING' THEN
@@ -279,7 +279,7 @@ BEGIN
                         ) VALUES (
                             v_bid, replace(v_bid::text, '-', ''), v_now, v_now, v_iid, 1, 'READING',
                             '{"body":"<p>FE reading for programme ' || t_idx::text || ', lesson ' || it_idx::text || '.</p>"}',
-                            'https://example.com/fe/readings/p' || t_idx::text || '-l' || it_idx::text || '.html',
+                            'https://www.w3schools.com/html/html_basic.asp',
                             NULL, 180::bigint
                         );
                     ELSIF v_fmt = 'PRACTICE_QUIZ' THEN
@@ -300,10 +300,10 @@ BEGIN
                                 v_bid, replace(v_bid::text, '-', ''), v_now, v_now, v_iid, bl_idx, v_blk_type,
                                 '{"body":"FE block p' || t_idx::text || ' l' || it_idx::text || ' b' || bl_idx::text || '"}',
                                 CASE v_blk_type::text
-                                    WHEN 'VIDEO_EMBED' THEN 'https://videos.example.com/fe/p' || t_idx::text || '-l' || it_idx::text || '.m3u8'
+                                    WHEN 'VIDEO_EMBED' THEN 'https://filesamples.com/samples/video/mp4/sample_640x360.mp4'
                                     WHEN 'IMAGE' THEN 'https://picsum.photos/seed/fe' || t_idx::text || it_idx::text || bl_idx::text || '/1200/800'
                                     WHEN 'RESOURCE_FILE' THEN 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
-                                    ELSE 'https://example.com/fe/readings/p' || t_idx::text || '-l' || it_idx::text || '.html'
+                                    ELSE 'https://www.w3schools.com/html/html_basic.asp'
                                 END, NULL, (120 * bl_idx)::bigint
                             );
                         END LOOP;
@@ -541,7 +541,7 @@ BEGIN
         IF NOT EXISTS (SELECT 1 FROM training_certificates c WHERE c.user_id = v_trainee_uid AND c.training_id = v_tid) THEN
             INSERT INTO training_certificates (id, guid, created_at, updated_at, org_id, user_id, training_id, enrollment_id, issued_at, certificate_url, file_name, file_size_bytes)
             VALUES (gen_random_uuid(), replace(gen_random_uuid()::text, '-', ''), v_now, v_now, v_org_id, v_trainee_uid, v_tid, v_enr,
-                    v_now - interval '3 days', 'https://example.com/certs/fe-' || replace(v_tid::text, '-', '') || '.pdf',
+                    v_now - interval '3 days', 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
                     'fe-cert.pdf', 245760);
         END IF;
     END LOOP;

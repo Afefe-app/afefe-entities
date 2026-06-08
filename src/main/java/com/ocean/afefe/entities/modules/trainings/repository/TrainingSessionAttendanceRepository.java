@@ -17,6 +17,8 @@ import java.util.UUID;
 @Repository
 public interface TrainingSessionAttendanceRepository extends JpaRepository<TrainingSessionAttendance, UUID> {
 
+    List<TrainingSessionAttendance> findByEnrollment_Id(UUID enrollmentId);
+
     Optional<TrainingSessionAttendance> findByEnrollmentAndCalendarEvent_Id(
             TrainingEnrollment enrollment, UUID calendarEventId);
 

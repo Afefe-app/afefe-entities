@@ -1,23 +1,15 @@
--- PostgreSQL: backfill training_content_blocks.resource_url from block_type.
--- Run after add_training_content_block_resource_url.sql. Safe to re-run (only fills NULL/blank).
-
-BEGIN;
+-- Populate resource_url for training content blocks missing streamable URLs.
+UPDATE training_content_blocks
+SET resource_url = 'https://filesamples.com/samples/video/mp4/sample_640x360.mp4'
+WHERE (resource_url IS NULL OR resource_url = '' OR resource_url LIKE '%example.com%' OR resource_url LIKE '%videos.example.com%')
+  AND block_type IN ('VIDEO_EMBED', 'VIDEO');
 
 UPDATE training_content_blocks
-SET resource_url = CASE block_type::text
-    WHEN 'VIDEO_EMBED' THEN
-        'https://videos.example.com/seed/' || replace(id::text, '-', '') || '.m3u8'
-    WHEN 'IMAGE' THEN
-        'https://picsum.photos/seed/b' || replace(id::text, '-', '') || '/1200/800'
-    WHEN 'RESOURCE_FILE' THEN
-        'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'
-    WHEN 'READING' THEN
-        'https://example.com/readings/' || replace(id::text, '-', '') || '.html'
-    WHEN 'PRACTICE_QUIZ' THEN
-        'https://example.com/quizzes/preview/' || replace(id::text, '-', '')
-    ELSE
-        'https://example.com/content/' || replace(id::text, '-', '')
-    END
-WHERE resource_url IS NULL OR btrim(resource_url) = '';
+SET resource_url = 'https://www.w3schools.com/html/html_basic.asp'
+WHERE (resource_url IS NULL OR resource_url = '' OR resource_url LIKE '%example.com%')
+  AND block_type = 'READING';
 
-COMMIT;
+UPDATE training_content_blocks
+SET resource_url = 'https://www.w3schools.com/html/html_basic.asp'
+WHERE (resource_url IS NULL OR resource_url = '' OR resource_url LIKE '%example.com%')
+  AND block_type NOT IN ('VIDEO_EMBED', 'VIDEO', 'READING');

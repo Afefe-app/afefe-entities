@@ -22,6 +22,8 @@ service TraineeTrainingServiceGrpc {
   rpc SubmitTrainingRating(SubmitTrainingRatingRequest) returns (SubmitTrainingRatingResponse);
   rpc EnrollTraining(EnrollTrainingRequest) returns (EnrollTrainingResponse);
   rpc FetchQuizForAttempt(FetchQuizForAttemptRequest) returns (FetchQuizForAttemptResponse);
+  rpc FetchTraineeQuizOverview(FetchTraineeQuizOverviewRequest) returns (FetchTraineeQuizOverviewResponse);
+  rpc FetchTraineeQuizAttemptResult(FetchTraineeQuizAttemptResultRequest) returns (FetchTraineeQuizAttemptResultResponse);
 
   rpc FetchMyEnrollments(FetchMyEnrollmentsRequest) returns (FetchMyEnrollmentsResponse);
   rpc FetchEnrollmentGrades(FetchEnrollmentGradesRequest) returns (FetchEnrollmentGradesResponse);
@@ -82,6 +84,10 @@ message TraineeCalendarEventDataGrpc {
   bool virtualSession = 11;
   string trainingId = 12;
   string enrollmentId = 13; // UUID when trainee is enrolled; empty otherwise
+  string endTime = 14;
+  string location = 15;
+  bool eventMarker = 16;
+  string eventMarkerColor = 17;
 }
 
 message FetchTraineeUpcomingCalendarEventsRequest {
@@ -92,6 +98,9 @@ message FetchTraineeUpcomingCalendarEventsRequest {
   string startDate = 4;
   /** Optional inclusive upper bound on event date (ISO-8601). */
   string endDate = 5;
+  string trainingId = 6;
+  string classKind = 7; // VIRTUAL or PHYSICAL
+  bool happeningNow = 8;
 }
 
 message FetchTraineeUpcomingCalendarEventsDataGrpc {
@@ -163,6 +172,9 @@ message TrainingContentItemDataGrpc {
   string progressStatus = 8;
   optional int32 progressPercent = 9;
   repeated TrainingBlockDataGrpc blocks = 10;
+  string traineeQuizId = 11;
+  optional int32 maxAttempt = 12;
+  int32 attemptCount = 13;
 }
 
 message TrainingWeekDataGrpc {
@@ -241,6 +253,8 @@ message TraineeQuizQuestionPublicDataGrpc {
   string prompt = 2;
   int32 position = 3;
   repeated TraineeQuizOptionPublicDataGrpc options = 4;
+  string questionType = 5;
+  int32 points = 6;
 }
 
 message TraineeQuizForAttemptDataGrpc {
@@ -248,6 +262,45 @@ message TraineeQuizForAttemptDataGrpc {
   string title = 2;
   optional int32 attemptLimit = 3;
   repeated TraineeQuizQuestionPublicDataGrpc questions = 4;
+  optional int32 maxAttempt = 5;
+  optional int32 passScorePercent = 6;
+  int32 attemptCount = 7;
+  optional int32 attemptsRemaining = 8;
+  optional int32 durationSeconds = 9;
+}
+
+message TraineeQuizOverviewDataGrpc {
+  string quizId = 1;
+  string contentItemId = 2;
+  string title = 3;
+  optional int32 durationSeconds = 4;
+  optional int32 passScorePercent = 5;
+  optional int32 maxAttempt = 6;
+  int32 attemptCount = 7;
+  optional int32 attemptsRemaining = 8;
+  optional int32 bestScorePercent = 9;
+  string lastSubmittedAt = 10;
+  bool canRetry = 11;
+}
+
+message TraineeQuizAnswerResultDataGrpc {
+  string questionId = 1;
+  string prompt = 2;
+  string questionType = 3;
+  string selectedOptionId = 4;
+  string selectedOptionLabel = 5;
+  optional bool isCorrect = 6;
+  int32 points = 7;
+}
+
+message TraineeQuizAttemptResultDataGrpc {
+  string attemptId = 1;
+  string quizId = 2;
+  string attemptStatus = 3;
+  optional int32 scorePercent = 4;
+  string startedAt = 5;
+  string submittedAt = 6;
+  repeated TraineeQuizAnswerResultDataGrpc answers = 7;
 }
 
 message TraineeQuizAttemptDataGrpc {
@@ -276,6 +329,13 @@ message TrainingGradeRowDataGrpc {
   string startedAt = 7;
   string submittedAt = 8;
   optional int32 gradePercent = 9;
+  string updatedAt = 10;
+  optional int32 passScorePercent = 11;
+  optional int32 maxAttempt = 12;
+  int32 attemptCount = 13;
+  optional int32 attemptsRemaining = 14;
+  optional int32 bestScorePercent = 15;
+  optional int32 durationSeconds = 16;
 }
 
 message FetchEnrollmentGradesDataGrpc {
@@ -343,6 +403,7 @@ message FetchTrainingContentNotesRequest {
   int32 pageSize = 2;
   string sort = 3;
   string object_id = 4;
+  string objectType = 5; // TRAINING, MONTH, WEEK, CONTENT_ITEM, or BLOCK
 }
 
 message FetchTrainingContentNotesResponse {
@@ -480,6 +541,28 @@ message FetchQuizForAttemptResponse {
   string responseCode = 1;
   string responseMessage = 2;
   TraineeQuizForAttemptDataGrpc responseData = 3;
+}
+
+message FetchTraineeQuizOverviewRequest {
+  string enrollmentId = 1;
+  string quizId = 2;
+}
+
+message FetchTraineeQuizOverviewResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TraineeQuizOverviewDataGrpc responseData = 3;
+}
+
+message FetchTraineeQuizAttemptResultRequest {
+  string enrollmentId = 1;
+  string attemptId = 2;
+}
+
+message FetchTraineeQuizAttemptResultResponse {
+  string responseCode = 1;
+  string responseMessage = 2;
+  TraineeQuizAttemptResultDataGrpc responseData = 3;
 }
 
 // ---- /me trainings ----
