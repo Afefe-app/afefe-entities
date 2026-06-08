@@ -1,6 +1,7 @@
 package com.ocean.afefe.entities.modules.trainings.repository;
 
 import com.ocean.afefe.entities.modules.auth.models.Organization;
+import com.ocean.afefe.entities.modules.enrollments.models.EnrollmentStatus;
 import com.ocean.afefe.entities.modules.trainings.models.Trainer;
 import com.ocean.afefe.entities.modules.trainings.models.TrainingEnrollment;
 import org.springframework.data.domain.Pageable;
@@ -113,6 +114,91 @@ public interface DashboardTrainingEnrollmentRepository extends JpaRepository<Tra
     List<TrainingEnrollment> findRecentEnrollmentsByTrainerAndOrg(
             @Param("trainer") Trainer trainer,
             @Param("org") Organization org,
+            Pageable pageable
+    );
+
+    @Query("""
+        SELECT COUNT(DISTINCT te.user.id)
+        FROM TrainingEnrollment te
+        WHERE te.training.trainer = :trainer
+          AND te.org = :org
+          AND te.training.id = :trainingId
+    """)
+    long countDistinctLearnersByTrainerAndOrgAndTrainingId(
+            @Param("trainer") Trainer trainer,
+            @Param("org") Organization org,
+            @Param("trainingId") UUID trainingId
+    );
+
+    @Query("""
+        SELECT COUNT(DISTINCT te.user.id)
+        FROM TrainingEnrollment te
+        WHERE te.training.trainer = :trainer
+          AND te.org = :org
+          AND te.training.id = :trainingId
+          AND te.createdAt >= :start
+          AND te.createdAt < :end
+    """)
+    long countDistinctLearnersByTrainerAndOrgAndTrainingIdAndCreatedAtBetween(
+            @Param("trainer") Trainer trainer,
+            @Param("org") Organization org,
+            @Param("trainingId") UUID trainingId,
+            @Param("start") Instant start,
+            @Param("end") Instant end
+    );
+
+    @Query("""
+        SELECT COUNT(DISTINCT te.user.id)
+        FROM TrainingEnrollment te
+        WHERE te.training.trainer = :trainer
+          AND te.org = :org
+          AND te.training.id = :trainingId
+          AND te.status <> :excludedStatus
+    """)
+    long countDistinctActiveLearnersByTrainerAndOrgAndTrainingId(
+            @Param("trainer") Trainer trainer,
+            @Param("org") Organization org,
+            @Param("trainingId") UUID trainingId,
+            @Param("excludedStatus") EnrollmentStatus excludedStatus
+    );
+
+    @Query("""
+        SELECT COUNT(DISTINCT te.user.id)
+        FROM TrainingEnrollment te
+        WHERE te.training.trainer = :trainer
+          AND te.org = :org
+          AND te.training.id = :trainingId
+          AND te.status <> :excludedStatus
+          AND te.updatedAt >= :start
+          AND te.updatedAt < :end
+    """)
+    long countDistinctActiveLearnersByTrainerAndOrgAndTrainingIdAndUpdatedAtBetween(
+            @Param("trainer") Trainer trainer,
+            @Param("org") Organization org,
+            @Param("trainingId") UUID trainingId,
+            @Param("excludedStatus") EnrollmentStatus excludedStatus,
+            @Param("start") Instant start,
+            @Param("end") Instant end
+    );
+
+    @Query("""
+        SELECT te
+        FROM TrainingEnrollment te
+        JOIN FETCH te.user
+        JOIN FETCH te.training
+        WHERE te.training.trainer = :trainer
+          AND te.org = :org
+          AND te.training.id = :trainingId
+          AND te.createdAt >= :start
+          AND te.createdAt < :end
+        ORDER BY te.createdAt DESC
+    """)
+    List<TrainingEnrollment> findRecentEnrollmentsByTrainerAndOrgAndTrainingAndCreatedAtBetween(
+            @Param("trainer") Trainer trainer,
+            @Param("org") Organization org,
+            @Param("trainingId") UUID trainingId,
+            @Param("start") Instant start,
+            @Param("end") Instant end,
             Pageable pageable
     );
 }
