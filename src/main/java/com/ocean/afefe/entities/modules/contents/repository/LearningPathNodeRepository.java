@@ -49,4 +49,17 @@ public interface LearningPathNodeRepository extends JpaRepository<LearningPathNo
             @Param("learningPathIds") List<UUID> learningPathIds,
             @Param("org") Organization org
     );
+
+    long countByLearningPath_IdAndLearningPath_Org(UUID learningPathId, Organization org);
+
+    @Query("""
+        SELECT n.learningPath.id, COUNT(n)
+        FROM LearningPathNode n
+        WHERE n.learningPath.id IN :pathIds AND n.learningPath.org = :org
+        GROUP BY n.learningPath.id
+        """)
+    List<Object[]> countGroupedByLearningPathIds(
+            @Param("pathIds") java.util.Collection<UUID> pathIds,
+            @Param("org") Organization org
+    );
 }

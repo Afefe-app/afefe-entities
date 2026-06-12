@@ -63,4 +63,9 @@ public interface TrainingRepository extends JpaRepository<Training, UUID>, JpaSp
     List<Object[]> countTrainingsGroupedByTrainerUserIdsForOrg(
             @Param("userIds") Collection<UUID> userIds,
             @Param("orgId") UUID orgId);
+
+    long countByStatus(TrainingStatus status);
+
+    @Query("SELECT AVG(t.rating) FROM Training t WHERE t.reviews > 0")
+    Double averageRatingAcrossCatalogue();
 }

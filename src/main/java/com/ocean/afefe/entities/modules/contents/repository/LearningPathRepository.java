@@ -48,4 +48,18 @@ public interface LearningPathRepository extends JpaRepository<LearningPath, UUID
             @Param("search") String search,
             Pageable pageable
     );
+
+    @Query("""
+        SELECT lp FROM LearningPath lp
+        WHERE lp.org = :org
+          AND (:search IS NULL OR :search = ''
+               OR LOWER(COALESCE(lp.title, '')) LIKE LOWER(CONCAT('%', :search, '%')))
+          AND (:publishedOnly IS NULL OR lp.isPublished = :publishedOnly)
+        """)
+    Page<LearningPath> findByOrgWithFilters(
+            @Param("org") Organization org,
+            @Param("search") String search,
+            @Param("publishedOnly") Boolean publishedOnly,
+            Pageable pageable
+    );
 }

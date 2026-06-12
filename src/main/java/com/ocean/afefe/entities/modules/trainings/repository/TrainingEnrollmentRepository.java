@@ -142,4 +142,49 @@ public interface TrainingEnrollmentRepository extends JpaRepository<TrainingEnro
             @Param("org") Organization org,
             @Param("search") String search,
             Pageable pageable);
+
+    long countByTraining_Id(UUID trainingId);
+
+    @Query("""
+            SELECT te.training.id, COUNT(te)
+            FROM TrainingEnrollment te
+            WHERE te.training.id IN :trainingIds
+            GROUP BY te.training.id
+            """)
+    List<Object[]> countGroupedByTrainingIds(@Param("trainingIds") Collection<UUID> trainingIds);
+
+    @Query(
+            value = """
+            SELECT te
+            FROM TrainingEnrollment te
+            JOIN FETCH te.user u
+            JOIN FETCH te.org o
+            WHERE te.training.id = :trainingId
+              AND (
+                :search IS NULL OR :search = ''
+                OR LOWER(COALESCE(u.fullName, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+                OR LOWER(COALESCE(u.emailAddress, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+                OR LOWER(COALESCE(o.name, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+              )
+            """,
+            countQuery = """
+            SELECT COUNT(te)
+            FROM TrainingEnrollment te
+            JOIN te.user u
+            JOIN te.org o
+            WHERE te.training.id = :trainingId
+              AND (
+                :search IS NULL OR :search = ''
+                OR LOWER(COALESCE(u.fullName, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+                OR LOWER(COALESCE(u.emailAddress, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+                OR LOWER(COALESCE(o.name, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+              )
+            """)
+    Page<TrainingEnrollment> searchByTrainingId(
+            @Param("trainingId") UUID trainingId,
+            @Param("search") String search,
+            Pageable pageable);
+
+    @Query("SELECT COUNT(te) FROM TrainingEnrollment te WHERE te.createdAt >= :start AND te.createdAt < :end")
+    long countCreatedBetween(@Param("start") Instant start, @Param("end") Instant end);
 }

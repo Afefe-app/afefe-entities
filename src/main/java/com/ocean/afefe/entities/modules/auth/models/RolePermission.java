@@ -1,10 +1,10 @@
 package com.ocean.afefe.entities.modules.auth.models;
 
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,20 +15,16 @@ import lombok.Setter;
 @Setter
 @Entity
 @Builder
-@Table(name = "roles")
+@Table(
+        name = "role_permissions",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"role_id", "permission_id"}))
 @AllArgsConstructor
 @NoArgsConstructor
-public class Role extends BaseUUIDEntity {
+public class RolePermission extends BaseUUIDEntity {
 
     @ManyToOne(optional = false)
-    private Organization organization;
+    private Role role;
 
-    @Column(nullable = false)
-    private String name;
-
-    @Column(columnDefinition = "TEXT")
-    private String description;
-
-    @Column(nullable = false)
-    private Boolean systemRole = false;
+    @ManyToOne(optional = false)
+    private Permission permission;
 }

@@ -5,6 +5,7 @@ import com.ocean.afefe.entities.core.security.filter.ChannelAuthorizationFilterG
 import com.ocean.afefe.entities.core.security.jwt.JwtConfigurationProperties;
 import com.ocean.afefe.entities.core.security.jwt.JwtTokenManagerImpl;
 import com.ocean.afefe.entities.core.security.otp.OtpValidationServiceImpl;
+import com.ocean.afefe.entities.core.security.aspect.GovernmentPermissionAuthorizationAspect;
 import com.ocean.afefe.entities.core.security.resolver.*;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,9 @@ import org.springframework.context.annotation.Import;
         ChannelAuthorizationFilter.class,
         ChannelAuthorizationFilterGrpc.class,
         JwtTokenManagerImpl.class,
+        GovernmentAdminPermissionResolver.class,
+        GovernmentPermissionCatalogInitializer.class,
+        GovernmentPermissionAuthorizationAspect.class,
         RequestContextMetaArgumentResolver.class,
         RequestMetaContextResolverGrpc.class,
         TenantUserArgumentResolver.class,

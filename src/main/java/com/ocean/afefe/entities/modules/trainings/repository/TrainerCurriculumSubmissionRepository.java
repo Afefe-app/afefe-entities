@@ -7,16 +7,19 @@ import com.ocean.afefe.entities.modules.trainings.models.TrainerCurriculumSubmis
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface TrainerCurriculumSubmissionRepository extends JpaRepository<TrainerCurriculumSubmission, UUID> {
+public interface TrainerCurriculumSubmissionRepository
+        extends JpaRepository<TrainerCurriculumSubmission, UUID>, JpaSpecificationExecutor<TrainerCurriculumSubmission> {
 
     Optional<TrainerCurriculumSubmission> findByIdAndTrainerAndOrg(UUID id, Trainer trainer, Organization org);
 
@@ -61,4 +64,20 @@ public interface TrainerCurriculumSubmissionRepository extends JpaRepository<Tra
             @Param("search") String search,
             Pageable pageable
     );
+
+    long countByOrg(Organization org);
+
+    long countByOrgAndStatus(Organization org, TrainerCurriculumStatus status);
+
+    @Query("""
+            SELECT COUNT(s)
+            FROM TrainerCurriculumSubmission s
+            WHERE s.org = :org
+              AND s.status IN :statuses
+            """)
+    long countByOrgAndStatusIn(
+            @Param("org") Organization org,
+            @Param("statuses") Collection<TrainerCurriculumStatus> statuses);
+
+    Optional<TrainerCurriculumSubmission> findByIdAndOrg(UUID id, Organization org);
 }

@@ -5,6 +5,7 @@ import com.ocean.afefe.entities.modules.auth.models.OrgMember;
 import com.ocean.afefe.entities.modules.auth.models.Organization;
 import com.ocean.afefe.entities.modules.auth.models.OrganizationRole;
 import com.ocean.afefe.entities.modules.auth.models.User;
+import com.ocean.afefe.entities.modules.auth.models.UserType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -126,4 +127,39 @@ public interface OrgMemberRepository extends JpaRepository<OrgMember, UUID> {
             ORDER BY om.organization.id ASC, om.joinedAt ASC
             """)
     List<Object[]> findAdminMemberContactRowsByOrganizationIds(@Param("orgIds") Collection<UUID> orgIds);
+
+    @Query("""
+            SELECT om FROM OrgMember om
+            WHERE om.organization = :org
+              AND om.joinedAt IS NOT NULL
+              AND om.user.userType = com.ocean.afefe.entities.modules.auth.models.UserType.PLATFORM_ORGANISATION
+            """)
+    List<OrgMember> findJoinedOrganisationAdminsByOrganization(@Param("org") Organization org);
+
+    @Query(
+            value = """
+            SELECT om FROM OrgMember om
+            JOIN FETCH om.user u
+            WHERE om.organization.id = :organizationId
+              AND om.joinedAt IS NOT NULL
+              AND u.userType = :adminUserType
+              AND (:search IS NULL OR :search = ''
+                   OR LOWER(COALESCE(u.fullName, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+                   OR LOWER(COALESCE(u.emailAddress, '')) LIKE LOWER(CONCAT('%', :search, '%')))
+            """,
+            countQuery = """
+            SELECT COUNT(om) FROM OrgMember om
+            JOIN om.user u
+            WHERE om.organization.id = :organizationId
+              AND om.joinedAt IS NOT NULL
+              AND u.userType = :adminUserType
+              AND (:search IS NULL OR :search = ''
+                   OR LOWER(COALESCE(u.fullName, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+                   OR LOWER(COALESCE(u.emailAddress, '')) LIKE LOWER(CONCAT('%', :search, '%')))
+            """)
+    Page<OrgMember> findJoinedGovernmentAdminsByOrganization(
+            @Param("organizationId") UUID organizationId,
+            @Param("adminUserType") UserType adminUserType,
+            @Param("search") String search,
+            Pageable pageable);
 }
