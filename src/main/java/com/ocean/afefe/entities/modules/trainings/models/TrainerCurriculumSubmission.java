@@ -87,6 +87,16 @@ public class TrainerCurriculumSubmission extends BaseUUIDEntity {
     @Builder.Default
     private Integer complianceScore = 0;
 
+    @Column(columnDefinition = "TEXT")
+    private String complianceChecklistJson;
+
+    private String trainingMode;
+
+    private Integer minOjtHours;
+
+    @Column(columnDefinition = "TEXT")
+    private String assessmentMethodsJson;
+
     @Column(nullable = false)
     private Instant submittedAt;
 

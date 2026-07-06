@@ -30,6 +30,7 @@ public enum GovernmentPermission {
     CURRICULUM_VIEW("View curriculum submissions"),
     CURRICULUM_APPROVE("Approve curriculum submission"),
     CURRICULUM_REJECT("Reject curriculum submission"),
+    CURRICULUM_REQUEST_REVISION("Request curriculum revision"),
 
     REPORT_VIEW("View platform reports"),
     REPORT_EXPORT("Export platform reports"),

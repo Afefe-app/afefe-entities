@@ -142,8 +142,8 @@ public interface PaymentTransactionRepository extends JpaRepository<PaymentTrans
               AND (:status IS NULL OR pt.status = :status)
               AND (:paymentType IS NULL OR pt.paymentType = :paymentType)
               AND (:organizationId IS NULL OR o.id = :organizationId)
-              AND (:from IS NULL OR pt.createdAt >= :from)
-              AND (:to IS NULL OR pt.createdAt < :to)
+              AND pt.createdAt >= :from
+              AND pt.createdAt < :to
             """,
             countQuery = """
             SELECT COUNT(pt) FROM PaymentTransaction pt
@@ -158,8 +158,8 @@ public interface PaymentTransactionRepository extends JpaRepository<PaymentTrans
               AND (:status IS NULL OR pt.status = :status)
               AND (:paymentType IS NULL OR pt.paymentType = :paymentType)
               AND (:organizationId IS NULL OR o.id = :organizationId)
-              AND (:from IS NULL OR pt.createdAt >= :from)
-              AND (:to IS NULL OR pt.createdAt < :to)
+              AND pt.createdAt >= :from
+              AND pt.createdAt < :to
             """)
     Page<PaymentTransaction> searchForGovernmentFinance(
             @Param("search") String search,

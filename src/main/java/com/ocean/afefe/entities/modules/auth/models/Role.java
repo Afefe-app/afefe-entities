@@ -31,4 +31,8 @@ public class Role extends BaseUUIDEntity {
 
     @Column(nullable = false)
     private Boolean systemRole = false;
+
+    @Builder.Default
+    @Column(nullable = false)
+    private Long usersCount = 0L;
 }
