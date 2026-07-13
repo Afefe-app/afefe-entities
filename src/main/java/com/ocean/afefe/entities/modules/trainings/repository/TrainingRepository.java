@@ -28,6 +28,9 @@ public interface TrainingRepository extends JpaRepository<Training, UUID>, JpaSp
 
     List<Training> findAllByTrainerAndOrg_IdOrderByTitleAsc(Trainer trainer, UUID orgId);
 
+    List<Training> findAllByTrainerAndOrg_IdAndStatusOrderByTitleAsc(Trainer trainer, UUID orgId, TrainingStatus status);
+
+
     long countByOrg_Id(UUID orgId);
 
     long countByOrg_IdAndCreatedAtBetween(UUID orgId, Instant start, Instant end);
