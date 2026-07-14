@@ -73,6 +73,7 @@ public class CourseDomainServiceImpl implements CourseDomainService {
     @Override
     public Course validateCourseExistenceById(UUID courseId, Organization organization){
         return courseRepository.findById(courseId)
+                .filter(course -> Objects.equals(course.getOrg(), organization))
                 .orElseThrow(() -> HttpUtil.getResolvedException(
                         ResponseCode.RECORD_NOT_FOUND, 
                         messageUtil.getMessage("course.not.found")));
@@ -82,6 +83,10 @@ public class CourseDomainServiceImpl implements CourseDomainService {
     public LessonAsset validateLessonAssetBelongsToCourse(UUID lessonAssetId, UUID courseId, Organization organization) {
         Course course = validateCourseExistenceById(courseId, organization);
         return lessonAssetRepository.findById(lessonAssetId)
+                .filter(asset -> {
+                    Course assetCourse = asset.getLessonContent().getLesson().getModule().getCourseVersion().getCourse();
+                    return Objects.equals(assetCourse.getId(), course.getId()) && Objects.equals(assetCourse.getOrg(), organization);
+                })
                 .orElseThrow(() -> HttpUtil.getResolvedException(
                         ResponseCode.RECORD_NOT_FOUND,
                         messageUtil.getMessage("lesson.asset.not.found.for.lesson.content")));

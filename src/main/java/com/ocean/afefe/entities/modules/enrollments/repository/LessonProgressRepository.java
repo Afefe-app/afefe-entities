@@ -19,17 +19,6 @@ public interface LessonProgressRepository extends JpaRepository<LessonProgress, 
 
     List<LessonProgress> findByEnrollment(Enrollment enrollment);
 
-    /**
-     * Loads progress rows with lesson asset → content → lesson → module chain for resume/current-module resolution.
-     */
-    @Query("select lp from LessonProgress lp "
-            + "join fetch lp.lessonAsset la "
-            + "join fetch la.lessonContent lc "
-            + "join fetch lc.lesson l "
-            + "join fetch l.module m "
-            + "where lp.enrollment = :enrollment")
-    List<LessonProgress> findAllByEnrollmentWithModuleChain(@Param("enrollment") Enrollment enrollment);
-
-    @Query("select lp from LessonProgress lp join fetch lp.enrollment join fetch lp.lessonAsset where lp.enrollment.id in :enrollmentIds")
+    @Query("select lp from LessonProgress lp join fetch lp.enrollment where lp.enrollment.id in :enrollmentIds")
     List<LessonProgress> findByEnrollmentIdIn(@Param("enrollmentIds") List<UUID> enrollmentIds);
 }
