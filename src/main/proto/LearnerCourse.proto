@@ -31,9 +31,6 @@ service LearnerCourseServiceGrpc {
     // Not paginated - returns a flat list.
     rpc FetchRecentlyViewedCourses(FetchRecentlyViewedCoursesRequest) returns (FetchRecentlyViewedCoursesResponse);
 
-    // Records a course as recently viewed for the current user. Used to build the user's recently viewed list.
-    rpc SaveRecentlyViewedCourse(SaveRecentlyViewedCourseRequest) returns (SaveRecentlyViewedCourseResponse);
-
     // Fetches a basic course overview by course ID (title, cover image, instructor, learning outcomes, requirements).
     rpc FetchCourseOverview(FetchCourseOverviewRequest) returns (FetchCourseOverviewResponse);
 
@@ -137,7 +134,7 @@ service LearnerCourseServiceGrpc {
 // Shared Data Messages
 // ---------------------------------------------------------------------------------------
 // Reusable data structures referenced by multiple request/response messages.
-// MoneyGrpc is defined in Common.proto.
+// MoneyGrpc is defined in Common.proto (imported above).
 // ======================================================================================
 
 // Basic instructor summary used in course cards and listings.
@@ -172,7 +169,6 @@ message LearnerCourseDataGrpc {
     InstructorBasicDataGrpc instructor = 8; // Course instructor summary
     MoneyGrpc price = 9;                   // Course price
     bool isSaved = 10;                     // Whether the current user has saved this course to their wishlist
-    reserved 11;                           // was hasQuiz (course-level; removed — use per-lesson flags in modules)
 }
 
 // Course overview data with learning outcomes and requirements.
@@ -186,7 +182,6 @@ message CourseOverviewDataGrpc {
     repeated string requirements = 6;     // List of prerequisite requirements
     string description = 7;              // Full course description
     bool isSaved = 8;                    // Whether the current user has saved this course to their wishlist
-    reserved 9;                          // was hasQuiz (course-level; removed)
 }
 
 // Individual course rating/review submitted by a learner.
@@ -259,13 +254,10 @@ message FetchEnrollmentHistoryDataGrpc {
 // Basic enrollment record for history listing.
 message BasicEnrollmentDataGrpc {
     string status = 1;                  // Enrollment status (e.g. "ENROLLED", "COMPLETED")
-    string courseId = 6;                 // Course UUID
-    string coverImageUrl = 7;            // Course cover image URL
     string courseTitle = 2;             // Title of the enrolled course
     int32 currentModulePosition = 3;    // Position of the current module in the course
     int32 progressPercent = 4;          // Progress percentage (0-100)
     repeated LessonAssetProgressDataGrpc lesson_asset_progress = 5;  // Per-asset progress for this enrollment
-    reserved 8;                          // was hasQuiz (course-level; removed)
 }
 
 // ======================================================================================
@@ -317,22 +309,6 @@ message FetchRecentlyViewedCoursesResponse {
 // Non-paginated list of recently viewed courses (max 20).
 message FetchRecentlyViewedCoursesDataGrpc {
     repeated LearnerCourseDataGrpc content = 1; // List of recently viewed course records
-}
-
-// ======================================================================================
-// Save Recently Viewed Course
-// ---------------------------------------------------------------------------------------
-// Records a course as recently viewed for the authenticated user.
-// ======================================================================================
-
-message SaveRecentlyViewedCourseRequest {
-    string course_id = 1; // UUID of the course to record as viewed
-}
-
-message SaveRecentlyViewedCourseResponse {
-    string response_code = 1;
-    string response_message = 2;
-    string response_data = 3; // Optional confirmation message
 }
 
 // ======================================================================================
@@ -390,10 +366,6 @@ message CourseDetailsDataGrpc {
     InstructorBasicDataGrpc instructor = 17;    // Course instructor summary
     int64 totalStudents = 18;                   // Total number of enrolled students
     bool isSaved = 19;                          // Whether the current user has saved this course to their wishlist
-    bool isEnrolled = 20;                       // Whether the current user is enrolled in this course
-    int32 numberOfQuizzes = 21;                 // Total number of quizzes attached to this course
-    bool hasCertificate = 22;                   // Whether the course issues a certificate on completion
-    reserved 23;                                // was hasQuiz (course-level; removed — see numberOfQuizzes)
 }
 
 // Request payload for fetching comprehensive course details.
@@ -578,7 +550,6 @@ message EnrollmentDataGrpc {
     int32 progress_percent = 5;
     string started_at = 6;            // ISO-8601 instant or empty
     repeated LessonAssetProgressDataGrpc lesson_asset_progress = 7;  // Per-asset progress for this enrollment
-    optional int32 current_module_position = 8; // Matches course module order index when current_module_id is set
 }
 
 // ======================================================================================
@@ -608,8 +579,8 @@ message StartCourseResponse {
 message RecordLessonAssetProgressRequest {
     string course_id = 1;           // UUID of the course
     string lesson_asset_id = 2;      // UUID of the lesson asset
-    optional int32 position_seconds = 3;     // Last playback position in seconds (omit to leave unchanged)
-    optional bool mark_complete = 4;         // Set lesson asset progress to COMPLETED (omit for false / no-op)
+    int32 position_seconds = 3;     // Optional - last playback position in seconds
+    bool mark_complete = 4;         // Optional - set lesson asset progress to COMPLETED
 }
 
 message LessonAssetProgressDataGrpc {
@@ -694,10 +665,6 @@ message CourseModulesDataGrpc {
     string courseId = 1;                   // UUID of the course
     string title = 2;                      // Course title
     repeated ModuleDataGrpc modules = 3;   // Ordered list of course modules
-    int32 duration = 4;                    // Total estimated course duration in minutes (from course metadata)
-    reserved 5;                              // was hasQuiz (course-level; removed)
-    string currentModuleId = 6;            // UUID of resume/current module (see REST contract); empty if none
-    int32 currentModulePosition = 7;         // Same as ModuleDataGrpc.position for currentModuleId; 0 if none
 }
 
 // A single course module containing its lessons.
@@ -707,13 +674,9 @@ message ModuleDataGrpc {
     int32 position = 3;                    // Display order position within the course
     string summary = 4;                    // Module summary/description
     repeated LessonDataGrpc lessons = 5;   // Ordered list of lessons within this module
-    int32 durationSeconds = 6;             // Total duration of all lessons in this module (seconds)
-    int32 noOfVideos = 7;                  // Lesson contents that are VIDEO or include a VIDEO_URL asset (deduped per block)
-    int32 noOfReadingFiles = 8;            // TEXT, PDF, SCORM, INTERACTIVE blocks, or blocks with SCORM_PKG asset (deduped; excludes video blocks)
-    int32 noOfQuiz = 9;                    // Count of lessons in this module that have a quiz
 }
 
-// A single lesson within a module, containing its assets and lesson contents (hierarchy: lesson -> lesson contents -> assets).
+// A single lesson within a module, containing its assets.
 message LessonDataGrpc {
     string lessonId = 1;                       // Unique lesson identifier (UUID)
     string title = 2;                          // Lesson title
@@ -722,37 +685,7 @@ message LessonDataGrpc {
     int32 durationSeconds = 5;                 // Estimated lesson duration in seconds
     int32 position = 6;                        // Display order position within the module
     bool isPublished = 7;                      // Whether the lesson is published and visible to learners
-    repeated LessonAssetDataGrpc assets = 8;   // Flat list of all assets under this lesson (backward compatibility)
-    repeated LearnerLessonContentDataGrpc lesson_contents = 9;  // Lesson contents, each with its assets (and optional progress)
-    bool has_quiz = 10;                        // Lesson has an attached quiz (denormalized on Lesson)
-    bool quiz_completed = 11;                   // User has a submitted/graded attempt for this lesson's quiz (enrollment-scoped)
-    int32 attempt_count = 12;                  // Count of attempts for this user+enrollment+quiz
-    int32 max_attempt = 13;                    // Quiz attempt limit; 0 if unlimited or no quiz
-}
-
-// A single lesson content block within a lesson, containing its assets (and optional progress per asset). Learner API only.
-message LearnerLessonContentDataGrpc {
-    string lesson_content_id = 1;              // Unique lesson content identifier (UUID)
-    string title = 2;                          // Lesson content title
-    string description = 3;                    // Optional description
-    string content_type = 4;                   // Content type (e.g. "VIDEO", "TEXT", "PDF")
-    int32 course_version = 5;                  // Course version
-    repeated LessonAssetWithProgressDataGrpc assets = 6;  // Assets under this content, with optional progress
-}
-
-// Lesson asset with optional progress (when in enrollment context). Matches REST LessonAssetWithProgressData.
-message LessonAssetWithProgressDataGrpc {
-    string asset_id = 1;
-    string asset_type = 2;
-    string uri = 3;
-    string mime_type = 4;
-    int64 file_size_bytes = 5;
-    string status = 6;                         // Progress status (e.g. NOT_STARTED, IN_PROGRESS, COMPLETED)
-    int32 last_position_seconds = 7;
-    string last_viewed_at = 8;                 // ISO instant
-    string completed_at = 9;                   // ISO instant
-    int64 estimated_duration_seconds = 10;     // Expected duration for this asset (from lesson_assets)
-    string lessonText = 11;                    // Raw text content from the lesson asset (e.g. for TEXT/HTML)
+    repeated LessonAssetDataGrpc assets = 8;   // List of media/file assets attached to this lesson
 }
 
 // A file or media asset attached to a lesson.
@@ -762,7 +695,6 @@ message LessonAssetDataGrpc {
     string uri = 3;           // URL or URI to the asset resource
     string mimeType = 4;     // MIME type of the asset (e.g. "video/mp4", "application/pdf")
     int64 fileSizeBytes = 5; // File size in bytes
-    string lessonText = 6;   // Raw text content from the lesson asset
 }
 
 // ======================================================================================
@@ -792,7 +724,6 @@ message SubmitCourseRatingResponse {
 // ======================================================================================
 // Content Notes
 // ---------------------------------------------------------------------------------------
-// Convention: new message fields in this file use lowerCamelCase identifiers.
 // CRUD operations for user content notes.
 // Notes can be associated with different course objects via objectType and objectId:
 //   - COURSE: Note attached to the course itself
@@ -809,8 +740,6 @@ message ContentNoteDataGrpc {
     string objectId = 3;   // UUID of the associated object
     string body = 4;       // Note body text content
     string createdAt = 5;  // Timestamp when the note was created (ISO datetime string)
-    string assetProgress = 6; // Optional; decimal string with up to 2 fractional digits (e.g. playback/progress %)
-    string assetProgressTime = 7; // Optional; client-defined playback timestamp / position label when the note was taken
 }
 
 // Request payload for creating a new content note.
@@ -818,8 +747,6 @@ message SaveContentNoteRequest {
     string objectType = 1; // Type of the associated object: "COURSE", "MODULE", "LESSON", or "ASSET"
     string objectId = 2;   // UUID of the associated object (validated for existence)
     string body = 3;       // Note body text content
-    string assetProgress = 4; // Optional; empty if unset; decimal string, scale 2 (e.g. "72.50")
-    string assetProgressTime = 5; // Optional; empty if unset; e.g. ISO-8601 duration or wall-clock position string
 }
 
 // Response wrapper for creating a content note.
@@ -833,8 +760,6 @@ message SaveContentNoteResponse {
 message UpdateContentNoteRequest {
     string noteId = 1; // UUID of the note to update (must be owned by the authenticated user)
     string body = 2;   // Updated note body text content
-    optional string assetProgress = 3; // If set: update stored progress; empty string clears; omit field to leave unchanged
-    optional string assetProgressTime = 4; // If set: update stored time snapshot; empty string clears; omit to leave unchanged
 }
 
 // Response wrapper for updating a content note.
@@ -869,10 +794,9 @@ message FetchContentNoteByIdResponse {
 
 // Request payload for fetching all content notes for the authenticated user (paginated).
 message FetchContentNotesRequest {
-    int32 pageNumber = 1;   // Page number (0-based)
-    int32 pageSize = 2;     // Number of notes per page
-    string sort = 3;        // Sort direction
-    string object_id = 4;   // Optional: filter notes by target object (course, module, lesson, or asset ID)
+    int32 pageNumber = 1; // Page number (0-based)
+    int32 pageSize = 2;   // Number of notes per page
+    string sort = 3;      // Sort direction
 }
 
 // Response wrapper for fetching paginated content notes.

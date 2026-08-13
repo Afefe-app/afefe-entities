@@ -88,6 +88,8 @@ message TraineeCalendarEventDataGrpc {
   string location = 15;
   bool eventMarker = 16;
   string eventMarkerColor = 17;
+  string trainingTitle = 18;
+  string trainingStatus = 19; // DRAFT, IN_REVIEW, PUBLISHED
 }
 
 message FetchTraineeUpcomingCalendarEventsRequest {
