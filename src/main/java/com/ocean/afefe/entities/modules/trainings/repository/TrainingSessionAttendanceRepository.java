@@ -109,4 +109,20 @@ public interface TrainingSessionAttendanceRepository extends JpaRepository<Train
     Page<TrainingSessionAttendance> findRowsByTrainingIdOrderBySessionDateTime(
             @Param("trainingId") UUID trainingId,
             Pageable pageable);
+
+    @Query("""
+            SELECT a
+            FROM TrainingSessionAttendance a
+            JOIN FETCH a.enrollment e
+            JOIN FETCH e.training
+            JOIN FETCH a.calendarEvent
+            WHERE a.org = :org
+              AND e.training.id = :trainingId
+              AND e.user.id = :userId
+            ORDER BY a.calendarEvent.date DESC, a.markedAt DESC
+            """)
+    List<TrainingSessionAttendance> findByOrgAndTrainingIdAndUserIdWithDetails(
+            @Param("org") Organization org,
+            @Param("trainingId") UUID trainingId,
+            @Param("userId") UUID userId);
 }
