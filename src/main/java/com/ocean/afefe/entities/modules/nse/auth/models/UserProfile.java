@@ -4,6 +4,8 @@ import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import com.tensorpoint.toolkit.tpointcore.commons.TimeZone;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -18,7 +20,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(schema = "afefe_nse")
+@Table(name = "user_profile", schema = "afefe_nse")
 public class UserProfile extends BaseUUIDEntity {
 
     @ManyToOne(optional = false)
@@ -30,6 +32,7 @@ public class UserProfile extends BaseUUIDEntity {
 
     private String locale;
 
+    @Enumerated(EnumType.STRING)
     private TimeZone timeZone;
 
     private String jobTitle;
