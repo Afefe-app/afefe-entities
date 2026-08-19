@@ -27,7 +27,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name = "NseCertificate")
 @Table(name = "certificates", schema = "afefe_nse")
 @Getter
 @Setter

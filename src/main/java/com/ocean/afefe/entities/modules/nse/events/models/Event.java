@@ -22,7 +22,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-@Entity
+@Entity(name = "NseEvent")
 @Table(name = "events", schema = "afefe_nse")
 @Getter
 @Setter

@@ -20,7 +20,7 @@ import java.time.Instant;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "NseTrainee")
 @Builder
 @Table(name = "trainees", schema = "afefe_nse")
 @NoArgsConstructor

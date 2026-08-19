@@ -21,7 +21,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
-@Entity
+@Entity(name = "NseCpdPathway")
 @Table(name = "cpd_pathways", schema = "afefe_nse")
 @Getter
 @Setter

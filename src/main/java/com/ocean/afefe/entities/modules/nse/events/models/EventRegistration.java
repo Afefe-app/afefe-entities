@@ -19,7 +19,7 @@ import lombok.Setter;
 
 import java.time.Instant;
 
-@Entity
+@Entity(name = "NseEventRegistration")
 @Table(name = "event_registrations", schema = "afefe_nse")
 @Getter
 @Setter

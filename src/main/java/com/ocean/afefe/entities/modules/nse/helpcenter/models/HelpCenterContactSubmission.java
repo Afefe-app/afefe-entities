@@ -21,7 +21,7 @@ import java.time.Instant;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "NseHelpCenterContactSubmission")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

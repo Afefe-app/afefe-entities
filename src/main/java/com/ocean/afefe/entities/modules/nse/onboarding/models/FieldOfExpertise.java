@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "NseFieldOfExpertise")
 @Table(name = "fields_of_expertise", schema = "afefe_nse")
 @Getter
 @Setter

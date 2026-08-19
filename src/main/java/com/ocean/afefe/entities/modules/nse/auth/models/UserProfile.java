@@ -14,7 +14,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "NseUserProfile")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

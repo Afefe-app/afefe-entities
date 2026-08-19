@@ -31,7 +31,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Entity
+@Entity(name = "NseTraining")
 @Table(name = "trainings", schema = "afefe_nse")
 @Getter
 @Setter

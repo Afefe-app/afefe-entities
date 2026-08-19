@@ -20,7 +20,7 @@ import lombok.Setter;
 
 import java.time.Instant;
 
-@Entity
+@Entity(name = "NseTrainingMonth")
 @Table(name = "training_enrollments", schema = "afefe_nse")
 @Getter
 @Setter
