@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "NseTrainingWeek")
 @Table(name = "training_weeks", schema = "afefe_nse")
 @Getter
 @Setter

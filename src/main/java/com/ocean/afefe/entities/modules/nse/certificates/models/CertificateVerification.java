@@ -19,7 +19,7 @@ import lombok.Setter;
 
 import java.time.Instant;
 
-@Entity
+@Entity(name = "NseCertificateVerification")
 @Table(name = "certificate_verifications", schema = "afefe_nse")
 @Getter
 @Setter

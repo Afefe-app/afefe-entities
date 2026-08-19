@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "NseAdminRolePermission")
 @Table(name = "nse_admin_role_permissions", schema = "afefe_nse")
 @Getter
 @Setter

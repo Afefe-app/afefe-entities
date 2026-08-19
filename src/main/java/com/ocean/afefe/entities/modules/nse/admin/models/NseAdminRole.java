@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "NseAdminRole")
 @Table(name = "nse_admin_roles", schema = "afefe_nse")
 @Getter
 @Setter

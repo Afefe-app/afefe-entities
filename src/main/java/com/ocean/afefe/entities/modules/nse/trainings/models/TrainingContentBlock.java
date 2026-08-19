@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "NseTrainingContentBlock")
 @Table(name = "training_content_blocks", schema = "afefe_nse")
 @Getter
 @Setter

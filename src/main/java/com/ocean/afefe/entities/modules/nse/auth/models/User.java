@@ -17,7 +17,7 @@ import java.time.Instant;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "NseUser")
 @Builder
 @Table(name = "users", schema = "afefe_nse")
 @NoArgsConstructor

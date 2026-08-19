@@ -19,7 +19,7 @@ import lombok.Setter;
 
 import java.time.Instant;
 
-@Entity
+@Entity(name = "NseCpdPathwayEnrollment")
 @Table(name = "cpd_pathway_enrollments", schema = "afefe_nse")
 @Getter
 @Setter

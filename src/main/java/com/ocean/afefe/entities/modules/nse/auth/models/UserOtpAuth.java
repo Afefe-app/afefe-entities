@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "NseUserOtpAuth")
 @Table(name = "user_otp_auths", schema = "afefe_nse")
 @Getter
 @Setter

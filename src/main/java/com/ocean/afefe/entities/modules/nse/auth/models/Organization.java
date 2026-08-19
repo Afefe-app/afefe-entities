@@ -14,7 +14,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "NseOrganization")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

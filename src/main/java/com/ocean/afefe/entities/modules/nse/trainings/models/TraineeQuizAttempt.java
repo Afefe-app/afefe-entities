@@ -18,7 +18,7 @@ import lombok.Setter;
 
 import java.time.Instant;
 
-@Entity
+@Entity(name = "NseTraineeQuizAttempt")
 @Table(
         name = "trainee_quiz_attempts",
         schema = "afefe_nse",

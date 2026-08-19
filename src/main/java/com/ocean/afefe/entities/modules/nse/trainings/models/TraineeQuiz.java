@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "NseTraineeQuiz")
 @Table(name = "trainee_quizzes", schema = "afefe_nse")
 @Getter
 @Setter

@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "NseCpdPathwayCourse")
 @Table(name = "cpd_pathway_courses", schema = "afefe_nse")
 @Getter
 @Setter

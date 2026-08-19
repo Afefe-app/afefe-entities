@@ -15,7 +15,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "NseNotificationPreference")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
