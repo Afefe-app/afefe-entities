@@ -13,7 +13,7 @@ import java.util.UUID;
 public interface CertificateRepository extends JpaRepository<Certificate, UUID> {
 
     @Query("""
-            SELECT c FROM Certificate c
+            SELECT c FROM NseCertificate c
             LEFT JOIN FETCH c.training t
             WHERE c.user.id = :userId AND c.org.id = :orgId
             ORDER BY c.issuedAt DESC
@@ -21,7 +21,7 @@ public interface CertificateRepository extends JpaRepository<Certificate, UUID> 
     List<Certificate> findByUserAndOrgOrderByIssuedAtDesc(@Param("userId") UUID userId, @Param("orgId") UUID orgId);
 
     @Query("""
-            SELECT c FROM Certificate c
+            SELECT c FROM NseCertificate c
             LEFT JOIN FETCH c.training t
             LEFT JOIN FETCH c.user u
             WHERE c.id = :id AND c.user.id = :userId AND c.org.id = :orgId
@@ -33,7 +33,7 @@ public interface CertificateRepository extends JpaRepository<Certificate, UUID> 
     );
 
     @Query("""
-            SELECT c FROM Certificate c
+            SELECT c FROM NseCertificate c
             LEFT JOIN FETCH c.training t
             LEFT JOIN FETCH c.user u
             WHERE lower(c.certificateNumber) = lower(:certificateNumber)
@@ -45,7 +45,7 @@ public interface CertificateRepository extends JpaRepository<Certificate, UUID> 
     );
 
     @Query("""
-            SELECT c FROM Certificate c
+            SELECT c FROM NseCertificate c
             LEFT JOIN FETCH c.training t
             LEFT JOIN FETCH c.user u
             WHERE lower(c.certificateNumber) = lower(:certificateNumber)

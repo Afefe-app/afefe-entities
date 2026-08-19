@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 public enum TrainingStatus implements Enumerable {
     DRAFT("Draft"),
     IN_REVIEW("In review"),
-    PUBLISHED("Published");
+        PUBLISHED("Published");
 
     private final String description;
 }

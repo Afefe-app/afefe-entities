@@ -33,14 +33,43 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         TrainingsModule.class,
         GrpcCommons.class,
 })
-// Exclude com.ocean.afefe.entities.proto: protobuf-generated classes live there and are not
-// repositories; scanning them breaks startup (Spring ASM can fail on large generated classes).
+// NSE lives in schema afefe_nse with parallel entity/repository types. It is wired via
+// NseEntitiesConfig in afefe-nse-backend only. Scanning it here collides on bean names
+// (e.g. TrainerRepository) with the shared modules below.
 @EnableJpaRepositories(basePackages = {
-        "com.ocean.afefe.entities.modules",
+        "com.ocean.afefe.entities.modules.admin",
+        "com.ocean.afefe.entities.modules.analytics",
+        "com.ocean.afefe.entities.modules.appuser",
+        "com.ocean.afefe.entities.modules.assessment",
+        "com.ocean.afefe.entities.modules.auth",
+        "com.ocean.afefe.entities.modules.calendar",
+        "com.ocean.afefe.entities.modules.certification",
+        "com.ocean.afefe.entities.modules.contents",
+        "com.ocean.afefe.entities.modules.enrollments",
+        "com.ocean.afefe.entities.modules.helpcenter",
+        "com.ocean.afefe.entities.modules.notifications",
+        "com.ocean.afefe.entities.modules.payment",
+        "com.ocean.afefe.entities.modules.talentpool",
+        "com.ocean.afefe.entities.modules.taxonomy",
+        "com.ocean.afefe.entities.modules.trainings",
         "com.ocean.afefe.entities.core.localstore"
 })
 @EntityScan(basePackages = {
-        "com.ocean.afefe.entities.modules",
+        "com.ocean.afefe.entities.modules.admin",
+        "com.ocean.afefe.entities.modules.analytics",
+        "com.ocean.afefe.entities.modules.appuser",
+        "com.ocean.afefe.entities.modules.assessment",
+        "com.ocean.afefe.entities.modules.auth",
+        "com.ocean.afefe.entities.modules.calendar",
+        "com.ocean.afefe.entities.modules.certification",
+        "com.ocean.afefe.entities.modules.contents",
+        "com.ocean.afefe.entities.modules.enrollments",
+        "com.ocean.afefe.entities.modules.helpcenter",
+        "com.ocean.afefe.entities.modules.notifications",
+        "com.ocean.afefe.entities.modules.payment",
+        "com.ocean.afefe.entities.modules.talentpool",
+        "com.ocean.afefe.entities.modules.taxonomy",
+        "com.ocean.afefe.entities.modules.trainings",
         "com.ocean.afefe.entities.core.localstore"
 })
 @EnableConfigurationProperties({
