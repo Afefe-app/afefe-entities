@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface UserIndustryInterestRepository extends JpaRepository<UserIndustryInterest, UUID> {
 
     @Query("""
-            SELECT uii FROM UserIndustryInterest uii
+            SELECT uii FROM NseUserIndustryInterest uii
             JOIN FETCH uii.industry i
             WHERE uii.user.id = :userId AND uii.org.id = :orgId
             ORDER BY i.name ASC
@@ -22,6 +22,6 @@ public interface UserIndustryInterestRepository extends JpaRepository<UserIndust
     long countByUser_IdAndOrg_Id(UUID userId, UUID orgId);
 
     @Modifying
-    @Query("DELETE FROM UserIndustryInterest uii WHERE uii.user.id = :userId AND uii.org.id = :orgId")
+    @Query("DELETE FROM NseUserIndustryInterest uii WHERE uii.user.id = :userId AND uii.org.id = :orgId")
     void deleteByUserAndOrg(@Param("userId") UUID userId, @Param("orgId") UUID orgId);
 }

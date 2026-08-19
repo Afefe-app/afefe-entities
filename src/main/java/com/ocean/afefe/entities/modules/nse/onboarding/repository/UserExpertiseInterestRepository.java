@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface UserExpertiseInterestRepository extends JpaRepository<UserExpertiseInterest, UUID> {
 
     @Query("""
-            SELECT uei FROM UserExpertiseInterest uei
+            SELECT uei FROM NseUserExpertiseInterest uei
             JOIN FETCH uei.expertise e
             WHERE uei.user.id = :userId AND uei.org.id = :orgId
             ORDER BY e.name ASC
@@ -22,6 +22,6 @@ public interface UserExpertiseInterestRepository extends JpaRepository<UserExper
     long countByUser_IdAndOrg_Id(UUID userId, UUID orgId);
 
     @Modifying
-    @Query("DELETE FROM UserExpertiseInterest uei WHERE uei.user.id = :userId AND uei.org.id = :orgId")
+    @Query("DELETE FROM NseUserExpertiseInterest uei WHERE uei.user.id = :userId AND uei.org.id = :orgId")
     void deleteByUserAndOrg(@Param("userId") UUID userId, @Param("orgId") UUID orgId);
 }
