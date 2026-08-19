@@ -18,4 +18,6 @@ public enum UserType implements Enumerable {
     PLATFORM_ORGANISATION("Organisation"),
     ;
     private final String description;
+
+    // https://github.com/Afefe-app/afefe-nse-backend
 }

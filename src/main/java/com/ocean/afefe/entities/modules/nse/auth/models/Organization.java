@@ -18,7 +18,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(schema = "afefe_nse")
+@Table(name = "organizations", schema = "afefe_nse")
 public class Organization extends BaseUUIDEntity {
 
     @Column(nullable = false)

@@ -105,6 +105,8 @@ public class Training extends BaseUUIDEntity {
 
     private Instant publishedAt;
 
+    private Instant archivedAt;
+
     @Builder.Default
     private boolean hasCertificate = true;
 
