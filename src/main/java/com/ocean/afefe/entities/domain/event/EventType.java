@@ -21,7 +21,9 @@ public enum EventType implements Enumerable {
     SUPPORT_TICKET_CREATED("support-ticket-created", "A new support ticket has been created"),
     CONTACT_FORM_SUBMITTED("contact-form-submitted", "A contact form inquiry has been submitted"),
 
-    STAFF_PROVISIONED("staff-provisioned", "HR provisioned a staff learner; invitation email with credentials")
+    STAFF_PROVISIONED("staff-provisioned", "HR provisioned a staff learner; invitation email with credentials"),
+
+    NSE_ADMIN_INVITED("nse-admin-invited", "NSE admin invitation email with accept link")
     ;
 
     private final String key;
