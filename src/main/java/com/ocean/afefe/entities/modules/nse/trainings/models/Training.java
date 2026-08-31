@@ -103,6 +103,10 @@ public class Training extends BaseUUIDEntity {
     @Builder.Default
     private int reviews = 0;
 
+    @Builder.Default
+    @Column(name = "cpd_points", nullable = false)
+    private int cpdPoints = 0;
+
     private Instant publishedAt;
 
     private Instant archivedAt;

@@ -91,6 +91,10 @@ public class Event extends BaseUUIDEntity {
     @Column(nullable = false, columnDefinition = "VARCHAR")
     private EventStatus status;
 
+    @Builder.Default
+    @Column(name = "cpd_points", nullable = false)
+    private int cpdPoints = 0;
+
     private Instant registrationDeadline;
 
     @ManyToOne(fetch = FetchType.LAZY)
