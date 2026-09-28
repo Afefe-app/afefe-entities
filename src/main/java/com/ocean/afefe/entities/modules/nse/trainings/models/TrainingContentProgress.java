@@ -3,11 +3,8 @@ package com.ocean.afefe.entities.modules.nse.trainings.models;
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
 import com.ocean.afefe.entities.modules.nse.auth.models.Organization;
 import com.ocean.afefe.entities.modules.nse.auth.models.User;
-import com.ocean.afefe.entities.modules.nse.enrollments.models.EnrollmentStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -20,14 +17,14 @@ import lombok.Setter;
 
 import java.time.Instant;
 
-@Entity(name = "NseTrainingEnrollment")
-@Table(name = "training_enrollments", schema = "afefe_nse")
+@Entity(name = "NseTrainingContentProgress")
+@Table(name = "training_content_progress", schema = "afefe_nse")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TrainingEnrollment extends BaseUUIDEntity {
+public class TrainingContentProgress extends BaseUUIDEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "org_id", nullable = false)
@@ -41,26 +38,15 @@ public class TrainingEnrollment extends BaseUUIDEntity {
     @JoinColumn(name = "training_id", nullable = false)
     private Training training;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "current_month_id")
-    private TrainingMonth currentMonth;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "content_item_id", nullable = false)
+    private TrainingContentItem contentItem;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "VARCHAR(40)")
-    private EnrollmentStatus status;
-
+    @Builder.Default
     @Column(nullable = false)
-    private Integer progressPercent;
+    private boolean completed = false;
 
-    private Instant startedAt;
+    private Integer lastPositionSeconds;
 
     private Instant completedAt;
-
-    @Column(length = 200)
-    private String paymentSessionReference;
-
-    @Column(length = 200)
-    private String paymentGatewayReference;
-
-    private Instant paidAt;
 }

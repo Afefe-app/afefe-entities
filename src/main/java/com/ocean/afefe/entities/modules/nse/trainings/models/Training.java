@@ -107,6 +107,12 @@ public class Training extends BaseUUIDEntity {
     @Column(name = "cpd_points", nullable = false)
     private int cpdPoints = 0;
 
+    @Column(columnDefinition = "TEXT")
+    private String liveMeetingUrl;
+
+    @Column(length = 80)
+    private String liveMeetingProvider;
+
     private Instant publishedAt;
 
     private Instant archivedAt;

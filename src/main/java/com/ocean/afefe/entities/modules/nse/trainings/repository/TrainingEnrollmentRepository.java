@@ -20,4 +20,8 @@ public interface TrainingEnrollmentRepository extends JpaRepository<TrainingEnro
     List<TrainingEnrollment> findByUserAndOrgAndStatusInOrderByUpdatedAtDesc(
             User user, Organization org, List<EnrollmentStatus> statuses);
     List<TrainingEnrollment> findByOrg_IdAndStatusOrderByUpdatedAtDesc(UUID orgId, EnrollmentStatus status);
+
+    Optional<TrainingEnrollment> findFirstByUserAndTrainingOrderByUpdatedAtDesc(User user, Training training);
+
+    Optional<TrainingEnrollment> findByPaymentSessionReferenceAndUser_Id(String paymentSessionReference, UUID userId);
 }

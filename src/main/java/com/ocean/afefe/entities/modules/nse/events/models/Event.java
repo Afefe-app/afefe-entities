@@ -97,6 +97,16 @@ public class Event extends BaseUUIDEntity {
 
     private Instant registrationDeadline;
 
+    @Builder.Default
+    @Column(nullable = false)
+    private boolean virtualEvent = false;
+
+    @Column(columnDefinition = "TEXT")
+    private String meetingUrl;
+
+    @Column(length = 80)
+    private String meetingProvider;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private User createdBy;
 

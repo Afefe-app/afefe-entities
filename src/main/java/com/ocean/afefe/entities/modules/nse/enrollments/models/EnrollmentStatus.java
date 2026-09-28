@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum EnrollmentStatus implements Enumerable {
 
+    PENDING_PAYMENT("Pending payment"),
     ENROLLED("Enrolled"),
     IN_PROGRESS("In Progress"),
     COMPLETED("Completed"),
