@@ -15,11 +15,15 @@ import java.util.UUID;
 @Repository
 public interface OrgMemberRoleRepository extends JpaRepository<OrgMemberRole, UUID> {
 
-    List<OrgMemberRole> findByOrgMember(OrgMember orgMember);
+List<OrgMemberRole> findByOrgMember(OrgMember orgMember);
+
+    List<OrgMemberRole> findByRole_Id(UUID roleId);
 
     void deleteByOrgMember(OrgMember orgMember);
 
     void deleteByRole(Role role);
+
+    void deleteByRole_Id(UUID roleId);
 
     boolean existsByOrgMemberAndRole(OrgMember orgMember, Role role);
 
@@ -36,4 +40,12 @@ public interface OrgMemberRoleRepository extends JpaRepository<OrgMemberRole, UU
             ORDER BY r.id, om.joinedAt DESC
             """)
     List<OrgMemberRole> findMembersByRoleIds(@Param("roleIds") Collection<UUID> roleIds);
+
+    @Query("""
+            SELECT omr FROM OrgMemberRole omr
+            JOIN FETCH omr.role r
+            WHERE omr.orgMember.id = :orgMemberId
+            ORDER BY r.name ASC
+            """)
+    List<OrgMemberRole> findFetchedByOrgMemberId(@Param("orgMemberId") UUID orgMemberId);
 }
