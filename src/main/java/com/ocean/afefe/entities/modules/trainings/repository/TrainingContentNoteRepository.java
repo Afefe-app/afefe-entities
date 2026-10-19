@@ -7,8 +7,12 @@ import com.ocean.afefe.entities.modules.trainings.models.TrainingContentNoteObje
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,4 +35,8 @@ public interface TrainingContentNoteRepository extends JpaRepository<TrainingCon
             Pageable pageable);
 
     Optional<TrainingContentNote> findByIdAndUser(UUID id, User user);
+
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Query("DELETE FROM TrainingContentNote n WHERE n.contentItem.id IN :contentItemIds")
+    int deleteByContentItemIdIn(@Param("contentItemIds") Collection<UUID> contentItemIds);
 }
