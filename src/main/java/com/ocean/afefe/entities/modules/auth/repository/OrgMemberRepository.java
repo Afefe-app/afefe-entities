@@ -162,4 +162,58 @@ public interface OrgMemberRepository extends JpaRepository<OrgMember, UUID> {
             @Param("adminUserType") UserType adminUserType,
             @Param("search") String search,
             Pageable pageable);
+
+    Optional<OrgMember> findByIdAndOrganization(UUID id, Organization organization);
+
+    boolean existsByOrganizationAndMembershipIdIgnoreCase(Organization organization, String membershipId);
+
+    Optional<OrgMember> findByOrganizationAndMembershipIdIgnoreCase(Organization organization, String membershipId);
+
+    @Query(
+            value = """
+            SELECT om FROM OrgMember om
+            JOIN om.user u
+            WHERE om.organization = :org
+              AND om.joinedAt IS NOT NULL
+              AND (:search IS NULL OR :search = ''
+                   OR LOWER(COALESCE(u.fullName, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+                   OR LOWER(COALESCE(u.emailAddress, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+                   OR LOWER(COALESCE(om.membershipId, '')) LIKE LOWER(CONCAT('%', :search, '%')))
+              AND (:active IS NULL OR u.isActive = :active)
+              AND (:roleId IS NULL OR EXISTS (
+                    SELECT 1 FROM OrgMemberRole omr WHERE omr.orgMember = om AND omr.role.id = :roleId
+                  ))
+              AND (:roleName IS NULL OR :roleName = '' OR EXISTS (
+                    SELECT 1 FROM OrgMemberRole omr2
+                    JOIN omr2.role r2
+                    WHERE omr2.orgMember = om AND LOWER(r2.name) = LOWER(:roleName)
+                  ))
+            """,
+            countQuery = """
+            SELECT COUNT(om) FROM OrgMember om
+            JOIN om.user u
+            WHERE om.organization = :org
+              AND om.joinedAt IS NOT NULL
+              AND (:search IS NULL OR :search = ''
+                   OR LOWER(COALESCE(u.fullName, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+                   OR LOWER(COALESCE(u.emailAddress, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+                   OR LOWER(COALESCE(om.membershipId, '')) LIKE LOWER(CONCAT('%', :search, '%')))
+              AND (:active IS NULL OR u.isActive = :active)
+              AND (:roleId IS NULL OR EXISTS (
+                    SELECT 1 FROM OrgMemberRole omr WHERE omr.orgMember = om AND omr.role.id = :roleId
+                  ))
+              AND (:roleName IS NULL OR :roleName = '' OR EXISTS (
+                    SELECT 1 FROM OrgMemberRole omr2
+                    JOIN omr2.role r2
+                    WHERE omr2.orgMember = om AND LOWER(r2.name) = LOWER(:roleName)
+                  ))
+            """)
+    Page<OrgMember> findManagedMembers(
+            @Param("org") Organization org,
+            @Param("search") String search,
+            @Param("roleId") UUID roleId,
+            @Param("roleName") String roleName,
+            @Param("active") Boolean active,
+            Pageable pageable);
+
 }
