@@ -13,7 +13,10 @@ import java.time.Instant;
 @Entity
 @Builder
 @Table(
-        name = "org_members"
+        name = "org_members",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "uk_org_member_membership_id", columnNames = {"organization_id", "membership_id"})
+        }
 )
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,6 +27,12 @@ public class OrgMember extends BaseUUIDEntity {
 
     @ManyToOne
     private User user;
+
+    /**
+     * External/org membership identifier. When not supplied on create, the platform generates one.
+     */
+    @Column(name = "membership_id")
+    private String membershipId;
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
