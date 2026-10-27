@@ -19,6 +19,8 @@ List<RolePermission> findByRole(Role role);
 
     List<RolePermission> findByRole_Id(UUID roleId);
 
+    boolean existsByRole_IdAndPermission_Id(UUID roleId, UUID permissionId);
+
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Query("DELETE FROM RolePermission rp WHERE rp.role = :role")
     void deleteByRole(@Param("role") Role role);

@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Import;
         JwtTokenManagerImpl.class,
         GovernmentAdminPermissionResolver.class,
         GovernmentPermissionCatalogInitializer.class,
+        TrainerPermissionCatalogInitializer.class,
         GovernmentPermissionAuthorizationAspect.class,
         RequestContextMetaArgumentResolver.class,
         RequestMetaContextResolverGrpc.class,
