@@ -30,6 +30,11 @@ public class TrainingEnrollment extends BaseUUIDEntity {
     @JoinColumn(name = "training_id", nullable = false)
     private Training training;
 
+    /** Optional delivery track (cohort). Null for legacy programme-level enrollments. */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "track_id")
+    private TrainingTrack track;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "current_month_id")
     private TrainingMonth currentMonth;

@@ -8,6 +8,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalTime;
 
 @Entity
 @Table(
@@ -50,4 +51,13 @@ public class TrainingSessionAttendance extends BaseUUIDEntity {
     private BigDecimal submittedLatitude;
 
     private BigDecimal submittedLongitude;
+
+    /** Optional facilitator-recorded check-in time for the session. */
+    private LocalTime checkInTime;
+
+    /** Optional facilitator-recorded check-out time for the session. */
+    private LocalTime checkOutTime;
+
+    @Column(length = 1000)
+    private String remarks;
 }

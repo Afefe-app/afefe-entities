@@ -47,4 +47,43 @@ public interface CalendarEventRepository extends JpaRepository<CalendarEvent, UU
     long countByAssignedTraining_IdIn(List<UUID> trainingIds);
 
     Page<CalendarEvent> findAllByAssignedTraining_Org_IdOrderByDateDescFromTimeDesc(UUID orgId, Pageable pageable);
+
+    @Query("""
+            SELECT ce FROM CalendarEvent ce
+            LEFT JOIN FETCH ce.assignedTraining t
+            LEFT JOIN FETCH ce.assignedCourse c
+            LEFT JOIN FETCH ce.createdBy
+            WHERE t.org.id = :orgId
+              AND (:trainingId IS NULL OR t.id = :trainingId)
+              AND (:courseId IS NULL OR c.id = :courseId)
+              AND (:fromDate IS NULL OR ce.date >= :fromDate)
+              AND (:toDate IS NULL OR ce.date <= :toDate)
+              AND ce.status <> com.ocean.afefe.entities.modules.calendar.model.CalendarEventStatus.CANCELED
+            ORDER BY ce.date DESC, ce.fromTime DESC
+            """)
+    List<CalendarEvent> findSessionsByOrgAndFilters(
+            @Param("orgId") UUID orgId,
+            @Param("trainingId") UUID trainingId,
+            @Param("courseId") UUID courseId,
+            @Param("fromDate") LocalDate fromDate,
+            @Param("toDate") LocalDate toDate);
+
+    @Query("""
+            SELECT COUNT(ce) FROM CalendarEvent ce
+            WHERE ce.assignedTraining.org.id = :orgId
+              AND ce.status <> com.ocean.afefe.entities.modules.calendar.model.CalendarEventStatus.CANCELED
+              AND (:trainingId IS NULL OR ce.assignedTraining.id = :trainingId)
+              AND (:fromDate IS NULL OR ce.date >= :fromDate)
+              AND (:toDate IS NULL OR ce.date <= :toDate)
+            """)
+    long countSessionsByOrgAndFilters(
+            @Param("orgId") UUID orgId,
+            @Param("trainingId") UUID trainingId,
+            @Param("fromDate") LocalDate fromDate,
+            @Param("toDate") LocalDate toDate);
+
+    long countByAssignedTraining_Org_IdAndDateAndStatusNot(
+            UUID orgId, LocalDate date, com.ocean.afefe.entities.modules.calendar.model.CalendarEventStatus status);
+
+    Optional<CalendarEvent> findByIdAndAssignedTraining_Org_Id(UUID id, UUID orgId);
 }

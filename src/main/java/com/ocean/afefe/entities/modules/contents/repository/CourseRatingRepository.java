@@ -140,4 +140,8 @@ public interface CourseRatingRepository extends JpaRepository<CourseRating, UUID
             @Param("org") Organization org,
             @Param("userIds") Collection<UUID> userIds,
             @Param("courseIds") Collection<UUID> courseIds);
+
+    List<CourseRating> findByCourse_IdOrderByRatedAtDesc(UUID courseId);
+
+    Optional<CourseRating> findByIdAndCourse_Id(UUID id, UUID courseId);
 }
