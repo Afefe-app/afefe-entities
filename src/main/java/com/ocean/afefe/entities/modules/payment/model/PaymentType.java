@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum PaymentType implements Enumerable {
     COURSE_ENROLLMENT("Course enrollment"),
+    TRAINING_ENROLLMENT("Training enrollment"),
     EVENT_REGISTRATION("Event registration"),
     CPD_PATHWAY_ENROLLMENT("CPD pathway enrollment"),
     WALLET_TOP_UP("Wallet top-up"),
