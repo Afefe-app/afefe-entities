@@ -222,4 +222,54 @@ public interface TrainingEnrollmentRepository extends JpaRepository<TrainingEnro
 
     @Query("SELECT COUNT(te) FROM TrainingEnrollment te WHERE te.createdAt >= :start AND te.createdAt < :end")
     long countCreatedBetween(@Param("start") Instant start, @Param("end") Instant end);
+
+    long countByTrack_Id(UUID trackId);
+
+    long countByOrg_IdAndTrack_Id(UUID orgId, UUID trackId);
+
+    Optional<TrainingEnrollment> findByUserAndTrack_Id(User user, UUID trackId);
+
+    Optional<TrainingEnrollment> findByUser_IdAndTrack_IdAndOrg_Id(UUID userId, UUID trackId, UUID orgId);
+
+    List<TrainingEnrollment> findByOrgAndTrack_Id(Organization org, UUID trackId);
+
+    @Query("""
+            SELECT te.track.id, COUNT(te)
+            FROM TrainingEnrollment te
+            WHERE te.track.id IN :trackIds
+            GROUP BY te.track.id
+            """)
+    List<Object[]> countGroupedByTrackIds(@Param("trackIds") Collection<UUID> trackIds);
+
+    @Query(
+            value = """
+            SELECT te
+            FROM TrainingEnrollment te
+            JOIN FETCH te.user u
+            LEFT JOIN FETCH te.track trk
+            WHERE te.org.id = :orgId
+              AND te.track.id = :trackId
+              AND (
+                :search IS NULL OR :search = ''
+                OR LOWER(COALESCE(u.fullName, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+                OR LOWER(COALESCE(u.emailAddress, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+              )
+            """,
+            countQuery = """
+            SELECT COUNT(te)
+            FROM TrainingEnrollment te
+            JOIN te.user u
+            WHERE te.org.id = :orgId
+              AND te.track.id = :trackId
+              AND (
+                :search IS NULL OR :search = ''
+                OR LOWER(COALESCE(u.fullName, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+                OR LOWER(COALESCE(u.emailAddress, '')) LIKE LOWER(CONCAT('%', :search, '%'))
+              )
+            """)
+    Page<TrainingEnrollment> searchByOrgAndTrackId(
+            @Param("orgId") UUID orgId,
+            @Param("trackId") UUID trackId,
+            @Param("search") String search,
+            Pageable pageable);
 }

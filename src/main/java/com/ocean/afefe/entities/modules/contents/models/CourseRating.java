@@ -44,4 +44,10 @@ public class CourseRating extends BaseUUIDEntity {
     private Instant ratedAt;
 
     private Instant updatedAt;
+
+    /** Trainer / instructor response to the learner review (Training Management). */
+    @Column(columnDefinition = "TEXT")
+    private String instructorReply;
+
+    private Instant instructorRepliedAt;
 }

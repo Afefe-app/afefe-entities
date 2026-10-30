@@ -9,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 public enum TrainingSessionAttendanceStatus implements Enumerable {
 
     PRESENT("Present"),
-    LATE("Late");
+    LATE("Late"),
+    ABSENT("Absent"),
+    EXCUSED("Excused");
 
     private final String description;
 }
