@@ -12,8 +12,6 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -56,8 +54,8 @@ public interface CalendarEventRepository extends JpaRepository<CalendarEvent, UU
             WHERE t.org.id = :orgId
               AND (:trainingId IS NULL OR t.id = :trainingId)
               AND (:courseId IS NULL OR c.id = :courseId)
-              AND (:fromDate IS NULL OR ce.date >= :fromDate)
-              AND (:toDate IS NULL OR ce.date <= :toDate)
+              AND (CAST(:fromDate AS LocalDate) IS NULL OR ce.date >= CAST(:fromDate AS LocalDate))
+              AND (CAST(:toDate AS LocalDate) IS NULL OR ce.date <= CAST(:toDate AS LocalDate))
               AND ce.status <> com.ocean.afefe.entities.modules.calendar.model.CalendarEventStatus.CANCELED
             ORDER BY ce.date DESC, ce.fromTime DESC
             """)
@@ -73,8 +71,8 @@ public interface CalendarEventRepository extends JpaRepository<CalendarEvent, UU
             WHERE ce.assignedTraining.org.id = :orgId
               AND ce.status <> com.ocean.afefe.entities.modules.calendar.model.CalendarEventStatus.CANCELED
               AND (:trainingId IS NULL OR ce.assignedTraining.id = :trainingId)
-              AND (:fromDate IS NULL OR ce.date >= :fromDate)
-              AND (:toDate IS NULL OR ce.date <= :toDate)
+              AND (CAST(:fromDate AS LocalDate) IS NULL OR ce.date >= CAST(:fromDate AS LocalDate))
+              AND (CAST(:toDate AS LocalDate) IS NULL OR ce.date <= CAST(:toDate AS LocalDate))
             """)
     long countSessionsByOrgAndFilters(
             @Param("orgId") UUID orgId,
