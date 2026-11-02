@@ -161,8 +161,8 @@ public interface TrainingSessionAttendanceRepository extends JpaRepository<Train
               AND (:trackId IS NULL OR e.track.id = :trackId)
               AND (:courseId IS NULL OR ce.assignedCourse.id = :courseId)
               AND (:status IS NULL OR a.status = :status)
-              AND (:fromDate IS NULL OR ce.date >= :fromDate)
-              AND (:toDate IS NULL OR ce.date <= :toDate)
+              AND (CAST(:fromDate AS LocalDate) IS NULL OR ce.date >= CAST(:fromDate AS LocalDate))
+              AND (CAST(:toDate AS LocalDate) IS NULL OR ce.date <= CAST(:toDate AS LocalDate))
             ORDER BY ce.date DESC, ce.fromTime DESC, a.markedAt DESC
             """)
     List<TrainingSessionAttendance> findHubRowsByFilters(
