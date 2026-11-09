@@ -1,6 +1,7 @@
 package com.ocean.afefe.entities.modules.nse.cpdpathway.models;
 
 import com.ocean.afefe.entities.common.BaseUUIDEntity;
+import com.ocean.afefe.entities.modules.nse.trainings.models.Training;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -46,4 +47,8 @@ public class CpdPathwayCourse extends BaseUUIDEntity {
 
     @Column(nullable = false)
     private Integer position;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "training_id")
+    private Training training;
 }

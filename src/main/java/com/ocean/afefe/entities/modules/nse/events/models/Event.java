@@ -56,6 +56,9 @@ public class Event extends BaseUUIDEntity {
     @Column(nullable = false)
     private String hostName;
 
+    @Column(name = "host_image_url", columnDefinition = "TEXT")
+    private String hostImageUrl;
+
     @Column(columnDefinition = "TEXT")
     private String coverImageUrl;
 
