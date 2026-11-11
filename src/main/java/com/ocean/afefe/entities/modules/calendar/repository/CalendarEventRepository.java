@@ -46,22 +46,29 @@ public interface CalendarEventRepository extends JpaRepository<CalendarEvent, UU
 
     Page<CalendarEvent> findAllByAssignedTraining_Org_IdOrderByDateDescFromTimeDesc(UUID orgId, Pageable pageable);
 
+    /**
+     * Optional filters must not use {@code :param IS NULL} — PostgreSQL cannot type those binds
+     * (ERROR: could not determine data type of parameter $N). Callers pass boolean flags and
+     * always-non-null date bounds (use open-ended sentinels when a bound is absent).
+     */
     @Query("""
             SELECT ce FROM CalendarEvent ce
             LEFT JOIN FETCH ce.assignedTraining t
             LEFT JOIN FETCH ce.assignedCourse c
             LEFT JOIN FETCH ce.createdBy
             WHERE t.org.id = :orgId
-              AND (:trainingId IS NULL OR t.id = :trainingId)
-              AND (:courseId IS NULL OR c.id = :courseId)
-              AND (CAST(:fromDate AS LocalDate) IS NULL OR ce.date >= CAST(:fromDate AS LocalDate))
-              AND (CAST(:toDate AS LocalDate) IS NULL OR ce.date <= CAST(:toDate AS LocalDate))
+              AND (NOT :filterTraining OR t.id = :trainingId)
+              AND (NOT :filterCourse OR c.id = :courseId)
+              AND ce.date >= :fromDate
+              AND ce.date <= :toDate
               AND ce.status <> com.ocean.afefe.entities.modules.calendar.model.CalendarEventStatus.CANCELED
             ORDER BY ce.date DESC, ce.fromTime DESC
             """)
     List<CalendarEvent> findSessionsByOrgAndFilters(
             @Param("orgId") UUID orgId,
+            @Param("filterTraining") boolean filterTraining,
             @Param("trainingId") UUID trainingId,
+            @Param("filterCourse") boolean filterCourse,
             @Param("courseId") UUID courseId,
             @Param("fromDate") LocalDate fromDate,
             @Param("toDate") LocalDate toDate);
@@ -70,12 +77,13 @@ public interface CalendarEventRepository extends JpaRepository<CalendarEvent, UU
             SELECT COUNT(ce) FROM CalendarEvent ce
             WHERE ce.assignedTraining.org.id = :orgId
               AND ce.status <> com.ocean.afefe.entities.modules.calendar.model.CalendarEventStatus.CANCELED
-              AND (:trainingId IS NULL OR ce.assignedTraining.id = :trainingId)
-              AND (CAST(:fromDate AS LocalDate) IS NULL OR ce.date >= CAST(:fromDate AS LocalDate))
-              AND (CAST(:toDate AS LocalDate) IS NULL OR ce.date <= CAST(:toDate AS LocalDate))
+              AND (NOT :filterTraining OR ce.assignedTraining.id = :trainingId)
+              AND ce.date >= :fromDate
+              AND ce.date <= :toDate
             """)
     long countSessionsByOrgAndFilters(
             @Param("orgId") UUID orgId,
+            @Param("filterTraining") boolean filterTraining,
             @Param("trainingId") UUID trainingId,
             @Param("fromDate") LocalDate fromDate,
             @Param("toDate") LocalDate toDate);
