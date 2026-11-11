@@ -14,6 +14,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.*;
 
 @Entity
@@ -95,6 +96,12 @@ public class Training extends BaseUUIDEntity {
 
     /** Optional external programme identifier from authoring UI */
     private String programmeId;
+
+    /** Delivery window start (Training Management create-training). */
+    private LocalDate startDate;
+
+    /** Delivery window end (Training Management create-training). */
+    private LocalDate endDate;
 
     /** OJT programme window in days from enrollment start (countdown). */
     private Integer ojtDurationDays;

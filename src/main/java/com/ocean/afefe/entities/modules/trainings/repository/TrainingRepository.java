@@ -37,6 +37,8 @@ public interface TrainingRepository extends JpaRepository<Training, UUID>, JpaSp
 
     boolean existsByProgrammeIdAndTrainerAndOrg(String programmeId, Trainer trainer, Organization org);
 
+    boolean existsByTrainerAndOrg_IdAndTitleIgnoreCase(Trainer trainer, UUID orgId, String title);
+
     @Query("""
             SELECT t
             FROM Training t
