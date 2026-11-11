@@ -161,10 +161,10 @@ public interface TrainingSessionAttendanceRepository extends JpaRepository<Train
             LEFT JOIN FETCH e.track
             JOIN FETCH a.calendarEvent ce
             WHERE a.org = :org
-              AND (NOT :filterTraining OR t.id = :trainingId)
-              AND (NOT :filterTrack OR e.track.id = :trackId)
-              AND (NOT :filterCourse OR ce.assignedCourse.id = :courseId)
-              AND (NOT :filterStatus OR a.status = :status)
+              AND (:filterTraining = false OR t.id = :trainingId)
+              AND (:filterTrack = false OR e.track.id = :trackId)
+              AND (:filterCourse = false OR ce.assignedCourse.id = :courseId)
+              AND (:filterStatus = false OR a.status = :status)
               AND ce.date >= :fromDate
               AND ce.date <= :toDate
             ORDER BY ce.date DESC, ce.fromTime DESC, a.markedAt DESC

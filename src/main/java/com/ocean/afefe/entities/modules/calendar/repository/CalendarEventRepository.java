@@ -57,8 +57,8 @@ public interface CalendarEventRepository extends JpaRepository<CalendarEvent, UU
             LEFT JOIN FETCH ce.assignedCourse c
             LEFT JOIN FETCH ce.createdBy
             WHERE t.org.id = :orgId
-              AND (NOT :filterTraining OR t.id = :trainingId)
-              AND (NOT :filterCourse OR c.id = :courseId)
+              AND (:filterTraining = false OR t.id = :trainingId)
+              AND (:filterCourse = false OR c.id = :courseId)
               AND ce.date >= :fromDate
               AND ce.date <= :toDate
               AND ce.status <> com.ocean.afefe.entities.modules.calendar.model.CalendarEventStatus.CANCELED
@@ -77,7 +77,7 @@ public interface CalendarEventRepository extends JpaRepository<CalendarEvent, UU
             SELECT COUNT(ce) FROM CalendarEvent ce
             WHERE ce.assignedTraining.org.id = :orgId
               AND ce.status <> com.ocean.afefe.entities.modules.calendar.model.CalendarEventStatus.CANCELED
-              AND (NOT :filterTraining OR ce.assignedTraining.id = :trainingId)
+              AND (:filterTraining = false OR ce.assignedTraining.id = :trainingId)
               AND ce.date >= :fromDate
               AND ce.date <= :toDate
             """)
