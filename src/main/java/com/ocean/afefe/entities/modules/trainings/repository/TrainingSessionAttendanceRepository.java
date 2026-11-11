@@ -148,6 +148,10 @@ public interface TrainingSessionAttendanceRepository extends JpaRepository<Train
             @Param("trackId") UUID trackId,
             @Param("userId") UUID userId);
 
+    /**
+     * Optional filters must not use {@code :param IS NULL} — PostgreSQL cannot type those binds.
+     * Callers pass boolean flags and always-non-null date bounds.
+     */
     @Query("""
             SELECT a
             FROM TrainingSessionAttendance a
@@ -157,19 +161,23 @@ public interface TrainingSessionAttendanceRepository extends JpaRepository<Train
             LEFT JOIN FETCH e.track
             JOIN FETCH a.calendarEvent ce
             WHERE a.org = :org
-              AND (:trainingId IS NULL OR t.id = :trainingId)
-              AND (:trackId IS NULL OR e.track.id = :trackId)
-              AND (:courseId IS NULL OR ce.assignedCourse.id = :courseId)
-              AND (:status IS NULL OR a.status = :status)
-              AND (CAST(:fromDate AS LocalDate) IS NULL OR ce.date >= CAST(:fromDate AS LocalDate))
-              AND (CAST(:toDate AS LocalDate) IS NULL OR ce.date <= CAST(:toDate AS LocalDate))
+              AND (NOT :filterTraining OR t.id = :trainingId)
+              AND (NOT :filterTrack OR e.track.id = :trackId)
+              AND (NOT :filterCourse OR ce.assignedCourse.id = :courseId)
+              AND (NOT :filterStatus OR a.status = :status)
+              AND ce.date >= :fromDate
+              AND ce.date <= :toDate
             ORDER BY ce.date DESC, ce.fromTime DESC, a.markedAt DESC
             """)
     List<TrainingSessionAttendance> findHubRowsByFilters(
             @Param("org") Organization org,
+            @Param("filterTraining") boolean filterTraining,
             @Param("trainingId") UUID trainingId,
+            @Param("filterTrack") boolean filterTrack,
             @Param("trackId") UUID trackId,
+            @Param("filterCourse") boolean filterCourse,
             @Param("courseId") UUID courseId,
+            @Param("filterStatus") boolean filterStatus,
             @Param("status") TrainingSessionAttendanceStatus status,
             @Param("fromDate") LocalDate fromDate,
             @Param("toDate") LocalDate toDate);
