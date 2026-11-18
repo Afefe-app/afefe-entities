@@ -73,4 +73,10 @@ public interface TrainingRepository extends JpaRepository<Training, UUID>, JpaSp
 
     @Query("SELECT AVG(t.rating) FROM Training t WHERE t.reviews > 0")
     Double averageRatingAcrossCatalogue();
+
+    List<Training> findByOrg_IdAndProgrammeIdOrderByUpdatedAtDesc(UUID orgId, String programmeId);
+
+    List<Training> findByOrg_IdAndProgrammeIdAndIdNotOrderByUpdatedAtDesc(UUID orgId, String programmeId, UUID excludeId);
+
+    long countByOrg_IdAndProgrammeId(UUID orgId, String programmeId);
 }

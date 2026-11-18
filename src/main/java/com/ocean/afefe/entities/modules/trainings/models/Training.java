@@ -109,6 +109,24 @@ public class Training extends BaseUUIDEntity {
     /** Minimum logged OJT hours target for completion milestone. */
     private Integer minOjtHours;
 
+    /** Programme Management V2 — delivery location (e.g. Lagos, Nigeria). */
+    private String location;
+
+    /** Programme Management V2 — sponsor organisation name. */
+    private String sponsor;
+
+    /** Programme Management V2 — monitoring agency name. */
+    private String monitoringAgency;
+
+    /** Programme Management V2 — course provider organisation name(s). */
+    private String courseProviders;
+
+    /** Programme Management V2 — programme coordinator display name. */
+    private String coordinatorName;
+
+    /** Programme Management V2 — planned / target trainee headcount. */
+    private Integer targetTrainees;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private User createdBy;
 
